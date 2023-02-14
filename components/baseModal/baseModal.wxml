@@ -1,0 +1,8 @@
+<view style="display: {{isShow? 'unset':'none'}}"class="modal {{isShow &&'animatedShow'}}">
+  <view data-type="mask" catchtap="touchModal" catchtouchmove='couchmove' class="modal-mask" />
+  <view class="defaultModalContainer purpleBg {{isShow && 'modalContainerShow'}} {{hidding && 'modalContainerHide'}} {{className}}">
+    <view class="bodyContent {{bodyContentClassName}}">
+      <slot></slot>
+    </view>
+  </view>
+</view>
