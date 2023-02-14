@@ -1,7 +1,10 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/SubjectMiddlePage/index",
+    "pages/SubjectMoniPage/index",
+    "pages/SubjectQuestionPage/index",
+    "pages/SubjectIncPage/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
