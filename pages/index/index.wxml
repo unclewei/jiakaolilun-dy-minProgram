@@ -1,17 +1,109 @@
 <view class='init'>
   <image class='bannerContent' src="../../images/{{step == 1 ? 'theorybanner1.jpg':'theorybanner4.png'}}" mode="aspectFill" />
 
+  <!-- 通知组件 -->
+  <!-- <SubjectUpdate step={step}/> -->
+
   <div class='kemu'>
     <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">
       <span class='text'>科目一
-        <image class='rightIcon' wx:if="{{step == 1}}" src='{{rightIcon}}' />
+        <image class='rightIcon' wx:if="{{step == 1}}" src='../../images/rightIcon.png' />
       </span>
     </span>
     <span class='kemuItem {{step == 4 && "active"}}' bindtap="onStepChange" data-item="4">
       <span class='text'>科目四
 
-        <image class='rightIcon' wx:if="{{step == 4}}" src='{{rightIcon}}' />
+        <image class='rightIcon' wx:if="{{step == 4}}" src='../../images/rightIcon.png' />
       </span>
     </span>
   </div>
+
+  <div class='mainContent'>
+    <div class='bodyBox'>
+      <div class='bodySmall'>
+        <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
+          <image mode="aspectFill" src='../../images/subjectIconOne.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>
+            顺序练习
+            <span class='tag'>免费</span>
+          </div>
+        </div>
+        <div class='smallItem' bindtap="gotoSubject" data-item="newRule">
+          <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>新规秘卷
+          </div>
+        </div>
+      </div>
+      <div class='bodyBig' bindtap="gotoSubject" data-item="chosen">
+        <div class='bodyBigItem'>
+          <div class='bodyBigIcon' />
+          <div class='bodyBigTitle'>精选500题</div>
+          <div class='bodyBigDesc'>
+            {{userSubject.chosenUserSubject.currentIndex || 0}} / 500
+          </div>
+        </div>
+      </div>
+      <div class='bodySmall'>
+        <div class='smallItem' bindtap="gotoSubject" data-item="special">
+          <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>专项练习</div>
+        </div>
+        <div class='smallItem' bindtap="gotoSubject" data-item="myWrong">
+          <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>
+            我的错题
+            <span class='tag dot'>{{userSubject.myWrongUserSubject.wrongSubjectIds.length || 0}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- {/* 模拟考试部分 */} -->
+    <div class='bodyBox'>
+      <div class='bodySmall'>
+        <div class='smallItem' bindtap="gotoPage" data-item="incPage">
+          <image mode="aspectFill" src='../../images/subjectIconFive.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>不过补偿
+            <span class="tag must">热门</span>
+          </div>
+        </div>
+        <div class='smallItem' bindtap="gotoSubject" data-item="hard">
+          <image mode="aspectFill" src='../../images/subjectIconThree.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>难题练习</div>
+        </div>
+      </div>
+      <div class='bodyBig'>
+        <div class='bodyBigItem' bindtap="gotoSubject" data-item="moni">
+          <div class="bodyBigIcon bodyBigIconGreen" />
+          <div class='bodyBigTitle'>模拟考试</div>
+          <div class='bodyBigDesc'>仿真冲刺</div>
+        </div>
+      </div>
+      <div class='bodySmall'>
+        <div class='smallItem' bindtap="gotoSubject" data-item="secret">
+          <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>考前秘卷</div>
+        </div>
+        <button class="cleanButton" open-type="contact">
+          <div class='smallItem'>
+            <image mode="aspectFill" src='../../images/subjectIconTen.png' class='smallItemIcon' alt="" />
+            <div class='smallItemText'>问题反馈</div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <button class="cleanButton buy" open-type="share" wx:if="{{isCoach}}">
+    <div>
+      <div>点击分享给学员购买<span class='highlight'>科目{{step==1?'一':'四'}}</span>VIP</div>
+      <div class='secondLine'>
+        学员购买后你赚10元，不过包退！
+      </div>
+    </div>
+  </button>
 </view>
+
+
+
+<!-- 登录 -->
+<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />

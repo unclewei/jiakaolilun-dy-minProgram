@@ -1,0 +1,53 @@
+.content {
+  font-size: 50rpx;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 30rpx;
+}
+
+.logonImg{
+  width: 500rpx;
+  height: 300rpx;
+  margin: 15rpx auto;
+}
+
+.bodyBox {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f6dfb4;
+  border: 5rpx #41421d solid;
+  border-radius: 20rpx;
+  margin-bottom: 20rpx;
+  padding: 10rpx 15rpx;
+}
+
+.loginBox {
+  position: relative;
+  width: 100%;
+  height: 80rpx;
+  padding: 0 30rpx;
+  margin: 0 auto;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.optionBg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}
+
+.loginConfirm {
+  z-index: 2;
+  font-weight: bold;
+  font-size: 40rpx;
+}

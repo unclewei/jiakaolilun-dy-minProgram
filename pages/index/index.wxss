@@ -55,3 +55,173 @@
   color: #3a6acf;
   border-bottom: 2px #3a6acf solid !important;
 }
+
+
+.mainContent {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  padding-top: 0;
+  padding-bottom: 120rpx;
+}
+
+.mainContent .inform {
+  margin-bottom: 5px;
+  box-sizing: border-box;
+  padding: 10px;
+  background-color: #fbffc4;
+  width: 100%;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.mainContent .inform .type {
+  color: #ff5566;
+  margin-right: 2px;
+  font-weight: 600;
+}
+
+.mainContent .bodyBox {
+  position: relative;
+  height: 180px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.mainContent .bodyBox .bodySmall {
+  height: 100%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.mainContent .bodyBox .bodySmall .smallItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainContent .bodyBox .bodySmall .smallItem .smallItemIcon {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+
+.mainContent .bodyBox .bodySmall .smallItem .smallItemText {
+  position: relative;
+  font-size: 14px;
+}
+
+.mainContent .bodyBox .bodySmall .smallItem .smallItemText .tag {
+  position: absolute;
+  top: -55px;
+  right: -16px;
+  width: 40px;
+  font-size: 12px;
+  text-align: center;
+  border-radius: 10px;
+  background-color: #0ab10f;
+  color: #fff;
+}
+
+.mainContent .bodyBox .bodySmall .smallItem .smallItemText .dot {
+  background-color: #fe3269 !important;
+  width: 23px;
+  height: 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  right: -8px;
+}
+
+.mainContent .bodyBox .bodySmall .smallItem .smallItemText .hot {
+  background-color: #ff3767 !important;
+  width: 62px !important;
+  right: -38px;
+}
+
+.mainContent .bodyBox .bodySmall .smallItem .smallItemText .must {
+  background-color: #ff3767 !important;
+}
+
+.mainContent .bodyBox .bodyBig {
+  position: relative;
+  height: 100%;
+  width: 40%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainContent .bodyBox .bodyBig .bodyBigItem {
+  position: relative;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigIcon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  z-index: 1;
+  background: #4a8ff3;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.4);
+}
+
+.mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigIconGreen {
+  background: #51c59E;
+}
+
+.mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigTitle {
+  z-index: 2;
+  font-size: 16px;
+  margin-bottom: 2px;
+}
+
+.mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigDesc {
+  z-index: 2;
+  font-size: 14px;
+}
+
+
+.buy {
+  overflow: hidden;
+  position: fixed;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to right, #fff4e2, #e1cb96);
+  font-weight: 600;
+  color: #3a1d19;
+  width: 100%;
+  height: 60px;
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+  z-index: 2;
+  font-size: 15px;
+}
+
+.secondLine {
+  padding-left: 28px;
+}
+
+.highlight {
+  color: red;
+}

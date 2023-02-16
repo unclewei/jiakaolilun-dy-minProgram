@@ -22,6 +22,14 @@ Component({
     bodyContentClassName: {
       type: String,
       value: ''
+    },
+    title:{
+      type: String,
+      value: ''
+    },
+    imageSrc:{
+      type: String,
+      value: '../../images/updateBanner.png'
     }
 
   },

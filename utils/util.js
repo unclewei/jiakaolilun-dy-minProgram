@@ -106,3 +106,70 @@ export const autoChooseDisCount = (discountList, totalAmount) => {
     return item.discountAmount > finalItem.discountAmount ? item : finalItem;
   }, null);
 };
+
+/*url增加参数
+ * @url url
+ * @value 参数以及值
+ * */
+
+export const appendUrlPara = (url, params) => {
+  if (typeof params !== 'object') return url;
+  for (let i in params) {
+    const param = `${i}=${params[i]}`;
+    url += url.indexOf('?') !== -1 ? '&' : '?';
+    url += param;
+  }
+  return url;
+};
+
+/**
+ * 跳转去哪里学习
+ * @param {*} param0 
+ */
+export const gotoSubject = ({
+  poolType = undefined,
+  step = undefined,
+  poolId = undefined,
+  from = undefined, //从哪里来的
+  isReplace = undefined
+}) => {
+  let params = {};
+  let url = `/pages/SubjectQuestionPage/index`;
+  if (poolId) {
+    params = {
+      poolId
+    };
+  } else if (step && poolType) {
+    params = {
+      step,
+      poolType
+    };
+    if (from) {
+      params.from = from;
+    }
+    switch (poolType) {
+      case 'moni':
+        params.step = step;
+        url = '/pages/SubjectMoniPage/index';
+        break;
+      case 'special':
+        params.step = step;
+        url = '/pages/SubjectMiddlePage/index';
+        break;
+      default:
+        params.poolType = poolType;
+    }
+  } else {
+    return;
+  }
+  url = appendUrlPara(url, params);
+  if (isReplace) {
+    wx.redirectTo({
+      url,
+    })
+    return;
+  }
+  wx.navigateTo({
+    url,
+  })
+};

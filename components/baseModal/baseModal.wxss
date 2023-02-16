@@ -59,10 +59,9 @@
   width: 660rpx;
   overflow-y: auto;
   left: 50%;
-  top: 45%;
+  top: 35%;
   transform: translate(-50%, -50%) scale(1);
   z-index: 12;
-  padding: 20rpx;
   box-sizing: border-box;
 }
 
@@ -80,7 +79,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: auto;
-  background-color: #FFF4DB;
+  background-color: #FFF;
   border: 5rpx #000 solid;
   border-radius: 10rpx;
   animation-fill-mode: forwards;
@@ -158,4 +157,37 @@
   border: 0;
   width: 100%;
   height: 100%;
+}
+
+
+.bannerSrc{
+  width: 100%;
+  height: 60rpx;
+  margin-bottom: 20rpx;
+}
+
+
+.titileBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+
+}
+
+.titlePoint {
+  height: 15rpx;
+  width: 15rpx;
+  border-radius: 50rpx;
+  overflow: hidden;
+  background-color: #ffbe1c;
+  border: 1rpx #41421d solid;
+}
+.titleText{
+  font-size: 40rpx;
+  font-weight: bold;
+  letter-spacing: 10rpx;
+  margin: 0 50rpx;
+  color: #57310c;
 }

@@ -1,7 +1,14 @@
-<view style="display: {{isShow? 'unset':'none'}}"class="modal {{isShow &&'animatedShow'}}">
+<view style="display: {{isShow? 'unset':'none'}}" class="modal {{isShow &&'animatedShow'}}">
   <view data-type="mask" catchtap="touchModal" catchtouchmove='couchmove' class="modal-mask" />
   <view class="defaultModalContainer purpleBg {{isShow && 'modalContainerShow'}} {{hidding && 'modalContainerHide'}} {{className}}">
     <view class="bodyContent {{bodyContentClassName}}">
+      <image class="bannerSrc" src="{{imageSrc}}"  mode="widthFix" />
+      <view class="titileBox" wx:if="{{title}}">
+        <view class="titlePoint" />
+        <view class="titleText">{{title}}</view>
+        <view class="titlePoint" />
+        <view class="titleLine" />
+      </view>
       <slot></slot>
     </view>
   </view>
