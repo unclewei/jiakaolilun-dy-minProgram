@@ -1,0 +1,5 @@
+<span class='init {{className}}'>
+  <span bindtap="onOpen">
+    <slot></slot>
+  </span>
+</span>

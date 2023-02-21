@@ -1,3 +1,10 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "模拟训练",
+  "usingComponents": {
+    "Restart": "../../components/Restart",
+    "SubjectOptions": "../../components/SubjectOptions",
+    "AnswerAndExplain": "../../components/AnswerAndExplain",
+    "Finish": "../../components/Finish",
+    "SubjectCountdown": "../../components/SubjectCountdown"
+  }
 }

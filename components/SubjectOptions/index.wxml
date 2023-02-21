@@ -1,0 +1,10 @@
+<div class='option {{textStyles}}' bindtap="onClick">
+  <span class='optionA {{styles}}' wx:if="{{optionSuffix =='wrong'}}">
+    <image class="icon" src="../../images/icon/wrong.png" mode="widthFix" />
+  </span>
+  <span class='optionA {{styles}}' wx:elif="{{ optionSuffix == 'right'}}">
+    <image class="icon" src="../../images/icon/right.png" mode="widthFix" />
+  </span>
+  <span class='optionA {{styles}}' wx:else>{{optionSuffix}}</span>
+  <div class='text'>{optionText}</div>
+</div>

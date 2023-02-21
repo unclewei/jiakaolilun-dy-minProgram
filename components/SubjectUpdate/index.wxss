@@ -1,0 +1,75 @@
+.content {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+
+.content .item {
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 19px;
+  font-weight: 500;
+  display: flex;
+  align-items: baseline;
+  flex-direction: column;
+}
+
+.content .item .tips {
+  color: #9197a3;
+  font-size: 12px;
+  margin-top: 6px;
+  align-self: flex-end;
+}
+
+.content .nums {
+  background: #f1fafe;
+  color: #0ca1d4;
+  margin: 0 auto;
+  margin-bottom: 40px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
+.content .nums .tips {
+  color: red;
+  font-size: 12px;
+  margin-top: 20px;
+  text-align: right;
+}
+
+
+
+.optionsBox {
+  position: relative;
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.optionsItem {
+  position: relative;
+  height: 100%;
+  flex: 1;
+  margin: 0 10rpx;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10rpx;
+  overflow: hidden;
+  padding: 0;
+}
+
+.optionText {
+  z-index: 2;
+  left: 5rpx;
+}

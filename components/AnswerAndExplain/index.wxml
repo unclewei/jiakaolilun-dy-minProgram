@@ -1,0 +1,10 @@
+<div wx:if="{{isNowWrong || isSeeMode || (wrongHistory && wrongHistory.subjectId) || rightHistory}}" />
+<div class='init' wx:else>
+  <div class='answer'>
+    <span class='text'>答案 {{answer}}</span>
+  </div>
+  <div class='dec'>
+    <span class='type'>试题解析：</span>
+    {{subjectItem.explain}}
+  </div>
+</div>

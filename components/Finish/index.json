@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ConfirmModal": "../ConfirmModal/index",
+    "Restart": "../Restart/index"
+  }
+}

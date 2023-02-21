@@ -5,7 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    poolType: '1',
+    poolId: '',
+    isSeeMode: false, // 答题模式 | 背题模式
   },
 
   /**
@@ -37,25 +39,37 @@ Page({
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 选择模式
    */
-  onUnload() {
-
+  setIsSeeMode(e) {
+    const item = e.currentTarget.dataset.item
+    this.setData({
+      isSeeMode: item === 'true'
+    })
   },
-
   /**
-   * 页面相关事件处理函数--监听用户下拉动作
+   * 重置题库
    */
-  onPullDownRefresh() {
-
+  onReset() {
+    // 重新获取列表
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
+  // 选择问题答案
+  onAnswerSelect() {},
 
-  },
+
+  // 多选选择问题 确定
+  onAnswerConfirm() {},
+
+  // 错题模式 切换
+  onWrongSwitchChange() {},
+
+  // 考试提交
+  onSubmit() {},
+
+  // 考试提交
+  setLocal() {},
+
 
   /**
    * 用户点击右上角分享

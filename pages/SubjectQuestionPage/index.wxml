@@ -1,2 +1,87 @@
-<!--pages/SubjectQuestionPage/index.wxml-->
-<text>pages/SubjectQuestionPage/index.wxml</text>
+<div class='init'>
+  <div class='header' wx:if="{{monitem.value !== poolType}}">
+    <span>
+      <span class='modeBtn {{!isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="false">
+        答题模式
+      </span>
+      <span class='modeBtn {{isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="true">
+        背题模式
+      </span>
+    </span>
+    <Restart poolId='{{poolId}}' bindReSet='onReset'>
+      <span class='modeBtn'>重做</span>
+    </Restart>
+  </div>
+
+  <!-- {/*广告*/} -->
+  <div class='adBanner' />
+
+  <!-- 答题内容 -->
+  <div class='content'>
+    <div class='questionItem' wx:for="{{subjectData}}" wx:key='{{item._id}}' wx:if="{{item.currentIndex == currentIndex}}">
+      <div class='question'>
+        <span class='type'>{item.typeStr}</span>
+        {item.question}
+      </div>
+      <div class='imgWrap' wx:if="{{item.imgName}}">
+        <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="aspectFit" />
+      </div>
+      <div class='options'>
+        <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='{{answerItem}}' optionContent='{{answerItem}}' bindOptionSelect='onAnswerSelect' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' />
+      </div>
+      <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode}}' wrongHistory="{{wrongHistory}}" rightHistory="{{rightHistory}}" isNowWrong='{{isNowWrong}}' />
+
+      <div class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+        确定
+      </div>
+    </div>
+
+  </div>
+
+  <!-- 答题操作 -->
+  <span class="NextLastBox">
+    <div class='controlBtn lastBtn' wx:if="{{currentIndex > 0}}" bindtap="toLast">
+      上一题
+    </div>
+    <div class='controlBtn nextBtn' bindtap="toNext">
+      {{isDisabledNext ? '没有下一题了' : '下一题'}}
+    </div>
+  </span>
+
+  <!-- 底部操作 -->
+  <div class='footer'>
+    <span>
+      <!-- 错题 -->
+      <span class='collect' wx:if="{{poolType === myWrong.value}}">
+        <span class='tips'>做对后移除错题</span>
+        <Switch checked='{{isWrongDelete}}' bindchange="onWrongSwitchChange" />
+      </span>
+      <!-- 完成 -->
+      <Finish wx:if="{{subjectPoolType[poolType].isScore}}" poolId='{{poolId}}' bindOnSubmit='onSubmit' userSubjectData='{{userSubjectData}}' step='{{step}}' poolData='{{poolData}}'>
+        <span class='finishItem'>
+          <image class='finishIcon' src='../../images/subjectIconSeven.png' mode="widthFix" />交卷
+        </span>
+      </Finish>
+    </span>
+
+    <span wx:if="{{poolData && moni.value === poolType}}">
+      <SubjectCountdown mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
+    </span>
+    <span>
+      <span class='rightInfo'>
+        <span class='iconItem' wx:if="{{poolType !== myWrong.value}}">
+          <image class='icon' src='../../images/icon/right.png' mode="widthFix" />
+          {{userSubjectData.rightSubjectIds.length}}
+        </span>
+        <span class='iconItem' wx:if="{{poolType !== myWrong.value}}">
+          <image class='icon' src='../../images/icon/wrong.png' mode="widthFix" />
+          {{userSubjectData.wrongSubjectIds.length}}
+        </span>
+        <span class='iconItem'>
+          <image class='icon' src='../../images/icon/more.png' mode="widthFix" />
+          <b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}
+        </span>
+      </span>
+    </span>
+  </div>
+</div>

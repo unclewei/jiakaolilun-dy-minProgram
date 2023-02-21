@@ -1,1 +1,245 @@
-/* pages/SubjectQuestionPage/index.wxss */
+.init {
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+}
+.init .resultContent {
+  text-align: center;
+}
+.init .resultContent .resultIcon {
+  width: 120px;
+  margin-top: 100px;
+  margin-bottom: 10px;
+}
+.init .resultContent .score {
+  font-size: 25px;
+  font-weight: 600;
+  margin-top: 20px;
+}
+.NextLastBox{
+  position: fixed;
+  right: 20px;
+  bottom: 30%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+}
+.init .controlBtn {
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #f5f5f5;
+  margin-bottom: 5px;
+}
+.init .lastBtn {
+}
+.init .nextBtn {
+  color: #2f54eb;
+  background: #f0f5ff;
+  border-color: #adc6ff;
+}
+.init .header {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  box-sizing: border-box;
+  top: 0;
+  z-index: 2;
+  font-size: 13px;
+}
+.init .header .modeBtn {
+  color: #333;
+  margin: 0;
+  margin-right: 10px;
+  border-radius: 0;
+  background: #fff !important;
+  padding: 5px 10px;
+  border: 1px solid #484848;
+}
+.init .header .redo {
+  color: #333;
+  margin: 0;
+  margin-right: 10px;
+  border-radius: 0;
+  background: #fff !important;
+  padding: 3px 12px;
+  border: 1px solid #484848;
+}
+.init .header .active {
+  color: #fff;
+  background: #484848 !important;
+  border: 1px solid #484848;
+}
+.init .header .setting {
+  width: 30px;
+}
+.init .content {
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 10px;
+  position: relative;
+  padding-bottom: 200px;
+  overflow: scroll;
+}
+.init .content .type {
+  box-sizing: border-box;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+  height: auto;
+  margin-right: 8px;
+  padding: 0 7px;
+  font-size: 13px;
+  line-height: 20px;
+  border-radius: 4px;
+  color: #fff;
+  background: #2895a7;
+  border-color: #2895a7;
+}
+.init .content .questionItem {
+  width: 100%;
+  box-sizing: border-box;
+}
+.init .content .question {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.init .content .imgWrap {
+  width: 90%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.init .content .imgWrap .img {
+  width: 100%;
+  height: auto;
+}
+.init .content .wrongTips {
+  font-weight: 600;
+  color: red;
+  font-size: 14px;
+  margin-left: 5px;
+  margin-top: 10px;
+  text-align: right;
+}
+.init .content .options {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+.init .content .options .rightOption {
+  color: #1AAD19;
+}
+.init .content .options .wrongOption {
+  color: red;
+}
+.init .content .options .selectOption {
+  background-color: #fafbfc !important;
+}
+.init .content .options .optionTextRightButNotChoice {
+  background-color: #fff !important;
+  box-shadow: 0 0px 0px 0 #2fc8e1 !important;
+  border: 1px solid #2895a7;
+}
+.init .content .options .optionTextRight {
+  color: #2895a7 !important;
+}
+.init .content .options .optionTextWrong {
+  color: #ff4c4c !important;
+}
+.init .content .options .option {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+.init .content .options .option .optionA {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border-radius: 50%;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.2);
+}
+.init .content .options .option .optionNormal {
+  background: #ffffff;
+}
+.init .content .options .option .optionRight {
+  background: #2895a7 !important;
+  color: #fff;
+}
+.init .content .options .option .optionWrong {
+  background: #ff4c4c !important;
+  color: #fff;
+}
+.init .content .options .option .selectAsw {
+  margin-left: 10px;
+  color: #2f54eb;
+  font-weight: 600;
+}
+.init .confirmBtn {
+  width: 95%;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 50px;
+}
+.init .footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 0 10px;
+  height: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  border-top: 1px solid #f5f5f5;
+  color: #777;
+  background-color: #fff;
+  z-index: 2;
+}
+.init .footer .finishItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #3591f4;
+  font-weight: 600;
+  padding: 10px 5px;
+}
+.init .footer .finishItem .finishIcon {
+  width: 20px;
+  margin-right: 3px;
+}
+.init .footer .icon {
+  width: 15px;
+  margin-right: 3px;
+}
+.init .footer .iconItem {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.init .footer .collect {
+  display: flex;
+  align-items: center;
+}
+.init .footer .collect .tips {
+  margin-right: 5px;
+}
+.init .footer .rightInfo {
+  display: flex;
+  align-items: center;
+}
+.doalog .title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.doalog .description {
+  text-align: left;
+}

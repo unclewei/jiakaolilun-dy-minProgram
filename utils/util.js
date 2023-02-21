@@ -71,40 +71,39 @@ export const getRandom = (start, end) => {
 };
 
 /**
- * 自动选择优惠券
- * @param {*} discountList 优惠券列表
- * @param {*} totalAmount 总价格
- * @returns
+ * 获取理论用户操作配置
+ * @param {*} param0 
  */
+export const userSubjectConfigSetGet = ({ key = undefined, value = undefined, isGet }) => {
+  if (isGet) {
+      let obj = {};
+      try {
+          return wx.getStorageSync('userSubjectConfig') || {};
+      } catch (e) {
+          return obj;
+      }
+  } else {
+      try {
+          let userSubjectConfig = wx.getStorageSync('userSubjectConfig') || {};
+          let obj = {};
+          obj[key] = value;
+          obj = Object.assign({}, userSubjectConfig, obj);
+          wx.setStorageSync('userSubjectConfig', obj)
+      } catch (e) {}
+  }
+};
 
-export const autoChooseDisCount = (discountList, totalAmount) => {
-  if (!discountList || !discountList.length) {
-    // 没有优惠券
-    return null;
-  }
-  // 获取在使用日期内的优惠券
-  const nowDate = new Date().getTime() / 1000;
-  const aliveDiscountList = discountList.filter(
-    (item) => item.startDate < nowDate && item.endDate > nowDate
-  );
-  if (!aliveDiscountList.length) {
-    return null;
-  }
-  // 获取该消费金额下，最大的优惠
-  // 符合满减的优惠券
-  const amoutMatchList = aliveDiscountList.filter(
-    (item) => totalAmount >= item.amount
-  );
-  if (!amoutMatchList.length) {
-    return null;
-  }
-  // 在价格符合的优惠券里面，找到最大金额的
-  return amoutMatchList.reduce((finalItem, item) => {
-    if (!finalItem) {
-      return item;
-    }
-    return item.discountAmount > finalItem.discountAmount ? item : finalItem;
-  }, null);
+export const countTime = (mss) => {
+  const restSec = mss;
+  // 剩余天数
+  const day = parseInt(restSec / (60 * 60 * 24 ));
+  // 剩余小时
+  const hour = parseInt((restSec / (60 * 60 )) % 24);
+  // 剩余分钟
+  const minu = parseInt((restSec / (60 )) % 60);
+  // 剩余秒数
+  const sec = parseInt((restSec ) % 60);
+  return { day, hour, minu, sec };
 };
 
 /*url增加参数

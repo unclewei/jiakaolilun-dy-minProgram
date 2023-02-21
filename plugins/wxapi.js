@@ -46,8 +46,7 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
         getApp().globalData.cookies = res.data.token
         getApp().globalData.userInfo = resData.data
         getApp().globalData.hasLogin = true
-        // 获取用户票据
-        getUserTickets(callback)
+        callback('success')
       }).catch((e) => {
         console.log('e', e);
         loginFailOption(callback, null, isInit)
@@ -56,24 +55,6 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
     fail: () => {
       loginFailOption(callback, null, isInit)
     }
-  })
-}
-
-/**
- * 更新用户票据
- * @param {}} callback 
- */
-export const getUserTickets = (callback = () => {}) => {
-  getUserTicketsReqs().then(res => {
-    if (res.data.code !== 200) {
-      // showToast('获取票据错误，请刷新')
-      // callback('fail')
-      getApp().globalData.userTickets = []
-      callback('success')
-      return
-    }
-    getApp().globalData.userTickets = res.data.data
-    callback('success')
   })
 }
 
@@ -93,6 +74,7 @@ export const loginFailOption = (callback, res, isInit) => {
     icon: 'none'
   })
 }
+
 /**买票 */
 export const payForTicket = (data, callback) => {
   wx.showLoading({

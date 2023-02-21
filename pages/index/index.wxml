@@ -2,7 +2,8 @@
   <image class='bannerContent' src="../../images/{{step == 1 ? 'theorybanner1.jpg':'theorybanner4.png'}}" mode="aspectFill" />
 
   <!-- 通知组件 -->
-  <!-- <SubjectUpdate step={step}/> -->
+  <SubjectUpdate step='{{step}}'/>
+
 
   <div class='kemu'>
     <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">

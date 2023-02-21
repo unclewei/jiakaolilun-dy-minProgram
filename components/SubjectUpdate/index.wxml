@@ -1,0 +1,22 @@
+<div class='init'>
+  <span bindtap='showModal'>
+    <slot></slot>
+  </span>
+</div>
+
+<ConfirmModal id="ConfirmModal" cancelText='暂不更新' okText='立即更新' bindCancel='hideModal' bindConfirm='onConfirm'>
+  <div class='content'>
+    <div class='item'>
+      {{month}}月新规题库更新
+      <div class='tips'>没有做完新规题，建议不要考试！</div>
+    </div>
+    <div class='nums'>
+      {{month}}月共新增题目 {{num}} 道
+      <div class='tips' bindtap="gotoPage">
+        尊享VIP用户可享受“不过全返”权益哦>>
+      </div>
+    </div>
+  </div>
+
+
+</ConfirmModal>

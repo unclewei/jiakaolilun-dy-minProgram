@@ -1,0 +1,4 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+
+<span class='init'>倒计时： {{minu}}:{{utils.timeFormat(sec)}}</span>

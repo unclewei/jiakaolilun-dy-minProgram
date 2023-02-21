@@ -1,0 +1,6 @@
+{
+  "component": true,
+  "usingComponents": {
+    "ConfirmModal": "../ConfirmModal/index"
+  }
+}

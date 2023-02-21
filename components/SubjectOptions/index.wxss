@@ -1,0 +1,64 @@
+.rightOption {
+  color: #1AAD19;
+}
+.wrongOption {
+  color: red;
+}
+.selectOption {
+  background-color: #fafbfc !important;
+}
+.isMutSelect {
+  background-color: #000000 !important;
+  color: #fff;
+}
+.optionTextRightButNotChoice {
+  background-color: #fff !important;
+  box-shadow: 0 0px 0px 0 #2fc8e1 !important;
+  border: 1px solid #2895a7;
+}
+.optionTextRight {
+  color: #2895a7 !important;
+}
+.optionTextWrong {
+  color: #ff4c4c !important;
+}
+.option {
+  display: flex;
+  padding: 12.5px;
+  margin-bottom: 0px;
+  border-radius: 8px;
+}
+.option .text {
+  font-size: 16px !important;
+}
+.option .icon {
+  width: 25px;
+}
+.option .optionA {
+  min-width: 25px;
+  min-height: 25px;
+  max-width: 25px;
+  max-height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border-radius: 50%;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.2);
+}
+.option .optionNormal {
+  background: #ffffff;
+}
+.option .optionRight {
+  background: #fff !important;
+  color: #fff;
+}
+.option .optionWrong {
+  background: #ff4c4c !important;
+  color: #fff;
+}
+.option .selectAsw {
+  margin-left: 10px;
+  color: #2f54eb;
+  font-weight: 600;
+}
