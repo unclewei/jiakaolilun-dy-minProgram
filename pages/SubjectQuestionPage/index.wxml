@@ -18,7 +18,7 @@
 
   <!-- 答题内容 -->
   <div class='content'>
-    <div class='questionItem' wx:for="{{subjectData}}" wx:key='{{item._id}}' wx:if="{{item.currentIndex == currentIndex}}">
+    <div class='questionItem' wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
       <div class='question'>
         <span class='type'>{item.typeStr}</span>
         {item.question}

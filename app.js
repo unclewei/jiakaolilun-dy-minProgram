@@ -41,7 +41,7 @@ App({
       view.onShareAppMessage = () => { //重写分享配置
         return {
           imageUrl: 'https://aliyuncdn.mowan.qianyimowan.com/public/publicShare.jpg',
-          title: '百变盲盒，千翼模玩',
+          title: '精选500题，驾考决胜法宝',
           path: '/pages/home/index?fromWho='+that.globalData.userInfo._id
         }
       }

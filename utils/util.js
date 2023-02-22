@@ -74,36 +74,45 @@ export const getRandom = (start, end) => {
  * 获取理论用户操作配置
  * @param {*} param0 
  */
-export const userSubjectConfigSetGet = ({ key = undefined, value = undefined, isGet }) => {
+export const userSubjectConfigSetGet = ({
+  key = undefined,
+  value = undefined,
+  isGet
+}) => {
   if (isGet) {
-      let obj = {};
-      try {
-          return wx.getStorageSync('userSubjectConfig') || {};
-      } catch (e) {
-          return obj;
-      }
+    let obj = {};
+    try {
+      return wx.getStorageSync('userSubjectConfig') || {};
+    } catch (e) {
+      return obj;
+    }
   } else {
-      try {
-          let userSubjectConfig = wx.getStorageSync('userSubjectConfig') || {};
-          let obj = {};
-          obj[key] = value;
-          obj = Object.assign({}, userSubjectConfig, obj);
-          wx.setStorageSync('userSubjectConfig', obj)
-      } catch (e) {}
+    try {
+      let userSubjectConfig = wx.getStorageSync('userSubjectConfig') || {};
+      let obj = {};
+      obj[key] = value;
+      obj = Object.assign({}, userSubjectConfig, obj);
+      wx.setStorageSync('userSubjectConfig', obj)
+    } catch (e) {}
   }
 };
 
 export const countTime = (mss) => {
   const restSec = mss;
   // 剩余天数
-  const day = parseInt(restSec / (60 * 60 * 24 ));
+  const day = parseInt(restSec / (60 * 60 * 24));
   // 剩余小时
-  const hour = parseInt((restSec / (60 * 60 )) % 24);
+  const hour = parseInt((restSec / (60 * 60)) % 24);
   // 剩余分钟
-  const minu = parseInt((restSec / (60 )) % 60);
+  const minu = parseInt((restSec / (60)) % 60);
   // 剩余秒数
-  const sec = parseInt((restSec ) % 60);
-  return { day, hour, minu, sec };
+  const sec = parseInt((restSec) % 60);
+  return {
+    day,
+    hour,
+    minu,
+    sec
+  };
 };
 
 /*url增加参数
@@ -171,4 +180,25 @@ export const gotoSubject = ({
   wx.navigateTo({
     url,
   })
+};
+/*
+   获取10位时间戳
+ */
+export const timeCodeFormatted = (time = new Date().getTime()) => {
+  time = time.toString().substring(0, 10);
+  return Number.parseInt(time);
+};
+
+/**
+ * 删除对象中的undefined
+ * @param {}} time 
+ */
+export const deleteEmptyObj = (obj = {}) => {
+  const keys = Object.keys(obj)
+  keys.forEach(key => {
+    if(obj[key] === undefined){
+      delete obj[key]
+    }
+  })
+  return obj
 };

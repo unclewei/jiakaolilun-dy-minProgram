@@ -11,7 +11,7 @@
         {
           "name": "答题",
           "pathName": "pages/SubjectQuestionPage/index",
-          "query": "step=1",
+          "query": "step=1&poolType=sequence",
           "launchMode": "default",
           "scene": null
         }

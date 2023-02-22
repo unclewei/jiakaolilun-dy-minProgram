@@ -136,3 +136,40 @@ export const userSubjectRemove = (data) => {
     data
   })
 }
+
+
+/** ------------------ item --------------------- */
+
+/**
+ * 科目的权益list
+ * @returns {*}
+ */
+export const subjectItemList = (data) => {
+  return xapi.requestWithJwt({
+    method: 'post',
+    url: `${baseApi}/item/subjectItemList`,
+    data
+  });
+}
+/**
+ * 科目的权益list
+ * @returns {*}
+ */
+export const isItemValid = (data) => {
+  return xapi.requestWithJwt({
+    method: 'post',
+    url: `${baseApi}/item/isItemValid`,
+    data
+  });
+}
+/**
+ * 用户已购买的权益
+ * @returns {*}
+ */
+export const paidItemList = (data) => {
+  return xapi.requestWithJwt({
+    method: 'post',
+    url: `${baseApi}/item/paidItemList`,
+    data
+  });
+}

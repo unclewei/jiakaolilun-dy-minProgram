@@ -1,6 +1,9 @@
 import {
   Promise
 } from "../plugins/es6-promise";
+import {
+  deleteEmptyObj
+} from './util'
 const xapi = {
   Promise
 }
@@ -30,7 +33,7 @@ xapi['requestWithJwt'] = (obj = {}) => {
 xapi['requestWithJwtNoToast'] = (obj = {}) => {
   const cookies = getApp().globalData.cookies;
   if (!cookies) {
-    return new Promise((resolve)=> resolve())
+    return new Promise((resolve) => resolve())
   }
   return new Promise((resolve, reject) => {
     reqFunc(obj, resolve, reject);
@@ -50,6 +53,8 @@ function reqFunc(obj, resolve, reject) {
   if (!obj.header) {
     obj.header = {}
   }
+  // 清除请求中的undefined
+  obj.data = deleteEmptyObj(obj.data || {})
   obj.header['Authorization'] = `Bearer ${cookies || ""}`
   obj.success = function (res) {
     resolve(res)
