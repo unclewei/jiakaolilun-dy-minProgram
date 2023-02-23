@@ -6,5 +6,5 @@
     <image class="icon" src="../../images/icon/right.png" mode="widthFix" />
   </span>
   <span class='optionA {{styles}}' wx:else>{{optionSuffix}}</span>
-  <div class='text'>{optionText}</div>
+  <div class='text'>{{optionText}}</div>
 </div>

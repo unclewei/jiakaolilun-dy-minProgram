@@ -1,5 +1,5 @@
-<div class='init'>
-  <div class='header' wx:if="{{monitem.value !== poolType}}">
+<view class='init'>
+  <view class='header' wx:if="{{monitem.value !== poolType}}">
     <span>
       <span class='modeBtn {{!isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="false">
         答题模式
@@ -11,45 +11,45 @@
     <Restart poolId='{{poolId}}' bindReSet='onReset'>
       <span class='modeBtn'>重做</span>
     </Restart>
-  </div>
+  </view>
 
   <!-- {/*广告*/} -->
-  <div class='adBanner' />
+  <view class='adBanner' />
 
   <!-- 答题内容 -->
-  <div class='content'>
-    <div class='questionItem' wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
-      <div class='question'>
-        <span class='type'>{item.typeStr}</span>
-        {item.question}
-      </div>
-      <div class='imgWrap' wx:if="{{item.imgName}}">
+  <view class='content'>
+    <view class='questionItem' wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
+      <view class='question'>
+        <span class='type'>{{item.typeStr}}</span>
+        {{item.question}}
+      </view>
+      <view class='imgWrap' wx:if="{{item.imgName}}">
         <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="aspectFit" />
-      </div>
-      <div class='options'>
-        <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='{{answerItem}}' optionContent='{{answerItem}}' bindOptionSelect='onAnswerSelect' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' />
-      </div>
+      </view>
+      <view class='options'>
+        <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}'  subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
+      </view>
       <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode}}' wrongHistory="{{wrongHistory}}" rightHistory="{{rightHistory}}" isNowWrong='{{isNowWrong}}' />
 
-      <div class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+      <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
         确定
-      </div>
-    </div>
+      </view>
+    </view>
 
-  </div>
+  </view>
 
   <!-- 答题操作 -->
   <span class="NextLastBox">
-    <div class='controlBtn lastBtn' wx:if="{{currentIndex > 0}}" bindtap="toLast">
+    <view class='controlBtn lastBtn' wx:if="{{currentIndex > 0}}" bindtap="last">
       上一题
-    </div>
-    <div class='controlBtn nextBtn' bindtap="toNext">
+    </view>
+    <view class='controlBtn nextBtn' bindtap="next">
       {{isDisabledNext ? '没有下一题了' : '下一题'}}
-    </div>
+    </view>
   </span>
 
   <!-- 底部操作 -->
-  <div class='footer'>
+  <view class='footer'>
     <span>
       <!-- 错题 -->
       <span class='collect' wx:if="{{poolType === myWrong.value}}">
@@ -83,5 +83,5 @@
         </span>
       </span>
     </span>
-  </div>
-</div>
+  </view>
+</view>

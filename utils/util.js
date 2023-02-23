@@ -196,9 +196,36 @@ export const timeCodeFormatted = (time = new Date().getTime()) => {
 export const deleteEmptyObj = (obj = {}) => {
   const keys = Object.keys(obj)
   keys.forEach(key => {
-    if(obj[key] === undefined){
+    if (obj[key] === undefined) {
       delete obj[key]
     }
   })
   return obj
+};
+
+
+/*删除数组对象符合条件的对象
+ *   @key 关键字 @keyValue关键字值 @dataList 数组对象
+ * */
+export const deleteArrObjMember = (key, keyValue, dataList) => {
+  if (typeof dataList !== 'object') return dataList;
+  for (let i = 0; i < dataList.length; i++) {
+    if (dataList[i][key] === keyValue) {
+      dataList.splice(i, 1);
+      break;
+    }
+  }
+  return dataList;
+};
+
+/*删除数组某个元素
+ * */
+export const deleteArrMember = (arr, member) => {
+  if (typeof arr !== 'object') return arr;
+  let index;
+  if (arr.includes(member)) {
+    index = arr.indexOf(member);
+    arr.splice(index, 1);
+  }
+  return arr;
 };

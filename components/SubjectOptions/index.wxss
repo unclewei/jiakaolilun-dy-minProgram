@@ -33,6 +33,7 @@
 }
 .option .icon {
   width: 25px;
+  height: 25px;
 }
 .option .optionA {
   min-width: 25px;

@@ -4,7 +4,9 @@ import {
   poolData,
   isItemValid,
   userSubjectGet,
-  subjectList
+  subjectList,
+  userWrongSubjectRemove,
+  syncSubject
 } from '../../utils/api'
 
 import {
@@ -12,7 +14,9 @@ import {
   userSubjectConfigSetGet,
   timeCodeFormatted,
   showNetWorkToast,
-  showToast
+  showToast,
+  deleteArrObjMember,
+  deleteArrMember
 } from '../../utils/util'
 import {
   autoLogin
@@ -339,7 +343,7 @@ Page({
       const resData = res.data.data
       that.setData({
         subjectData: resData,
-        currentIndex: that.data.isTypeWrong ? 0 : currentIndex,
+        currentIndex: that.data.isTypeWroonAnswerSelectng ? 0 : currentIndex,
       })
       if (!that.data.isTypeWrong && currentIndex !== 0 && !isLoadMore) {
         showToast(`上次做到第${currentIndex + 1}题`)
@@ -358,6 +362,426 @@ Page({
       isSeeMode: item === 'true'
     })
   },
+
+  /**
+   * 同步做题状态，并返回最新做题状态
+   * 如果是错题，还需要增加来源
+   */
+  syncSubject({
+    subjectId,
+    syncSource = '',
+    callback = () => {}
+  }) {
+    let json = this.localUserSubjectStatusGet({
+      type: 'get'
+    });
+    let obj = {};
+    if (subjectId) {
+      obj.subjectId = subjectId
+    }
+    if (syncSource) {
+      obj.syncSource = syncSource
+    }
+    let params = Object.assign({}, json, {
+      subjectId,
+      syncSource
+    });
+    syncSubject(params).then((res) => {
+      this.userSubjectDataGet({
+        poolData: poolData,
+        poolType,
+        poolId,
+        step,
+        isSyncSubject: true
+      });
+      callback()
+    });
+  },
+  /**
+   * 交卷
+   * @param score 分数
+   */
+  onSubmit({
+    score
+  }) {
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'isSubmit',
+      value: true
+    });
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'score',
+      value: score
+    });
+    this.syncSubject({
+      subjectId: undefined,
+      callback: () => {
+        wx.redirectTo({
+          url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
+        })
+      }
+    });
+  },
+  /**
+   * 错题移除
+   */
+  onWrongSwitchChange() {
+    this.setData({
+      isWrongDelete: !this.data.isWrongDelete
+    })
+    userSubjectConfigSetGet({
+      key: 'isWrongDelete',
+      value: !this.data.isWrongDelete,
+      isGet: false
+    });
+  },
+
+  //还原本题状态
+  clean() {
+    this.setData({
+      optionIndex: [],
+      isSelected: false,
+      isNowWrong: false
+    })
+  },
+
+  //下一题
+  next() {
+    if (this.isDisabledNext()) {
+      return;
+    }
+    const {
+      currentIndex
+    } = this.data || {}
+    this.clean();
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'currentIndex',
+      value: currentIndex + 1
+    });
+    this.setData({
+      currentIndex: currentIndex + 1
+    })
+    this.loadMore({
+      currentIndex: currentIndex + 1,
+      isNext: true
+    });
+  },
+
+  //上一题
+  last() {
+    const {
+      currentIndex
+    } = this.data || {}
+    if (currentIndex === 0) return;
+    this.setData({
+      currentIndex: currentIndex - 1
+    })
+    this.clean();
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'currentIndex',
+      value: currentIndex - 1
+    });
+    this.loadMore({
+      currentIndex: currentIndex + 1,
+      isNext: false
+    });
+  },
+
+  /**
+   * 错题集的情况下，做对，移除本题
+   */
+  removeWrongWhileDoRight({
+    subjectId,
+    currentIndex
+  }) {
+    let newSubjectData = [];
+    for (let i of subjectData) {
+      let isThisSubject = i._id === subjectId;
+      if (i.currentIndex >= currentIndex) i.currentIndex -= 1
+      if (!isThisSubject) {
+        newSubjectData.push(i);
+      }
+    }
+    this.setData({
+      subjectData: newSubjectData
+    })
+  },
+
+  /**
+   * 做对时的操作
+   * 如果是错题集，则需要把当前的题从错题中去除，无感知。
+   */
+  rightSubject({
+    subjectId
+  }) {
+    const that = this
+    const {
+      isTypeWrong,
+      isWrongDelete,
+      currentIndex,
+      step
+    } = this.data || {}
+    if (isTypeWrong) {
+      setTimeout(() => {
+        that.clean();
+        if (isWrongDelete) {
+          that.removeWrongWhileDoRight({
+            subjectId,
+            currentIndex
+          })
+          userWrongSubjectRemove({
+            subjectId,
+            step
+          })
+          return
+        }
+        if (that.isDisabledNext()) {
+          showToast('没有下一题咯')
+          return
+        }
+        that.setData({
+          currentIndex: currentIndex + 1
+        })
+      }, 1000);
+      return
+    }
+    let json = that.localUserSubjectStatusGet({
+      type: 'get'
+    });
+    //做对了，就要把对的题塞进去，如果错题里有，就要拿出来
+    let {
+      wrongSubjectIds,
+      rightSubjectIds
+    } = json;
+    if (rightSubjectIds.includes(subjectId)) return;
+    rightSubjectIds.push(subjectId);
+    wrongSubjectIds.filter(p => p.subjectId !== subjectId)
+    for (let i of wrongSubjectIds) {
+      if (i.subjectId === subjectId) {
+        wrongSubjectIds = deleteArrObjMember('subjectId', subjectId, wrongSubjectIds);
+      }
+    }
+    that.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'rightSubjectIds',
+      value: rightSubjectIds
+    });
+    that.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'wrongSubjectIds',
+      value: wrongSubjectIds
+    });
+    setTimeout(() => {
+      that.next();
+    }, 1000);
+  },
+
+  /**
+   * 做错时的操作（错了）
+   * */
+  wrongSubject({
+    subjectId,
+    options
+  }) {
+    this.setData({
+      isNowWrong: true
+    })
+    const {
+      isTypeWrong
+    } = this.data || {}
+    if (isTypeWrong) {
+      return
+    }
+    let json = this.localUserSubjectStatusGet({
+      type: 'get'
+    });
+    //放入错题，取出对题
+    let {
+      wrongSubjectIds,
+      rightSubjectIds
+    } = json;
+    for (let i of wrongSubjectIds) {
+      if (i.subjectId === subjectId) return
+    }
+    options = options.map(i => Number(i)); //答案是+1的
+    let wrongSubjectObj = {
+      subjectId,
+      options
+    }
+    wrongSubjectIds.push(wrongSubjectObj);
+    if (rightSubjectIds.includes(subjectId)) {
+      rightSubjectIds = deleteArrMember(rightSubjectIds, subjectId);
+    }
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'rightSubjectIds',
+      value: rightSubjectIds
+    });
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'wrongSubjectIds',
+      value: wrongSubjectIds
+    });
+    this.syncSubject({
+      subjectId,
+      syncSource: getApp().globalData.enumeMap.syncSource.wrongTick.value
+    });
+  },
+
+
+  /**
+   * 提前请求更多数据
+   * */
+  loadMore({
+    currentIndex,
+    isNext = false
+  }) {
+    const {poolId,step} =this.data || {}
+    //向后加载更多，用于下一题达到阈值时
+    if (isNext && (currentIndex + 1) % 50 === 1) {
+      this.getSubjectData({
+        currentIndex: currentIndex,
+        poolId,
+        limit: 100,
+        skip: 0,
+        loading: true,
+        step,
+        isLoadMore: true
+      });
+      return;
+    }
+    //向前加载更多，用于上一题达到阈值时
+    if (!isNext && (currentIndex + 1) % 50 === 2) {
+      this.getSubjectData({
+        currentIndex: currentIndex - 2,
+        poolId,
+        limit: 100,
+        skip: 0,
+        loading: true,
+        step,
+        isLoadMore: true
+      });
+      return;
+    }
+  },
+
+  /**
+   * 做题状态
+   * @param item
+   */
+  subjectDoState(item) {
+    let subjectId = item._id;
+    if (!this.data.userSubjectData) return undefined;
+    const {
+      wrongSubjectIds,
+      rightSubjectIds
+    } = this.data.userSubjectData;
+    let isInWrongSubjectIds = false;
+    for (let i of wrongSubjectIds) {
+      if (i.subjectId === subjectId) {
+        isInWrongSubjectIds = true
+        break;
+      }
+    }
+    if (isInWrongSubjectIds) {
+      return false;
+    } else if (rightSubjectIds.includes(subjectId)) {
+      return true;
+    }
+    return undefined;
+  },
+  /**
+   * 是否已做过这题
+   * @param item
+   */
+  isDone(item) {
+    const state = this.subjectDoState(item);
+    return state === true || state === false
+  },
+  /**
+   * 不允许选答案
+   */
+  isDisabledSelect(item) {
+    return this.isDone(item) || this.data.isSelected || this.data.isSeeMode
+  },
+
+  /**
+   * 不允许下一题
+   */
+  isDisabledNext() {
+    const {
+      subjectData,
+      poolData,
+      currentIndex,
+      loading
+    } = this.data || {}
+    if (subjectData.length === 0) return true;
+    if ((poolData && poolData.subjectCount === currentIndex + 1) || loading) return true
+    if (!poolData && subjectData.length === currentIndex + 1) return true; //错题情况
+    return false
+  },
+  /**
+   * 单选做对
+   * */
+  isRight(answer, opIndex) {
+    answer = answer.toString();
+    opIndex = (opIndex).toString();
+    return answer.includes(opIndex);
+  },
+
+  /**
+   * 多选全对
+   * */
+  isAllRight(subject) {
+    let {
+      answer
+    } = subject;
+    answer = answer.toString();
+    if (answer.length !== this.data.optionIndex.length) return false;
+    const optionIndex_ = this.data.optionIndex.map((i) => Number(i));
+    let isAllRight = false;
+    for (let i of answer) {
+      i = Number(i);
+      isAllRight = optionIndex_.includes(i);
+    }
+    return isAllRight;
+  },
+
+
+  /* 这条题的历史记录
+   * @param item
+   */
+  useToDoWrong(item) {
+    let subjectId = item._id;
+    if (!this.data.userSubjectData) return false;
+    const {
+      wrongSubjectIds
+    } = this.data.userSubjectData;
+    let wrongHistory = {}; //记录当时做错
+    for (let i of wrongSubjectIds) {
+      if (i.subjectId === subjectId) {
+        wrongHistory = i
+        break
+      }
+    }
+    return wrongHistory;
+  },
+  /**
+   * 这条题的历史记录
+   * @param item
+   */
+  useToDoRight(item) {
+    let subjectId = item._id;
+    if (!this.data.userSubjectData) return false;
+    const {
+      rightSubjectIds
+    } = this.data.userSubjectData;
+    return rightSubjectIds.includes(subjectId);
+  },
+
   /**
    * 重置题库
    */
@@ -366,7 +790,49 @@ Page({
   },
 
   // 选择问题答案
-  onAnswerSelect() {},
+  onAnswerSelect(e) {
+    const {
+      subjectItem,
+      answerNum
+    } = e.detail || {};
+
+    if (this.isDisabledSelect(subjectItem)) {
+      return
+    };
+    if (subjectItem.type === 3) {
+      //多选逻辑
+      if (this.data.optionIndex.includes(answerNum)) {
+        //这里拿出原来的
+        const newOptionIndex = [...this.data.optionIndex || []]
+        newOptionIndex.splice(answerNum, 1)
+        this.setData({
+          optionIndex: newOptionIndex
+        })
+        return;
+      }
+      this.setData({
+        optionIndex: [...this.data.optionIndex, answerNum]
+      })
+      return;
+    }
+    this.setData({
+      optionIndex: [answerNum],
+      isSelected: true
+    })
+
+    //单选逻辑
+    if (this.isRight(subjectItem.answer, answerNum)) {
+      rightSubject({
+        subjectId: subject._id
+      });
+    } else {
+      //记录错题
+      wrongSubject({
+        subjectId: subject._id,
+        options
+      });
+    }
+  },
 
 
   // 多选选择问题 确定

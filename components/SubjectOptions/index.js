@@ -15,10 +15,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
     optionContent: {
-      type: Object,
-      value: {},
+      type: String,
+      value: '',
     },
     subjectItem: {
       type: Object,
@@ -36,7 +35,7 @@ Component({
       type: Object,
       value: {},
     },
-    useToDoRight: {
+    rightHistory: {
       type: Boolean,
       value: false,
     },
@@ -49,13 +48,13 @@ Component({
       value: undefined,
     },
     optionIndex: {
-      type: Number,
-      value: undefined,
+      type: Array,
+      value: [],
     },
   },
 
   observers: {
-    'subjectItem,isSeeMode,isNowWrong,wrongHistory,useToDoRight,isConfirm,answerNum,optionIndex': function (subjectItem, isSeeMode, isNowWrong, wrongHistory, useToDoRight, isConfirm, answerNum, optionIndex) {
+    'optionContent,subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex': function (optionContent, subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex) {
       let answer = subjectItem.answer.toString();
       answer = [...answer]
       answer = answer.map(i => Number(i));
@@ -63,7 +62,7 @@ Component({
       let isMutType = subjectItem.type === 3; //是否为多选题
       const isOptionSelected = optionIndex.includes(answerNum); //是否选中
       //渲染做错过的题的选项
-      if (wrongHistory.subjectId) {
+      if (wrongHistory && wrongHistory.subjectId) {
         let isUseAnswerIncludes = wrongHistory.options.includes(answerNum); //当时选择的答案是否包含这个选项
         //此题做错过，需要回显错误答案
         if (isRightAnswer) {
@@ -96,7 +95,7 @@ Component({
       //以上的判断，是基于错题历史数据用于回显。
       if (isRightAnswer) {
         // debugger
-        if (rightHistory || isSeeMode) {
+        if (this.data.rightHistory || isSeeMode) {
           //历史做对、背题模式都显示正确的答案
           return this.opStyleInit({
             type: 'right'
@@ -164,7 +163,7 @@ Component({
   methods: {
 
     onClick() {
-      this.triggerEvent('ReSet', {
+      this.triggerEvent('OptionSelect', {
         subjectItem: this.data.subjectItem,
         answerNum: this.data.answerNum
       })
@@ -180,6 +179,7 @@ Component({
       let textStyles, optionSuffix, styles;
       let A = this.data.optionContent.split(':');
       let optionText = A[1];
+      console.log('optionText', optionText);
       switch (type) {
         case 'right':
           optionSuffix = 'right';
