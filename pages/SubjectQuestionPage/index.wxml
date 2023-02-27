@@ -1,3 +1,4 @@
+
 <view class='init'>
   <view class='header' wx:if="{{monitem.value !== poolType}}">
     <span>
@@ -24,12 +25,12 @@
         {{item.question}}
       </view>
       <view class='imgWrap' wx:if="{{item.imgName}}">
-        <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="aspectFit" />
+        <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="widthFix" />
       </view>
       <view class='options'>
-        <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}'  subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
+        <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
       </view>
-      <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode}}' wrongHistory="{{wrongHistory}}" rightHistory="{{rightHistory}}" isNowWrong='{{isNowWrong}}' />
+      <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' />
 
       <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
         确定

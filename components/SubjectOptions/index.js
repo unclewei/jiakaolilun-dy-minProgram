@@ -95,7 +95,7 @@ Component({
       //以上的判断，是基于错题历史数据用于回显。
       if (isRightAnswer) {
         // debugger
-        if (this.data.rightHistory || isSeeMode) {
+        if (rightHistory || isSeeMode) {
           //历史做对、背题模式都显示正确的答案
           return this.opStyleInit({
             type: 'right'

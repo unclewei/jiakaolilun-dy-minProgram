@@ -58,6 +58,8 @@ Page({
     isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
     userSubjectData: userSubjectJson, // 做题状态
     isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType === 2, // 是否教练
+    rightHistory: false, // 正确历史;
+    wrongHistory: {}, // 错误历史
   },
 
   /**
@@ -82,7 +84,6 @@ Page({
       poolId,
       from,
       userSubjectData: userSubjectJson, // 做题状态
-
     })
     //若当前为我的错题情况下
     if (poolType === 'myWrong') {
@@ -341,10 +342,13 @@ Page({
         return
       }
       const resData = res.data.data
+      const finalCurrentIndex = that.data.isTypeWroonAnswerSelectng ? 0 : currentIndex
       that.setData({
         subjectData: resData,
-        currentIndex: that.data.isTypeWroonAnswerSelectng ? 0 : currentIndex,
+        currentIndex: finalCurrentIndex,
       })
+      that.useToDoWrong(resData[finalCurrentIndex])
+      that.useToDoRight(resData[finalCurrentIndex])
       if (!that.data.isTypeWrong && currentIndex !== 0 && !isLoadMore) {
         showToast(`上次做到第${currentIndex + 1}题`)
       }
@@ -467,6 +471,9 @@ Page({
       currentIndex: currentIndex + 1,
       isNext: true
     });
+    this.useToDoWrong(this.data.subjectData[currentIndex + 1])
+    this.useToDoRight(this.data.subjectData[currentIndex + 1])
+
   },
 
   //上一题
@@ -488,6 +495,8 @@ Page({
       currentIndex: currentIndex + 1,
       isNext: false
     });
+    this.useToDoWrong(this.data.subjectData[currentIndex - 1])
+    this.useToDoRight(this.data.subjectData[currentIndex - 1])
   },
 
   /**
@@ -545,6 +554,9 @@ Page({
         that.setData({
           currentIndex: currentIndex + 1
         })
+
+        that.useToDoWrong(that.subjectData[currentIndex + 1])
+        that.useToDoRight(that.subjectData[currentIndex + 1])
       }, 1000);
       return
     }
@@ -639,7 +651,10 @@ Page({
     currentIndex,
     isNext = false
   }) {
-    const {poolId,step} =this.data || {}
+    const {
+      poolId,
+      step
+    } = this.data || {}
     //向后加载更多，用于下一题达到阈值时
     if (isNext && (currentIndex + 1) % 50 === 1) {
       this.getSubjectData({
@@ -760,26 +775,31 @@ Page({
     const {
       wrongSubjectIds
     } = this.data.userSubjectData;
-    let wrongHistory = {}; //记录当时做错
+    let finalWrongHistory = {}; //记录当时做错
     for (let i of wrongSubjectIds) {
       if (i.subjectId === subjectId) {
-        wrongHistory = i
+        finalWrongHistory = i
         break
       }
     }
-    return wrongHistory;
+    this.setData({
+      wrongHistory: finalWrongHistory
+    })
   },
   /**
    * 这条题的历史记录
    * @param item
    */
   useToDoRight(item) {
+    console.log('item', item);
     let subjectId = item._id;
     if (!this.data.userSubjectData) return false;
     const {
       rightSubjectIds
     } = this.data.userSubjectData;
-    return rightSubjectIds.includes(subjectId);
+    this.setData({
+      rightHistory: rightSubjectIds.includes(subjectId)
+    })
   },
 
   /**
@@ -787,6 +807,12 @@ Page({
    */
   onReset() {
     // 重新获取列表
+    this.onLoad({
+      poolType: this.data.poolType,
+      step: this.data.step,
+      poolId: this.data.poolId,
+      from: this.data.from
+    })
   },
 
   // 选择问题答案
@@ -822,14 +848,14 @@ Page({
 
     //单选逻辑
     if (this.isRight(subjectItem.answer, answerNum)) {
-      rightSubject({
-        subjectId: subject._id
+      this.rightSubject({
+        subjectId: subjectItem._id
       });
     } else {
       //记录错题
-      wrongSubject({
-        subjectId: subject._id,
-        options
+      this.wrongSubject({
+        subjectId: subjectItem._id,
+        options: [answerNum]
       });
     }
   },
