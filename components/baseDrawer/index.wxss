@@ -1,0 +1,115 @@
+/** 模态 **/
+@import '../../utils/common.wxss';
+
+.drawer {
+  position: fixed;
+  top: 0rpx;
+  left: 0rpx;
+  right: 0rpx;
+  bottom: 0rpx;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+}
+
+.drawer-mask {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 11;
+  background-color: rgba(0, 0, 0, 0.70);
+}
+
+.animatedShow {
+  animation: flexDowm 0.1s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flexDowm {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animatedHide {
+  animation: flexHide 0.1s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flexHide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+/* 默认的抽屉body样式 */
+.defaultDrawerContainer {
+  background-color: white;
+  border-radius: 12rpx;
+  height: 75%;
+  width: 710rpx;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  transform: translate(0, 100%);
+  z-index: 12;
+  padding: 20rpx;
+}
+
+.DrawerContainerShow {
+  animation: drawerShow 0.3s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes drawerShow {
+  0% {
+    transform: translate(0, 100%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+.DrawerContainerHide {
+  animation: drawerHide 0.3s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes drawerHide {
+  0% {
+    transform: translate(0%, 0%);
+  }
+
+  100% {
+    transform: translate(0%, 100%);
+  }
+}
+
+.containerBg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.content {
+  overflow-y: auto;
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #FFF4DB;
+  border: 5rpx #000 solid;
+  border-radius: 10rpx;
+}

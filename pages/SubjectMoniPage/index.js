@@ -1,25 +1,42 @@
-// pages/SubjectMoniPage/index.js
+import {
+  getUserMoniPool,
+} from '../../utils/api'
+
+import {
+  gotoSubject,
+  showNetWorkToast,
+} from '../../utils/util'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    thisMoniPool: undefined,
+    unDoMoniPool: undefined,
+    isKeepGoing: false,
+    allDoneSubject: [],
+    isDoneMoniPool: [],
 
+    step: '1',
+    poolId: undefined,
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+    wx.setNavigationBarTitle({
+      title: `科目${options.step == 1 ? '一' : '四'}模拟考试`,
+    })
+    this.setData({
+      step: options.step,
+      poolId: options.poolId,
+    })
+    this.poolDataGet({
+      step: options.step
+    })
   },
 
   /**
@@ -29,32 +46,101 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  poolDataGet({
+    step
+  }) {
+    let that = this
+    wx.showLoading()
+    getUserMoniPool({
+      step
+    }).then((res) => {
+      wx.hideLoading()
+      if (res.data.code !== 200) {
+        showNetWorkToast(res.data.msg)
+        return
+      }
+      const resData = res.data.data;
+      let {
+        unDoMoniPool,
+        isDoneMoniPool,
+        allDoneSubject
+      } = resData;
+      if (unDoMoniPool && unDoMoniPool._id) {
+        that.isKeepgoing({
+          poolId: unDoMoniPool._id
+        });
+      }
+      if (that.data.poolId && allDoneSubject.length > 0) {
+        for (let i of allDoneSubject) {
+          if (i.poolId === poolId) {
+            that.setData({
+              thisMoniPool: i
+            })
+            break;
+          }
+        }
+      }
+      for (let i = 0; i < allDoneSubject.length; i++) {
+        let item = allDoneSubject[i];
+        for (let j of isDoneMoniPool) {
+          if (item.poolId === j._id) {
+            item.name = j.name;
+          }
+        }
+      }
+      that.setData({
+        allDoneSubject: allDoneSubject,
+        unDoMoniPool: unDoMoniPool,
+        isDoneMoniPool: isDoneMoniPool
+      })
+    });
   },
 
   /**
-   * 生命周期函数--监听页面卸载
+   * 继续做题
    */
-  onUnload() {
-
+  isKeepgoing({
+    poolId
+  }) {
+    let keyName = `localPoolStatus_${poolId}`;
+    let userSubjectConfig = wx.getStorageSync(keyName) || '{}';
+    if (userSubjectConfig.currentIndex > 0) {
+      this.setData({
+        isKeepGoing: true
+      })
+    }
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
+  gotoMoniTi() {
+    const {
+      unDoMoniPool,
+      step,
+    } = this.data
+    if (!unDoMoniPool || !unDoMoniPool._id) {
+      wx.showModal({
+        title: '提示',
+        content: '没有更多的模拟题了，建议重做之前不及格的模拟题',
+        showCancel: false,
+        confirmText: '知道了'
+      })
+      return;
+    }
+    gotoSubject({
+      step,
+      poolId: unDoMoniPool._id,
+      poolType: undefined,
+      from: getApp().globalData.from,
+    });
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  gotoSubject(e) {
+    const item = e.currentTarget.dataset.item
+    gotoSubject({
+      from: getApp().globalData.from,
+      step: this.data.step,
+      poolType: item,
+      poolId: undefined,
+    })
   },
 
   /**

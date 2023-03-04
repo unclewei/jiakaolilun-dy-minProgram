@@ -1,2 +1,9 @@
-<!--pages/SubjectMiddlePage/index.wxml-->
-<text>pages/SubjectMiddlePage/index.wxml</text>
+<view class='init'>
+  <view class='detailContent'>
+    <view class='detailTitle'>专项练习</view>
+    <view class='detailItem' wx:for="{{poolData}}" key='_id' bindtap="gotoSubject" data-id="{{item._id}}">
+      <view class='detailNum'>{{index + 1}}</view>
+      <view class='detailTtiel'>{{item.name}}</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,197 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.bodyContent{
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  overflow: hidden;
+}
+
+.title {
+  font-size: 42rpx;
+  font-style: italic;
+  font-weight: bold;
+  color: #000;
+  margin-bottom: 10rpx;
+}
+
+.tips{
+  font-size: 30rpx;
+  color: #000;
+  margin-bottom: 30rpx;
+}
+
+.buyItem {
+  flex: 1;
+  display: flex;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  overflow-y: auto;
+}
+
+.sellBox {
+  display: flex;
+  flex-direction: column;
+  height: 180rpx;
+  width: 300rpx;
+  margin-right: 13rpx;
+  margin-bottom: 13rpx;
+  border: 5rpx #000 solid;
+  border-radius: 12rpx;
+  overflow: hidden;
+  color: #000;
+}
+
+.sellBoxGodlike{
+  background-color: #444;
+  color: #eee;
+}
+
+.sellBoxSelected {
+  background-color: #FBDE9C;
+}
+
+.ticketName {
+  height: 60%;
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  padding: 10rpx 20rpx;
+  border-bottom: 5rpx #000 solid;
+}
+
+.ticketOwner {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  padding: 10rpx 20rpx;
+}
+.conveninetBox{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20rpx;
+}
+
+.optionsFiveBox{
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  margin-right: 30rpx;
+  height: 80rpx;
+}
+.calcBox {
+  display: flex;
+  align-items: center;
+  color: #000;
+  border: 5rpx #000 solid;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: #FBDE9C;
+  align-self: flex-end;
+  height: 80rpx;
+  box-sizing: border-box;
+}
+
+.sub {
+  background-color: #FBDE9C;
+  font-size: 50rpx;
+  font-weight: bold;
+  text-align: center;
+  border-right: 5rpx #000 solid;
+  width: 70rpx;
+  min-width: 70rpx;
+}
+
+.inputNum {
+  width: 150rpx;
+  background-color: #FBDE9C;
+  text-align: center;
+  min-width: 150rpx;
+}
+
+.add {
+  background-color: #FBDE9C;
+  font-size: 50rpx;
+  font-weight: bold;
+  text-align: center;
+  border-left: 5rpx #000 solid;
+  width: 70rpx;
+  min-width: 70rpx;
+}
+
+.optionsBox {
+  position: relative;
+  height: 80rpx;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.optionsBtn {
+  height: 80rpx;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 34rpx;
+  font-weight: bold;
+  box-sizing: border-box;
+  color: #000;
+  border-radius: 12rpx;
+  overflow: hidden;
+  background-color: #FBDE9C;
+  border: 5rpx #000 solid;
+}
+
+.buyOptions{
+  justify-self: flex-end;
+  align-self: self-start;
+  flex: 1;
+  align-items: flex-end;
+}
+
+.cardImg{
+  width: 150rpx;
+  height: 80rpx;
+}
+.cardItem{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 15rpx 0rpx;
+  border-bottom: 2rpx #000 solid;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.extraBox{
+  display: flex;
+  flex-direction: column;
+  font-size: 26rpx;
+  color: #444;
+  margin-top: 20rpx;
+}
+.extraText{
+  display: flex;
+  align-items: center;
+}
+.totalAmount{
+  width: 240rpx;
+  height: 70rpx;
+  font-size: 38rpx;
+  font-weight: bold;
+  text-align: center;
+  color: red;
+}

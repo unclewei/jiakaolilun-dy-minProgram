@@ -1,2 +1,87 @@
-<!--pages/SubjectIncPage/index.wxml-->
-<text>pages/SubjectIncPage/index.wxml</text>
+<view class='init'>
+  <image class='bannerContent' src="../../images/subjectBanner.png" mode="widthFix" />
+  <view>
+    <view class='menu'>
+      <view class='menuItem {{  selectItem._id === item._id && "menuItemActive"}}' wx:for="{{itemData}}" key='_id' bindtap="onSelect" data-item="{{item}}">
+        <view class='menuItemContent {{  selectItem._id === item._id && "menuItemContentActive"}}'>
+          {{item.name}}
+          <view class='price'>
+            ￥<span class='priceNum'>{{item.price}}</span>元/{{item.durText}}
+          </view>
+        </view>
+        <view class='paidDone' wx:if="{{item.isPaidDone}}">您已购买</view>
+        <view class='moreUser' wx:elif="{{item.isDefaultSelected}}">更多用户选择</view>
+        <view class='footer {{  selectItem._id === item._id && "footerActive"}}'>
+          考不过{{item.refund ? '补偿' + item.refund + '元' : '无补偿'}}
+        </view>
+      </view>
+    </view>
+    <view class='mainContent {{!selectItem.refund && "paddingBottom"}}'>
+      <view class='mainTitle'>附赠{{rightsNum}}大权益</view>
+      <view class='benifyBox'>
+        <view class='benifyItem {{item.mustRefund && !selectItem.refund && "disabled"}}' wx:for="{{benifyList}}" key='_id'>
+          <view class='benifyImageBox'>
+            <image class='benifyImage' src='{{item.image}}' mode="widthFix" />
+          </view>
+          <view class='benifyText'>{{item.text}}</view>
+        </view>
+      </view>
+    </view>
+    <view class='refundStep' wx:if="{{selectItem && selectItem.refund}}">
+      <view class='mainTitle'>仅需4步，轻松补偿</view>
+      <view class='data'>
+        <view class='item'>
+          <view class='content'>
+            <view class='title'>第一步、购买尊享VIP</view>
+            <p>只有尊享VIP才可享受不过补偿权益！</p>
+          </view>
+        </view>
+        <view class='item'>
+          <view class='content'>
+            <view class='title'>第二步、完善个人资料</view>
+            <p class='longP'>注意：最晚在正式考试前24时完善个人资料，否则无法补偿！</p>
+            <p class='info' wx:if="{{isUserInfoOK}}">姓名：{{User.name}}</p>
+            <p class='info' wx:if="{{isUserInfoOK}}">手机：{{User.phoneNum}}</p>
+          </view>
+          <UserInfoSupply disabled='{{isUserInfoOK}}' bindUpdate='updateUserInfo'>
+            <span class='btn {{isUserInfoOK && "success"}}'>{{isUserInfoOK ? '已完善' : '去完善'}}</span>
+          </UserInfoSupply>
+        </view>
+        <view class='item'>
+          <view class='content'>
+            <view class='title'>第三步、联系必过客服</view>
+            <p class='longP'>
+              考试不通过，马上联系必过客服！
+            </p>
+          </view>
+
+          <button class="cleanButton btn" wx:if="{{!isUserInfoOK}}" bindtap="showContactTips">去联系客服</button>
+          <button class="cleanButton btn" wx:else open-type="contact">去联系客服</button>
+        </view>
+        <view class='item'>
+          <view class='content'>
+            <view class='title'>第四步、客服确认后发放补偿</view>
+            <p class='longP'>
+              客服确认用户身份信息及考试分数后，发放补偿至原支付路径。
+            </p>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='buy'>
+      <view class="payment">
+        <view class='buyButton'>
+          <span wx:if="{{selectItem.isPaidDone}}">您已开通该服务</span>
+          <span wx:else>￥<span class='priceNum'>{{selectItem.price}}</span>/{{selectItem.durText}}</span>
+          <view class='insideBtn insideBtnPaidDone' wx:if="{{insideBtnPaidDone}}" bindtap="gotoSubjectPage">立即做题</view>
+          <view class='insideBtn' bindtap="gotoShop" wx:else>立即开通</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 购买弹窗 -->
+<ShoppingDrawer id="ShoppingDrawer" selectItem="{{selectItem}}" bindOnSuccess='buySuccess' />

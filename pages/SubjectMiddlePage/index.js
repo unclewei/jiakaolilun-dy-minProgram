@@ -1,18 +1,38 @@
-// pages/SubjectMiddlePage/index.js
+import {
+  poolList,
+} from '../../utils/api'
+
+import {
+  gotoSubject,
+  showNetWorkToast,
+} from '../../utils/util'
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    step: '1',
+    poolType: undefined,
+    poolData: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.setNavigationBarTitle({
+      title: `科目${options.step == 1 ? '一' : '四'}专项训练`,
+    })
+    this.setData({
+      step: options.step,
+      poolType: options.poolType,
+    })
+    this.poolDataGet({
+      step: options.step,
+      poolType: options.poolType,
+    })
   },
 
   /**
@@ -29,32 +49,38 @@ Page({
 
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  poolDataGet({
+    step,
+    poolType
+  }) {
+    step = Number.parseInt(step);
+    const params = {
+      step,
+      type: poolType //模拟题为6
+    };
+    wx.showLoading()
+    poolList(params).then((res) => {
+      wx.hideLoading()
+      if (res.data.code !== 200) {
+        showNetWorkToast(res.data.msg)
+        return
+      }
+      const resData = res.data.data;
+      this.setData({
+        poolData: resData
+      })
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
 
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
+  gotoSubject(e) {
+    const id = e.currentTarget.dataset.id
+    gotoSubject({
+      from: getApp().globalData.from,
+      step: this.data.step,
+      poolType: undefined,
+      poolId: id,
+    })
   },
 
   /**

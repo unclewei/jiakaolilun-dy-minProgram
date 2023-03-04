@@ -1,8 +1,8 @@
 import {
   login,
-  prePay,
+  createOrder,
   afterPay,
-  getUserTicketsReqs
+  userInfo
 } from "../utils/api";
 import {
   showToast,
@@ -44,7 +44,7 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
         wx.hideLoading()
         let resData = res.data.data
         getApp().globalData.cookies = res.data.token
-        getApp().globalData.userInfo = resData.data
+        getApp().globalData.userInfo = resData
         getApp().globalData.hasLogin = true
         callback('success')
       }).catch((e) => {
@@ -81,7 +81,7 @@ export const payForTicket = (data, callback) => {
     title: '',
     mask: true
   })
-  prePay(data).then(res => {
+  createOrder(data).then(res => {
     wx.hideLoading()
     if (res.data.code !== 200) {
       showNetWorkToast(res.data.msg)
@@ -152,8 +152,16 @@ export const afterPayFunc = (orderId, callback) => {
         callback('fail')
         return;
       }
-      getApp().globalData.userInfo.isPaid = true
-      callback('success')
+      userInfo().then(res => {
+        if (res.data.code !== 200) {
+          showNetWorkToast(res.data.msg)
+          callback('fail')
+          return
+        }
+        const resData = res.data.data;
+        getApp().globalData.userInfo = resData
+        callback('success')
+      })
     })
   })
 }

@@ -1,0 +1,37 @@
+<view class='init'>
+  <span bindtap='showModal'>
+    <slot></slot>
+  </span>
+</view>
+
+<ConfirmModal id="ConfirmModal" imageSrc='' bindCancel='hideModal' bindConfirm='onConfirm'>
+  <div class='wrap'>
+    <div class='title'>
+      <div>您的基本信息还未填写</div>
+      <div>将影响补偿的申请</div>
+    </div>
+    <div class='content'>
+      <div class='item'>
+        <span class='label'>姓名：</span>
+        <input placeholder='请填写您的姓名' value='{{name}}' data-item="name" bindinput="onInputChange" />
+      </div>
+      <div class='item'>
+        <span class='label'>手机：</span>
+        <input placeholder='请填写您的手机' value='{{phoneNum}}' data-item="phoneNum" bindinput="onInputChange" />
+      </div>
+    </div>
+    <div class='tips'>
+      <div>
+        <span>1、</span>上述信息仅用于客服核对考试成绩，请放心填写。
+      </div>
+      <div>
+        <span>2、</span>为保障您的权益，上述信息填写后将不可修改！
+      </div>
+      <div>
+        <span>3、</span>请尽快填写，最晚在考试前24小时填写完毕，不过补偿才可以生效！
+      </div>
+    </div>
+  </div>
+
+
+</ConfirmModal>

@@ -1,0 +1,8 @@
+<view hidden="{{!isShow}}" class="drawer {{isShow &&'animatedShow'}} {{hidding && 'animatedHide'}}">
+  <view data-type="mask" catchtap="touchModal" catchtouchmove='couchmove' class="drawer-mask" />
+  <view class="defaultDrawerContainer purpleBg {{isShow && 'DrawerContainerShow'}} {{hidding && 'DrawerContainerHide'}} {{className}}">
+    <view class="content">
+      <slot></slot>
+    </view>
+  </view>
+</view>

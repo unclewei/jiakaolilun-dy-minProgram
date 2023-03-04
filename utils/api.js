@@ -15,9 +15,9 @@ export const login = (data) => {
 }
 
 //获取用户信息
-export const getUserInfo = () => {
+export const userInfo = () => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/user/userInfo`
+    url: `${baseApi}/user`
   })
 }
 
@@ -29,6 +29,20 @@ export const updateUserInfo = (userInfo) => {
     data: userInfo
   })
 }
+
+
+/**
+ *  更新姓名和电话号码
+ * @returns {*}
+ */
+export const coachPhoneNum = (data) => {
+  return xapi.requestWithJwt({
+    method: 'post',
+    url: `${baseApi}/user/coachPhoneNum`,
+    data
+  });
+}
+
 
 // 获取基本信息
 export const getBaseConfig = (data) => {
@@ -170,6 +184,32 @@ export const paidItemList = (data) => {
   return xapi.requestWithJwt({
     method: 'post',
     url: `${baseApi}/item/paidItemList`,
+    data
+  });
+}
+
+
+/** ------------------ order --------------------- */
+
+/**
+ * 创建订单
+ * @returns {*}
+ */
+export const createOrder = (data) => {
+  return xapi.requestWithJwt({
+    method: 'post',
+    url: `${baseApi}/order`,
+    data
+  });
+}
+/**
+ * 成功支付后
+ */
+
+export const afterPay = (data) => {
+  return xapi.requestWithJwt({
+    method: 'post',
+    url: `${baseApi}/order/afterPay`,
     data
   });
 }

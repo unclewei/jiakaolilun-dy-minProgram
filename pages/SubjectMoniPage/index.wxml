@@ -1,2 +1,88 @@
-<!--pages/SubjectMoniPage/index.wxml-->
-<text>pages/SubjectMoniPage/index.wxml</text>
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<wxs src="./index.wxs" module="localUtils"></wxs>
+
+<view class='init'>
+  <view class='content'>
+    <view class='userInfo'>
+      <open-data class='avatar' type="userAvatarUrl" />
+      <span class='info'>
+        <span>
+          {{User.data.nickName}}
+        </span>
+        <span class='lastDate'>
+          上一次模拟时间：{{lastDoneSubject ? utils.toDate(lastDoneSubject.date) : '无'}}
+        </span>
+      </span>
+    </view>
+
+    <view class='foresee'>
+      <span wx:if="{{thisMoniPool}}">
+        本次模拟成绩：{{thisMoniPool.score}}分，<span class='low'>不及格</span>，要继续努力哦！
+      </span>
+      <span wx:else>考试通过率预测：
+        <span class="{{localUtils.getRatioData(allDoneSubject).class}}">{{localUtils.getRatioData(allDoneSubject).text}}</span>，要勤加练习哦！！</span>
+    </view>
+    <view class='data'>
+      <span class='item'>
+        <span class='num'>{{isDoneMoniPool.length}}</span>
+        <span class='text'>考试次数</span>
+      </span>
+      <span class='item'>
+        <span class='num ok'>
+          {{localUtils.passTimes(isDoneMoniPool)}}
+        </span>
+        <span class='text'>合格次数</span>
+      </span>
+      <span class='item'>
+        <span class='num {{localUtils.avgScore(allDoneSubject)< 90 ?"danger":""}}'>{{localUtils.avgScore(allDoneSubject)}}</span>
+        <span class='text'>平均模拟成绩</span>
+      </span>
+    </view>
+    <view class='options'>
+      <view class='btn primaryBtn' bindtap="gotoMoniTi">
+        {{isKeepGoing ? '继续上次的' : '开始'}}模拟考试
+      </view>
+      <view class='btn' bindtap="gotoSubject" data-item="secret">
+        <span class='text'>
+          考前秘卷
+          <image class="hot" src='../../images/icon/hot.png' mode="widthFix" />
+        </span>
+      </view>
+      <view class='btn' bindtap="gotoSubject" data-item="chosen">
+        <span class='special'>
+          精选500题
+          <image class="hot" src='../../images/icon/hot.png' mode="widthFix" />
+          <image class='img2' src='../../images/icon/hot.png' mode="widthFix" />
+        </span>
+      </view>
+      <SubjectMoniShouldKnow step='{{step}}'>
+        <view class='tips'>
+          <image class='icon' src='../../images/subjectIconFour.png' mode="widthFix" /> 模考须知
+        </view>
+      </SubjectMoniShouldKnow>
+    </view>
+  </view>
+  <view class='content'>
+    <view class='title'>以往模拟成绩一览</view>
+    <view class='historyItem'>
+      <span class='name'>模拟考名称</span>
+      <span class='time'>完成时间</span>
+      <span class='score'>分数</span>
+      <span class='isOk'>合格</span>
+      <span class='reDo'>重做</span>
+    </view>
+    <view class='historyItem' wx:for="{{allDoneSubject}}" key='_id'>
+      <span class='name'>{{item.name}}</span>
+      <span class='time'>{{utils.toDate(item.date)}}</span>
+      <span class='score {{item.score < 90 && "danger"}} {{item.score> 89 && "ok"}}'>
+        {{item.score}}
+      </span>
+      <span class='isOk {{item.score < 90 && "danger"}} {{item.score> 89 && "ok"}}'>
+        {{item.score > 89 ? '合格' : '不合格'}}
+      </span>
+      <Restart poolId='{{item.poolId}}' class='redo'>
+        <span>重做</span>
+      </Restart>
+    </view>
+  </view>
+</view>

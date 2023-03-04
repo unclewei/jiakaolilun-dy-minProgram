@@ -17,6 +17,14 @@ Component({
       type: String,
       value: '确定'
     },
+    showOk:{
+      type: Boolean,
+      value: true
+    },
+    showCancel:{
+      type: Boolean,
+      value: true
+    },
     title:{
       type: String,
       value: ''

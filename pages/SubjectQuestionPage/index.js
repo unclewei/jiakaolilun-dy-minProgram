@@ -181,7 +181,7 @@ Page({
           });
           return
         }
-        wx.navigateTo({
+        wx.redirectTo({
           url: `/pages/SubjectIncPage/index?step=${that.data.step}`,
         })
       })

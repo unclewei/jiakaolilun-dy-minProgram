@@ -56,7 +56,7 @@ Page({
         return
       }
       let obj = {};
-      for (let i of res.data) {
+      for (let i of res.data.data) {
         if (i.type === 'chosen') obj.chosenUserSubject = i;
         if (i.type === 'myWrong') obj.myWrongUserSubject = i;
       }

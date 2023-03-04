@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "模拟考试",
+  "usingComponents": {
+    "Restart": "../../components/Restart",
+    "SubjectMoniShouldKnow": "../../components/SubjectMoniShouldKnow"
+  }
 }
