@@ -5,7 +5,7 @@
     <slot></slot>
   </span>
 
-  <ConfirmModal cancelText='{{cancelText}}' okText='{{okText}}' bindCancel='{{isNotOk ? "" :"hideModal"}}' bindConfirm='onConfirm'>
+  <ConfirmModal id="ConfirmModal" cancelText='{{cancelText}}' okText='{{okText}}' bindCancel='{{isNotOk ? "hideModal" :"hideModal"}}' bindConfirm='onConfirm'>
     <view slot="cancelText">
       <Restart poolId='{{poolId}}' bindReSet='onReset'>
         重新考试
@@ -13,24 +13,24 @@
     </view>
 
     <div class='wrap'>
-      <div class='title'>{{resultTitle}}</div>
-      <div class='time'>剩余时间 {{minu}}:{{utils.timeFormat(sec)}}</div>
-      <image class='state' src='../../images/subjectIconFour.png' mode="widthFix" />
-      <div class='data'>
-        <span class='item'>
-          <span class='num danger'>{{unAnswerCount}}</span>
-          <span class='text'>没答题数</span>
-        </span>
-        <span class='item'>
-          <span class='num'>{{userSubjectData.wrongSubjectIds.length}}</span>
-          <span class='text'>错题数</span>
-        </span>
-        <span class='item'>
-          <span class='num danger'>{{scoreInit}}</span>
-          <span class='text'>本次得分</span>
-        </span>
+      <div class='title {{resultClass}}'>{{resultTitle}}</div>
+      <div class='time'>剩余时间 {{minu}}:{{sec < 10 ? "0" +sec :sec}}</div>
+          <image class='state' src='../../images/subjectIconFour.png' mode="widthFix" />
+          <div class='data'>
+            <span class='item'>
+              <span class='num danger'>{{unAnswerCount}}</span>
+              <span class='text'>没答题数</span>
+            </span>
+            <span class='item'>
+              <span class='num'>{{userSubjectData.wrongSubjectIds.length}}</span>
+              <span class='text'>错题数</span>
+            </span>
+            <span class='item'>
+              <span class='num danger'>{{scoreInit}}</span>
+              <span class='text'>本次得分</span>
+            </span>
+          </div>
       </div>
-    </div>
-    <div class='tips'>{textInit}</div>
+      <div class='tips'>{{textInit}}</div>
   </ConfirmModal>
 </div>

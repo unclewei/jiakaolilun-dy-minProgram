@@ -44,7 +44,7 @@ Page({
    */
   data: {
     step: '1', // 科目几
-    poolType: '1', // 题库类型
+    poolType: '', // 题库类型
     poolId: undefined, // 题库Id
     isSeeMode: false, // 答题模式 | 背题模式
     poolData: {}, // 题库数据
@@ -84,6 +84,7 @@ Page({
       poolId,
       from,
       userSubjectData: userSubjectJson, // 做题状态
+      subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
     })
     //若当前为我的错题情况下
     if (poolType === 'myWrong') {
@@ -104,37 +105,30 @@ Page({
     }
 
     //按顺序请求题库数据-个人做题状态-题库内题目数据
-    this.getPoolData();
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow() {
-
-  },
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+    this.getPoolData({
+      poolId,
+      poolType,
+      step,
+      from
+    });
   },
 
   /**
    * 获取题库数据
    * */
-  getPoolData() {
+  getPoolData({
+    poolType,
+    poolId,
+    step,
+    from
+  }) {
     const that = this
     // 请求错题数据
     if (that.data.isTypeWrong) {
+      that.setData({
+        poolType,
+        step
+      })
       that.userSubjectDataGet({
         poolData: {},
         poolId: undefined,
@@ -160,7 +154,9 @@ Page({
       const resData = res.data.data;
       that.setData({
         poolData: resData,
-        poolId: resData._id
+        poolType: resData.type,
+        poolId: resData._id,
+        step: resData.step
       })
       // 验证用户是购买 或者数据是否免费
       isItemValid({
@@ -394,10 +390,10 @@ Page({
     });
     syncSubject(params).then((res) => {
       this.userSubjectDataGet({
-        poolData: poolData,
-        poolType,
-        poolId,
-        step,
+        poolData: this.data.poolData,
+        poolType: this.data.poolType,
+        poolId: this.data.poolId,
+        step: this.data.step,
         isSyncSubject: true
       });
       callback()

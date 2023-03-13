@@ -1,6 +1,7 @@
 import {
   showToast,
-  showNetWorkToast
+  showNetWorkToast,
+  countTime
 } from '../../utils/util'
 
 
@@ -40,7 +41,7 @@ Component({
     let that = this
     timeVal = setInterval(() => {
       const newCount = that.data.countCount + 1
-      const time = that.data.mss - tnewCount
+      const time = that.data.mss - newCount
       const {
         minu,
         sec

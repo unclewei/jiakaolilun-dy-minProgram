@@ -1,6 +1,5 @@
-
 <view class='init'>
-  <view class='header' wx:if="{{monitem.value !== poolType}}">
+  <view class='header' wx:if="{{poolType !=='moni'}}">
     <span>
       <span class='modeBtn {{!isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="false">
         答题模式
@@ -65,16 +64,16 @@
       </Finish>
     </span>
 
-    <span wx:if="{{poolData && moni.value === poolType}}">
+    <span wx:if="{{poolData && poolType ==='moni'}}">
       <SubjectCountdown mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
     </span>
     <span>
       <span class='rightInfo'>
-        <span class='iconItem' wx:if="{{poolType !== myWrong.value}}">
+        <span class='iconItem' wx:if="{{poolType !== 'myWrong'}}">
           <image class='icon' src='../../images/icon/right.png' mode="widthFix" />
           {{userSubjectData.rightSubjectIds.length}}
         </span>
-        <span class='iconItem' wx:if="{{poolType !== myWrong.value}}">
+        <span class='iconItem' wx:if="{{poolType !== 'myWrong'}}">
           <image class='icon' src='../../images/icon/wrong.png' mode="widthFix" />
           {{userSubjectData.wrongSubjectIds.length}}
         </span>
