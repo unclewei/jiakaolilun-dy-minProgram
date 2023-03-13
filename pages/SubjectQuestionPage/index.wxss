@@ -181,11 +181,21 @@
   color: #2f54eb;
   font-weight: 600;
 }
-.init .confirmBtn {
+.confirmBtn {
   width: 95%;
+  height: 70rpx;
+  border-radius: 10rpx;
+  background-color: #1AAD19;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   box-sizing: border-box;
   position: fixed;
   bottom: 50px;
+}
+.disableBtn{
+  opacity: 0.7;
 }
 .init .footer {
   width: 100%;

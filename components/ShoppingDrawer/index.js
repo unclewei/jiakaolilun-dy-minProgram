@@ -42,7 +42,7 @@ Component({
       payForTicket({
           paidId: that.data.selectItem._id,
           paidType: 5,
-          paidEntry: "xcx",
+          paidEntry: "xcx_500",
           orderPaySource: "wx",
           fromWho
         },

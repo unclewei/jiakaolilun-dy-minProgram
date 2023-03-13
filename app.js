@@ -40,9 +40,9 @@ App({
       }
       view.onShareAppMessage = () => { //重写分享配置
         return {
-          imageUrl: 'https://aliyuncdn.mowan.qianyimowan.com/public/publicShare.jpg',
+          imageUrl: './images/theorybanner4.png',
           title: '精选500题，驾考决胜法宝',
-          path: '/pages/home/index?fromWho='+that.globalData.userInfo._id
+          path: '/pages/index/index?fromWho='+that.globalData.userInfo._id
         }
       }
     })

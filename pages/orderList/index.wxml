@@ -1,0 +1,30 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<view class="contentBox" wx:if="{{userInfo.avatarUrl}}">
+
+  <view class="locationItem" wx:for="{{orderList}}" wx:key="_id" data-item='{{item}}'>
+
+    <!-- 数据展示 -->
+    <view class="locationBody">
+      <!-- 赏品详情 -->
+      <view class="disFlexBet" style="margin-bottom: 10rpx;">
+        <image class="cardImg" wx:if="{{item.paidType === 'ticket'}}" src="../../images/redCard.png" mode="widthFix" />
+        <view class="cardName" wx:if="{{item.paidType === 'ticket'}}">{{item.paid.name}} X {{item.times}}</view>
+        <image class="cardImg" wx:if="{{item.paidType === 'vip'}}" src="{{'../../images/'+item.vipType+'VIP.png'}}" mode="widthFix" />
+        <view class="cardName" wx:if="{{item.paidType === 'vip'}}">{{vipType[item.vipType]}} X 1</view>
+      </view>
+      <view class="name">总价：{{item.totalFee / 100}} 元</view>
+      <view class="location"> 购买时间：{{utils.toDate(item.orderStart)}}</view>
+    </view>
+  </view>
+  <!-- 缺省图 -->
+  <view wx:if="{{isEmpty}}">订单空空如也，快抽赏吧~</view>
+</view>
+
+<view class="contentBox">
+  <button wx:if="{{!userInfo.avatarUrl}}" bindtap="onLogin">一键登录</button>
+</view>
+
+
+<!-- 登录 -->
+<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />

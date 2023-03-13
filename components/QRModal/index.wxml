@@ -1,0 +1,7 @@
+<BaseModal id="baseModal" image=''>
+  <view class="content">
+    <image class="qrImg" src="{{src}}" mode="widthFix" show-menu-by-longpress />
+    <view class="desc">{{desc}}</view>
+    <view class="desc" wx:if="{{descTwo}}">{{descTwo}}</view>
+  </view>
+</BaseModal>

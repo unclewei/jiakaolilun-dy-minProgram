@@ -7,7 +7,7 @@
       <open-data class='avatar' type="userAvatarUrl" />
       <span class='info'>
         <span>
-          {{User.data.nickName}}
+          {{userInfo.nickName}}
         </span>
         <span class='lastDate'>
           上一次模拟时间：{{lastDoneSubject ? utils.toDate(lastDoneSubject.date) : '无'}}

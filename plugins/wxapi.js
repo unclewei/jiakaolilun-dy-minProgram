@@ -122,8 +122,10 @@ export const showMeTheMoney = (data, callback) => {
 }
 
 export const afterPayFunc = (orderId, callback) => {
-  // 更新后台信息
-  afterPay(orderId).then(payRes => {
+  // 更新后台信息 
+  afterPay({
+    orderId
+  }).then(payRes => {
     if (payRes.data.code !== 200 && reTryCount > 0) {
       reTryCount++;
       afterPayFunc(orderId, callback)
@@ -139,29 +141,16 @@ export const afterPayFunc = (orderId, callback) => {
       callback('fail')
       return
     }
-    // 更新用户信息 or 更新用户票据
-    getUserTickets(updateMsg => {
-      wx.hideLoading()
-      if (updateMsg === 'fail') {
-        wx.hideLoading()
-        wx.showModal({
-          title: '网络错误',
-          content: '请稍后尝试，可以去个人中心联系客服处理',
-          showCancel: false
-        })
+    // 更新用户信息 
+    userInfo().then(res => {
+      if (res.data.code !== 200) {
+        showNetWorkToast(res.data.msg)
         callback('fail')
-        return;
+        return
       }
-      userInfo().then(res => {
-        if (res.data.code !== 200) {
-          showNetWorkToast(res.data.msg)
-          callback('fail')
-          return
-        }
-        const resData = res.data.data;
-        getApp().globalData.userInfo = resData
-        callback('success')
-      })
+      const resData = res.data.data;
+      getApp().globalData.userInfo = resData
+      callback('success')
     })
   })
 }

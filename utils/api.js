@@ -1,10 +1,10 @@
 import xapi from "./xapi";
 // const baseApi = 'https://biguo.fanstag.com/api'
 // 测试服务器
-// const baseApi = 'http://test.fanstag.com/api'
+const baseApi = 'https://test.fanstag.com/api'
 // 正式服务器
 // const baseApi = 'https://fanstag.com/api'
-const baseApi = 'http://127.0.0.1:3008/api'
+// const baseApi = 'http://127.0.0.1:3008/api'
 
 export const login = (data) => {
   return xapi.request({

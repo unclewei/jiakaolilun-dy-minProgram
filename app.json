@@ -1,16 +1,34 @@
 {
-  "pages":[
+  "pages": [
     "pages/index/index",
+    "pages/UserInfo/index",
     "pages/SubjectMiddlePage/index",
     "pages/SubjectMoniPage/index",
     "pages/SubjectQuestionPage/index",
+    "pages/orderList/index",
     "pages/SubjectIncPage/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "科一科四",
+        "iconPath": "./images/icon/book.png",
+        "selectedIconPath": "./images/icon/book.png"
+      },
+      {
+        "pagePath": "pages/UserInfo/index",
+        "text": "我的",
+        "iconPath": "./images/icon//icon2/user.png",
+        "selectedIconPath": "./images/icon//icon2/user.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

@@ -216,18 +216,20 @@ Page({
       poolId,
       step
     }).then(res => {
-
       wx.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
       }
       const resData = res.data.data;
-      //错题集的情况下，直接使用默认值
       let useJson = json;
       if (resData && resData.date >= json.date) {
         //远程的新，用远程的，同时同步至本地
         useJson = resData;
+      }
+      //错题集的情况下，直接使用默认值
+      if (that.data.isTypeWrong) {
+        useJson = json;
       }
       that.localUserSubjectStatusGet({
         fullUserSubjectConfig: useJson,
@@ -430,13 +432,14 @@ Page({
   /**
    * 错题移除
    */
-  onWrongSwitchChange() {
+  onWrongSwitchChange(e) {
+    const checked = e.detail.value
     this.setData({
-      isWrongDelete: !this.data.isWrongDelete
+      isWrongDelete: checked
     })
     userSubjectConfigSetGet({
       key: 'isWrongDelete',
-      value: !this.data.isWrongDelete,
+      value: checked,
       isGet: false
     });
   },
@@ -507,7 +510,7 @@ Page({
     currentIndex
   }) {
     let newSubjectData = [];
-    for (let i of subjectData) {
+    for (let i of this.data.subjectData) {
       let isThisSubject = i._id === subjectId;
       if (i.currentIndex >= currentIndex) i.currentIndex -= 1
       if (!isThisSubject) {
@@ -555,8 +558,8 @@ Page({
           currentIndex: currentIndex + 1
         })
 
-        that.useToDoWrong(that.subjectData[currentIndex + 1])
-        that.useToDoRight(that.subjectData[currentIndex + 1])
+        that.useToDoWrong(that.data.subjectData[currentIndex + 1])
+        that.useToDoRight(that.data.subjectData[currentIndex + 1])
       }, 1000);
       return
     }
@@ -862,16 +865,44 @@ Page({
 
 
   // 多选选择问题 确定
-  onAnswerConfirm() {},
+  onAnswerConfirm(e) {
+    const subject = e.currentTarget.dataset.item
+    if (this.isDone(subject)) {
+      showToast('此题已做，请做下一题')
+      return
+    }
+    if (this.data.optionIndex.length < 2) {
+      showToast('多选题，至少两个答案')
+      return
+    }
+    this.setData({
+      isSelected: true
+    })
+    if (this.isAllRight(subject)) {
+      //全对逻辑
+      this.rightSubject({
+        subjectId: subject._id
+      });
+      return;
+    }
+    //做错后，记录错题
+    this.wrongSubject({
+      subjectId: subject._id,
+      options: this.data.optionIndex
+    });
+  },
 
-  // 错题模式 切换
-  onWrongSwitchChange() {},
 
   // 考试提交
-  onSubmit() {},
+  setLocal(e) {
+    const value = e.detail
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'limitTime',
+      value: value
+    });
 
-  // 考试提交
-  setLocal() {},
+  },
 
 
   /**

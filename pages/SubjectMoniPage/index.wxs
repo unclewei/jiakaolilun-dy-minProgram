@@ -1,4 +1,15 @@
-// 翻译 标签
+// 合格次数
+module.exports.avgScore = function (allDoneSubject) {
+  if (allDoneSubject.length === 0) return 0;
+  var score = 0;
+  for (var i = 0; i < allDoneSubject.length; i++) {
+    var item = allDoneSubject[i]
+    score += item.score;
+  }
+  return score / allDoneSubject.length
+}
+
+// 获取通过率
 module.exports.getRatioData = function (allDoneSubject) {
   var times = allDoneSubject.length
   if (times === 0) {
@@ -13,7 +24,19 @@ module.exports.getRatioData = function (allDoneSubject) {
       text: '低'
     }
   }
-  var avg = avgScore(allDoneSubject);
+  var avg = 0
+  if (allDoneSubject.length === 0) {
+    avg = 0;
+  } else {
+
+    var score = 0;
+    for (var i = 0; i < allDoneSubject.length; i++) {
+      var item = allDoneSubject[i]
+      score += item.score;
+    }
+    avg = score / allDoneSubject.length
+  }
+
   if (avg > 94) {
     return {
       class: 'ok',
@@ -44,28 +67,28 @@ module.exports.getRatioData = function (allDoneSubject) {
   }
 }
 
-// 合格次数
-module.exports.avgScore = function (allDoneSubject) {
-    if (allDoneSubject.length === 0) return 0;
-    var score = 0;
-    for (var i = 0 ;i < allDoneSubject.length;i++) {
-      var item = allDoneSubject[i]
-        score += item.score;
-    }
-    return Number.parseInt(String(score / allDoneSubject.length));
-}
 
 // 合格次数
 module.exports.passTimes = function (isDoneMoniPool) {
-  if(!isDoneMoniPool || !isDoneMoniPool.length){
+  if (!isDoneMoniPool || !isDoneMoniPool.length) {
     return '-'
   }
   var count = 0
-  for(var i = 0 ;i < isDoneMoniPool.length;i++){
+  for (var i = 0; i < isDoneMoniPool.length; i++) {
     var item = isDoneMoniPool[i]
-    if(item.score > 89){
+    if (item.score > 89) {
       count++
     }
   }
   return count
+}
+
+/**
+ * 保留小数
+ */
+module.exports.fixed = function (text) {
+  if (!text) {
+    return 0
+  }
+  return Number(text).toFixed(2)
 }

@@ -1,0 +1,235 @@
+.contentBox {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #F6DFB4;
+  box-sizing: border-box;
+  padding: 30rpx;
+  box-sizing: border-box;
+  padding-bottom: 200rpx;
+}
+
+
+.TabList {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-bottom: 20rpx;
+}
+
+.tabItem {
+  flex: 1;
+  padding: 10px 0px;
+  font-weight: bold;
+  text-align: center;
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  letter-spacing: 5rpx;
+}
+
+.tabText {
+  z-index: 2;
+}
+
+.tagSelect {
+  position: absolute;
+  right: 5rpx;
+  bottom: 20rpx;
+  width: 120rpx;
+  height: 10rpx;
+  background-color: #ffBE1C;
+  transform: rotate(-6deg);
+  z-index: 1;
+}
+
+.addLocationBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 30rpx 0;
+}
+
+
+.cardImg {
+  border-radius: 15rpx;
+  overflow: hidden;
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.cardName {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.addLocationItem {
+  width: 300rpx;
+  height: 70rpx;
+  border-radius: 20rpx;
+  overflow: hidden;
+  border: 4rpx #421611 solid;
+  background-color: #FFFFD5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.locationItem {
+  width: 100%;
+  border-radius: 20rpx;
+  overflow: hidden;
+  border: 4rpx #421611 solid;
+  background-color: #FFFFD5;
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 20rpx;
+  box-sizing: border-box;
+}
+
+.locationItemSelect {
+  background-color: #f5979b;
+
+}
+
+
+.slectItem {
+  position: relative;
+  margin-left: 20rpx;
+  width: 35rpx;
+  height: 35rpx;
+  min-width: 35rpx;
+  height: 35rpx;
+  border-radius: 50rpx;
+  border: 5rpx #ffbe1c solid;
+  background-color: transparent;
+  align-self: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.slectItemDisable {
+  background-color: #ccc;
+}
+
+.selectedImg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 0rpx #ffbe1c solid;
+}
+
+.locationBody {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  font-size: 30rpx;
+  padding: 20rpx;
+  box-sizing: border-box;
+}
+
+.locationOptions {
+  border-top: 2rpx solid #421611;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10rpx;
+  margin-top: 10rpx;
+}
+.orderText{
+  flex: 1;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.locationOptionsItem {
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  color: royalblue;
+}
+
+.optionBoxContent {
+  position: fixed;
+  bottom: 0rpx;
+  width: 690rpx;
+  height: 160rpx;
+  background-color: #F6DFB4;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.optionBox {
+  position: relative;
+  width: 690rpx;
+  height: 80rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20rpx;
+}
+
+.optionsImg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.optionsText {
+  font-size: 40rpx;
+  font-weight: bold;
+  z-index: 2;
+}
+
+.disFlexBet {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.disFlexEnd {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10rpx;
+}
+
+
+.reSetBtn {
+  position: relative;
+  width: 160rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 15rpx;
+  margin-right: 15rpx;
+  font-size: 28rpx;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+}
+
+.reSetBtnText {
+  z-index: 2;
+}
+
+.optionBg {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+}

@@ -19,6 +19,7 @@ Page({
     User: getApp().globalData.userInfo || {},
     isUserInfoOK: false, // 是否有手机号码和姓名
     step: '1',
+    insideBtnPaidDone:false,
 
     benifyList: [{
         text: '精选500题',
@@ -142,13 +143,13 @@ Page({
   },
 
   gotoShop() {
-    console.log('1111');
     this.selectComponent("#ShoppingDrawer").showModal()
   },
 
   buySuccess() {
-
+    this.selectComponent("#ShoppingDrawer").hideModal()
     this.setData({
+      insideBtnPaidDone:true,
       User: getApp().globalData.userInfo,
       isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
     })

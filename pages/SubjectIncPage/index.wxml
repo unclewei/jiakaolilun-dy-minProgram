@@ -9,7 +9,7 @@
             ￥<span class='priceNum'>{{item.price}}</span>元/{{item.durText}}
           </view>
         </view>
-        <view class='paidDone' wx:if="{{item.isPaidDone}}">您已购买</view>
+        <view class='paidDone' wx:if="{{item.isPaidDone}}">您已获得</view>
         <view class='moreUser' wx:elif="{{item.isDefaultSelected}}">更多用户选择</view>
         <view class='footer {{  selectItem._id === item._id && "footerActive"}}'>
           考不过{{item.refund ? '补偿' + item.refund + '元' : '无补偿'}}
@@ -74,7 +74,7 @@
         <view class='buyButton'>
           <span wx:if="{{selectItem.isPaidDone}}">您已开通该服务</span>
           <span wx:else>￥<span class='priceNum'>{{selectItem.price}}</span>/{{selectItem.durText}}</span>
-          <view class='insideBtn insideBtnPaidDone' wx:if="{{insideBtnPaidDone}}" bindtap="gotoSubjectPage">立即做题</view>
+          <view class='insideBtn insideBtnPaidDone' wx:if="{{selectItem.isPaidDone || insideBtnPaidDone}}" bindtap="gotoSubjectPage">立即做题</view>
           <view class='insideBtn' bindtap="gotoShop" wx:else>立即开通</view>
         </view>
       </view>

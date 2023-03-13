@@ -33,6 +33,7 @@ Page({
     this.setData({
       step: options.step,
       poolId: options.poolId,
+      userInfo:getApp().globalData.userInfo
     })
     this.poolDataGet({
       step: options.step
@@ -90,6 +91,7 @@ Page({
       }
       that.setData({
         allDoneSubject: allDoneSubject,
+        lastDoneSubject:allDoneSubject.length > 0 ? allDoneSubject[0]:undefined,
         unDoMoniPool: unDoMoniPool,
         isDoneMoniPool: isDoneMoniPool
       })
