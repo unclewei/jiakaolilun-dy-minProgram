@@ -5,9 +5,9 @@
     <slot></slot>
   </span>
 
-  <ConfirmModal id="ConfirmModal" cancelText='{{cancelText}}' okText='{{okText}}' bindCancel='{{isNotOk ? "hideModal" :"hideModal"}}' bindConfirm='onConfirm'>
+  <ConfirmModal id="ConfirmModal" cancelText='{{cancelText}}' okText='{{okText}}' bindCancel='{{isOk ? "hideModal" :"hideModal"}}' bindConfirm='onConfirm'>
     <view slot="cancelText">
-      <Restart poolId='{{poolId}}' bindReSet='onReset'>
+      <Restart poolId='{{poolId}}' bindReSet='onReSet'>
         重新考试
       </Restart>
     </view>
@@ -26,7 +26,7 @@
               <span class='text'>错题数</span>
             </span>
             <span class='item'>
-              <span class='num danger'>{{scoreInit}}</span>
+              <span class='num danger'>{{score}}</span>
               <span class='text'>本次得分</span>
             </span>
           </div>

@@ -8,7 +8,7 @@
         背题模式
       </span>
     </span>
-    <Restart poolId='{{poolId}}' bindReSet='onReset'>
+    <Restart poolId='{{poolId}}' bindReSet='onReSet'>
       <span class='modeBtn'>重做</span>
     </Restart>
   </view>
@@ -24,7 +24,7 @@
         {{item.question}}
       </view>
       <view class='imgWrap' wx:if="{{item.imgName}}">
-        <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="widthFix" />
+        <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="aspectFit" />
       </view>
       <view class='options'>
         <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
@@ -57,7 +57,7 @@
         <switch checked='{{isWrongDelete}}' type='checkbox' bindchange="onWrongSwitchChange" />
       </span>
       <!-- 完成 -->
-      <Finish wx:if="{{subjectPoolType[poolType].isScore}}" poolId='{{poolId}}' bindOnSubmit='onSubmit' userSubjectData='{{userSubjectData}}' step='{{step}}' poolData='{{poolData}}'>
+      <Finish wx:if="{{subjectPoolType[poolType].isScore}}" poolId='{{poolId}}' bindOnSubmit='onSubmit' userSubjectData='{{userSubjectData}}' step='{{step}}' poolData='{{poolData}}' bindReSet='onReSet'>
         <span class='finishItem'>
           <image class='finishIcon' src='../../images/subjectIconSeven.png' mode="widthFix" />交卷
         </span>

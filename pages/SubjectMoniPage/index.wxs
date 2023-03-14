@@ -6,7 +6,7 @@ module.exports.avgScore = function (allDoneSubject) {
     var item = allDoneSubject[i]
     score += item.score;
   }
-  return score / allDoneSubject.length
+  return allDoneSubject.length ? (1 * (score / allDoneSubject.length)).toFixed(2) : 0
 }
 
 // 获取通过率
@@ -34,7 +34,7 @@ module.exports.getRatioData = function (allDoneSubject) {
       var item = allDoneSubject[i]
       score += item.score;
     }
-    avg = score / allDoneSubject.length
+    avg = allDoneSubject.length ? (1 * (score / allDoneSubject.length)).toFixed(2) : 0
   }
 
   if (avg > 94) {

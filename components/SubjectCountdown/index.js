@@ -53,7 +53,10 @@ Component({
       })
       let record = [15, 30, 45]
       if (record.includes(sec) || time === 0) {
-        this.triggerEvent('setLocal', time)
+        this.triggerEvent('SetLocal', time)
+        this.setData({
+          countCount: 0
+        })
       }
       if (time === 0) {
         clearInterval(timeVal)

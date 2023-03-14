@@ -80,7 +80,7 @@
       <span class='isOk {{item.score < 90 && "danger"}} {{item.score> 89 && "ok"}}'>
         {{item.score > 89 ? '合格' : '不合格'}}
       </span>
-      <Restart poolId='{{item.poolId}}' class='redo'>
+      <Restart poolId='{{item.poolId}}' class='redo' bindReSet='onReSet' >
         <span>重做</span>
       </Restart>
     </view>

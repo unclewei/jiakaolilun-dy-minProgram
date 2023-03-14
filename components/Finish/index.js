@@ -40,6 +40,7 @@ Component({
       let isOk = this.isOk()
       let isNotOk = this.isNotOk()
       let unAnswerCount = this.unAnswer()
+      let score = this.scoreInit()
       let textInit = '还有很多题还没答哦，确定要交卷了吗？'
       let cancelText = '继续考试'
       let okText = '现在交卷'
@@ -67,7 +68,8 @@ Component({
         cancelText,
         resultTitle,
         resultClass,
-        okText
+        okText,
+        score
       })
     }
   },
@@ -113,22 +115,50 @@ Component({
       this.selectComponent("#ConfirmModal").hideModal()
     },
     showModal: function () {
+      let isOk = this.isOk()
+      let isNotOk = this.isNotOk()
+      let unAnswerCount = this.unAnswer()
+      let score = this.scoreInit()
+      let textInit = '还有很多题还没答哦，确定要交卷了吗？'
+      let cancelText = '继续考试'
+      let okText = '现在交卷'
+      let resultTitle = '恭喜，成绩及格'
+      let resultClass = 'ok'
+      if (isOk) {
+        textInit = '恭喜成绩合格，干的不错！'
+        cancelText = '继续考试'
+        okText = '现在交卷',
+          resultTitle = '恭喜，成绩及格'
+        resultClass = 'ok'
+      } else {
+        textInit = '本次考试不及格，还需要加把劲！'
+        cancelText = ''; // 组件 变成插槽
+        okText = '收下成绩'
+        resultTitle = '成绩不及格'
+        resultClass = 'notOk'
+      }
+      this.setData({
+        isOk,
+        isNotOk,
+        unAnswerCount,
+        textInit,
+        cancelText,
+        resultTitle,
+        resultClass,
+        okText,
+        score
+      })
       this.selectComponent("#ConfirmModal").showModal()
     },
     //合格
     isOk: function () {
       let score = this.scoreInit();
-      this.setData({
-        score
-      })
       return score > 89
     },
     //合格
     isNotOk: function () {
       let score = this.wrongScore();
-      this.setData({
-        score
-      })
+      console.log('score', score);
       return score > 10
     },
     scoreInit() {
@@ -136,16 +166,9 @@ Component({
         step,
         userSubjectData
       } = this.data
-      if (step === 1) {
-        this.setData({
-          score: userSubjectData.rightSubjectIds?.length || 0
-        })
+      if (step == 1) {
         return userSubjectData.rightSubjectIds?.length || 0;
       }
-
-      this.setData({
-        score: (userSubjectData.rightSubjectIds?.length || 0) * 2 || 0
-      })
       return (userSubjectData.rightSubjectIds?.length || 0) * 2 || 0;
     },
     //做错丢失的分
@@ -154,7 +177,7 @@ Component({
         step,
         userSubjectData
       } = this.data
-      if (step === 1) {
+      if (step == 1) {
         return userSubjectData.wrongSubjectIds?.length || 0;
       }
       return (userSubjectData.wrongSubjectIds?.length || 0) * 2 || 0;
@@ -179,7 +202,7 @@ Component({
     /**
      * 交卷
      */
-    onHandon() {
+    onConfirm() {
       this.hideModal()
       let score = this.scoreInit();
       this.triggerEvent('OnSubmit', {

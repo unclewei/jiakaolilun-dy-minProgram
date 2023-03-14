@@ -292,7 +292,7 @@ Page({
     if (!propName) return;
     //是个新的
     if (!userSubjectConfig.poolId) {
-      userSubjectConfig = userSubjectJson;
+      userSubjectConfig = {...userSubjectJson};
     }
     userSubjectConfig.date = timeCodeFormatted(new Date().getTime());
     userSubjectConfig.poolId = _poolId;
@@ -403,9 +403,8 @@ Page({
    * 交卷
    * @param score 分数
    */
-  onSubmit({
-    score
-  }) {
+  onSubmit(e) {
+    const score = e.detail.score
     this.localUserSubjectStatusGet({
       type: 'set',
       propName: 'isSubmit',
@@ -804,8 +803,24 @@ Page({
   /**
    * 重置题库
    */
-  onReset() {
+  onReSet() {
     // 重新获取列表
+    this.setData({
+      isSeeMode: false, // 答题模式 | 背题模式
+      poolData: {}, // 题库数据
+      subjectData: {}, // 题目数据
+      currentIndex: 0, // 当前做到第几题
+      loading: false,
+      optionIndex: [], //选择的选项
+      isSelected: false, //答题确定选择
+      isNowWrong: false, //当前题目做错（做错时不会自动进入下一题）
+      isTypeWrong: false, // 是否在做我的错题
+      isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
+      userSubjectData: userSubjectJson, // 做题状态
+      isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType === 2, // 是否教练
+      rightHistory: false, // 正确历史;
+      wrongHistory: {}, // 错误历史
+    })
     this.onLoad({
       poolType: this.data.poolType,
       step: this.data.step,

@@ -4,32 +4,34 @@ import {
 } from '../../utils/util'
 
 Component({
-
+  options: {
+    multipleSlots: true // 在组件定义时的选项中启用多 slot 支持
+  },
   /**
    * 组件的属性列表
    */
   properties: {
-    cancelText:{
+    cancelText: {
       type: String,
       value: '取消'
     },
-    okText:{
+    okText: {
       type: String,
       value: '确定'
     },
-    showOk:{
+    showOk: {
       type: Boolean,
       value: true
     },
-    showCancel:{
+    showCancel: {
       type: Boolean,
       value: true
     },
-    title:{
+    title: {
       type: String,
       value: ''
     },
-    imageSrc:{
+    imageSrc: {
       type: String,
       value: '../../images/updateBanner.png'
     }
@@ -44,8 +46,7 @@ Component({
   },
 
 
-  ready: function () {
-  },
+  ready: function () {},
 
   /**
    * 组件的方法列表

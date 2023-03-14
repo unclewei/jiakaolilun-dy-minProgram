@@ -73,7 +73,7 @@ Page({
       }
       if (that.data.poolId && allDoneSubject.length > 0) {
         for (let i of allDoneSubject) {
-          if (i.poolId === poolId) {
+          if (i.poolId === that.data.poolId) {
             that.setData({
               thisMoniPool: i
             })
@@ -142,6 +142,15 @@ Page({
       step: this.data.step,
       poolType: item,
       poolId: undefined,
+    })
+  },
+
+  onReSet(){
+    this.onLoad({
+      poolType: this.data.poolType,
+      step: this.data.step,
+      poolId: this.data.poolId,
+      from: this.data.from
     })
   },
 
