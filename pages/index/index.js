@@ -96,6 +96,12 @@ Page({
     wx.navigateTo({
       url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
     })
+  },
+   /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 
 })

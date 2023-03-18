@@ -19,8 +19,8 @@
       {
         "pagePath": "pages/UserInfo/index",
         "text": "我的",
-        "iconPath": "./images/icon//icon2/user.png",
-        "selectedIconPath": "./images/icon//icon2/user.png"
+        "iconPath": "./images/icon/icon2/user.png",
+        "selectedIconPath": "./images/icon/icon2/user.png"
       }
     ]
   },

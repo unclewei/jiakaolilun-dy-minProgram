@@ -1,4 +1,8 @@
 /**app.wxss**/
+page {
+  background-color: #FFF
+}
+
 .cleanButton {
   background: transparent;
   padding: 0;
