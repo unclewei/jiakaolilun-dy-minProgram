@@ -21,7 +21,7 @@ Page({
 
     autoLogin((res) => {
       this.chosenAndWrong();
-      if (res === 'fail') {
+      if (res == 'fail') {
         return
       }
       // 请求成功，提示信息
@@ -55,11 +55,12 @@ Page({
         showNetWorkToast(res.data.msg)
         return
       }
-      let obj = {};
-      for (let i of res.data.data) {
-        if (i.type === 'chosen') obj.chosenUserSubject = i;
-        if (i.type === 'myWrong') obj.myWrongUserSubject = i;
-      }
+      const resData = res.data.data || []
+      let obj = {
+        chosenUserSubject: resData.find(p => p.type == 'chosen') || {},
+        myWrongUserSubject: resData.find(p => p.type == 'myWrong') || {},
+      };
+      
       that.setData({
         userSubject: obj
       })

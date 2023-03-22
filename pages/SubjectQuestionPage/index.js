@@ -57,7 +57,7 @@ Page({
     isTypeWrong: false, // 是否在做我的错题
     isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
     userSubjectData: userSubjectJson, // 做题状态
-    isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType === 2, // 是否教练
+    isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
     rightHistory: false, // 正确历史;
     wrongHistory: {}, // 错误历史
   },
@@ -87,7 +87,7 @@ Page({
       subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
     })
     //若当前为我的错题情况下
-    if (poolType === 'myWrong') {
+    if (poolType == 'myWrong') {
       wx.setNavigationBarTitle({
         title: `我的科目${step == 1 ? '一' : '四'}错题集合`,
       })
@@ -99,7 +99,7 @@ Page({
         isWrongDelete
       } = userSubjectConfig;
       this.setData({
-        isWrongDelete: typeof isWrongDelete === 'boolean' ? isWrongDelete : true,
+        isWrongDelete: typeof isWrongDelete == 'boolean' ? isWrongDelete : true,
         isTypeWrong: true,
       })
     }
@@ -283,7 +283,7 @@ Page({
 
     let userSubjectConfig = wx.getStorageSync(keyName) || {};
     //获取
-    if (type === 'get') {
+    if (type == 'get') {
       if (userSubjectConfig.poolId) {
         return userSubjectConfig;
       }
@@ -361,7 +361,7 @@ Page({
   setIsSeeMode(e) {
     const item = e.currentTarget.dataset.item
     this.setData({
-      isSeeMode: item === 'true'
+      isSeeMode: item == 'true'
     })
   },
 
@@ -479,7 +479,7 @@ Page({
     const {
       currentIndex
     } = this.data || {}
-    if (currentIndex === 0) return;
+    if (currentIndex == 0) return;
     this.setData({
       currentIndex: currentIndex - 1
     })
@@ -506,7 +506,7 @@ Page({
   }) {
     let newSubjectData = [];
     for (let i of this.data.subjectData) {
-      let isThisSubject = i._id === subjectId;
+      let isThisSubject = i._id == subjectId;
       if (i.currentIndex >= currentIndex) i.currentIndex -= 1
       if (!isThisSubject) {
         newSubjectData.push(i);
@@ -570,7 +570,7 @@ Page({
     rightSubjectIds.push(subjectId);
     wrongSubjectIds.filter(p => p.subjectId !== subjectId)
     for (let i of wrongSubjectIds) {
-      if (i.subjectId === subjectId) {
+      if (i.subjectId == subjectId) {
         wrongSubjectIds = deleteArrObjMember('subjectId', subjectId, wrongSubjectIds);
       }
     }
@@ -614,7 +614,7 @@ Page({
       rightSubjectIds
     } = json;
     for (let i of wrongSubjectIds) {
-      if (i.subjectId === subjectId) return
+      if (i.subjectId == subjectId) return
     }
     options = options.map(i => Number(i)); //答案是+1的
     let wrongSubjectObj = {
@@ -654,7 +654,7 @@ Page({
       step
     } = this.data || {}
     //向后加载更多，用于下一题达到阈值时
-    if (isNext && (currentIndex + 1) % 50 === 1) {
+    if (isNext && (currentIndex + 1) % 50 == 1) {
       this.getSubjectData({
         currentIndex: currentIndex,
         poolId,
@@ -667,7 +667,7 @@ Page({
       return;
     }
     //向前加载更多，用于上一题达到阈值时
-    if (!isNext && (currentIndex + 1) % 50 === 2) {
+    if (!isNext && (currentIndex + 1) % 50 == 2) {
       this.getSubjectData({
         currentIndex: currentIndex - 2,
         poolId,
@@ -694,7 +694,7 @@ Page({
     } = this.data.userSubjectData;
     let isInWrongSubjectIds = false;
     for (let i of wrongSubjectIds) {
-      if (i.subjectId === subjectId) {
+      if (i.subjectId == subjectId) {
         isInWrongSubjectIds = true
         break;
       }
@@ -712,7 +712,7 @@ Page({
    */
   isDone(item) {
     const state = this.subjectDoState(item);
-    return state === true || state === false
+    return state == true || state == false
   },
   /**
    * 不允许选答案
@@ -731,9 +731,9 @@ Page({
       currentIndex,
       loading
     } = this.data || {}
-    if (subjectData.length === 0) return true;
-    if ((poolData && poolData.subjectCount === currentIndex + 1) || loading) return true
-    if (!poolData && subjectData.length === currentIndex + 1) return true; //错题情况
+    if (subjectData.length == 0) return true;
+    if ((poolData && poolData.subjectCount == currentIndex + 1) || loading) return true
+    if (!poolData && subjectData.length == currentIndex + 1) return true; //错题情况
     return false
   },
   /**
@@ -775,7 +775,7 @@ Page({
     } = this.data.userSubjectData;
     let finalWrongHistory = {}; //记录当时做错
     for (let i of wrongSubjectIds) {
-      if (i.subjectId === subjectId) {
+      if (i.subjectId == subjectId) {
         finalWrongHistory = i
         break
       }
@@ -817,7 +817,7 @@ Page({
       isTypeWrong: false, // 是否在做我的错题
       isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
       userSubjectData: userSubjectJson, // 做题状态
-      isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType === 2, // 是否教练
+      isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
       rightHistory: false, // 正确历史;
       wrongHistory: {}, // 错误历史
     })
@@ -839,7 +839,7 @@ Page({
     if (this.isDisabledSelect(subjectItem)) {
       return
     };
-    if (subjectItem.type === 3) {
+    if (subjectItem.type == 3) {
       //多选逻辑
       if (this.data.optionIndex.includes(answerNum)) {
         //这里拿出原来的
@@ -862,6 +862,7 @@ Page({
 
     //单选逻辑
     if (this.isRight(subjectItem.answer, answerNum)) {
+      // 正确
       this.rightSubject({
         subjectId: subjectItem._id
       });
