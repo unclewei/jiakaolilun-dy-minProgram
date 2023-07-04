@@ -1,0 +1,58 @@
+<view class='init'>
+  <!-- 上半部分 -->
+  <view class="topContent">
+    <!-- 上半部分-左边 -->
+    <view class="topLeftContetnt">
+      <!-- 标题 -->
+      <ExamBox title='理论考试' class="examTitle">第01号考场</ExamBox>
+      <!-- 考生信息 -->
+      <ExamBox title='考生信息' class="studentInfo">
+        <view class="studentAvaor"></view>
+        <view class="subjectName">科目一</view>
+        <view class="infoDesc">考生姓名：</view>
+        <view class="infoDesc">考武題数：100</view>
+        <view class="infoDesc">考试时间：45分钟</view>
+        <view class="infoDesc">満分100分，90分及格</view>
+      </ExamBox>
+    </view>
+    <!-- 上半部分-中间 -->
+    <ExamBox title='考试题目' class="topContentContetnt">
+      <!-- 答题内容 -->
+      <view class='content'>
+        <view class='questionItem' wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
+          <view class='question'>{{currentIndex+1}}、{{item.question}}</view>
+          <view class='optionsText' wx:for="{{item.options}}">{{item}}</view>
+          <view class='options'>
+            <ExamOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
+          </view>
+        </view>
+      </view>
+    </ExamBox>
+    <!-- 上半部分-右边边 -->
+    <view class="topRightContetnt">
+      <view class="questionItem" wx:for="{{subjectData}}">{{index+1}}</view>
+    </view>
+  </view>
+  <view class="contentContent">
+    <ExamBox title='剩余时间' class="topLeftContetnt">
+      <ExamCountdown class='countDown' mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
+    </ExamBox>
+    <view class='cententContentContetnt'>
+      <ExamBox title='考试提示信息' class="typeBox">
+        <span class='type'>{{subjectData[currentIndex].typeStr}}</span>
+      </ExamBox>
+      <view class="btns">
+        <view class='controlBtn lastBtn {{!currentIndex  && "nextDisable"}}'  bindtap="last">上一题</view>
+        <view class='controlBtn nextBtn {{isDisabledNext && "nextDisable"}}' bindtap="next">
+          下一题
+        </view>
+        <view class='controlBtn finBtn' bindtap="onConfirm">交卷</view>
+      </view>
+    </view>
+    <view class="contentpRightContetnt" />
+  </view>
+  <!-- 下半部分 -->
+  <ExamBox title='图片信息' class="bottomContentContetnt" titleLocation='left'>
+    <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="aspectFit" />
+  </ExamBox>
+</view>

@@ -6,7 +6,8 @@
     "pages/SubjectMoniPage/index",
     "pages/SubjectQuestionPage/index",
     "pages/orderList/index",
-    "pages/SubjectIncPage/index"
+    "pages/SubjectIncPage/index",
+    "pages/Exam/index"
   ],
   "tabBar": {
     "list": [

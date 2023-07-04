@@ -1,0 +1,13 @@
+{
+  "navigationBarTitleText": "模拟考试",
+  "pageOrientation": "landscape",
+  "usingComponents": {
+    "Restart": "../../components/Restart",
+    "ExamBox": "../../components/ExamBox",
+    "ExamOptions": "../../components/ExamOptions",
+    "SubjectOptions": "../../components/SubjectOptions",
+    "AnswerAndExplain": "../../components/AnswerAndExplain",
+    "Finish": "../../components/Finish",
+    "ExamCountdown": "../../components/ExamCountdown"
+  }
+}

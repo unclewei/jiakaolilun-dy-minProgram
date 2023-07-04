@@ -1,0 +1,16 @@
+
+.examContent{
+  position: relative;
+  padding: 10px;
+  border: 1rpx #333 solid;
+}
+
+.title{
+  position: absolute;
+  background-color: white;
+  color: #333;
+  font-size: 12px;
+  top: 0%;
+  transform: translateY(-50%);
+
+}

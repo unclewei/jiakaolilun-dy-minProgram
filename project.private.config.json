@@ -14,6 +14,13 @@
           "query": "step=1&poolType=sequence",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "模拟考试",
+          "pathName": "pages/Exam/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

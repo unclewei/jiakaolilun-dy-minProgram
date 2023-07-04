@@ -1,0 +1,3 @@
+<div class='option {{textStyles}}' bindtap="onClick">
+ {{optionSuffix}}
+</div>

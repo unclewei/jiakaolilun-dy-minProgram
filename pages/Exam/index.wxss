@@ -1,0 +1,151 @@
+.init {
+  width: 100%;
+  box-sizing: border-box;
+  color: #333;
+  padding: 16rpx;
+}
+
+.topContent {
+  height: 60vh;
+  width: 100%;
+  display: flex
+}
+
+.topLeftContetnt {
+
+  position: relative;
+  width: 16%;
+  display: flex;
+  flex-direction: column;
+  margin-right: 8px;
+  font-size: 10px !important;
+}
+
+.examTitle {
+  width: 100%;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.studentInfo {
+  display: flex;
+  flex-direction: column;
+
+}
+
+.studentAvaor {
+  width: 40rpx;
+  height: 50rpx;
+  border: 1rpx solid #333;
+  margin: 0 auto;
+  margin-bottom: 4px;
+}
+
+.subjectName {
+  width: 100%;
+  text-align: center;
+  color: red;
+  font-size: 10px;
+}
+
+.infoDesc {
+  font-size: 10px;
+}
+
+
+.topContentContetnt {
+  position: relative;
+  flex: 1;
+}
+
+.options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: auto;
+}
+
+.topRightContetnt {
+  position: relative;
+  width: 25%;
+  margin-left: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1rpx solid #333;
+  border-left: 1rpx solid #333;
+
+}
+
+.questionItem {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  border-bottom: 1rpx solid #333;
+  border-right: 1rpx solid #333;
+}
+
+.bottomContentContetnt {
+  width: 100%;
+  height: 20vh;
+  margin-top: 8px;
+}
+
+.content {
+  width: 100%;
+  height: calc(60vh - 20px);
+
+}
+
+.contentContent {
+  margin-top: 10px;
+  position: relative;
+  height: 15vh;
+  width: 100%;
+  display: flex;
+}
+.cententContentContetnt{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex: 1;
+}
+.contentpRightContetnt{
+
+  position: relative;
+  width: 25%;
+  margin-left: 8px;
+  display: flex;
+  flex-wrap: wrap;
+}
+.countDown{
+  font-size: 12px;
+  color: red;
+}
+.typeBox{
+  width: 250px;
+}
+.btns{
+  display: flex;
+  align-items: center;
+}
+.controlBtn{
+  border: 1px solid #333;
+  font-size: 12px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  color: white;
+}
+
+.lastBtn{
+  background: #4489df;
+}
+.nextBtn{
+  background: #51a9f2;
+}
+.finBtn{
+  background: #5baf72;
+}
+.nextDisable{
+  background-color: #999;
+}

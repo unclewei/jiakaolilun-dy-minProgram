@@ -1,0 +1,4 @@
+<view class='examContent {{class}}'>
+  <view class='title' style="{{titleLocation === 'right'?'right:10%':'left:10%'}}">{{title}}</view>
+  <slot></slot>
+</view>
