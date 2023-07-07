@@ -38,7 +38,7 @@
     </ExamBox>
     <!-- 上半部分-右边边 -->
     <view class="topRightContetnt">
-      <view class="questionItem {{index === currentIndex && 'currentItem'}} {{utils.onMyList(userSubjectData.rightSubjectIds,item._id) && 'correctItem'}}  {{utils.isWrong(userSubjectData.wrongSubjectIds,item._id) && 'wrongItem'}}" wx:for="{{subjectData}}" data-index='{{index}}' bindtap='onCurrentSelect'>
+      <view class="questionItem {{index === currentIndex && 'currentItem'}} {{utils.onMyList(userSubjectData.rightSubjectIds,item._id) && 'correctItem'}}  {{utils.isWrong(userSubjectData.wrongSubjectIds,item._id) && 'wrongItem'}}" wx:for="{{subjectData}}" wx:key="_id" data-index='{{index}}' bindtap='onCurrentSelect'>
         {{index+1}}
       </view>
     </view>

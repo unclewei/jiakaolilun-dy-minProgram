@@ -126,6 +126,11 @@ Page({
         poolId: resData._id,
         step: resData.step
       })
+      // 因为是模拟考试，不用获取历史数据，清除一下本地缓存
+      let key = resData._id || `${resData.step}_${resData.type}`;
+      let keyName = `localPoolStatus_${key}`;
+      wx.removeStorageSync(keyName)
+
       // 验证用户是购买 或者数据是否免费
       isItemValid({
         step: resData.step
@@ -135,14 +140,17 @@ Page({
           return
         }
         if (validRes.data.data || resData.isForFree) {
-          //获取用户做题状态
-          that.userSubjectDataGet({
-            poolData: resData,
+
+          that.getSubjectData({
+            currentIndex: 0,
             poolId: resData._id,
             poolType: resData.type,
+            limit: 100,
+            skip: 0,
+            loading: true,
             step: resData.step,
-            isSyncSubject: false
           });
+
           return
         }
         wx.redirectTo({
@@ -152,65 +160,6 @@ Page({
     })
   },
 
-  /**
-   * 获取用户做题状态
-   * @param poolData
-   * @param poolType
-   * @param poolId
-   * @param step
-   * @param isSyncSubject 是否同步请求
-   */
-  userSubjectDataGet({
-    poolData = {},
-    poolType = undefined,
-    poolId = undefined,
-    step = undefined,
-    isSyncSubject = false
-  }) {
-    const that = this
-    let json = that.localUserSubjectStatusGet({
-      poolId_: poolId,
-      poolType_: poolType,
-      step_: step,
-      type: 'get'
-    });
-    wx.showLoading
-    userSubjectGet({
-      type: poolType,
-      poolId,
-      step
-    }).then(res => {
-      wx.hideLoading()
-      if (res.data.code !== 200) {
-        showNetWorkToast(res.data.msg)
-        return
-      }
-      const resData = res.data.data;
-      let useJson = json;
-      if (resData && resData.date >= json.date) {
-        //远程的新，用远程的，同时同步至本地
-        useJson = resData;
-      }
-      that.localUserSubjectStatusGet({
-        fullUserSubjectConfig: useJson,
-        poolId_: poolId,
-        poolType_: poolType,
-        step_: step
-      });
-      if (!isSyncSubject) {
-        //非同步后请求，则请求题库内的题目数据，如果是错题集，这里也拿到了错题的所有题目数据
-        that.getSubjectData({
-          currentIndex: useJson.currentIndex,
-          poolId: poolId,
-          poolType,
-          limit: 100,
-          skip: 0,
-          loading: true,
-          step
-        });
-      }
-    })
-  },
 
   /**
    * 获取或设置当前题库的本地信息
@@ -240,6 +189,9 @@ Page({
     let keyName = `localPoolStatus_${key}`;
     if (fullUserSubjectConfig) {
       wx.setStorageSync(keyName, fullUserSubjectConfig)
+      if (stopSetData) {
+        return
+      }
       this.setData({
         userSubjectData: fullUserSubjectConfig
       })
@@ -266,7 +218,7 @@ Page({
     userSubjectConfig[propName] = value;
 
     wx.setStorageSync(keyName, userSubjectConfig)
-    if(stopSetData){
+    if (stopSetData) {
       return
     }
     this.setData({
@@ -340,13 +292,6 @@ Page({
       syncSource
     });
     syncSubject(params).then((res) => {
-      this.userSubjectDataGet({
-        poolData: this.data.poolData,
-        poolType: this.data.poolType,
-        poolId: this.data.poolId,
-        step: this.data.step,
-        isSyncSubject: true
-      });
       callback()
     });
   },
@@ -505,7 +450,10 @@ Page({
       wrongSubjectIds,
       rightSubjectIds
     } = json;
-    if (rightSubjectIds.includes(subjectId)) return;
+    if (rightSubjectIds.includes(subjectId)) {
+      return;
+
+    }
     rightSubjectIds.push(subjectId);
     wrongSubjectIds.filter(p => p.subjectId !== subjectId)
     for (let i of wrongSubjectIds) {
@@ -513,21 +461,20 @@ Page({
         wrongSubjectIds = deleteArrObjMember('subjectId', subjectId, wrongSubjectIds);
       }
     }
+    this.clean();
     that.localUserSubjectStatusGet({
       type: 'set',
       propName: 'rightSubjectIds',
       value: rightSubjectIds,
-      stopSetData:true
+      stopSetData: true
     });
     that.localUserSubjectStatusGet({
       type: 'set',
       propName: 'wrongSubjectIds',
       value: wrongSubjectIds,
-      stopSetData:true
+      stopSetData: true
     });
-    setTimeout(() => {
       that.next();
-    });
   },
 
   /**
@@ -549,7 +496,10 @@ Page({
       rightSubjectIds
     } = json;
     for (let i of wrongSubjectIds) {
-      if (i.subjectId == subjectId) return
+      if (i.subjectId == subjectId) {
+        this.clean();
+        return
+      }
     }
     options = options.map(i => Number(i)); //答案是+1的
     let wrongSubjectObj = {
@@ -560,25 +510,24 @@ Page({
     if (rightSubjectIds.includes(subjectId)) {
       rightSubjectIds = deleteArrMember(rightSubjectIds, subjectId);
     }
+    this.clean();
     this.localUserSubjectStatusGet({
       type: 'set',
       propName: 'rightSubjectIds',
       value: rightSubjectIds,
-      stopSetData:true
+      stopSetData: true
     });
     this.localUserSubjectStatusGet({
       type: 'set',
       propName: 'wrongSubjectIds',
       value: wrongSubjectIds,
-      stopSetData:true
+      stopSetData: true
     });
-    this.syncSubject({
-      subjectId,
-      syncSource: getApp().globalData.enumeMap.syncSource.wrongTick.value
-    });
-    setTimeout(() => {
+    // this.syncSubject({
+    //   subjectId,
+    //   syncSource: getApp().globalData.enumeMap.syncSource.wrongTick.value
+    // });
       this.next();
-    });
   },
 
 
@@ -752,7 +701,7 @@ Page({
       loading: false,
       optionIndex: [], //选择的选项
       isSelected: false, //答题确定选择
-      isNowWrong: false, //当前题目做错（做错时不会自动进入下一题）
+      isNowWrong: false, //当前题目做错
       isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
       userSubjectData: userSubjectJson, // 做题状态
       isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
