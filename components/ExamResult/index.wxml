@@ -1,0 +1,15 @@
+<div class='option'>
+    <div class="{{type}}">{{result}}</div>
+    <div class="why" bindtap='onWhy'>为什么？</div>
+</div>
+<baseModal id="baseModal" imageSrc='' showImage='{{false}}'>
+    <div class='init'>
+        <div class='answer'>
+            <span class='text'>答案 {{answer}}</span>
+        </div>
+        <div class='dec'>
+            <span class='type'>试题解析：</span>
+            {{subjectItem.explain}}
+        </div>
+    </div>
+</baseModal>

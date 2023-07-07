@@ -18,7 +18,7 @@
         {
           "name": "模拟考试",
           "pathName": "pages/Exam/index",
-          "query": "",
+          "query": "poolId=63635936ffd6276a8e35066a",
           "launchMode": "default",
           "scene": null
         }

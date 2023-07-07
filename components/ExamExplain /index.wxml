@@ -1,0 +1,11 @@
+<baseModal id="baseModal" imageSrc=''>
+<div class='init'>
+  <div class='answer'>
+    <span class='text'>答案 {{answer}}</span>
+  </div>
+  <div class='dec'>
+    <span class='type'>试题解析：</span>
+    {{subjectItem.explain}}
+  </div>
+</div>
+</baseModal>

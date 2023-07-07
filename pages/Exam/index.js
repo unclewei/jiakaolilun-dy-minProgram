@@ -49,11 +49,10 @@ Page({
     poolData: {}, // 题库数据
     subjectData: {}, // 题目数据
     currentIndex: 0, // 当前做到第几题
+    isNowWrong: false, //当前题目做错（做错时不会自动进入下一题）
     loading: false,
     optionIndex: [], //选择的选项
     isSelected: false, //答题确定选择
-    isNowWrong: false, //当前题目做错（做错时不会自动进入下一题）
-    isTypeWrong: false, // 是否在做我的错题
     isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
     userSubjectData: userSubjectJson, // 做题状态
     isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
@@ -77,66 +76,36 @@ Page({
       goBack()
       return
     };
-    this.setData({
-      poolType,
-      step,
-      poolId,
-      from,
-      userSubjectData: userSubjectJson, // 做题状态
-      subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
-    })
-    //若当前为我的错题情况下
-    if (poolType == 'myWrong') {
-      wx.setNavigationBarTitle({
-        title: `我的科目${step == 1 ? '一' : '四'}错题集合`,
-      })
-      //错题集的情况下，默认选中
-      const userSubjectConfig = userSubjectConfigSetGet({
-        isGet: true
-      })
-      const {
-        isWrongDelete
-      } = userSubjectConfig;
+    autoLogin((res) => {
+      if (res == 'fail') {
+        return
+      }
+      // 请求成功，提示信息
       this.setData({
-        isWrongDelete: typeof isWrongDelete == 'boolean' ? isWrongDelete : true,
-        isTypeWrong: true,
+        userInfo: getApp().globalData.userInfo
       })
-    }
 
-    //按顺序请求题库数据-个人做题状态-题库内题目数据
-    this.getPoolData({
-      poolId,
-      poolType,
-      step,
-      from
-    });
+
+      this.setData({
+        poolType,
+        step,
+        poolId,
+        from,
+        userSubjectData: userSubjectJson, // 做题状态
+        subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
+      })
+
+      //按顺序请求题库数据-个人做题状态-题库内题目数据
+      this.getPoolData();
+    })
   },
 
   /**
    * 获取题库数据
    * */
-  getPoolData({
-    poolType,
-    poolId,
-    step,
-    from
-  }) {
+  getPoolData() {
     const that = this
     // 请求错题数据
-    if (that.data.isTypeWrong) {
-      that.setData({
-        poolType,
-        step
-      })
-      that.userSubjectDataGet({
-        poolData: {},
-        poolId: undefined,
-        poolType: that.data.poolType,
-        step: that.data.step,
-        isSyncSubject: false
-      })
-      return
-    }
     wx.showLoading()
     // 获取问题数据
     poolData({
@@ -222,10 +191,6 @@ Page({
         //远程的新，用远程的，同时同步至本地
         useJson = resData;
       }
-      //错题集的情况下，直接使用默认值
-      if (that.data.isTypeWrong) {
-        useJson = json;
-      }
       that.localUserSubjectStatusGet({
         fullUserSubjectConfig: useJson,
         poolId_: poolId,
@@ -264,7 +229,8 @@ Page({
     step_ = 0,
     propName = '',
     value = 'undefined',
-    type = 'get'
+    type = 'get',
+    stopSetData = false
   }) {
     const that = this
     let _poolId = that.data.poolId || poolId_;
@@ -291,13 +257,18 @@ Page({
     if (!propName) return;
     //是个新的
     if (!userSubjectConfig.poolId) {
-      userSubjectConfig = {...userSubjectJson};
+      userSubjectConfig = {
+        ...userSubjectJson
+      };
     }
     userSubjectConfig.date = timeCodeFormatted(new Date().getTime());
     userSubjectConfig.poolId = _poolId;
     userSubjectConfig[propName] = value;
 
     wx.setStorageSync(keyName, userSubjectConfig)
+    if(stopSetData){
+      return
+    }
     this.setData({
       userSubjectData: userSubjectConfig
     })
@@ -321,8 +292,6 @@ Page({
     step,
     limit,
     skip,
-    loading = false,
-    isLoadMore = false
   }) {
     const that = this
     const params = {
@@ -339,16 +308,9 @@ Page({
         return
       }
       const resData = res.data.data
-      const finalCurrentIndex = that.data.isTypeWroonAnswerSelectng ? 0 : currentIndex
       that.setData({
         subjectData: resData,
-        currentIndex: finalCurrentIndex,
       })
-      that.useToDoWrong(resData[finalCurrentIndex])
-      that.useToDoRight(resData[finalCurrentIndex])
-      if (!that.data.isTypeWrong && currentIndex !== 0 && !isLoadMore) {
-        showToast(`上次做到第${currentIndex + 1}题`)
-      }
     })
   },
 
@@ -437,6 +399,27 @@ Page({
     })
   },
 
+  onCurrentSelect(e) {
+    const index = e.currentTarget.dataset.index
+    this.clean();
+    this.localUserSubjectStatusGet({
+      type: 'set',
+      propName: 'currentIndex',
+      value: index
+    });
+    this.setData({
+      currentIndex: index,
+
+    })
+    this.loadMore({
+      currentIndex: index,
+      isNext: true
+    });
+    this.useToDoWrong(this.data.subjectData[index])
+    this.useToDoRight(this.data.subjectData[index])
+
+  },
+
   //下一题
   next() {
     if (this.isDisabledNext()) {
@@ -514,39 +497,6 @@ Page({
     subjectId
   }) {
     const that = this
-    const {
-      isTypeWrong,
-      isWrongDelete,
-      currentIndex,
-      step
-    } = this.data || {}
-    if (isTypeWrong) {
-      setTimeout(() => {
-        that.clean();
-        if (isWrongDelete) {
-          that.removeWrongWhileDoRight({
-            subjectId,
-            currentIndex
-          })
-          userWrongSubjectRemove({
-            subjectId,
-            step
-          })
-          return
-        }
-        if (that.isDisabledNext()) {
-          showToast('没有下一题咯')
-          return
-        }
-        that.setData({
-          currentIndex: currentIndex + 1
-        })
-
-        that.useToDoWrong(that.data.subjectData[currentIndex + 1])
-        that.useToDoRight(that.data.subjectData[currentIndex + 1])
-      }, 1000);
-      return
-    }
     let json = that.localUserSubjectStatusGet({
       type: 'get'
     });
@@ -566,16 +516,18 @@ Page({
     that.localUserSubjectStatusGet({
       type: 'set',
       propName: 'rightSubjectIds',
-      value: rightSubjectIds
+      value: rightSubjectIds,
+      stopSetData:true
     });
     that.localUserSubjectStatusGet({
       type: 'set',
       propName: 'wrongSubjectIds',
-      value: wrongSubjectIds
+      value: wrongSubjectIds,
+      stopSetData:true
     });
     setTimeout(() => {
       that.next();
-    }, 1000);
+    });
   },
 
   /**
@@ -588,12 +540,6 @@ Page({
     this.setData({
       isNowWrong: true
     })
-    const {
-      isTypeWrong
-    } = this.data || {}
-    if (isTypeWrong) {
-      return
-    }
     let json = this.localUserSubjectStatusGet({
       type: 'get'
     });
@@ -617,16 +563,21 @@ Page({
     this.localUserSubjectStatusGet({
       type: 'set',
       propName: 'rightSubjectIds',
-      value: rightSubjectIds
+      value: rightSubjectIds,
+      stopSetData:true
     });
     this.localUserSubjectStatusGet({
       type: 'set',
       propName: 'wrongSubjectIds',
-      value: wrongSubjectIds
+      value: wrongSubjectIds,
+      stopSetData:true
     });
     this.syncSubject({
       subjectId,
       syncSource: getApp().globalData.enumeMap.syncSource.wrongTick.value
+    });
+    setTimeout(() => {
+      this.next();
     });
   },
 
@@ -707,7 +658,7 @@ Page({
    * 不允许选答案
    */
   isDisabledSelect(item) {
-    return this.isDone(item) || this.data.isSelected 
+    return this.isDone(item) || this.data.isSelected
   },
 
   /**
@@ -802,7 +753,6 @@ Page({
       optionIndex: [], //选择的选项
       isSelected: false, //答题确定选择
       isNowWrong: false, //当前题目做错（做错时不会自动进入下一题）
-      isTypeWrong: false, // 是否在做我的错题
       isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
       userSubjectData: userSubjectJson, // 做题状态
       isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
@@ -843,6 +793,7 @@ Page({
       })
       return;
     }
+
     this.setData({
       optionIndex: [answerNum],
       isSelected: true

@@ -5,6 +5,7 @@
     "Restart": "../../components/Restart",
     "ExamBox": "../../components/ExamBox",
     "ExamOptions": "../../components/ExamOptions",
+    "ExamResult": "../../components/ExamResult",
     "SubjectOptions": "../../components/SubjectOptions",
     "AnswerAndExplain": "../../components/AnswerAndExplain",
     "Finish": "../../components/Finish",

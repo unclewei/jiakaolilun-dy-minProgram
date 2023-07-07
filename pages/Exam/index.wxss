@@ -68,18 +68,18 @@
 .topRightContetnt {
   position: relative;
   width: 25%;
+  height: auto;
   margin-left: 8px;
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   border-top: 1rpx solid #333;
   border-left: 1rpx solid #333;
+  height: fit-content;
 
 }
 
 .questionItem {
-  width: 30px;
-  height: 30px;
-  line-height: 30px;
+  font-size: 12px;
   text-align: center;
   border-bottom: 1rpx solid #333;
   border-right: 1rpx solid #333;
@@ -125,6 +125,9 @@
 .typeBox{
   width: 250px;
 }
+.type{
+  font-size: 12px;
+}
 .btns{
   display: flex;
   align-items: center;
@@ -148,4 +151,32 @@
 }
 .nextDisable{
   background-color: #999;
+}
+
+.confirmBtn{
+  border: 1px solid #333;
+  font-size: 12px;
+  padding: 5px 10px;
+  margin-left: 10px;
+  color: white;
+  background: #51a9f2;
+
+}
+
+.questionContent{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.currentItem{
+  background: #51a9f2;
+}
+.correctItem{
+  background: #5baf72;
+
+}
+.wrongItem{
+  background: #f4551b;
+
 }

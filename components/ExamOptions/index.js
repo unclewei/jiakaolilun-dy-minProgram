@@ -55,6 +55,7 @@ Component({
 
   observers: {
     'optionContent,subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex': function (optionContent, subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex) {
+     console.log('subjectItem',subjectItem);
       let answer = subjectItem.answer.toString();
       answer = [...answer]
       answer = answer.map(i => Number(i));
@@ -179,30 +180,25 @@ Component({
       let textStyles, optionSuffix, styles;
       let A = this.data.optionContent.split(':');
       let optionText = A[1];
-      console.log('optionText', optionText);
+      optionSuffix = A[0];
       switch (type) {
         case 'right':
-          optionSuffix = 'right';
           styles = 'optionRight';
           textStyles = 'optionTextRight';
           break;
         case 'wrong':
-          optionSuffix = 'wrong';
           styles = 'optionWrong';
           textStyles = 'optionTextWrong'
           break;
         case 'louXuan': //漏选
-          optionSuffix = A[0];
           styles = 'optionTextRightButNotChoice';
           textStyles = 'optionTextRight'
           break;
         case 'isMutSelect': //做题时多选选中
-          optionSuffix = A[0];
           styles = 'isMutSelect';
           textStyles = 'optionTextNormal'
           break;
         default:
-          optionSuffix = A[0];
           styles = 'optionNormal';
           textStyles = 'optionTextNormal';
       }

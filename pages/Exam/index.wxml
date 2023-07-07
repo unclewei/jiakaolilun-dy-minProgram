@@ -1,3 +1,5 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
 <view class='init'>
   <!-- 上半部分 -->
   <view class="topContent">
@@ -19,20 +21,29 @@
     <ExamBox title='考试题目' class="topContentContetnt">
       <!-- 答题内容 -->
       <view class='content'>
-        <view class='questionItem' wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
+        <view class="questionContent" wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
           <view class='question'>{{currentIndex+1}}、{{item.question}}</view>
           <view class='optionsText' wx:for="{{item.options}}">{{item}}</view>
           <view class='options'>
-            <ExamOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
+            <ExamResult wx:if="{{utils.onMyList(userSubjectData.rightSubjectIds,item._id) || utils.isWrong(userSubjectData.wrongSubjectIds,item._id)}}" subjectItem='{{item}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' />
+            <view class='options' wx:else>
+              <ExamOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
+              <view class='confirmBtn' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+                确定
+              </view>
+            </view>
           </view>
         </view>
       </view>
     </ExamBox>
     <!-- 上半部分-右边边 -->
     <view class="topRightContetnt">
-      <view class="questionItem" wx:for="{{subjectData}}">{{index+1}}</view>
+      <view class="questionItem {{index === currentIndex && 'currentItem'}} {{utils.onMyList(userSubjectData.rightSubjectIds,item._id) && 'correctItem'}}  {{utils.isWrong(userSubjectData.wrongSubjectIds,item._id) && 'wrongItem'}}" wx:for="{{subjectData}}" data-index='{{index}}' bindtap='onCurrentSelect'>
+        {{index+1}}
+      </view>
     </view>
   </view>
+  <!-- 中层 -->
   <view class="contentContent">
     <ExamBox title='剩余时间' class="topLeftContetnt">
       <ExamCountdown class='countDown' mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
@@ -42,7 +53,9 @@
         <span class='type'>{{subjectData[currentIndex].typeStr}}</span>
       </ExamBox>
       <view class="btns">
-        <view class='controlBtn lastBtn {{!currentIndex  && "nextDisable"}}'  bindtap="last">上一题</view>
+        <view class='controlBtn lastBtn {{!currentIndex  && "nextDisable"}}' bindtap="last">
+          上一题
+        </view>
         <view class='controlBtn nextBtn {{isDisabledNext && "nextDisable"}}' bindtap="next">
           下一题
         </view>

@@ -30,7 +30,11 @@ Component({
     imageSrc:{
       type: String,
       value: '../../images/updateBanner.png'
-    }
+    },
+    showImage:{
+      type: Boolean,
+      value: true
+    },
 
   },
 

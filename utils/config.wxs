@@ -51,6 +51,24 @@ module.exports.onMyList = function (list, value) {
   return false
 }
 
+/**
+ * key是否在列表中
+ * @param state 
+ * @returns 
+ */
+module.exports.isWrong = function (wrongSubjectIds, value) {
+  if (!wrongSubjectIds || !wrongSubjectIds.length || !value) {
+    return false
+  }
+  for (var i = 0; i < wrongSubjectIds.length; i++) {
+    var item = wrongSubjectIds[i].subjectId
+    if (item === value) {
+      return true
+    }
+  }
+  return false
+}
+
 
 /**
  * 名字打码

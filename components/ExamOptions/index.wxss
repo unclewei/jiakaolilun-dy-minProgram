@@ -17,19 +17,18 @@
   border: 1px solid #2895a7;
 }
 .optionTextRight {
-  color: #2895a7 !important;
+  background-color: #2895a7;
 }
 .optionTextWrong {
-  color: #ff4c4c !important;
+  background-color: #ff4c4c;
 }
 
 .option {
   display: flex;
-  padding: 12.5px;
+  padding: 5px 10px;
   margin-bottom: 0px;
-  border-radius: 8px;
   border: 1rpx solid #333;
-  margin-left: 5px;
+  margin-left: 10px;
   
 }
 
