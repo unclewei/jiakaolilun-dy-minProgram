@@ -1,5 +1,5 @@
-<baseModal id="baseModal" >
-  <view class="loginBox" catch:tap="login">
-    <view class="loginConfirm">一键登录·开启驾考之路</view>
+<baseModal id="baseModal" className='{{isLandscape && "isLandscape"}}' >
+  <view class="loginBox {{isLandscape && 'isLandscapeBox'}}" catch:tap="login">
+    <view class="loginConfirm {{isLandscape && 'isLandscapeBtn'}}">一键登录·开启驾考之路</view>
   </view>
 </baseModal>

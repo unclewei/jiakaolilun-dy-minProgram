@@ -54,14 +54,11 @@ Component({
         sec,
         countCount: newCount,
       })
-      let record = [15, 30, 45]
-      if (record.includes(sec) || time === 0) {
-        this.triggerEvent('SetLocal', time)
+      if ( time <= 0) {
+        this.triggerEvent('OnTimeOut', time)
         this.setData({
           countCount: 0
         })
-      }
-      if (time === 0) {
         clearInterval(timeVal)
       }
     }, 1000)

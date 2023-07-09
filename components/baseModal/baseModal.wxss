@@ -191,3 +191,7 @@
   margin: 0 50rpx;
   color: #57310c;
 }
+
+.isLandscape{
+  width: 40%;
+}

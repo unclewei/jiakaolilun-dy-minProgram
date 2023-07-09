@@ -5,7 +5,10 @@ import {
 Component({
 
   properties: {
-
+    isLandscape:{
+      type:Boolean,
+      value:false
+    }
   },
 
   data: {

@@ -10,9 +10,9 @@
       <!-- 考生信息 -->
       <ExamBox title='考生信息' class="studentInfo">
         <view class="studentAvaor"></view>
-        <view class="subjectName">科目一</view>
+        <view class="subjectName">科目{{step === 1 ? "一":"四"}}</view>
         <view class="infoDesc">考生姓名：</view>
-        <view class="infoDesc">考武題数：100</view>
+        <view class="infoDesc">考武題数：{{step === 1 ? "100":"50"}}</view>
         <view class="infoDesc">考试时间：45分钟</view>
         <view class="infoDesc">満分100分，90分及格</view>
       </ExamBox>
@@ -46,7 +46,7 @@
   <!-- 中层 -->
   <view class="contentContent">
     <ExamBox title='剩余时间' class="topLeftContetnt">
-      <ExamCountdown class='countDown' mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
+      <ExamCountdown class='countDown' mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindOnTimeOut='onTimeOut' />
     </ExamBox>
     <view class='cententContentContetnt'>
       <ExamBox title='考试提示信息' class="typeBox">
@@ -59,13 +59,20 @@
         <view class='controlBtn nextBtn {{isDisabledNext && "nextDisable"}}' bindtap="next">
           下一题
         </view>
-        <view class='controlBtn finBtn' bindtap="onConfirm">交卷</view>
+        <view class='controlBtn finBtn' bindtap="onSubmit">交卷</view>
       </view>
     </view>
     <view class="contentpRightContetnt" />
   </view>
   <!-- 下半部分 -->
   <ExamBox title='图片信息' class="bottomContentContetnt" titleLocation='left'>
-    <image class='img' src="{{item.urlPrefix}}{{item.imgName}}" mode="aspectFit" />
+    <view class="imgBox">
+
+      <image class='img' src="{{subjectData[currentIndex].urlPrefix}}{{subjectData[currentIndex].imgName}}" mode="aspectFit" />
+    </view>
   </ExamBox>
 </view>
+
+
+<!-- 登录 -->
+<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' isLandscape='{{true}}' />

@@ -18,6 +18,11 @@ apinames.forEach(fnname => {
       obj.fail = function (err) {
         reject(err)
       }
+
+      if (!obj.header) {
+        obj.header = {}
+      }
+      obj.header['entry'] = `jkjx_xcx`
       wx[fnname](obj)
     })
   }
@@ -56,6 +61,7 @@ function reqFunc(obj, resolve, reject) {
   // 清除请求中的undefined
   obj.data = deleteEmptyObj(obj.data || {})
   obj.header['Authorization'] = `Bearer ${cookies || ""}`
+  obj.header['entry'] = `jkjx_xcx`
   obj.success = function (res) {
     resolve(res)
   }

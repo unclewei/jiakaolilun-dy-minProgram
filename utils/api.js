@@ -8,7 +8,8 @@ const baseApi = 'https://biguo.fanstag.com/api'
 
 export const login = (data) => {
   return xapi.request({
-    url: `${baseApi}/user/loginSubjectExam`,
+    // url: `${baseApi}/user/miniProgramLogin`,
+    url: `${baseApi}/user/loginSubjectExam`, // old
     method: 'post',
     data,
   })

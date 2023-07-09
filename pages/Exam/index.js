@@ -58,13 +58,14 @@ Page({
     isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
     rightHistory: false, // 正确历史;
     wrongHistory: {}, // 错误历史
+    isShowFailTips:false, // 是否提示过不及格
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log('options', options);
+    this.clean()
     const {
       poolType,
       step,
@@ -76,28 +77,34 @@ Page({
       goBack()
       return
     };
+    this.setData({
+      poolType,
+      step,
+      poolId,
+      from,
+      userSubjectData: userSubjectJson, // 做题状态
+      subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
+    })
     autoLogin((res) => {
       if (res == 'fail') {
+        this.selectComponent("#LoginModal").showModal()
         return
       }
       // 请求成功，提示信息
       this.setData({
         userInfo: getApp().globalData.userInfo
       })
-
-
-      this.setData({
-        poolType,
-        step,
-        poolId,
-        from,
-        userSubjectData: userSubjectJson, // 做题状态
-        subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
-      })
-
       //按顺序请求题库数据-个人做题状态-题库内题目数据
       this.getPoolData();
     })
+  },
+  /**  登录成功*/
+  onLoginSuccess() {
+    this.setData({
+      userInfo: getApp().globalData.userInfo
+    })
+    //按顺序请求题库数据-个人做题状态-题库内题目数据
+    this.getPoolData();
   },
 
   /**
@@ -296,31 +303,6 @@ Page({
     });
   },
   /**
-   * 交卷
-   * @param score 分数
-   */
-  onSubmit(e) {
-    const score = e.detail.score
-    this.localUserSubjectStatusGet({
-      type: 'set',
-      propName: 'isSubmit',
-      value: true
-    });
-    this.localUserSubjectStatusGet({
-      type: 'set',
-      propName: 'score',
-      value: score
-    });
-    this.syncSubject({
-      subjectId: undefined,
-      callback: () => {
-        wx.redirectTo({
-          url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
-        })
-      }
-    });
-  },
-  /**
    * 错题移除
    */
   onWrongSwitchChange(e) {
@@ -340,7 +322,8 @@ Page({
     this.setData({
       optionIndex: [],
       isSelected: false,
-      isNowWrong: false
+      isNowWrong: false,
+      isShowFailTips:false
     })
   },
 
@@ -370,6 +353,7 @@ Page({
     if (this.isDisabledNext()) {
       return;
     }
+    this.checkFailSocre()
     const {
       currentIndex
     } = this.data || {}
@@ -474,7 +458,7 @@ Page({
       value: wrongSubjectIds,
       stopSetData: true
     });
-      that.next();
+    that.next();
   },
 
   /**
@@ -527,7 +511,7 @@ Page({
     //   subjectId,
     //   syncSource: getApp().globalData.enumeMap.syncSource.wrongTick.value
     // });
-      this.next();
+    this.next();
   },
 
 
@@ -793,17 +777,117 @@ Page({
   },
 
 
-  // 考试提交
-  setLocal(e) {
-    const value = e.detail
-    this.localUserSubjectStatusGet({
-      type: 'set',
-      propName: 'limitTime',
-      value: value
-    });
-
+  // 获取正确的分数
+  getScore() {
+    const {
+      step,
+      userSubjectData
+    } = this.data
+    if (step == 1) {
+      return userSubjectData.rightSubjectIds?.length || 0;
+    }
+    return (userSubjectData.rightSubjectIds?.length || 0) * 2 || 0;
   },
 
+   // 获取错误的扣分
+   getWrongScore() {
+    const {
+      step,
+      userSubjectData
+    } = this.data
+    if (step == 1) {
+      return userSubjectData.wrongSubjectIds?.length || 0;
+    }
+    return (userSubjectData.wrongSubjectIds?.length || 0) * 2 || 0;
+  },
+
+  // 时间到，提交考试
+  onTimeOut() {
+    wx.showModal({
+      title: '考试时间到',
+      content: '考试结束',
+      showCancel: false,
+      confirmText: '提交考卷',
+      success: (res) => {
+        if (res.confirm) {
+          this.onSubmit()
+        }
+      }
+    })
+  },
+
+  // 测试是否不及格，不及格的话，直接提示不要做了
+  checkFailSocre(){
+    const wrongScore = this.getWrongScore()
+    if(wrongScore > 10 && !this.data.isShowFailTips){
+      wx.showModal({
+        title: '考试提示',
+        content: '您已考试不及格！',
+        cancelText: '继续做题',
+        confirmText: '重新考试',
+        success: (res) => {
+          if (res.cancel) {
+            this.setData({
+              isShowFailTips:true,
+            })
+          }
+          if (res.confirm) {
+            // 重新给一个题目
+          }
+        }
+      })
+    }
+  },
+
+
+  /**
+   * 交卷
+   * @param score 分数
+   */
+  onSubmit() {
+    wx.showModal({
+      title: '考试提示',
+      content: '你将要提交考试',
+      success: (res) => {
+        if (res.confirm) {
+          const score = this.getScore()
+          if (score > 98) {
+            wx.showModal({
+              title: '考试结果',
+              content: '考试通过！',
+              showCancel: false,
+              confirmText: '返回首页',
+              success: (res) => {
+                if (res.confirm) {
+                  wx.redirectTo({
+                    url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
+                  })
+                }
+              }
+            })
+            return
+          }
+          wx.showModal({
+            title: '考试结果',
+            content: '考试不通过！',
+            cancelText: '返回首页',
+            confirmText: '重新考试',
+            success: (res) => {
+              if (res.cancel) {
+                wx.redirectTo({
+                  url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
+                })
+              }
+              if (res.confirm) {
+                // 重新给一个题目
+              }
+            }
+          })
+
+        }
+      }
+    })
+  },
 
   /**
    * 用户点击右上角分享

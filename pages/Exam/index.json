@@ -9,6 +9,7 @@
     "SubjectOptions": "../../components/SubjectOptions",
     "AnswerAndExplain": "../../components/AnswerAndExplain",
     "Finish": "../../components/Finish",
+    "LoginModal": "../../components/LoginModal",
     "ExamCountdown": "../../components/ExamCountdown"
   }
 }

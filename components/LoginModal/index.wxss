@@ -51,3 +51,10 @@
   font-weight: bold;
   font-size: 40rpx;
 }
+
+.isLandscapeBtn{
+  font-size: 20rpx !important;
+}
+.isLandscapeBox{
+  height: unset !important;
+}
