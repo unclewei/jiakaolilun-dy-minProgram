@@ -1,4 +1,7 @@
 import {
+  _asap
+} from '../../plugins/es6-promise'
+import {
   subjectItemList,
 } from '../../utils/api'
 
@@ -19,7 +22,7 @@ Page({
     User: getApp().globalData.userInfo || {},
     isUserInfoOK: false, // 是否有手机号码和姓名
     step: '1',
-    insideBtnPaidDone:false,
+    insideBtnPaidDone: false,
 
     benifyList: [{
         text: '精选500题',
@@ -101,20 +104,18 @@ Page({
         showNetWorkToast(res.data.msg)
         return
       }
-      const resData = res.data.data
-      let isDefaultSelectedItem;
-      let isPaidDoneItem;
-      for (let i of resData) {
-        if (i.isDefaultSelected) {
-          isDefaultSelectedItem = i;
+      const resData = res.data.data.map(p => {
+        const isPaidDone = !!this.data.User.paidItems.find(payItem => payItem._id === p._id)
+        return {
+          ...p,
+          isPaidDone
         }
-        if (i.isPaidDone) {
-          isPaidDoneItem = i
-        }
-      }
+      })
+      const paidItem = resData.find(p => p.isPaidDone)
+      const isDefaultSelectedItem = resData.find(p => p.isDefaultSelected)
       this.setData({
         itemData: resData,
-        selectItem: isPaidDoneItem || isDefaultSelectedItem || {}
+        selectItem: paidItem || isDefaultSelectedItem || resData[0] || {}
       })
     })
   },
@@ -149,7 +150,7 @@ Page({
   buySuccess() {
     this.selectComponent("#ShoppingDrawer").hideModal()
     this.setData({
-      insideBtnPaidDone:true,
+      insideBtnPaidDone: true,
       User: getApp().globalData.userInfo,
       isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
     })

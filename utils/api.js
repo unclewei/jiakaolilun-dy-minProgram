@@ -1,15 +1,15 @@
 import xapi from "./xapi";
-const baseApi = 'https://biguo.fanstag.com/api'
+// const baseApi = 'https://biguo.fanstag.com/api'
 // 测试服务器
 // const baseApi = 'https://test.fanstag.com/api'
 // 正式服务器
 // const baseApi = 'https://fanstag.com/api'
-// const baseApi = 'http://127.0.0.1:3008/api'
+const baseApi = 'http://127.0.0.1:3008/api'
 
 export const login = (data) => {
   return xapi.request({
-    // url: `${baseApi}/user/miniProgramLogin`,
-    url: `${baseApi}/user/loginSubjectExam`, // old
+    url: `${baseApi}/user/miniProgramLogin`,
+    // url: `${baseApi}/user/loginSubjectExam`, // old
     method: 'post',
     data,
   })
@@ -18,7 +18,7 @@ export const login = (data) => {
 //获取用户信息
 export const userInfo = () => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/user`
+    url: `${baseApi}/userInfo`
   })
 }
 
@@ -199,7 +199,7 @@ export const paidItemList = (data) => {
 export const createOrder = (data) => {
   return xapi.requestWithJwt({
     method: 'post',
-    url: `${baseApi}/order`,
+    url: `${baseApi}/order/orderCreate`,
     data
   });
 }

@@ -41,7 +41,7 @@ Component({
       const fromWho = wx.getStorageSync('fromWho')
       payForTicket({
           paidId: that.data.selectItem._id,
-          paidType: 5,
+          paidType: 'item',
           paidEntry: "xcx_500",
           orderPaySource: "wx",
           fromWho
