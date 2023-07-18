@@ -28,7 +28,7 @@ const userSubjectJson = {
   poolId: '',
   step: 0,
   currentIndex: 0,
-  wrongSubjectIds: [],
+  wrongSubjectItems: [],
   rightSubjectIds: [],
   type: '',
   isSubmit: false, //是否已交卷
@@ -83,7 +83,9 @@ Page({
       poolId,
       from,
       userSubjectData: userSubjectJson, // 做题状态
-      subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
+      subjectPoolType: getApp().globalData.enumeMap.subjectPoolType,
+      urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
+      stepFolder: step == 1 ? 'subject/one/' : 'subject/four/',
     })
     autoLogin((res) => {
       if (res == 'fail') {
@@ -431,7 +433,7 @@ Page({
     });
     //做对了，就要把对的题塞进去，如果错题里有，就要拿出来
     let {
-      wrongSubjectIds,
+      wrongSubjectItems,
       rightSubjectIds
     } = json;
     if (rightSubjectIds.includes(subjectId)) {
@@ -439,10 +441,10 @@ Page({
 
     }
     rightSubjectIds.push(subjectId);
-    wrongSubjectIds.filter(p => p.subjectId !== subjectId)
-    for (let i of wrongSubjectIds) {
+    wrongSubjectItems.filter(p => p.subjectId !== subjectId)
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) {
-        wrongSubjectIds = deleteArrObjMember('subjectId', subjectId, wrongSubjectIds);
+        wrongSubjectItems = deleteArrObjMember('subjectId', subjectId, wrongSubjectItems);
       }
     }
     this.clean();
@@ -454,8 +456,8 @@ Page({
     });
     that.localUserSubjectStatusGet({
       type: 'set',
-      propName: 'wrongSubjectIds',
-      value: wrongSubjectIds,
+      propName: 'wrongSubjectItems',
+      value: wrongSubjectItems,
       stopSetData: true
     });
     that.next();
@@ -476,10 +478,10 @@ Page({
     });
     //放入错题，取出对题
     let {
-      wrongSubjectIds,
+      wrongSubjectItems,
       rightSubjectIds
     } = json;
-    for (let i of wrongSubjectIds) {
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) {
         this.clean();
         return
@@ -490,7 +492,7 @@ Page({
       subjectId,
       options
     }
-    wrongSubjectIds.push(wrongSubjectObj);
+    wrongSubjectItems.push(wrongSubjectObj);
     if (rightSubjectIds.includes(subjectId)) {
       rightSubjectIds = deleteArrMember(rightSubjectIds, subjectId);
     }
@@ -503,8 +505,8 @@ Page({
     });
     this.localUserSubjectStatusGet({
       type: 'set',
-      propName: 'wrongSubjectIds',
-      value: wrongSubjectIds,
+      propName: 'wrongSubjectItems',
+      value: wrongSubjectItems,
       stopSetData: true
     });
     // this.syncSubject({
@@ -562,11 +564,11 @@ Page({
     let subjectId = item._id;
     if (!this.data.userSubjectData) return undefined;
     const {
-      wrongSubjectIds,
+      wrongSubjectItems,
       rightSubjectIds
     } = this.data.userSubjectData;
     let isInWrongSubjectIds = false;
-    for (let i of wrongSubjectIds) {
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) {
         isInWrongSubjectIds = true
         break;
@@ -644,10 +646,10 @@ Page({
     let subjectId = item._id;
     if (!this.data.userSubjectData) return false;
     const {
-      wrongSubjectIds
+      wrongSubjectItems
     } = this.data.userSubjectData;
     let finalWrongHistory = {}; //记录当时做错
-    for (let i of wrongSubjectIds) {
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) {
         finalWrongHistory = i
         break
@@ -796,9 +798,9 @@ Page({
       userSubjectData
     } = this.data
     if (step == 1) {
-      return userSubjectData.wrongSubjectIds?.length || 0;
+      return userSubjectData.wrongSubjectItems?.length || 0;
     }
-    return (userSubjectData.wrongSubjectIds?.length || 0) * 2 || 0;
+    return (userSubjectData.wrongSubjectItems?.length || 0) * 2 || 0;
   },
 
   // 时间到，提交考试

@@ -53,6 +53,7 @@ function reqFunc(obj, resolve, reject) {
       title: '请先登录',
       icon: 'fail'
     })
+    debugger
     return
   }
   if (!obj.header) {

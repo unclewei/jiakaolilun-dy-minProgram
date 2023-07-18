@@ -138,37 +138,24 @@ export const gotoSubject = ({
   poolType = undefined,
   step = undefined,
   poolId = undefined,
-  from = undefined, //从哪里来的
   isReplace = undefined
 }) => {
-  let params = {};
+  const poolDataObj = getApp().globalData.poolDataObj
+  let params = {
+    step: step,
+    poolId: poolId || poolDataObj[poolType]._id,
+    poolType
+  };
+  console.log('params', params);
   let url = `/pages/SubjectQuestionPage/index`;
-  if (poolId) {
-    params = {
-      poolId
-    };
-  } else if (step && poolType) {
-    params = {
-      step,
-      poolType
-    };
-    if (from) {
-      params.from = from;
-    }
-    switch (poolType) {
-      case 'moni':
-        params.step = step;
-        url = '/pages/SubjectMoniPage/index';
-        break;
-      case 'special':
-        params.step = step;
-        url = '/pages/SubjectMiddlePage/index';
-        break;
-      default:
-        params.poolType = poolType;
-    }
-  } else {
-    return;
+
+  switch (poolType) {
+    case 'moni':
+      url = '/pages/SubjectMoniPage/index';
+      break;
+    case 'special':
+      url = '/pages/SubjectMiddlePage/index';
+      break;
   }
   url = appendUrlPara(url, params);
   if (isReplace) {

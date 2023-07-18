@@ -28,7 +28,7 @@ const userSubjectJson = {
   poolId: '',
   step: 0,
   currentIndex: 0,
-  wrongSubjectIds: [],
+  wrongSubjectItems: [],
   rightSubjectIds: [],
   type: '',
   isSubmit: false, //是否已交卷
@@ -60,6 +60,7 @@ Page({
     isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
     rightHistory: false, // 正确历史;
     wrongHistory: {}, // 错误历史
+    requestPoolObj: {}, // 请求的数据池子对象
   },
 
   /**
@@ -84,10 +85,15 @@ Page({
       poolId,
       from,
       userSubjectData: userSubjectJson, // 做题状态
-      subjectPoolType: getApp().globalData.enumeMap.subjectPoolType
+      urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
+      stepFolder: step == 1 ? 'subject/one/' : 'subject/four/',
+      requestPoolObj: { // 请求的数据池子对象
+        poolId: poolType === 'wrong' ? undefined : poolId,
+        userPoolId: poolType === 'wrong' ? poolId : undefined
+      }
     })
     //若当前为我的错题情况下
-    if (poolType == 'myWrong') {
+    if (poolType == 'wrong') {
       wx.setNavigationBarTitle({
         title: `我的科目${step == 1 ? '一' : '四'}错题集合`,
       })
@@ -105,35 +111,17 @@ Page({
     }
 
     //按顺序请求题库数据-个人做题状态-题库内题目数据
-    this.getPoolData({
-      poolId,
-      poolType,
-      step,
-      from
-    });
+    this.getPoolData();
   },
 
   /**
    * 获取题库数据
    * */
-  getPoolData({
-    poolType,
-    poolId,
-    step,
-    from
-  }) {
+  getPoolData() {
     const that = this
     // 请求错题数据
     if (that.data.isTypeWrong) {
-      that.setData({
-        poolType,
-        step
-      })
       that.userSubjectDataGet({
-        poolData: {},
-        poolId: undefined,
-        poolType: that.data.poolType,
-        step: that.data.step,
         isSyncSubject: false
       })
       return
@@ -142,9 +130,9 @@ Page({
     // 获取问题数据
     poolData({
       poolType: that.data.poolType,
-      poolId: that.data.poolId,
       step: that.data.step,
-      isDetail: true
+      isDetail: true,
+      ...that.data.requestPoolObj
     }).then(res => {
       wx.hideLoading()
       if (res.data.code !== 200) {
@@ -154,9 +142,6 @@ Page({
       const resData = res.data.data;
       that.setData({
         poolData: resData,
-        poolType: resData.type,
-        poolId: resData._id,
-        step: resData.step
       })
       // 验证用户是购买 或者数据是否免费
       isItemValid({
@@ -169,10 +154,6 @@ Page({
         if (validRes.data.data || resData.isForFree) {
           //获取用户做题状态
           that.userSubjectDataGet({
-            poolData: resData,
-            poolId: resData._id,
-            poolType: resData.type,
-            step: resData.step,
             isSyncSubject: false
           });
           return
@@ -193,23 +174,23 @@ Page({
    * @param isSyncSubject 是否同步请求
    */
   userSubjectDataGet({
-    poolData = {},
-    poolType = undefined,
-    poolId = undefined,
-    step = undefined,
     isSyncSubject = false
   }) {
     const that = this
+    const poolType = that.data.poolType
+    const poolId = that.data.poolId
+    const step = that.data.step
+
     let json = that.localUserSubjectStatusGet({
       poolId_: poolId,
       poolType_: poolType,
       step_: step,
       type: 'get'
     });
-    wx.showLoading
+    wx.showLoading()
     userSubjectGet({
       type: poolType,
-      poolId,
+      ...that.data.requestPoolObj,
       step
     }).then(res => {
       wx.hideLoading()
@@ -237,12 +218,9 @@ Page({
         //非同步后请求，则请求题库内的题目数据，如果是错题集，这里也拿到了错题的所有题目数据
         that.getSubjectData({
           currentIndex: useJson.currentIndex,
-          poolId: poolId,
-          poolType,
           limit: 100,
           skip: 0,
-          loading: true,
-          step
+
         });
       }
     })
@@ -292,7 +270,9 @@ Page({
     if (!propName) return;
     //是个新的
     if (!userSubjectConfig.poolId) {
-      userSubjectConfig = {...userSubjectJson};
+      userSubjectConfig = {
+        ...userSubjectJson
+      };
     }
     userSubjectConfig.date = timeCodeFormatted(new Date().getTime());
     userSubjectConfig.poolId = _poolId;
@@ -317,22 +297,18 @@ Page({
    */
   getSubjectData({
     currentIndex = 0,
-    poolId,
-    poolType = undefined,
-    step,
     limit,
     skip,
-    loading = false,
     isLoadMore = false
   }) {
     const that = this
     const params = {
       limit,
       skip,
-      step,
-      poolId,
-      poolType,
-      currentIndex
+      step: that.data.step,
+      poolType: that.data.poolType,
+      currentIndex,
+      ...that.data.requestPoolObj
     };
     subjectList(params).then((res) => {
       if (res.data.code !== 200) {
@@ -385,15 +361,12 @@ Page({
       obj.syncSource = syncSource
     }
     let params = Object.assign({}, json, {
+      userSubjectId: json._id,
       subjectId,
       syncSource
     });
     syncSubject(params).then((res) => {
       this.userSubjectDataGet({
-        poolData: this.data.poolData,
-        poolType: this.data.poolType,
-        poolId: this.data.poolId,
-        step: this.data.step,
         isSyncSubject: true
       });
       callback()
@@ -563,15 +536,15 @@ Page({
     });
     //做对了，就要把对的题塞进去，如果错题里有，就要拿出来
     let {
-      wrongSubjectIds,
+      wrongSubjectItems,
       rightSubjectIds
     } = json;
     if (rightSubjectIds.includes(subjectId)) return;
     rightSubjectIds.push(subjectId);
-    wrongSubjectIds.filter(p => p.subjectId !== subjectId)
-    for (let i of wrongSubjectIds) {
+    wrongSubjectItems.filter(p => p.subjectId !== subjectId)
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) {
-        wrongSubjectIds = deleteArrObjMember('subjectId', subjectId, wrongSubjectIds);
+        wrongSubjectItems = deleteArrObjMember('subjectId', subjectId, wrongSubjectItems);
       }
     }
     that.localUserSubjectStatusGet({
@@ -581,8 +554,8 @@ Page({
     });
     that.localUserSubjectStatusGet({
       type: 'set',
-      propName: 'wrongSubjectIds',
-      value: wrongSubjectIds
+      propName: 'wrongSubjectItems',
+      value: wrongSubjectItems
     });
     setTimeout(() => {
       that.next();
@@ -610,10 +583,10 @@ Page({
     });
     //放入错题，取出对题
     let {
-      wrongSubjectIds,
+      wrongSubjectItems,
       rightSubjectIds
     } = json;
-    for (let i of wrongSubjectIds) {
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) return
     }
     options = options.map(i => Number(i)); //答案是+1的
@@ -621,7 +594,7 @@ Page({
       subjectId,
       options
     }
-    wrongSubjectIds.push(wrongSubjectObj);
+    wrongSubjectItems.push(wrongSubjectObj);
     if (rightSubjectIds.includes(subjectId)) {
       rightSubjectIds = deleteArrMember(rightSubjectIds, subjectId);
     }
@@ -632,8 +605,8 @@ Page({
     });
     this.localUserSubjectStatusGet({
       type: 'set',
-      propName: 'wrongSubjectIds',
-      value: wrongSubjectIds
+      propName: 'wrongSubjectItems',
+      value: wrongSubjectItems
     });
     this.syncSubject({
       subjectId,
@@ -649,19 +622,12 @@ Page({
     currentIndex,
     isNext = false
   }) {
-    const {
-      poolId,
-      step
-    } = this.data || {}
     //向后加载更多，用于下一题达到阈值时
     if (isNext && (currentIndex + 1) % 50 == 1) {
       this.getSubjectData({
         currentIndex: currentIndex,
-        poolId,
         limit: 100,
         skip: 0,
-        loading: true,
-        step,
         isLoadMore: true
       });
       return;
@@ -670,11 +636,8 @@ Page({
     if (!isNext && (currentIndex + 1) % 50 == 2) {
       this.getSubjectData({
         currentIndex: currentIndex - 2,
-        poolId,
         limit: 100,
         skip: 0,
-        loading: true,
-        step,
         isLoadMore: true
       });
       return;
@@ -689,11 +652,11 @@ Page({
     let subjectId = item._id;
     if (!this.data.userSubjectData) return undefined;
     const {
-      wrongSubjectIds,
+      wrongSubjectItems,
       rightSubjectIds
     } = this.data.userSubjectData;
     let isInWrongSubjectIds = false;
-    for (let i of wrongSubjectIds) {
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) {
         isInWrongSubjectIds = true
         break;
@@ -771,10 +734,10 @@ Page({
     let subjectId = item._id;
     if (!this.data.userSubjectData) return false;
     const {
-      wrongSubjectIds
+      wrongSubjectItems
     } = this.data.userSubjectData;
     let finalWrongHistory = {}; //记录当时做错
-    for (let i of wrongSubjectIds) {
+    for (let i of wrongSubjectItems) {
       if (i.subjectId == subjectId) {
         finalWrongHistory = i
         break
@@ -835,7 +798,6 @@ Page({
       subjectItem,
       answerNum
     } = e.detail || {};
-
     if (this.isDisabledSelect(subjectItem)) {
       return
     };

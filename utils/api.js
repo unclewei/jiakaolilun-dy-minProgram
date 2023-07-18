@@ -65,7 +65,7 @@ export const getEnumeMap = () => {
  */
 export const theoryVipPriceInfo = () => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/subject/theoryVipPriceInfo`,
+    url: `${baseApi}/userSubject/theoryVipPriceInfo`,
   })
 }
 
@@ -74,26 +74,20 @@ export const theoryVipPriceInfo = () => {
  */
 export const subjectList = (data) => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/subject`,
+    url: `${baseApi}/subject/subjectList`,
+    method: 'post',
     data,
   })
 }
 
-/**
- * 题库数据
- */
-export const poolList = (data) => {
-  return xapi.requestWithJwt({
-    url: `${baseApi}/subject/poolList`,
-    data,
-  })
-}
+
 /**
  * 获取题库详情数据
  */
 export const poolData = (data) => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/subject/poolDetail`,
+    url: `${baseApi}/pool/poolDetail`,
+    method: 'post',
     data,
   })
 }
@@ -103,7 +97,7 @@ export const poolData = (data) => {
  */
 export const userSubjectGet = (data) => {
   return xapi.requestWithJwtNoToast({
-    url: `${baseApi}/subject/userSubjectGet`,
+    url: `${baseApi}/userSubject/userSubjectGet`,
     method: 'post',
     data
   })
@@ -114,7 +108,7 @@ export const userSubjectGet = (data) => {
  */
 export const syncSubject = (data) => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/subject/syncSubject`,
+    url: `${baseApi}/userSubject/syncSubject`,
     method: 'post',
     data
   })
@@ -125,7 +119,7 @@ export const syncSubject = (data) => {
  */
 export const userWrongSubjectRemove = (data) => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/subject/userWrongSubjectRemove`,
+    url: `${baseApi}/userSubject/userWrongSubjectRemove`,
     method: 'post',
     data
   })
@@ -135,7 +129,7 @@ export const userWrongSubjectRemove = (data) => {
  */
 export const getUserMoniPool = (data) => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/subject/getUserMoniPool`,
+    url: `${baseApi}/userSubject/getUserMoniPool`,
     method: 'post',
     data
   })
@@ -146,7 +140,7 @@ export const getUserMoniPool = (data) => {
  */
 export const userSubjectRemove = (data) => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/subject/userSubjectRemove`,
+    url: `${baseApi}/userSubject/userSubjectRemove`,
     method: 'post',
     data
   })
@@ -213,4 +207,37 @@ export const afterPay = (data) => {
     url: `${baseApi}/order/afterPay`,
     data
   });
+}
+
+
+/**
+ * 用户做题配置
+ */
+export const userConfigGet = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/userConfig/userConfigGet`,
+    method: 'post',
+    data
+  })
+}
+/**
+ * 用户做题状态
+ */
+export const userPoolList = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/userPool/userPoolList`,
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 题库数据
+ */
+export const poolList = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/pool/poolList`,
+    method: 'post',
+    data,
+  })
 }

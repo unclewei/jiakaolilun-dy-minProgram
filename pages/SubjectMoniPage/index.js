@@ -62,17 +62,17 @@ Page({
       }
       const resData = res.data.data;
       let {
-        unDoMoniPool,
+        nextMoniPool,
         isDoneMoniPool,
-        allDoneSubject
+        userMoniSubject
       } = resData;
-      if (unDoMoniPool && unDoMoniPool._id) {
+      if (nextMoniPool && nextMoniPool._id) {
         that.isKeepgoing({
-          poolId: unDoMoniPool._id
+          poolId: nextMoniPool._id
         });
       }
-      if (that.data.poolId && allDoneSubject.length > 0) {
-        for (let i of allDoneSubject) {
+      if (that.data.poolId && userMoniSubject.length > 0) {
+        for (let i of userMoniSubject) {
           if (i.poolId === that.data.poolId) {
             that.setData({
               thisMoniPool: i
@@ -81,8 +81,8 @@ Page({
           }
         }
       }
-      for (let i = 0; i < allDoneSubject.length; i++) {
-        let item = allDoneSubject[i];
+      for (let i = 0; i < userMoniSubject.length; i++) {
+        let item = userMoniSubject[i];
         for (let j of isDoneMoniPool) {
           if (item.poolId === j._id) {
             item.name = j.name;
@@ -90,9 +90,9 @@ Page({
         }
       }
       that.setData({
-        allDoneSubject: allDoneSubject,
-        lastDoneSubject:allDoneSubject.length > 0 ? allDoneSubject[0]:undefined,
-        unDoMoniPool: unDoMoniPool,
+        allDoneSubject: userMoniSubject,
+        lastDoneSubject:userMoniSubject.length > 0 ? userMoniSubject[0]:undefined,
+        unDoMoniPool: nextMoniPool,
         isDoneMoniPool: isDoneMoniPool
       })
     });

@@ -56,12 +56,12 @@ module.exports.onMyList = function (list, value) {
  * @param state 
  * @returns 
  */
-module.exports.isWrong = function (wrongSubjectIds, value) {
-  if (!wrongSubjectIds || !wrongSubjectIds.length || !value) {
+module.exports.isWrong = function (wrongSubjectItems, value) {
+  if (!wrongSubjectItems || !wrongSubjectItems.length || !value) {
     return false
   }
-  for (var i = 0; i < wrongSubjectIds.length; i++) {
-    var item = wrongSubjectIds[i].subjectId
+  for (var i = 0; i < wrongSubjectItems.length; i++) {
+    var item = wrongSubjectItems[i].subjectId
     if (item === value) {
       return true
     }
@@ -186,4 +186,10 @@ module.exports.getAbs = function (text) {
     return 0
   }
   return Math.abs(text)
+}
+
+// 获取img的名字
+module.exports.getImgNmae = function (imgName) {
+  var arr = imgName.split('/');
+ return arr[arr.length-1];
 }

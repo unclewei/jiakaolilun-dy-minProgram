@@ -178,9 +178,9 @@ Component({
         userSubjectData
       } = this.data
       if (step == 1) {
-        return userSubjectData.wrongSubjectIds?.length || 0;
+        return userSubjectData.wrongSubjectItems?.length || 0;
       }
-      return (userSubjectData.wrongSubjectIds?.length || 0) * 2 || 0;
+      return (userSubjectData.wrongSubjectItems?.length || 0) * 2 || 0;
     },
     unAnswer() {
       const {
@@ -188,7 +188,7 @@ Component({
         userSubjectData
       } = this.data
       let subjectCount = poolData?.subjectCount || 0;
-      return subjectCount - userSubjectData.wrongSubjectIds.length - userSubjectData.rightSubjectIds.length
+      return subjectCount - userSubjectData.wrongSubjectItems.length - userSubjectData.rightSubjectIds.length
     },
 
     /**

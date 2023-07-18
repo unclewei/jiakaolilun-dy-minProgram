@@ -22,7 +22,7 @@
               <span class='text'>没答题数</span>
             </span>
             <span class='item'>
-              <span class='num'>{{userSubjectData.wrongSubjectIds.length}}</span>
+              <span class='num'>{{userSubjectData.wrongSubjectItems.length}}</span>
               <span class='text'>错题数</span>
             </span>
             <span class='item'>

@@ -42,14 +42,14 @@ App({
         return {
           imageUrl: './images/theorybanner4.png',
           title: '精选500题，驾考决胜法宝',
-          path: '/pages/index/index?fromWho='+that.globalData.userInfo._id
+          path: '/pages/index/index?fromWho=' + that.globalData.userInfo._id
         }
       }
     })
   },
 
   globalData: {
-    from:'theory',
+    from: 'theory',
     version: 5,
     cookies: null,
     userInfo: {},
@@ -58,9 +58,9 @@ App({
     userTickets: [], // 用户拥有的票据列表
     ticketList: [], // 票据枚举
     enumeMap: {}, // 枚举
-    baseConfig:{}, // 全局配置
+    baseConfig: {}, // 全局配置
     marketDefaultContentList: [], // 集市可选语句
-
+    poolDataObj: {}, // 考题池子
     titleBarHeight: wx.getSystemInfoSync().statusBarHeight + 44, // 状态栏高度
     isBangs: false, // 是否刘海屏
   },

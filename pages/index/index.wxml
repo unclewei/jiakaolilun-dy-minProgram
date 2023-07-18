@@ -39,9 +39,9 @@
         <div class='bodyBigItem'>
           <div class='bodyBigIcon' />
           <div class='bodyBigTitle'>精选500题</div>
-          <div class='bodyBigDesc'>
+          <!-- <div class='bodyBigDesc'>
             {{userSubject.chosenUserSubject.currentIndex || 0}} / 500
-          </div>
+          </div> -->
         </div>
       </div>
       <div class='bodySmall'>
@@ -49,11 +49,11 @@
           <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
           <div class='smallItemText'>专项练习</div>
         </div>
-        <div class='smallItem' bindtap="gotoSubject" data-item="myWrong">
+        <div class='smallItem' bindtap="gotoSubject" data-item="wrong">
           <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
           <div class='smallItemText'>
             我的错题
-            <span class='tag dot'>{{userSubject.myWrongUserSubject.wrongSubjectIds.length || 0}}</span>
+            <span class='tag dot'>{{userSubject.myWrongUserSubject.subjectIds.length || 0}}</span>
           </div>
         </div>
       </div>

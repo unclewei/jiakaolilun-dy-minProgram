@@ -1,6 +1,7 @@
 // index.js
 import {
-  userSubjectGet,
+  userPoolList,
+  poolList
 } from '../../utils/api'
 
 import {
@@ -44,10 +45,8 @@ Page({
 
   chosenAndWrong() {
     const that = this
-    let poolType = ['chosen', 'myWrong']
     wx.showLoading()
-    userSubjectGet({
-      type: poolType,
+    userPoolList({
       step: that.data.step
     }).then((res) => {
       wx.hideLoading()
@@ -57,13 +56,30 @@ Page({
       }
       const resData = res.data.data || []
       let obj = {
-        chosenUserSubject: resData.find(p => p.type == 'chosen') || {},
-        myWrongUserSubject: resData.find(p => p.type == 'myWrong') || {},
+        myWrongUserSubject: resData.find(p => p.type == 'wrong') || {},
       };
-      
+
       that.setData({
         userSubject: obj
       })
+    })
+    poolList({
+      step: that.data.step
+    }).then((res) => {
+      wx.hideLoading()
+      if (res.data.code !== 200) {
+        showNetWorkToast(res.data.msg)
+        return
+      }
+      const resData = res.data.data.reduce((total, item) => ({
+        ...total,
+        [item.type]: item
+      }), {})
+      that.setData({
+        poolDataObj: resData
+      })
+      getApp().globalData.poolDataObj = resData
+
     })
   },
 
@@ -86,7 +102,7 @@ Page({
       from: getApp().globalData.from,
       step: this.data.step,
       poolType: item,
-      poolId: undefined,
+      poolId: item === 'wrong' ? this.data.userSubject.myWrongUserSubject._id : undefined,
     })
   },
   gotoPage() {
@@ -98,7 +114,7 @@ Page({
       url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
     })
   },
-   /**
+  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
