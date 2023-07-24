@@ -59,7 +59,7 @@ Page({
     isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
     rightHistory: false, // 正确历史;
     wrongHistory: {}, // 错误历史
-    isShowFailTips:false, // 是否提示过不及格
+    isShowFailTips: false, // 是否提示过不及格
   },
 
   /**
@@ -84,8 +84,6 @@ Page({
       poolId,
       from,
       userSubjectData: userSubjectJson, // 做题状态
-      subjectPoolType: getApp().globalData.enumeMap.subjectPoolType,
-      urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
       stepFolder: step == 1 ? 'subject/one/' : 'subject/four/',
     })
     autoLogin((res) => {
@@ -100,6 +98,15 @@ Page({
       //按顺序请求题库数据-个人做题状态-题库内题目数据
       this.getPoolData();
     })
+  },
+
+  onShow() {
+    if (getApp().globalData.enumeMap && getApp().globalData.enumeMap.configMap) {
+      this.setData({
+        subjectPoolType: getApp().globalData.enumeMap.subjectPoolType,
+        urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
+      })
+    }
   },
   /**  登录成功*/
   onLoginSuccess() {
@@ -151,15 +158,15 @@ Page({
         }
         if (validRes.data.data || resData.isForFree) {
 
-          that.getSubjectData({
-            currentIndex: 0,
-            poolId: resData._id,
-            poolType: resData.type,
-            limit: 100,
-            skip: 0,
-            loading: true,
-            step: resData.step,
-          });
+        that.getSubjectData({
+          currentIndex: 0,
+          poolId: resData._id,
+          poolType: resData.type,
+          limit: 100,
+          skip: 0,
+          loading: true,
+          step: resData.step,
+        });
 
           return
         }
@@ -269,10 +276,24 @@ Page({
         showNetWorkToast(res.data.msg)
         return
       }
-      const resData = res.data.data
+      let resData = res.data.data
+      resData = resData.filter((_p, index) => index < 50)
+      if (step == 1 && currentIndex != 0) {
+        resData = that.data.subjectData.concat(resData)
+      }
       that.setData({
         subjectData: resData,
       })
+      if (step == 1 && currentIndex == 0) {
+        that.getSubjectData({
+          limit,
+          skip: 50,
+          step,
+          poolId,
+          poolType,
+          currentIndex: 50
+        })
+      }
     })
   },
 
@@ -327,7 +348,7 @@ Page({
       optionIndex: [],
       isSelected: false,
       isNowWrong: false,
-      isShowFailTips:false
+      isShowFailTips: false
     })
   },
 
@@ -341,12 +362,7 @@ Page({
     });
     this.setData({
       currentIndex: index,
-
     })
-    this.loadMore({
-      currentIndex: index,
-      isNext: true
-    });
     this.useToDoWrong(this.data.subjectData[index])
     this.useToDoRight(this.data.subjectData[index])
 
@@ -354,7 +370,7 @@ Page({
 
   //下一题
   next() {
-    if (this.isDisabledNext()) {
+    if (this.data.currentIndex >= this.data.subjectData.length - 1) {
       return;
     }
     this.checkFailSocre()
@@ -370,10 +386,6 @@ Page({
     this.setData({
       currentIndex: currentIndex + 1
     })
-    this.loadMore({
-      currentIndex: currentIndex + 1,
-      isNext: true
-    });
     this.useToDoWrong(this.data.subjectData[currentIndex + 1])
     this.useToDoRight(this.data.subjectData[currentIndex + 1])
 
@@ -393,10 +405,6 @@ Page({
       type: 'set',
       propName: 'currentIndex',
       value: currentIndex - 1
-    });
-    this.loadMore({
-      currentIndex: currentIndex + 1,
-      isNext: false
     });
     this.useToDoWrong(this.data.subjectData[currentIndex - 1])
     this.useToDoRight(this.data.subjectData[currentIndex - 1])
@@ -519,45 +527,6 @@ Page({
 
 
   /**
-   * 提前请求更多数据
-   * */
-  loadMore({
-    currentIndex,
-    isNext = false
-  }) {
-    const {
-      poolId,
-      step
-    } = this.data || {}
-    //向后加载更多，用于下一题达到阈值时
-    if (isNext && (currentIndex + 1) % 50 == 1) {
-      this.getSubjectData({
-        currentIndex: currentIndex,
-        poolId,
-        limit: 100,
-        skip: 0,
-        loading: true,
-        step,
-        isLoadMore: true
-      });
-      return;
-    }
-    //向前加载更多，用于上一题达到阈值时
-    if (!isNext && (currentIndex + 1) % 50 == 2) {
-      this.getSubjectData({
-        currentIndex: currentIndex - 2,
-        poolId,
-        limit: 100,
-        skip: 0,
-        loading: true,
-        step,
-        isLoadMore: true
-      });
-      return;
-    }
-  },
-
-  /**
    * 做题状态
    * @param item
    */
@@ -597,21 +566,6 @@ Page({
     return this.isDone(item) || this.data.isSelected
   },
 
-  /**
-   * 不允许下一题
-   */
-  isDisabledNext() {
-    const {
-      subjectData,
-      poolData,
-      currentIndex,
-      loading
-    } = this.data || {}
-    if (subjectData.length == 0) return true;
-    if ((poolData && poolData.subjectCount == currentIndex + 1) || loading) return true
-    if (!poolData && subjectData.length == currentIndex + 1) return true; //错题情况
-    return false
-  },
   /**
    * 单选做对
    * */
@@ -792,8 +746,8 @@ Page({
     return (userSubjectData.rightSubjectIds?.length || 0) * 2 || 0;
   },
 
-   // 获取错误的扣分
-   getWrongScore() {
+  // 获取错误的扣分
+  getWrongScore() {
     const {
       step,
       userSubjectData
@@ -820,9 +774,9 @@ Page({
   },
 
   // 测试是否不及格，不及格的话，直接提示不要做了
-  checkFailSocre(){
+  checkFailSocre() {
     const wrongScore = this.getWrongScore()
-    if(wrongScore > 10 && !this.data.isShowFailTips){
+    if (wrongScore > 10 && !this.data.isShowFailTips) {
       wx.showModal({
         title: '考试提示',
         content: '您已考试不及格！',
@@ -831,7 +785,7 @@ Page({
         success: (res) => {
           if (res.cancel) {
             this.setData({
-              isShowFailTips:true,
+              isShowFailTips: true,
             })
           }
           if (res.confirm) {

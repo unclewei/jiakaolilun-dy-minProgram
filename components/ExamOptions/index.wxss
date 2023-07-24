@@ -34,7 +34,10 @@
 }
 
 .option .text {
-  font-size: 16px !important;
+  font-size: 14px !important;
+}
+.optionsText{
+  font-size: 14px;
 }
 .option .icon {
   width: 25px;

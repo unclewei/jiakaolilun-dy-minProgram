@@ -190,6 +190,9 @@ module.exports.getAbs = function (text) {
 
 // 获取img的名字
 module.exports.getImgNmae = function (imgName) {
+  if (!imgName) {
+    return ''
+  }
   var arr = imgName.split('/');
- return arr[arr.length-1];
+  return arr[arr.length - 1];
 }

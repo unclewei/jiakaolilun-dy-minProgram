@@ -56,7 +56,7 @@
         <view class='controlBtn lastBtn {{!currentIndex  && "nextDisable"}}' bindtap="last">
           上一题
         </view>
-        <view class='controlBtn nextBtn {{isDisabledNext && "nextDisable"}}' bindtap="next">
+        <view class='controlBtn nextBtn {{(currentIndex >= subjectData.length -1 ) && "nextDisable"}}' bindtap="next">
           下一题
         </view>
         <view class='controlBtn finBtn' bindtap="onSubmit">交卷</view>

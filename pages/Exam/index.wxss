@@ -167,6 +167,9 @@
   display: flex;
   flex-direction: column;
 }
+.optionsText{
+  font-size: 14px;
+}
 .currentItem{
   background: #51a9f2;
 }
