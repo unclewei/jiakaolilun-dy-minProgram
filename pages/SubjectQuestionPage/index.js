@@ -6,7 +6,8 @@ import {
   userSubjectGet,
   subjectList,
   userWrongSubjectRemove,
-  syncSubject
+  syncSubject,
+  subjectToUserPool
 } from '../../utils/api'
 
 import {
@@ -347,7 +348,6 @@ Page({
    */
   syncSubject({
     subjectId,
-    syncSource = '',
     callback = () => {}
   }) {
     let json = this.localUserSubjectStatusGet({
@@ -357,13 +357,10 @@ Page({
     if (subjectId) {
       obj.subjectId = subjectId
     }
-    if (syncSource) {
-      obj.syncSource = syncSource
-    }
+    console.log('json', json);
     let params = Object.assign({}, json, {
       userSubjectId: json._id,
       subjectId,
-      syncSource
     });
     syncSubject(params).then((res) => {
       this.userSubjectDataGet({
@@ -371,6 +368,10 @@ Page({
       });
       callback()
     });
+    subjectToUserPool({
+      subjectId,
+      type: "wrong"
+    })
   },
   /**
    * 交卷
@@ -609,8 +610,7 @@ Page({
       value: wrongSubjectItems
     });
     this.syncSubject({
-      subjectId,
-      syncSource: getApp().globalData.enumeMap.syncSource.wrongTick.value
+      subjectId
     });
   },
 
