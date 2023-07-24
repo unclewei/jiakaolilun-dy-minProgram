@@ -49,6 +49,7 @@ App({
   },
 
   globalData: {
+    paidEntry:'xcx_500',
     from: 'theory',
     version: 5,
     cookies: null,
