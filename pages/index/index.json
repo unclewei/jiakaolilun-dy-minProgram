@@ -1,6 +1,8 @@
 {
   "navigationBarTitleText": "首页",
   "usingComponents": {
+    "CircleProgress": "../../components/CircleProgress/mp-progress",
+    "ActualContent": "../../components/ActualContent",
     "LoginModal": "../../components/LoginModal",
     "SubjectUpdate": "../../components/SubjectUpdate"
   }

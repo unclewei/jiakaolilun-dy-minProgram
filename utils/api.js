@@ -3,7 +3,6 @@ import xapi from "./xapi";
 // 测试服务器
 // const baseApi = 'https://test.fanstag.com/api'
 // 正式服务器
-// const baseApi = 'https://fanstag.com/api'
 const baseApi = 'https://ydt.biguojk.com/api'
 
 export const login = (data) => {

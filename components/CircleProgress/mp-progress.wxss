@@ -1,0 +1,8 @@
+.mp-progress{
+  position: absolute;
+  z-index: 3;
+  margin-left: -70px;
+  margin-top: -70px;
+  left: 50%;
+  top: 50%;
+}

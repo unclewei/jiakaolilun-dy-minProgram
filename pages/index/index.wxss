@@ -9,6 +9,8 @@ page {
   color: #404040;
 }
 
+
+
 .bannerContent {
   position: relative;
   width: 100%;
@@ -194,16 +196,26 @@ page {
 }
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigTitle {
-  z-index: 2;
+  z-index: 3;
   font-size: 16px;
   margin-bottom: 2px;
 }
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigDesc {
-  z-index: 2;
+  z-index: 3;
   font-size: 14px;
 }
 
+
+.svgContent{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 140px;
+  height: 140px;
+  z-index: 2;
+}
 
 .buy {
   overflow: hidden;

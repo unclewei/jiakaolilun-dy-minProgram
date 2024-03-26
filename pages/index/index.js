@@ -1,7 +1,8 @@
 // index.js
 import {
   userPoolList,
-  poolList
+  poolList,
+  userSubjectGet
 } from '../../utils/api'
 
 import {
@@ -16,6 +17,10 @@ Page({
   data: {
     step: wx.getStorageSync('step') || '1',
     userSubject: {}, // 用户科目数据
+
+    percentage: 0,
+    cricleConfig: {
+    }
   },
   onLoad() {
     // this.chosenAndWrong()
@@ -78,8 +83,34 @@ Page({
       that.setData({
         poolDataObj: resData
       })
+      that.getProgress()
       getApp().globalData.poolDataObj = resData
 
+    })
+  },
+
+  /**
+   * 获取做题状态信息-百分比
+   * @param poolId
+   */
+  getProgress() {
+    let target = this.data.poolDataObj['chosen'];
+    if (!target) return 0
+    userSubjectGet({
+      poolId: target._id,
+    }).then(res => {
+      wx.hideLoading()
+      if (res.data.code !== 200) {
+        showNetWorkToast(res.data.msg)
+        return
+      }
+      const resData = res.data.data;
+      let currentIndex = resData.currentIndex || 0;
+      let rate = currentIndex / target.subjectCount * 100
+      rate = Number.parseInt(rate) || 0;
+      this.setData({
+        percentage: rate || 0
+      })
     })
   },
 

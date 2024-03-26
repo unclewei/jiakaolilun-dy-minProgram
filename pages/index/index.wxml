@@ -2,19 +2,19 @@
   <image class='bannerContent' src="../../images/{{step == 1 ? 'theorybanner1.jpg':'theorybanner4.png'}}" mode="aspectFill" />
 
   <!-- 通知组件 -->
-  <SubjectUpdate step='{{step}}'/>
+  <SubjectUpdate step='{{step}}' />
 
 
   <div class='kemu'>
     <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">
       <span class='text'>科目一
-        <image class='rightIcon' wx:if="{{step == 1}}" src='../../images/rightIcon.png' />
+        <!-- <image class='rightIcon' wx:if="{{step == 1}}" src='../../images/rightIcon.png' /> -->
       </span>
     </span>
     <span class='kemuItem {{step == 4 && "active"}}' bindtap="onStepChange" data-item="4">
       <span class='text'>科目四
 
-        <image class='rightIcon' wx:if="{{step == 4}}" src='../../images/rightIcon.png' />
+        <!-- <image class='rightIcon' wx:if="{{step == 4}}" src='../../images/rightIcon.png' /> -->
       </span>
     </span>
   </div>
@@ -39,9 +39,9 @@
         <div class='bodyBigItem'>
           <div class='bodyBigIcon' />
           <div class='bodyBigTitle'>精选500题</div>
-          <!-- <div class='bodyBigDesc'>
-            {{userSubject.chosenUserSubject.currentIndex || 0}} / 500
-          </div> -->
+          <div class='svgContent'>
+              <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
+          </div>
         </div>
       </div>
       <div class='bodySmall'>
@@ -93,6 +93,7 @@
       </div>
     </div>
   </div>
+  <ActualContent step='{{step}}' isLogin='{{!!userInfo}}' />
 
   <button class="cleanButton buy" open-type="share" wx:if="{{isCoach}}">
     <div>

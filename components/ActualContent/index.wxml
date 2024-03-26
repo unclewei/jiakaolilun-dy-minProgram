@@ -1,0 +1,19 @@
+<div class='init' bindtap="onclick">
+  <div class='left'>
+    <div class='title'>科{{step==='1'?'一':'四'}}真实考场模拟</div>
+    <div class='text'>
+      <image src='../../images/right.png' mode="aspectFit" class='icon' />
+      提前了解考试界面操作
+    </div>
+    <div class='text'>
+      <image src='../../images/right.png' mode="aspectFit" class='icon' />
+      高度还原考场出题规则
+    </div>
+    <div class='button'>
+      去体验<div class='arrow'>→</div>
+    </div>
+  </div>
+  <div class='right'>
+    <image src='../../images/computer.jpg' mode="aspectFit" class='img' />
+  </div>
+</div>
