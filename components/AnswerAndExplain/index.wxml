@@ -7,4 +7,9 @@
     <span class='type'>试题解析：</span>
     {{subjectItem.explain}}
   </div>
+  <div class='dec' wx:if="{{subjectItem.skillContent}}">
+    <span class='type mang'>盲选技巧：</span>
+    <HighLightContent keys='{{subjectItem.skillKeys}}'content="{{subjectItem.skillContent}}" />
+  </div>
+  
 </div>

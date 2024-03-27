@@ -1,0 +1,26 @@
+.dec {
+  box-sizing: border-box;
+  list-style: none;
+  display: inline-block;
+  height: auto;
+  font-size: 13px;
+  line-height: 20px;
+  margin-bottom: 30rpx;
+  white-space: normal; /* 文本超过元素宽度时自动换行 */
+  overflow-wrap: break-word; /* 防止单词过长不换行 */
+  word-wrap: break-word; /* 防止单词过长不换行，这是 overflow-wrap 的旧版属性 */
+
+}
+.child{
+  white-space: normal; /* 文本超过元素宽度时自动换行 */
+  overflow-wrap: break-word; /* 防止单词过长不换行 */
+  word-wrap: break-word; /* 防止单词过长不换行，这是 overflow-wrap 的旧版属性 */
+
+}
+.isHighLight {
+  padding: 1rpx 5rpx;
+  background-color: #268fff;
+  color: #fff;
+  margin: 0 3rpx;
+  border-radius: 10rpx;
+}

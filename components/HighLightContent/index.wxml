@@ -1,0 +1,1 @@
+  <span class='child {{item.class}}' wx:for="{{skillList}}" wx:key="{{item.text}}">{{item.text}}</span>
