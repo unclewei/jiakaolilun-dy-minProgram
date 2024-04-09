@@ -1,0 +1,3 @@
+<view class="bubble" wx:if="{{showColloct}}" bindtap="onColloct">
+  <view class="content">添加到我的小程序，下次方便使用</view>
+</view>

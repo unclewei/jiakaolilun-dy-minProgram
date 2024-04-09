@@ -5,6 +5,7 @@
     "SubjectOptions": "../../components/SubjectOptions",
     "AnswerAndExplain": "../../components/AnswerAndExplain",
     "Finish": "../../components/Finish",
+    "Colloct": "../../components/Colloct",
     "SubjectCountdown": "../../components/SubjectCountdown"
   }
 }

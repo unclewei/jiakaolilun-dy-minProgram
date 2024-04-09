@@ -1,0 +1,29 @@
+.bubble {
+  position: fixed;
+  top: 10rpx;
+  right: 30rpx;
+  z-index: 2;
+  max-width: 500rpx;
+  /* 限制最大宽度，并根据内容自动调整 */
+  padding: 15rpx 20rpx;
+  box-sizing: border-box;
+  background-color: #313331;
+  color: white;
+  border-radius: 15rpx;
+  margin: 10rpx;
+}
+
+.bubble:after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  right: 40px;
+  margin-left: -10px;
+  border-width: 10px;
+  border-style: solid;
+  border-color:  transparent transparent #313331 transparent;
+}
+
+.content {
+  font-size: 28rpx;
+}
