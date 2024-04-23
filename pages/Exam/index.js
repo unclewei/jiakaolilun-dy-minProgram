@@ -101,12 +101,20 @@ Page({
   },
 
   onShow() {
-    if (getApp().globalData.enumeMap && getApp().globalData.enumeMap.configMap) {
-      this.setData({
-        subjectPoolType: getApp().globalData.enumeMap.subjectPoolType,
-        urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
-      })
+    this.getUrlPrefix()
+  },
+
+  getUrlPrefix() {
+    const that = this
+    if (!getApp().globalData.enumeMap?.configMap?.urlPrefix) {
+      setTimeout(() => {
+        that.getUrlPrefix()
+      }, 1000);
+      return
     }
+    this.setData({
+      urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
+    })
   },
   /**  登录成功*/
   onLoginSuccess() {
@@ -141,7 +149,8 @@ Page({
         poolData: resData,
         poolType: resData.type,
         poolId: resData._id,
-        step: resData.step
+        step: resData.step,
+        stepFolder: resData.step == 1 ? 'subject/one/' : 'subject/four/',
       })
       // 因为是模拟考试，不用获取历史数据，清除一下本地缓存
       let key = resData._id || `${resData.step}_${resData.type}`;
