@@ -179,7 +179,6 @@ Component({
       let textStyles, optionSuffix, styles;
       let A = this.data.optionContent.split(':');
       let optionText = A[1];
-      console.log('optionText', optionText);
       switch (type) {
         case 'right':
           optionSuffix = 'right';

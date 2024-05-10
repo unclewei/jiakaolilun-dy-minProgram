@@ -37,6 +37,9 @@ Page({
     })
   },
   onShow() {
+    if(this.data.step === 'other'){
+      return
+    }
     this.chosenAndWrong()
   },
 
@@ -116,9 +119,13 @@ Page({
 
   // 事件处理函数
   onStepChange(e) {
+    const item = e.currentTarget.dataset.item
     this.setData({
-      step: e.currentTarget.dataset.item
+      step: item
     })
+    if(item === 'other'){
+      return
+    }
     this.chosenAndWrong()
     wx.setStorageSync('step', e.currentTarget.dataset.item)
   },
@@ -143,6 +150,21 @@ Page({
     }
     wx.navigateTo({
       url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
+    })
+  },
+  gotoNP(e){
+    const item = e.currentTarget.dataset.item
+    wx.navigateToMiniProgram({
+      appId: item,
+    })
+  },
+
+
+  showRQCode() {
+    this.selectComponent("#QRModal").showModal({
+      src: '../../images/gzhqrcode.jpg',
+      desc: '长按识别图中二维码进入公众号',
+      descTwo: '科二科三实地视频为你驾考保驾护航'
     })
   },
   /**

@@ -127,7 +127,7 @@ Page({
       })
       return
     }
-    wx.showLoading()
+    // wx.showLoading()
     // 获取问题数据
     poolData({
       poolType: that.data.poolType,
@@ -188,7 +188,7 @@ Page({
       step_: step,
       type: 'get'
     });
-    wx.showLoading()
+    // wx.showLoading()
     userSubjectGet({
       type: poolType,
       ...that.data.requestPoolObj,
@@ -298,16 +298,10 @@ Page({
    */
   getSubjectData({
     currentIndex = 0,
-    limit,
-    skip,
     isLoadMore = false
   }) {
     const that = this
     const params = {
-      limit,
-      skip,
-      step: that.data.step,
-      poolType: that.data.poolType,
       currentIndex,
       ...that.data.requestPoolObj
     };
@@ -322,8 +316,9 @@ Page({
         subjectData: resData,
         currentIndex: finalCurrentIndex,
       })
-      that.useToDoWrong(resData[finalCurrentIndex])
-      that.useToDoRight(resData[finalCurrentIndex])
+      const nowItem = resData.find(p => p.currentIndex === finalCurrentIndex)
+      that.useToDoWrong(nowItem)
+      that.useToDoRight(nowItem)
       if (!that.data.isTypeWrong && currentIndex !== 0 && !isLoadMore) {
         showToast(`上次做到第${currentIndex + 1}题`)
       }
@@ -443,8 +438,9 @@ Page({
       currentIndex: currentIndex + 1,
       isNext: true
     });
-    this.useToDoWrong(this.data.subjectData[currentIndex + 1])
-    this.useToDoRight(this.data.subjectData[currentIndex + 1])
+    const nowItem = this.data.subjectData.find(p => p.currentIndex === currentIndex + 1)
+    this.useToDoWrong(nowItem)
+    this.useToDoRight(nowItem)
 
   },
 
@@ -467,8 +463,10 @@ Page({
       currentIndex: currentIndex + 1,
       isNext: false
     });
-    this.useToDoWrong(this.data.subjectData[currentIndex - 1])
-    this.useToDoRight(this.data.subjectData[currentIndex - 1])
+
+    const nowItem = this.data.subjectData.find(p => p.currentIndex === currentIndex - 1)
+    this.useToDoWrong(nowItem)
+    this.useToDoRight(nowItem)
   },
 
   /**
@@ -526,9 +524,9 @@ Page({
         that.setData({
           currentIndex: currentIndex + 1
         })
-
-        that.useToDoWrong(that.data.subjectData[currentIndex + 1])
-        that.useToDoRight(that.data.subjectData[currentIndex + 1])
+        const nowItem = that.data.subjectData.find(p => p.currentIndex === currentIndex + 1)
+        that.useToDoWrong(nowItem)
+        that.useToDoRight(nowItem)
       }, 1000);
       return
     }
@@ -622,12 +620,17 @@ Page({
     currentIndex,
     isNext = false
   }) {
+    if (this.data.isSelectMode) {
+      this.getSubjectData({
+        currentIndex: currentIndex,
+        isLoadMore: true
+      });
+      return;
+    }
     //向后加载更多，用于下一题达到阈值时
     if (isNext && (currentIndex + 1) % 50 == 1) {
       this.getSubjectData({
         currentIndex: currentIndex,
-        limit: 100,
-        skip: 0,
         isLoadMore: true
       });
       return;
@@ -636,8 +639,6 @@ Page({
     if (!isNext && (currentIndex + 1) % 50 == 2) {
       this.getSubjectData({
         currentIndex: currentIndex - 2,
-        limit: 100,
-        skip: 0,
         isLoadMore: true
       });
       return;
@@ -731,7 +732,8 @@ Page({
    * @param item
    */
   useToDoWrong(item) {
-    let subjectId = item._id;
+    console.log('item', item);
+    let subjectId = item?._id;
     if (!this.data.userSubjectData) return false;
     const {
       wrongSubjectItems
@@ -753,7 +755,7 @@ Page({
    */
   useToDoRight(item) {
     console.log('item', item);
-    let subjectId = item._id;
+    let subjectId = item?._id;
     if (!this.data.userSubjectData) return false;
     const {
       rightSubjectIds

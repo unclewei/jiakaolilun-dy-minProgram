@@ -8,18 +8,20 @@
   <div class='kemu'>
     <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">
       <span class='text'>科目一
-        <!-- <image class='rightIcon' wx:if="{{step == 1}}" src='../../images/rightIcon.png' /> -->
       </span>
     </span>
     <span class='kemuItem {{step == 4 && "active"}}' bindtap="onStepChange" data-item="4">
       <span class='text'>科目四
-
-        <!-- <image class='rightIcon' wx:if="{{step == 4}}" src='../../images/rightIcon.png' /> -->
+      </span>
+    </span>
+    <span class='kemuItem {{step == "other" && "active"}}' bindtap="onStepChange" data-item="other">
+      <span class='text'>其他驾考
       </span>
     </span>
   </div>
 
-  <div class='mainContent'>
+
+  <div class='mainContent' wx:if="{{step == 1 || step == 4}}">
     <div class='bodyBox'>
       <div class='bodySmall'>
         <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
@@ -93,7 +95,17 @@
       </div>
     </div>
   </div>
-  <ActualContent step='{{step}}' isLogin='{{!!userInfo}}' />
+  <ActualContent wx:if="{{step == 1 || step == 4}}" step='{{step}}' isLogin='{{!!userInfo}}' />
+
+  <!-- 灯光模拟 -->
+  <view class="mainContent" wx:if="{{step =='other'}}">
+      <view class="otherTitle">灯光模拟</view>
+      <image class="otherImg" bindtap="gotoNP" data-item="wx439070b4fa97462b" mode="aspectFill" src="https://aliyuncdn.biguo.fanstag.com/6241d2d6a52691774b52e355.jpeg"/>
+      
+      <view class="otherTitle">科二科三</view>
+      <image class="otherImg" bindtap="showRQCode" mode="aspectFill" src="https://aliyuncdn.biguo.fanstag.com/649d144e5a50a461efb77e67.jpeg"/>
+      
+  </view>
 
   <button class="cleanButton buy" open-type="share" wx:if="{{isCoach}}">
     <div>
@@ -109,3 +121,5 @@
 
 <!-- 登录 -->
 <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
+<!-- 公众号二维码 -->
+<QRModal id="QRModal" />

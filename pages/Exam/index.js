@@ -131,7 +131,7 @@ Page({
   getPoolData() {
     const that = this
     // 请求错题数据
-    wx.showLoading()
+    // wx.showLoading()
     // 获取问题数据
     poolData({
       poolType: that.data.poolType,

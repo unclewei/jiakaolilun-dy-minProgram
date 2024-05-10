@@ -4,6 +4,7 @@
     "CircleProgress": "../../components/CircleProgress/mp-progress",
     "ActualContent": "../../components/ActualContent",
     "LoginModal": "../../components/LoginModal",
+    "QRModal": "../../components/QRModal",
     "SubjectUpdate": "../../components/SubjectUpdate"
   }
 }

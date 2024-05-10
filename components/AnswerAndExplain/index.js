@@ -32,7 +32,11 @@ Component({
       type: Object,
       value: {},
     },
-    useToDoRight: {
+    rightHistory: {
+      type: Boolean,
+      value: false,
+    },
+    isConfirm: {
       type: Boolean,
       value: false,
     },
