@@ -51,6 +51,13 @@ export const getBaseConfig = (data) => {
     data
   })
 }
+// 获取全部地域数据
+export const getLocationData = () => {
+  return xapi.request({
+    url: `${baseApi}/enume/locationDataGet`,
+    method:'post',
+  })
+}
 /**
  * 获取枚举
  */
@@ -65,6 +72,16 @@ export const getEnumeMap = () => {
 export const theoryVipPriceInfo = () => {
   return xapi.requestWithJwt({
     url: `${baseApi}/userSubject/theoryVipPriceInfo`,
+  })
+}
+/**
+ * 题目列表
+ */
+export const getUserSubjects = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/userSubject/getUserSubjects`,
+    method:'post',
+    data
   })
 }
 
@@ -230,6 +247,16 @@ export const userConfigGet = (data) => {
   })
 }
 /**
+ * 同步用户设置
+ */
+export const syncUserConfig = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/userConfig/syncUserConfig`,
+    method: 'post',
+    data
+  })
+}
+/**
  * 用户做题状态
  */
 export const userPoolList = (data) => {
@@ -246,6 +273,27 @@ export const userPoolList = (data) => {
 export const poolList = (data) => {
   return xapi.requestWithJwtNoToast({
     url: `${baseApi}/pool/poolList`,
+    method: 'post',
+    data,
+  })
+}
+/**
+ * 评论
+ */
+export const commentList = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/comment/commentList`,
+    method: 'get',
+    data,
+  })
+}
+
+/**
+ * 评论
+ */
+export const likeSet = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/like/likeSet`,
     method: 'post',
     data,
   })

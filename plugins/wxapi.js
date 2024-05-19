@@ -2,7 +2,8 @@ import {
   login,
   createOrder,
   afterPay,
-  userInfo
+  userInfo,
+  userConfigGet
 } from "../utils/api";
 import {
   showToast,
@@ -46,6 +47,7 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
         getApp().globalData.cookies = res.data.token
         getApp().globalData.userInfo = resData
         getApp().globalData.hasLogin = true
+        getUserConfig(callback)
         callback('success')
       }).catch((e) => {
         console.log('e', e);
@@ -72,6 +74,19 @@ export const loginFailOption = (callback, res, isInit) => {
   wx.showToast({
     title: '网络错误，请稍后重试',
     icon: 'none'
+  })
+}
+
+// 获取用户配置
+export const getUserConfig = (callBack)=>{
+  userConfigGet().then(res => {
+    if (res.data.code !== 200) {
+      callback('fail')
+      return;
+    }
+    let resData = res.data.data
+    getApp().globalData.userConfig = resData
+    callBack('success')
   })
 }
 

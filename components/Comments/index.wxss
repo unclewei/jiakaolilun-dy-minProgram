@@ -1,0 +1,99 @@
+.commentBox {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  padding-bottom: 0;
+}
+
+.commentTitle {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #111;
+}
+
+.commentItem {
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(245, 245, 245, 1);
+}
+
+.comAvatar {
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 40px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.comBody {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.nickName {
+  color: #111;
+  font-size: 14px;
+  margin-bottom: 1px;
+}
+
+.runDateProvince {
+  font-size: 13px;
+  color: #9197a3;
+}
+
+.commentText {
+  color: #111;
+  font-size: #333;
+  margin: 5px 0;
+}
+
+.comImagesBox {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-columns: auto auto auto;
+  /*有几列，每列有多大*/
+  grid-template-rows: auto auto auto;
+  /*有几行，每行有多大*/
+}
+
+.comImage {
+  width: 100%;
+  height: 88px;
+}
+
+.comImageFull {
+  width: 50%;
+  height: 88px;
+
+}
+
+.bottomBox {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 15rpx;
+}
+
+.bottomItem {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.bottomImg {
+  width: 18px;
+  height: 18px;
+  margin-right: 4px;
+}
+
+.bottomText {
+  color: #333;
+  font-size: 13px;
+}

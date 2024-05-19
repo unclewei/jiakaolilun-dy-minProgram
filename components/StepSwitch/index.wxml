@@ -1,0 +1,8 @@
+<view class='stepSelect'>
+  <view class='select select1 {{step == 1 && "active"}} {{step != 1 && "step1NotActive"}}' data-item='{{1}}' bindtap='onStepChange'>
+    科一
+  </view>
+  <view class='select select2 {{step == 4 && "active"}} {{step == 4 && "rightActive"}}' data-item='{{4}}' bindtap='onStepChange'>
+    科四
+  </view>
+</view>

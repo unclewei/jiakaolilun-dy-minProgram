@@ -1,0 +1,37 @@
+<view>
+  <view class='passRate'>
+    <view class='insideBox'>
+      <view>
+        <view class='rate'>
+          <view class='num'>{{foresee.rate}}</view>%
+        </view>
+        <view class='rateText'>考试通过率预测：{{foresee.text}}</view>
+      </view>
+      <view class='button upButton' bindtap="gotoPage" data-routetype="learnPlanPage">
+        提升通过率
+      </view>
+    </view>
+  </view>
+  <view class='progressBox'>
+    <view class='progressItem' bindtap="gotoPage" data-routetype="subject" data-pooltype="sequence">
+      <view class='progress1'>
+        <view class='num'>{{sequenceIndex || 0}}</view>/
+        {{poolListMap.sequence.subjectCount || '加载中'}}
+      </view>
+      <view class='progress2'>练习进度</view>
+    </view>
+    <view class='progressItem' bindtap="gotoPage" data-routetype="subject" data-pooltype="chosen">
+      <view class='progress1'>
+        <view class='num'>{{chosenIndex || 0}}</view>/
+        {{poolListMap.chosen.subjectCount || '加载中'}}
+      </view>
+      <view class='progress2'>精简500题</view>
+    </view>
+    <view class='progressItem' bindtap="gotoPage" data-routetype="moni">
+      <view class='progress1'>
+        <view class='num dander'>{{avgScore}}</view>
+      </view>
+      <view class='progress2'>模拟平均分</view>
+    </view>
+  </view>
+</view>

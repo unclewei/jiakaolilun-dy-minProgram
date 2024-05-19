@@ -1,0 +1,25 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<div class='commentBox' wx:if="{{isLogin &&  commentList.length}}">
+  <div class='commentTitle'>考友互动</div>
+  <div class='commentItem' key='{{item._id}}' wx:for="{{commentList}}">
+    <Avatar className='comAvatar' userInfo='{{item.user}}' />
+    <div class='comBody'>
+      <div class='nickName'>{{item.user.nickName}}</div>
+      <div class='runDateProvince'>{{utils.toDate(item.time)}}</div>
+      <div class='commentText'>{{item.content}}</div>
+
+      <image class='comImageFull' wx:if="{{item.imageInfos.length === 1}}" src='{{urlPrefix + item.imageInfos[0].path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{0}}" />
+      <div class='comImagesBox' wx:if="{{item.imageInfos.length > 1}}">
+        <image wx:for="{{item.imageInfos}}" wx:for-item="p" wx:for-index="pIndex" class='comImage' styles='height:inherit' src='{{urlPrefix + p.path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{pIndex}}" />
+      </div>
+      <div class='bottomBox'>
+        <div class='bottomItem'>
+          <image class='bottomImg' src='../../images/eye.png' alt="" />
+          <div class='bottomText'>{{item.viewCount > 10000 ? '10w+' : item.viewCount}}</div>
+        </div>
+        <Like itemId='{{item._id}}' type='comment' likeCount='{{item.likeCount}}' defaultIsLike='{{item.isLike}}' />
+      </div>
+    </div>
+  </div>
+</div>

@@ -19,8 +19,7 @@ Page({
     userSubject: {}, // 用户科目数据
 
     percentage: 0,
-    cricleConfig: {
-    }
+    cricleConfig: {}
   },
   onLoad() {
     // this.chosenAndWrong()
@@ -32,20 +31,26 @@ Page({
       }
       // 请求成功，提示信息
       this.setData({
+        isLogin: true,
         userInfo: getApp().globalData.userInfo
       })
     })
   },
   onShow() {
-    if(this.data.step === 'other'){
+    if (this.data.step === 'other') {
       return
     }
+    this.setData({
+      isLogin: !!getApp().globalData.userInfo._id,
+      userInfo: getApp().globalData.userInfo
+    })
     this.chosenAndWrong()
   },
 
   /**  登录成功*/
   onLoginSuccess() {
     this.setData({
+      isLogin: true,
       userInfo: getApp().globalData.userInfo
     })
     this.chosenAndWrong()
@@ -123,7 +128,7 @@ Page({
     this.setData({
       step: item
     })
-    if(item === 'other'){
+    if (item === 'other') {
       return
     }
     this.chosenAndWrong()
@@ -152,7 +157,7 @@ Page({
       url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
     })
   },
-  gotoNP(e){
+  gotoNP(e) {
     const item = e.currentTarget.dataset.item
     wx.navigateToMiniProgram({
       appId: item,

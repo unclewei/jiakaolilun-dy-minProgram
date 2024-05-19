@@ -1,6 +1,7 @@
 // app.js
 import {
-  getEnumeMap
+  getEnumeMap,
+  getLocationData
 } from './utils/api'
 App({
 
@@ -23,7 +24,28 @@ App({
       }
       this.globalData.enumeMap = res.data.data
     })
+    this.getLocationDatas()
     this.onShareAppMessage()
+  },
+
+  getLocationDatas() {
+    try {
+      const locationStorage = wx.getStorageSync('locationData')
+      if (locationStorage) {
+        this.globalData.locationData = JSON.parse(locationStorage)
+        return
+      }
+      getLocationData().then(res => {
+        if (res.data.code !== 200) {
+          return
+        }
+        const resData = res.data.data
+        this.globalData.locationData = resData
+        wx.setStorageSync('locationData', JSON.stringify(resData))
+      })
+    } catch (error) {
+      console.log('get location error', error);
+    }
   },
 
   onShareAppMessage() {
@@ -49,16 +71,18 @@ App({
   },
 
   globalData: {
-    paidEntry:'xcx_500',
+    paidEntry: 'xcx_500',
     from: 'theory',
     version: 5,
     cookies: null,
     userInfo: {},
+    userConfig:{}, // 用户配置
     hasLogin: false,
     tagList: [], // 标签Tag列表
     userTickets: [], // 用户拥有的票据列表
     ticketList: [], // 票据枚举
     enumeMap: {}, // 枚举
+    locationData: [], // 省份数据
     baseConfig: {}, // 全局配置
     marketDefaultContentList: [], // 集市可选语句
     poolDataObj: {}, // 考题池子

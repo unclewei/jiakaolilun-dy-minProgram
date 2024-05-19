@@ -1,0 +1,16 @@
+.zan {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-right: 10px;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+}
+.numClassName {
+  color: #333;
+  font-size: 13px;
+}

@@ -1,0 +1,48 @@
+<view class='titleHeadn {{className}}' bindtap="showModal">
+  <view class="highlight" wx:if="{{!userConfig.cityId}}">未选择城市</view>
+  <view wx:else>{{myProvince}}</view>
+  <image src='../../images/icon/arrow-right.png' class='locationIcon' mode="aspectFit" />
+</view>
+
+<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' wx:if="{{visible}}">
+  <view class='mask' bindtap='hideModal' />
+  <view class='wrap {{visible && "DrawerContainerShow"}} {{hidding && "DrawerContainerHide"}}'>
+
+    <view class='option'>
+      <view class='cancel' bindtap='hideModal'>
+        取消
+      </view>
+      <view class='confirm' bindtap='onConfirm'>
+        确定
+      </view>
+    </view>
+    <view class='recommend'>
+      <view class='title'>热门城市</view>
+      <view class='recommendWrap'>
+        <view wx:for="{{recommendCityData}}" wx:for-item="i" wx:key='cityId' class='recommendCityWrap' bindtap="onCityClick" data-item="{{i}}">
+          <view class='recommendCity {{i.cityId===cityId && "active"}}'>
+            {{i.cityName}}
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='content'>
+      <view class='aside'>
+        <view class='cityItem {{i.provinceId === provinceId && "isActive"}}' wx:for="{{provinceData}}" wx:for-item="i" wx:key='provinceId' bindtap="onProvinceClick" data-item="{{i}}">
+          {{i.provinceName}}
+          <view class='icon'>
+            <image wx:if="{{i.provinceId === provinceId}}" src='../../images/right.png' class='icon' />
+          </view>
+        </view>
+      </view>
+      <view class='examContent'>
+        <view class='examItem {{i.cityId === cityId && active}}' wx:for="{{cityData}}" wx:for-item="i" wx:key='cityId' bindtap="onCityClick" data-item="{{i}}">
+          {{i.cityName}}
+          <view class='icon'>
+            <image wx:if="{{i.cityId === cityId}}" src='../../images/right.png' class='icon' />
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -5,6 +5,7 @@
     "ActualContent": "../../components/ActualContent",
     "LoginModal": "../../components/LoginModal",
     "QRModal": "../../components/QRModal",
+    "Comments": "../../components/Comments",
     "SubjectUpdate": "../../components/SubjectUpdate"
   }
 }

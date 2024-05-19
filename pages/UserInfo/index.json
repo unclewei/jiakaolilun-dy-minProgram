@@ -1,8 +1,12 @@
 {
-  "navigationBarTitleText": "首页",
+  "navigationBarTitleText": "我的",
   "usingComponents": {
     "LoginModal": "../../components/LoginModal",
     "QRModal": "../../components/QRModal",
+    "Avatar": "../../components/Avatar",
+    "StepSwitch": "../../components/StepSwitch",
+    "PassRate": "../../components/PassRate",
+    "CitySelector": "../../components/CitySelector",
     "SubjectUpdate": "../../components/SubjectUpdate"
   }
 }

@@ -42,7 +42,7 @@
           <div class='bodyBigIcon' />
           <div class='bodyBigTitle'>精选500题</div>
           <div class='svgContent'>
-              <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
+            <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
           </div>
         </div>
       </div>
@@ -97,14 +97,18 @@
   </div>
   <ActualContent wx:if="{{step == 1 || step == 4}}" step='{{step}}' isLogin='{{!!userInfo}}' />
 
+
+
+  <Comments  wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}'/>
+
   <!-- 灯光模拟 -->
   <view class="mainContent" wx:if="{{step =='other'}}">
-      <view class="otherTitle">灯光模拟</view>
-      <image class="otherImg" bindtap="gotoNP" data-item="wx439070b4fa97462b" mode="aspectFill" src="https://aliyuncdn.biguo.fanstag.com/6241d2d6a52691774b52e355.jpeg"/>
-      
-      <view class="otherTitle">科二科三</view>
-      <image class="otherImg" bindtap="showRQCode" mode="aspectFill" src="https://aliyuncdn.biguo.fanstag.com/649d144e5a50a461efb77e67.jpeg"/>
-      
+    <view class="otherTitle">灯光模拟</view>
+    <image class="otherImg" bindtap="gotoNP" data-item="wx439070b4fa97462b" mode="aspectFill" src="https://aliyuncdn.biguo.fanstag.com/6241d2d6a52691774b52e355.jpeg" />
+
+    <view class="otherTitle">科二科三</view>
+    <image class="otherImg" bindtap="showRQCode" mode="aspectFill" src="https://aliyuncdn.biguo.fanstag.com/649d144e5a50a461efb77e67.jpeg" />
+
   </view>
 
   <button class="cleanButton buy" open-type="share" wx:if="{{isCoach}}">
