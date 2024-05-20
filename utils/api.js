@@ -298,3 +298,13 @@ export const likeSet = (data) => {
     data,
   })
 }
+/**
+ * 资源list
+ */
+export const frontResourceList = (data) => {
+  return xapi.request({
+    url: `${baseApi}/frontResource/frontResourceList`,
+    method: 'post',
+    data,
+  })
+}

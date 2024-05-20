@@ -1,6 +1,5 @@
 <view class='init'>
-  <image class='bannerContent' src="../../images/{{step == 1 ? 'theorybanner1.jpg':'theorybanner4.png'}}" mode="aspectFill" />
-
+  <Banner />
   <!-- 通知组件 -->
   <SubjectUpdate step='{{step}}' />
 
