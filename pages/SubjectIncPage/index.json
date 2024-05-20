@@ -1,7 +1,11 @@
 {
   "navigationBarTitleText": "权益购买",
+  "navigationBarBackgroundColor": "#201e24",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "UserInfoSupply": "../../components/UserInfoSupply",
+    "DanMu": "../../components/DanMu",
+    "CountDown": "../../components/CountDown",
     "ShoppingDrawer": "../../components/ShoppingDrawer"
   }
 }

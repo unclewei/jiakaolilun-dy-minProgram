@@ -216,3 +216,56 @@ export const deleteArrMember = (arr, member) => {
   }
   return arr;
 };
+
+/*格式化浮点数，保留小数并四舍五入
+ * @num 浮点数
+ * @digit 位数,选填,默认为2
+ * 不对NAN进行处理，方便报错。
+ * Usage: floatNumFormatted(1)
+ * Result 1.00
+ * */
+
+export const floatNumFormatted = (num, digit = 1) => {
+  if (num % 1 === 0) return num; //整数直接返回
+  return Number.parseFloat(num).toFixed(digit);
+};
+
+
+/**
+ * 自动选择最佳优惠券
+ * @param discountList  优惠券列表
+ * @param totalAmount   单位元
+ * @param payItem       购买的项
+ * @returns {null|*}
+ */
+export const autoChooseDisCount = ({ discountList, totalAmount, payItem }) => {
+  if (!discountList || !discountList.length || !totalAmount) {
+      // 没有优惠券
+      return null;
+  }
+  // 获取在使用日期内的优惠券
+  const nowDate = new Date().getTime() / 1000;
+  const aliveDiscountList = discountList.filter((item) => item.startDate < nowDate && item.endDate > nowDate);
+  if (!aliveDiscountList.length) {
+      return null;
+  }
+  // 获取该消费金额下，最大的优惠
+  // 符合满减的优惠券
+  const amoutMatchList = aliveDiscountList.filter((item) => {
+      //有linkId的为专属
+      if (item.linkId) {
+          return totalAmount >= item.amount && payItem && item.linkId === payItem._id;
+      }
+      return totalAmount >= item.amount;
+  });
+  if (!amoutMatchList.length) {
+      return null;
+  }
+  // 在价格符合的优惠券里面，找到最大金额的
+  return amoutMatchList.reduce((finalItem, item) => {
+      if (!finalItem) {
+          return item;
+      }
+      return item.discountAmount > finalItem.discountAmount ? item : finalItem;
+  }, null);
+};

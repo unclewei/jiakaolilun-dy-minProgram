@@ -1,0 +1,26 @@
+
+.countText {
+  width: 700rpx;
+  height: 60px;
+  margin-bottom: -26px;
+  padding: 3px 15px;
+  padding-top: 8px;
+  box-sizing: border-box;
+  background: linear-gradient(to bottom, #f8f2d2, #f8f1ce);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  display: flex;
+  align-items: self-start;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #5a4139;
+}
+.countText .redItem {
+  background: #d65a46;
+  border-radius: 2px;
+  padding: 2px;
+  color: #fff;
+}
+.countText .countTimes {
+  text-align: right;
+}

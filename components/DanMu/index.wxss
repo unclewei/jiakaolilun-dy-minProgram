@@ -1,0 +1,46 @@
+
+.recordShowBox {
+  position: absolute;
+  top: 15px;
+  left: 5px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  color: white;
+  font-size: 14px;
+}
+.recordAimation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  overflow: hidden;
+  white-space: nowrap;
+  background-color: #24232a;
+  border-radius: 5px;
+  animation: recordGone 2s linear normal infinite;
+}
+@keyframes recordGone {
+  0% {
+    transform: translate(0%);
+    opacity: 0;
+  }
+  10% {
+    transform: translate(0%);
+    opacity: 1;
+  }
+  80% {
+    transform: translate(0%);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(-100%);
+    opacity: 0.3;
+  }
+  100% {
+    transform: translate(-100%);
+    opacity: 0.3;
+  }
+}

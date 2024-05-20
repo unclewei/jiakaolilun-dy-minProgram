@@ -6,10 +6,15 @@ import {
 } from '../../utils/api'
 
 import {
-  gotoSubject,
+  autoChooseDisCount,
+  floatNumFormatted,
   showNetWorkToast,
   showToast,
 } from '../../utils/util'
+import {
+  rightsList,
+  reasonList
+} from './config'
 
 Page({
 
@@ -23,41 +28,8 @@ Page({
     isUserInfoOK: false, // 是否有手机号码和姓名
     step: '1',
     insideBtnPaidDone: false,
-
-    benifyList: [{
-        text: '精选500题',
-        image: '../../images/IncOne.png'
-      },
-      {
-        text: '考前秘卷',
-        image: '../../images/IncTwo.png'
-      },
-      {
-        text: '模拟考试',
-        image: '../../images/IncThree.png'
-      },
-      {
-        text: '错题记录',
-        image: '../../images/IncFour.png'
-      },
-      {
-        text: '易错巩固',
-        image: '../../images/IncFive.png'
-      },
-      {
-        text: '专项训练',
-        image: '../../images/IncSix.png'
-      },
-      {
-        text: '预测通过率',
-        image: '../../images/IncSeven.png'
-      },
-      {
-        text: '不合格补偿',
-        image: '../../images/IncEight.png',
-        mustRefund: true
-      }
-    ]
+    rightsList,
+    reasonList
   },
 
   /**
@@ -70,7 +42,7 @@ Page({
       isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
     })
     this.itemDataGet({
-      step: options.step
+      step: Number.parseInt(options.step)
     })
   },
 
@@ -94,11 +66,8 @@ Page({
   itemDataGet({
     step
   }) {
-    let params = {
-      step,
-    };
     wx.showLoading()
-    subjectItemList(params).then((res) => {
+    subjectItemList().then((res) => {
       wx.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
@@ -106,17 +75,41 @@ Page({
       }
       const resData = res.data.data.map(p => {
         const isPaidDone = !!this.data.User.paidItems.find(payItem => payItem._id === p._id)
+        let fitCoupon = isPaidDone ?
+          undefined :
+          autoChooseDisCount({
+            discountList: [],
+            totalAmount: p.price,
+            payItem: p
+          });
+        let fitPrice =floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.price);
+        let refund =floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.refund);
         return {
           ...p,
-          isPaidDone
+          isPaidDone,
+          fitPrice,
+          refund
         }
       })
-      const paidItem = resData.find(p => p.isPaidDone)
-      const isDefaultSelectedItem = resData.find(p => p.isDefaultSelected)
+      const itemData = resData.filter(p => p.step.includes(step))
+      const paidItem = itemData.find(p => p.isPaidDone)
+      const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
       this.setData({
-        itemData: resData,
-        selectItem: paidItem || isDefaultSelectedItem || resData[0] || {}
+        totalItem: resData,
+        itemData,
+        selectItem: paidItem || isDefaultSelectedItem || itemData[0] || {}
       })
+    })
+  },
+
+  onStepChange() {
+    const itemData = this.data.totalItem.filter(p => p.step.includes(Number.parseInt(this.data.step)))
+    const paidItem = itemData.find(p => p.isPaidDone)
+    const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
+    this.setData({
+      step: this.data.step == 1 ? 4 : 1,
+      itemData,
+      selectItem: paidItem || isDefaultSelectedItem || itemData[0] || {}
     })
   },
 

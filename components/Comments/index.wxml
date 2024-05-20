@@ -2,7 +2,7 @@
 
 <div class='commentBox' wx:if="{{isLogin &&  commentList.length}}">
   <div class='commentTitle'>考友互动</div>
-  <div class='commentItem' key='{{item._id}}' wx:for="{{commentList}}">
+  <div class='commentItem' wx:key='_id' wx:for="{{commentList}}">
     <Avatar className='comAvatar' userInfo='{{item.user}}' />
     <div class='comBody'>
       <div class='nickName'>{{item.user.nickName}}</div>
@@ -11,7 +11,7 @@
 
       <image class='comImageFull' wx:if="{{item.imageInfos.length === 1}}" src='{{urlPrefix + item.imageInfos[0].path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{0}}" />
       <div class='comImagesBox' wx:if="{{item.imageInfos.length > 1}}">
-        <image wx:for="{{item.imageInfos}}" wx:for-item="p" wx:for-index="pIndex" class='comImage' styles='height:inherit' src='{{urlPrefix + p.path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{pIndex}}" />
+        <image wx:for="{{item.imageInfos}}" wx:key="path" wx:for-item="p" wx:for-index="pIndex" class='comImage' styles='height:inherit' src='{{urlPrefix + p.path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{pIndex}}" />
       </div>
       <div class='bottomBox'>
         <div class='bottomItem'>

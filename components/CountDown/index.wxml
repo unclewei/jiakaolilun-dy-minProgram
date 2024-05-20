@@ -1,0 +1,10 @@
+<view class='countText'>
+  <span class='countName'>
+    疯狂学车季:立减<span style='color: red; margin:0 3px'>{{discountPrice}}</span>元
+  </span>
+  <span class='countTimes'>
+    距活动结束：<span class='redItem'>{{hours}}</span>:
+    <span class='redItem'>{{minutes}}</span>:
+    <span class='redItem'>{{seconds}}</span>
+  </span>
+</view>
