@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/UserInfo/index",
     "pages/SubjectMiddlePage/index",
+    "pages/SubjectWCPage/index",
     "pages/SubjectMoniPage/index",
     "pages/SubjectQuestionPage/index",
     "pages/orderList/index",
@@ -10,6 +11,8 @@
     "pages/Exam/index"
   ],
   "tabBar": {
+    "selectedColor": "#333333",
+    "color": "#aaaaaa",
     "list": [
       {
         "pagePath": "pages/index/index",
@@ -20,8 +23,8 @@
       {
         "pagePath": "pages/UserInfo/index",
         "text": "我的",
-        "iconPath": "./images/icon/icon2/user.png",
-        "selectedIconPath": "./images/icon/icon2/user.png"
+        "iconPath": "./images//user.png",
+        "selectedIconPath": "./images/user.png"
       }
     ]
   },

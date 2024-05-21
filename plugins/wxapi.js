@@ -3,7 +3,8 @@ import {
   createOrder,
   afterPay,
   userInfo,
-  userConfigGet
+  userConfigGet,
+  syncUserConfig
 } from "../utils/api";
 import {
   showToast,
@@ -80,6 +81,7 @@ export const loginFailOption = (callback, res, isInit) => {
 // 获取用户配置
 export const getUserConfig = (callBack)=>{
   userConfigGet().then(res => {
+    wx.hideLoading()
     if (res.data.code !== 200) {
       callback('fail')
       return;
@@ -87,6 +89,17 @@ export const getUserConfig = (callBack)=>{
     let resData = res.data.data
     getApp().globalData.userConfig = resData
     callBack('success')
+  })
+}
+// 更新用户配置
+export const updateUserConfig = (data,callBack)=>{
+  wx.showLoading()
+  syncUserConfig(data).then(res => {
+    if (res.data.code !== 200) {
+      callback('fail')
+      return;
+    }
+    getUserConfig(callBack)
   })
 }
 

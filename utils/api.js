@@ -139,6 +139,16 @@ export const subjectToUserPool = (data) => {
     data
   })
 }
+/**
+ * 同步做题状态到个人信息里
+ */
+export const userPoolShow = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/userPool/userPoolShow`,
+    method: 'post',
+    data
+  })
+}
 
 /**
  * 移除用户错题

@@ -50,7 +50,7 @@
           <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
           <div class='smallItemText'>专项练习</div>
         </div>
-        <div class='smallItem' bindtap="gotoSubject" data-item="wrong">
+        <div class='smallItem' bindtap="gotoSubject" data-item="WCPage">
           <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
           <div class='smallItemText'>
             我的错题

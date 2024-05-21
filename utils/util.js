@@ -138,12 +138,14 @@ export const gotoSubject = ({
   poolType = undefined,
   step = undefined,
   poolId = undefined,
+  userPoolId = undefined,
   isReplace = undefined
 }) => {
   const poolDataObj = getApp().globalData.poolDataObj
   let params = {
     step: step,
-    poolId: poolId || poolDataObj[poolType]._id,
+    poolId: poolId || poolDataObj?.[poolType]?._id,
+    userPoolId,
     poolType
   };
   console.log('params', params);
@@ -155,6 +157,9 @@ export const gotoSubject = ({
       break;
     case 'special':
       url = '/pages/SubjectMiddlePage/index';
+      break;
+    case 'WCPage':
+      url = '/pages/SubjectWCPage/index';
       break;
   }
   url = appendUrlPara(url, params);
