@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/UserInfo/index",
     "pages/SubjectMiddlePage/index",
+    "pages/LearnPlanPage/index",
     "pages/SubjectWCPage/index",
     "pages/SubjectMoniPage/index",
     "pages/SubjectQuestionPage/index",
@@ -23,7 +24,7 @@
       {
         "pagePath": "pages/UserInfo/index",
         "text": "我的",
-        "iconPath": "./images//user.png",
+        "iconPath": "./images/user.png",
         "selectedIconPath": "./images/user.png"
       }
     ]

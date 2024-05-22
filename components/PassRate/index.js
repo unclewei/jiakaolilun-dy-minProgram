@@ -3,6 +3,7 @@ import {
   userSubjectGet,
   poolList
 } from "../../utils/api";
+import { gotoSubject } from "../../utils/util";
 
 Component({
   /**
@@ -162,7 +163,22 @@ Component({
         this.getUserSubjectGet(resData?.chosen?._id, 'chosenIndex')
         this.getUserSubjectGet(resData?.sequence?._id, 'sequenceIndex')
       })
-
     },
+
+
+  gotoPage(e) {
+    const poolType = e.currentTarget.dataset.pooltype;
+    const {
+      step,
+      poolDataObj
+    } = this.data;
+
+    gotoSubject({
+      step: step,
+      poolType: poolType,
+      poolId: poolType === 'sequence' ? poolDataObj.sequence?._id : undefined,
+    })
+  },
+
   },
 });

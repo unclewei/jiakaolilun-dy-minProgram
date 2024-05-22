@@ -161,6 +161,12 @@ export const gotoSubject = ({
     case 'WCPage':
       url = '/pages/SubjectWCPage/index';
       break;
+    case 'learnPlanPage':
+      url = '/pages/LearnPlanPage/index';
+      break;
+    case 'incPage':
+      url = '/pages/SubjectIncPage/index';
+      break;
   }
   url = appendUrlPara(url, params);
   if (isReplace) {

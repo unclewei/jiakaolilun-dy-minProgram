@@ -29,7 +29,7 @@
       </view>
       <view class='benefitBox'>
 
-        <view wx:for="{{benefitItemData}}" wx:for-item="p" wx:key='name' class='benefitItem' bind:tap="gotoPage" data-routetype='{{p.routeType}}' data-pooltype='{{p.poolType}}'>
+        <view wx:for="{{benefitItemData}}" wx:for-item="p" wx:key='name' class='benefitItem' bind:tap="gotoPage" data-pooltype='{{p.poolType}}'>
           <image class='benefitIcon' src='{{p.icon}}' mode="aspectFit" />
           <view class='benefitText'>{{p.name}}</view>
         </view>
@@ -51,18 +51,14 @@
   <view class='tabBox tabLast'>
     <view class='title'>学员工具</view>
     <view class='secTabBox'>
-      <view class='secItem' bindtap="gotoPage" data-routetype="incPage">
+      <view class='secItem' bindtap="gotoPage" data-pooltype="incPage">
         <image class='secIcon' src='../../images/dotIcon/vip.png' mode="widthFix" />
         <view class='secText'>VIP购买</view>
       </view>
-      <view class='secItem' bindtap="gotoPage" data-routetype="wcPage">
-        <image class='secIcon' src='../../images/dotIcon/pen.png' mode="widthFix" />
-        <view class='secText'>我的错题</view>
-      </view>
-      <view class='secItem' bindtap="gotoPage" data-routetype="couponPage">
+      <!-- <view class='secItem' bindtap="gotoPage" data-pooltype="couponPage">
         <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
         <view class='secText'>优惠卡券</view>
-      </view>
+      </view> -->
       <button class="cleanButton secItem" open-type="contact">
         <image class="secIcon" src="../../images/dotIcon/mine.png" mode="widthFix" />
         <view class="secText">联系客服</view>
@@ -71,7 +67,7 @@
         <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
         <view class="secText">分享</view>
       </button>
-      <view class='secItem' wx:if="{{!userInfo.phoneNum}}" bindtap="gotoPage" data-routeType="CoachRegisterSuccessPage">
+      <view class='secItem' wx:if="{{!userInfo.phoneNum}}" bindtap="gotoPage" data-pooltype="CoachRegisterSuccessPage">
         <image class='secIcon' src='../../images/dotIcon/mine.png' mode="widthFix" />
         <view class='secText'>补全手机</view>
       </view>

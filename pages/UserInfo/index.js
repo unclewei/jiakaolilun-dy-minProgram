@@ -8,6 +8,9 @@ import {
   poolList,
   userSubjectGet
 } from "../../utils/api";
+import {
+  gotoSubject
+} from "../../utils/util";
 
 Page({
   data: {
@@ -18,29 +21,32 @@ Page({
     benefitItemData: [{
         name: "不过补偿",
         icon: "../../images/vipIcon/money.png",
-        routeType: "incPage",
+        poolType: "incPage",
       },
       {
         name: "七天速成",
         icon: "../../images/vipIcon/speed.png",
-        routeType: "learnPlanPage",
+        poolType: "learnPlanPage",
       },
       {
         name: "精选500题",
         icon: "../../images/vipIcon/vip.png",
-        routeType: "subject",
         poolType: "chosen",
       },
       {
         name: "模拟考试",
         icon: "../../images/vipIcon/right.png",
-        routeType: "moni",
+        poolType: "moni",
       },
       {
         name: "考前秘卷",
         icon: "../../images/vipIcon/lock.png",
-        routeType: "subject",
         poolType: "secret",
+      },
+      {
+        name: "我的错题",
+        icon: "../../images/vipIcon/order.png",
+        poolType: "WCPage",
       },
     ],
   },
@@ -52,7 +58,7 @@ Page({
       this.onLoginSuccess();
     });
     wx.setNavigationBarColor({
-      backgroundColor: this.data.step == 1 ? '#46b978': '#2196f3',
+      backgroundColor: this.data.step == 1 ? '#46b978' : '#2196f3',
       frontColor: '#ffffff',
     })
   },
@@ -62,7 +68,7 @@ Page({
       step: newStep
     })
     wx.setNavigationBarColor({
-      backgroundColor:newStep == 1 ? '#46b978': '#2196f3',
+      backgroundColor: newStep == 1 ? '#46b978' : '#2196f3',
       frontColor: '#ffffff',
     })
     this.userPoolsGet(newStep)
@@ -142,36 +148,17 @@ Page({
   },
 
   gotoPage(e) {
-    console.log('e.currentTarget.datase',e);
-    const routeType = e.currentTarget.dataset.routetype;
     const poolType = e.currentTarget.dataset.pooltype;
     const {
       step,
       poolListMap
     } = this.data;
-    let url = "";
-    //路由类型
-    switch (routeType) {
-      //直接进入做题页。需提供userPoolId或者poolId
-      case "subject": //直接进入做题页
-        let poolId = poolListMap?.[poolType]?._id;
-        url = `/pages/SubjectQuestionPage/index?poolId=${poolId}`;
-        return;
-      case "moni": //模拟题
-        url = "/pages/SubjectMoniPage/index?step=" + step;
-        break;
-      case "incPage": //权益页
-      console.log('寄哪里了');
-        url = "/pages/SubjectIncPage/index?step=" + step;
-        break;
-      case "learnPlanPage": //学习计划页
-        url = "/pages/learnPlanPage?step=" + step;
-        break;
-      default:
-    }
-    wx.navigateTo({
-      url,
-    });
+
+    gotoSubject({
+      step: step,
+      poolType: poolType,
+      poolId: poolType === 'chosen' ? poolListMap?.[poolType]?._id : undefined,
+    })
   },
 
   gotoOrderList(e) {
