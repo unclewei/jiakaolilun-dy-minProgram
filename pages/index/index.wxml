@@ -111,15 +111,7 @@
   <image class="bannerBottom" bindtap="gotoPage" data-item="incPage" src="../../images/theorybanner1.jpg" mode="widthFix" />
   <Comments wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
 
-
-  <button class="cleanButton buy" open-type="share" wx:if="{{isCoach}}">
-    <div>
-      <div>点击分享给学员购买<span class='highlight'>科目{{step==1?'一':'四'}}</span>VIP</div>
-      <div class='secondLine'>
-        学员购买后你赚10元，不过包退！
-      </div>
-    </div>
-  </button>
+  <BottomTips />
 </view>
 
 

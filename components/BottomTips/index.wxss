@@ -1,0 +1,8 @@
+/** @format */
+.init {
+  padding: 20px;
+  text-align: center;
+  color: #9197a3;
+  font-size: 12px;
+  background-color: #f1f5f8;
+}
