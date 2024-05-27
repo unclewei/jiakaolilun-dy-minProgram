@@ -5,6 +5,8 @@
     "ActualContent": "../../components/ActualContent",
     "LoginModal": "../../components/LoginModal",
     "QRModal": "../../components/QRModal",
+    "CitySelector": "../../components/CitySelector",
+    "ShareContent": "../../components/ShareContent",
     "Banner": "../../components/Banner",
     "Comments": "../../components/Comments",
     "SubjectUpdate": "../../components/SubjectUpdate"

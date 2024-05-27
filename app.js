@@ -56,14 +56,10 @@ App({
       const view = pages[pages.length - 1] //获取当前页面的对象
       if (!view) return false //如果不存在页面对象 则返回
       // 若想给个别页面做特殊处理 可以给特殊页面加isOverShare为true 就不会重写了
-      const data = view.data
-      if (data.isOverShare) {
-        return
-      }
       view.onShareAppMessage = () => { //重写分享配置
         return {
           imageUrl: './images/theorybanner4.png',
-          title: '精选500题，驾考决胜法宝',
+          title: `邀请你学习驾考理论知识，精选500题，驾考决胜法宝`,
           path: '/pages/index/index?fromWho=' + that.globalData.userInfo._id
         }
       }
@@ -76,7 +72,7 @@ App({
     version: 5,
     cookies: null,
     userInfo: {},
-    userConfig:{}, // 用户配置
+    userConfig: {}, // 用户配置
     hasLogin: false,
     tagList: [], // 标签Tag列表
     userTickets: [], // 用户拥有的票据列表

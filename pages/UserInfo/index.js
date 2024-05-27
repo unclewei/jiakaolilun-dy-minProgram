@@ -121,14 +121,8 @@ Page({
   // 用户配置更新
   onUserConfigUpdate() {
     let that = this
-    getUserConfig((res) => {
-      if (res === "fail") {
-        return;
-      }
-      that.setData({
-        userConfig: getApp().globalData.userConfig
-      })
-
+    that.setData({
+      userConfig: getApp().globalData.userConfig
     })
   },
 
@@ -141,6 +135,21 @@ Page({
     wx.navigateTo({
       url: `/pages/SubjectIncPage/index`,
     });
+  },
+
+  gotoNP(e) {
+    const item = e.currentTarget.dataset.item
+    wx.navigateToMiniProgram({
+      appId: item,
+    })
+  },
+
+  showRQCode() {
+    this.selectComponent("#QRModal").showModal({
+      src: '../../images/gzhqrcode.jpg',
+      desc: '长按识别图中二维码进入公众号',
+      descTwo: '科二科三实地视频为你驾考保驾护航'
+    })
   },
 
   gotoMiniPro() {
@@ -171,11 +180,4 @@ Page({
     });
   },
 
-  showRQCode() {
-    this.selectComponent("#QRModal").showModal({
-      src: "../../images/gzhqrcode.jpg",
-      desc: "长按识别图中二维码关注公众号",
-      descTwo: "追踪科一科四情况",
-    });
-  },
 });

@@ -1,12 +1,16 @@
-import {
-  syncUserConfig
-} from "../../utils/api";
+import { updateUserConfig } from "../../plugins/wxapi";
+import { showToast } from "../../utils/util";
 
 Component({
   /**
    * 组件的属性列表
    */
-  properties: {},
+  properties: {
+    showLocationIcon: {
+      type: Boolean,
+      value: false
+    }
+  },
 
   /**
    * 组件的初始数据
@@ -109,19 +113,31 @@ Component({
     },
 
     onConfirm() {
-      if (this.data.provinceId && this.data.cityId) {
-
-        syncUserConfig({
-          provinceId: this.data.provinceId,
-          cityId: this.data.cityId,
-        }).then(res => {
-          this.triggerEvent('UserConfigUpdate', {
-            provinceId: this.data.provinceId,
-            cityId: this.data.cityId,
+      const locationData = getApp().globalData.locationData
+      const that = this
+      wx.showLoading()
+      if (that.data.provinceId && that.data.cityId) {
+        updateUserConfig({
+          provinceId: that.data.provinceId,
+          cityId: that.data.cityId,
+        },(res)=>{
+          wx.hideLoading()
+          if (res == 'fail') {
+            showToast('网络错误，稍后再试')
+            return
+          }
+          that.setData({
+            myProvince: locationData.find(p => p.cityId === that.data.cityId).provinceName,
+            userConfig: getApp().globalData.userConfig,
+          })
+          that.triggerEvent('UserConfigUpdate', {
+            userConfig: getApp().globalData.userConfig,
+            provinceId: that.data.provinceId,
+            cityId: that.data.cityId,
           })
         })
       }
-      this.hideModal()
+      that.hideModal()
     },
   },
 });

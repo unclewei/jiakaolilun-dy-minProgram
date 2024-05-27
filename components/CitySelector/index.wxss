@@ -6,8 +6,9 @@
   align-items: center;
 }
 .locationIcon{
-  width: 30rpx;
-  height: 30rpx;
+  width: 25rpx;
+  height: 25rpx;
+  margin-left: 5rpx;
 }
 .init {
   width: 100%;

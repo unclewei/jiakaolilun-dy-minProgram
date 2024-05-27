@@ -55,10 +55,14 @@
         <image class='secIcon' src='../../images/dotIcon/vip.png' mode="widthFix" />
         <view class='secText'>VIP购买</view>
       </view>
-      <!-- <view class='secItem' bindtap="gotoPage" data-pooltype="couponPage">
+      <view class='secItem' bindtap="gotoNP" data-item="wx439070b4fa97462b">
         <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
-        <view class='secText'>优惠卡券</view>
-      </view> -->
+        <view class='secText'>灯光模拟</view>
+      </view>
+      <view class='secItem'  bindtap="showRQCode"  data-item="wx439070b4fa97462b">
+        <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
+        <view class='secText'>科二科三</view>
+      </view>
       <button class="cleanButton secItem" open-type="contact">
         <image class="secIcon" src="../../images/dotIcon/mine.png" mode="widthFix" />
         <view class="secText">联系客服</view>

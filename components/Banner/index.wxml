@@ -1,5 +1,7 @@
-<swiper autoplay interval='4000' style="height: 100px;">
-  <swiper-item class="bannerImg" wx:for="{{banners}}" wx:key="$this">
-    <image class="bannerImg" mode="aspectFit" bindtap="gotoInc" src="{{urlPrefix + item}}" />
-  </swiper-item>
-</swiper>
+<view class="bannerBox">
+  <swiper autoplay interval='5000' style="height: 90px;">
+    <swiper-item class="bannerImg" wx:for="{{banners}}" wx:key="$this">
+      <image class="bannerImg" mode="aspectFit" bindtap="gotoInc" src="{{urlPrefix + item}}" />
+    </swiper-item>
+  </swiper>
+</view>

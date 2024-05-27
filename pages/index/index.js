@@ -17,13 +17,17 @@ Page({
   data: {
     step: wx.getStorageSync('step') || '1',
     userSubject: {}, // 用户科目数据
-
+    mainHeight: 400,
     percentage: 0,
-    cricleConfig: {}
+    cricleConfig: {},
+    isCoach: false,
   },
-  onLoad() {
+  onLoad(options) {
+    if (options.fromWho) {
+      wx.setStorageSync('fromWho', options.fromWho)
+    }
     // this.chosenAndWrong()
-
+    this.setBodyHeight()
     autoLogin((res) => {
       this.chosenAndWrong();
       if (res == 'fail') {
@@ -32,33 +36,46 @@ Page({
       // 请求成功，提示信息
       this.setData({
         isLogin: true,
-        userInfo: getApp().globalData.userInfo
+        userConfig: getApp().globalData.userConfig,
+        userInfo: getApp().globalData.userInfo,
+        isCoach: getApp().globalData.userInfo.userType === 2
       })
     })
   },
   onShow() {
-    if (this.data.step === 'other') {
-      return
-    }
     this.setData({
       isLogin: !!getApp().globalData.userInfo._id,
-      userInfo: getApp().globalData.userInfo
+      userInfo: getApp().globalData.userInfo,
+      isCoach: getApp().globalData.userInfo.userType === 2
     })
     this.chosenAndWrong()
+  },
+
+  setBodyHeight() {
+    const that = this
+    const query = wx.createSelectorQuery()
+    query.select('#mainContent').boundingClientRect()
+    query.exec(function (res) {
+      console.log('res[0].height', res[0].height);
+      that.setData({
+        mainHeight: res[0].height
+      })
+    })
   },
 
   /**  登录成功*/
   onLoginSuccess() {
     this.setData({
       isLogin: true,
-      userInfo: getApp().globalData.userInfo
+      userInfo: getApp().globalData.userInfo,
+      isCoach: getApp().globalData.userInfo.userType === 2
     })
     this.chosenAndWrong()
   },
 
   chosenAndWrong() {
     const that = this
-    wx.showLoading()
+    // wx.showLoading()
     userPoolList({
       step: that.data.step
     }).then((res) => {
@@ -122,15 +139,21 @@ Page({
     })
   },
 
+  swiperChange(e) {
+    const item = e.detail.current
+    const step = item == 0 ? 1 : 4
+    this.setData({
+      step
+    })
+    this.chosenAndWrong()
+    wx.setStorageSync('step', step)
+  },
   // 事件处理函数
   onStepChange(e) {
     const item = e.currentTarget.dataset.item
     this.setData({
       step: item
     })
-    if (item === 'other') {
-      return
-    }
     this.chosenAndWrong()
     wx.setStorageSync('step', e.currentTarget.dataset.item)
   },
@@ -157,26 +180,20 @@ Page({
       url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
     })
   },
-  gotoNP(e) {
-    const item = e.currentTarget.dataset.item
-    wx.navigateToMiniProgram({
-      appId: item,
+
+  // 用户配置更新
+  onUserConfigUpdate() {
+    let that = this
+    that.setData({
+      userConfig: getApp().globalData.userConfig
     })
   },
 
-
-  showRQCode() {
-    this.selectComponent("#QRModal").showModal({
-      src: '../../images/gzhqrcode.jpg',
-      desc: '长按识别图中二维码进入公众号',
-      descTwo: '科二科三实地视频为你驾考保驾护航'
-    })
-  },
   /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-
+   
   }
 
 })

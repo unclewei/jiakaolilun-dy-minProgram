@@ -1,0 +1,96 @@
+/** @format */
+.init {
+  border: 2px solid #ff8989;
+  border-radius: 3px;
+  width: 710rpx;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+}
+.init .title {
+  text-align: center;
+  padding: 3px 0;
+  color: #e5124b;
+  font-weight: 600;
+}
+.init .item {
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  padding: 5px 10px;
+  background-color: #f9f9ff;
+  border-radius: 3px;
+  margin-bottom: 5px;
+}
+.init .item .imgContent {
+  position: relative;
+}
+.init .item .imgContent .itemImg {
+  width: 150px;
+  height: 60px;
+  border-radius: 5px;
+}
+.init .item .imgContent .tag {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  padding: 0 5px;
+  background-image: linear-gradient(90deg, #fa2727 0%, #ff9450 100%);
+  color: #fff;
+  font-size: 12px;
+}
+.init .item .content {
+  width: 100%;
+  padding-left: 20px;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.init .item .content .shareContent {
+  display: flex;
+  justify-content: flex-end;
+}
+.init .item .content .shareContent .share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 130px;
+  height: 30px;
+  border-radius: 40px;
+  background: linear-gradient(to right, #fff4e2, #e1cb96);
+  color: #3a1d19;
+  font-weight: 600;
+  font-size: 16px;
+}
+.init .item .content .name {
+  color: #111;
+  font-size: 15px;
+  font-weight: 600;
+}
+.init .item .content .highlight {
+  color: #e5124b;
+  font-weight: 600;
+}
+.init .item .left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.init .item .left .carIcon {
+  width: 55px;
+}
+.init .item .left .text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+  margin-left: 10px;
+  font-size: 14px;
+}
+.init .item .left .text .money {
+  color: #e5124b;
+  font-weight: 600;
+}
+.init .item .left .text .secondText {
+  font-size: 12px;
+  color: #9197a3;
+}

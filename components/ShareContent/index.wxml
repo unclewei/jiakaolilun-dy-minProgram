@@ -1,0 +1,25 @@
+<view class='init'>
+  <view class='title'>教练版专属推广板块，学员无法查看</view>
+  <view class='item' wx:key='_id' wx:for="{{itemData}}" wx:for-item="i">
+    <view class='imgContent'>
+      <image class='itemImg' src='{{urlPrefix + i.imageInfo.path}}'  mode="widthFix"/>
+      <span class='tag'>
+        学员购买{{i.price}}你赚<span class='money'>{{i.rebate}}</span>元！
+      </span>
+    </view>
+    <view class='content'>
+      <span class='left'>
+        <span class='text'>
+          <span class='name'>{{i.name}}</span>
+          <span class='secondText'>
+            <span class='highlight' wx:if="{{i.refund}}">学员考不过，平台全额退！</span>
+            <span wx:else>学员做完精选500题，通过率95%！</span>
+          </span>
+        </span>
+      </span>
+      <view class='shareContent'>
+        <button class="cleanButton share" open-type="share">去分享</button>
+      </view>
+    </view>
+  </view>
+</view>

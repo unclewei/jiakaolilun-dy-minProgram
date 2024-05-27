@@ -190,7 +190,7 @@ export const userSubjectRemove = (data) => {
  * @returns {*}
  */
 export const subjectItemList = (data) => {
-  return xapi.requestWithJwt({
+  return xapi.request({
     method: 'post',
     url: `${baseApi}/item/subjectItemList`,
     data
