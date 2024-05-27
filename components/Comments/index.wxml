@@ -6,7 +6,7 @@
     <Avatar className='comAvatar' userInfo='{{item.user}}' />
     <div class='comBody'>
       <div class='nickName'>{{item.user.nickName}}</div>
-      <div class='runDateProvince'>{{utils.toDate(item.time)}}</div>
+      <!-- <div class='runDateProvince'>{{utils.toDate(item.time)}}</div> -->
       <div class='commentText'>{{item.content}}</div>
 
       <image class='comImageFull' wx:if="{{item.imageInfos.length === 1}}" src='{{urlPrefix + item.imageInfos[0].path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{0}}" />

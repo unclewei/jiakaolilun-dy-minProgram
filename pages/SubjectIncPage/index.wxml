@@ -23,8 +23,11 @@
               </view>
             </view>
             <view wx:if="{{item.isRecommend}}" class="moreUser">立省{{item.discountPrice}}元</view>
-            <view class="footer {{selectItem._id === item._id && 'footerActive'}}">
-              考不过{{refund ? '补偿'+{refund}+'元' : '无补偿'}}
+            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" wx:if="{{item.refund}}">
+              考不过补偿{{item.refund}}元
+            </view>
+            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" wx:else>
+              考不过无补偿
             </view>
           </view>
         </view>

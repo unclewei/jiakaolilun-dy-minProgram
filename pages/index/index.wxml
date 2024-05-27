@@ -23,11 +23,11 @@
   <div class='mainContent' wx:if="{{step == 1 || step == 4}}">
     <div class='bodyBox'>
       <div class='bodySmall'>
-        <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
-          <image mode="aspectFill" src='../../images/subjectIconOne.png' class='smallItemIcon' alt="" />
-          <div class='smallItemText'>
-            顺序练习
-            <span class='tag'>免费</span>
+
+        <div class='smallItem' bindtap="gotoPage" data-item="incPage">
+          <image mode="aspectFill" src='../../images/subjectIconFive.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>不过补偿
+            <span class="tag must">热门</span>
           </div>
         </div>
         <div class='smallItem' bindtap="gotoSubject" data-item="newRule">
@@ -46,9 +46,13 @@
         </div>
       </div>
       <div class='bodySmall'>
-        <div class='smallItem' bindtap="gotoSubject" data-item="special">
-          <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
-          <div class='smallItemText'>专项练习</div>
+
+        <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
+          <image mode="aspectFill" src='../../images/subjectIconOne.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>
+            顺序练习
+            <span class='tag'>免费</span>
+          </div>
         </div>
         <div class='smallItem' bindtap="gotoSubject" data-item="WCPage">
           <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
@@ -62,11 +66,9 @@
     <!-- {/* 模拟考试部分 */} -->
     <div class='bodyBox'>
       <div class='bodySmall'>
-        <div class='smallItem' bindtap="gotoPage" data-item="incPage">
-          <image mode="aspectFill" src='../../images/subjectIconFive.png' class='smallItemIcon' alt="" />
-          <div class='smallItemText'>不过补偿
-            <span class="tag must">热门</span>
-          </div>
+        <div class='smallItem' bindtap="gotoSubject" data-item="special">
+          <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
+          <div class='smallItemText'>专项练习</div>
         </div>
         <div class='smallItem' bindtap="gotoSubject" data-item="hard">
           <image mode="aspectFill" src='../../images/subjectIconThree.png' class='smallItemIcon' alt="" />
@@ -98,7 +100,7 @@
 
 
 
-  <Comments  wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}'/>
+  <Comments wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
 
   <!-- 灯光模拟 -->
   <view class="mainContent" wx:if="{{step =='other'}}">

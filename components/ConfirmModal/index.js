@@ -33,7 +33,7 @@ Component({
     },
     imageSrc: {
       type: String,
-      value: '../../images/updateBanner.png'
+      value: '../../images/updateBanner.jpg'
     }
   },
 
