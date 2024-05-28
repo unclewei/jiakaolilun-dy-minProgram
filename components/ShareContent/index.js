@@ -20,7 +20,7 @@ Component({
 
   observers: {
     'step': function (step) {
-      const itemData = this?.data?.totalItem?.filter(p => p.step.includes(step)) || []
+      const itemData = this?.data?.totalItem?.filter(p => p.step.includes(Number.parseInt(step))) || []
       this.setData({
         itemData,
       })

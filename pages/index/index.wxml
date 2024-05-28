@@ -25,7 +25,7 @@
   <!-- 通知组件 -->
   <SubjectUpdate step='{{step}}' />
   <!-- 教练分享工具 -->
-  <ShareContent step='{{step}}' />
+  <ShareContent wx:if="{{isCoach}}" step='{{step}}' />
 
   <swiper class="swiper" style="height:{{mainHeight}}px" current='{{step == 1 ? 0 : 1}}' bindanimationfinish='swiperChange'>
     <swiper-item wx:for="14" wx:key="$this">
