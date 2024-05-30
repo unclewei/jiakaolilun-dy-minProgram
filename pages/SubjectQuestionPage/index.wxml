@@ -26,6 +26,7 @@
         <span class='type'>{{item.typeStr}}</span>
         {{item.question}}
       </view>
+      <SubjectAudio subjectItem='{{item}}' />
       <view class='imgWrap' wx:if="{{item.imgName}}">
         <image class='img' src="{{urlPrefix}}{{stepFolder}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
       </view>

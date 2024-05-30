@@ -14,3 +14,9 @@
   border-radius: 50px;
   margin-right: 15px;
 }
+.avatarSmall{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  margin-right: 8px;
+}

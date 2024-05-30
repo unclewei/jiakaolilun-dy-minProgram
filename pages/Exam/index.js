@@ -95,6 +95,7 @@ Page({
       this.setData({
         userInfo: getApp().globalData.userInfo
       })
+      console.log('登录了两次？');
       //按顺序请求题库数据-个人做题状态-题库内题目数据
       this.getPoolData();
     })

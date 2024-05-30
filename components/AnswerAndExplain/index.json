@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "ConfirmModal": "../ConfirmModal/index",
+    "SubjectComment": "../SubjectComment/index",
     "HighLightContent": "../HighLightContent/index"
   }
 }

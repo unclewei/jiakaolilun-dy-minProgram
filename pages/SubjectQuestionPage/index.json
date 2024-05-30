@@ -6,6 +6,7 @@
     "AnswerAndExplain": "../../components/AnswerAndExplain",
     "Finish": "../../components/Finish",
     "Colloct": "../../components/Colloct",
+    "SubjectAudio": "../../components/SubjectAudio",
     "SubjectCountdown": "../../components/SubjectCountdown"
   }
 }

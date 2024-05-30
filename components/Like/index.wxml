@@ -1,4 +1,4 @@
 <view class='zan' bind:tap="onVote">
-  <image class='icon' src="{{isLike ?  '../../images/like.png' :  '../../images/likeRed.png'}}" />
+  <image class='icon' src="{{isLike ?  '../../images/likeRed.png':'../../images/like.png'}}" />
   <view class='numClassName'>{{num || 0}}</view>
 </view>

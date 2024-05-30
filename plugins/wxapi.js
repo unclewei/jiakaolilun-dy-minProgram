@@ -49,7 +49,6 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
         getApp().globalData.userInfo = resData
         getApp().globalData.hasLogin = true
         getUserConfig(callback)
-        callback('success')
       }).catch((e) => {
         console.log('e', e);
         loginFailOption(callback, null, isInit)

@@ -55,7 +55,7 @@ export const getBaseConfig = (data) => {
 export const getLocationData = () => {
   return xapi.request({
     url: `${baseApi}/enume/locationDataGet`,
-    method:'post',
+    method: 'post',
   })
 }
 /**
@@ -80,7 +80,7 @@ export const theoryVipPriceInfo = () => {
 export const getUserSubjects = (data) => {
   return xapi.requestWithJwt({
     url: `${baseApi}/userSubject/getUserSubjects`,
-    method:'post',
+    method: 'post',
     data
   })
 }
@@ -314,6 +314,19 @@ export const likeSet = (data) => {
 export const frontResourceList = (data) => {
   return xapi.request({
     url: `${baseApi}/frontResource/frontResourceList`,
+    method: 'post',
+    data,
+  })
+}
+
+/**
+ * 科目评论获取
+ * @param params
+ * @returns {*}
+ */
+export const subjectCommentList = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/subjectComment/subjectCommentList`,
     method: 'post',
     data,
   })

@@ -80,6 +80,7 @@ App({
     enumeMap: {}, // 枚举
     locationData: [], // 省份数据
     baseConfig: {}, // 全局配置
+    innerAudioContext:undefined, // 全局播放音频上下文
     marketDefaultContentList: [], // 集市可选语句
     poolDataObj: {}, // 考题池子
     titleBarHeight: wx.getSystemInfoSync().statusBarHeight + 44, // 状态栏高度

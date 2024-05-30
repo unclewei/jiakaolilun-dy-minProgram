@@ -1,4 +1,3 @@
-
 import {
   likeSet,
 } from '../../utils/api'
@@ -50,17 +49,16 @@ Component({
    */
   methods: {
     onVote() {
-      if (!this.data.isLike) {
-        this.setData({
-          isLike: true,
-          num: this.data.num + 1,
-        });
-      } else {
-        this.setData({
-          isLike: false,
-          num: this.data.num - 1,
-        });
+      const result = this.data.isLike ? {
+        isLike: false,
+        num: this.data.num - 1
+      } : {
+        isLike: true,
+        num: this.data.num + 1
       }
+      this.setData({
+        ...result
+      });
       likeSet({
         type: this.data.type,
         itemId: this.data.itemId,

@@ -1,15 +1,61 @@
-<div wx:if="{{!(isNowWrong || isSeeMode || (wrongHistory && wrongHistory.subjectId) || rightHistory || isConfirm)}}" />
-<div class='init' wx:else>
-  <div class='answer'>
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<view wx:if="{{!(isNowWrong || isSeeMode || (wrongHistory && wrongHistory.subjectId) || rightHistory || isConfirm)}}" />
+<view class='init' wx:else>
+  <view class='answer'>
     <span class='text'>答案 {{answer}}</span>
-  </div>
-  <div class='dec'>
-    <span class='type'>试题解析：</span>
-    {{subjectItem.explain}}
-  </div>
-  <div class='dec' wx:if="{{subjectItem.skillContent}}">
-    <span class='type mang'>盲选技巧：</span>
-    <HighLightContent keys='{{subjectItem.skillKeys}}'content="{{subjectItem.skillContent}}" />
-  </div>
-  
-</div>
+  </view>
+  <view class='skill' wx:if="{{subjectItem.skillContent}}">
+    <view class='title'>
+      <span class='skillTitle'>
+        <image src='../../images/icon/light.png' class='skillIcon' mode="widthFix" />
+        盲选技巧
+      </span>
+    </view>
+    <HighLightContent keys='{{subjectItem.skillKeys}}' content="{{subjectItem.skillContent}}" />
+  </view>
+
+  <view class='skillNormal' wx:if="{{subjectItem.normalSkillContent}}">
+    <view class='title' wx:if="{{subjectItem.skillContent}}">
+      <span class='skillTitle'>
+        <image src='../../images/icon/hot.png' class='skillIcon' mode="widthFix" />
+        做题技巧
+      </span>
+    </view>
+    <view>
+      <view class='tips'>{{subjectItem.normalSkillContent}}</view>
+      <view class='normalExplain'>{{subjectItem.normalExplain}}</view>
+    </view>
+  </view>
+
+  <view class='dec' wx:if="{{subjectItem.explain}}">
+    <view class='title'>
+      <span class='stick' />
+      <span class='titleName'>试题详解</span>
+      <span class='stick' />
+    </view>
+    <view class='decContent'>{{utils.explainInit(subjectItem)}}</view>
+    <view class='difficulty'>
+      考点:
+      <span class='point'>
+        {{subjectItem.tag}}
+      </span>
+    </view>
+    <view class='difficulty'>
+      难度:
+      <image class="icon" src='../../images/icon/collect.png' wx:for=" {{utils.startInit(subjectItem.difficultyLevel)}}" mode="widthFix" />
+    </view>
+  </view>
+
+  <view class='dec' wx:if="{{subjectItem.explain}}">
+    <view class='title'>
+      <span class='stick' />
+      <span class='titleName'>考友互动</span>
+      <span class='stick' />
+    </view>
+    <view class='reply'>
+      <SubjectComment subjectId='{{subjectItem._id}}' type='subjectComment' />
+    </view>
+  </view>
+
+</view>

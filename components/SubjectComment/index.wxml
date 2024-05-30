@@ -1,0 +1,20 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<view class='init'>
+  <view wx:for="{{commentList}}" wx:for-item="i" wx:key='_id' class='item'>
+    <view class='userInfo'>
+      <span class='userName'>
+        <Avatar userInfo='{{i.user}}' className='avatarSmall' />
+        <span class='name'>
+          <view>{{utils.nameHide(i.user.nickName)}}</view>
+          <image src='../../images/icon/nanti.png' class='icon' mode="widthFix" />
+        </span>
+      </span>
+      <Like itemId='{{i._id}}' type='subjectComment' likeCount='{{i.vote}}' defaultIsLike='{{i.isVoted}}' />
+    </view>
+    <view class='content'>{{utils.commentInit(i.content)}}</view>
+  </view>
+  <view class='loadMore'>
+    {{loading ? '互动加载中' : '暂无更多互动' }}
+  </view>
+</view>

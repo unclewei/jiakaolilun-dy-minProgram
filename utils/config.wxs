@@ -196,3 +196,30 @@ module.exports.getImgNmae = function (imgName) {
   var arr = imgName.split('/');
   return arr[arr.length - 1];
 }
+
+// 解析
+module.exports.explainInit = function (subject) {
+  var explain = subject.aiExplain || subject.explain;
+  if (!explain) return null;
+  explain = explain.split('<\/p>').join('');
+  explain = explain.split('<p>').join('');
+  explain = explain.split('您').join('');
+  return explain;
+};
+// 考友解析
+module.exports.commentInit = function (explainOut) {
+  var explain = explainOut;
+  if (!explain) return null;
+  explain = explain.split('<\/p>').join('');
+  explain = explain.split('<p>').join('');
+  explain = explain.split('您').join('');
+  return explain;
+};
+// 难度
+module.exports.startInit = function (level) {
+  var arr = []
+  for (var i = 0; i < level; i++) {
+    arr.push(i);
+}
+  return arr
+};
