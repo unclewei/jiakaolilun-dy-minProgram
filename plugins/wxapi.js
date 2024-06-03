@@ -35,7 +35,8 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
         code: res.code,
         userInfo,
         isUpdate,
-        fromWho: wx.getStorageSync('fromWho') || undefined
+        fromWho: wx.getStorageSync('fromWho') || undefined,
+        source: wx.getStorageSync('source') || undefined
       }
       login(loginData).then(function (res) {
         console.log("come in");

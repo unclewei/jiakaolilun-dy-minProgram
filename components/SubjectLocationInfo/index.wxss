@@ -1,0 +1,101 @@
+/** @format */
+.wrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+.wrap .titleBox {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: #fff;
+  margin-bottom: 10px;
+  text-align: center;
+  box-sizing: border-box;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.titleBg{
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom:0;
+  width: 100%;
+  height: 100px;
+  width: 100%;
+  z-index: 1;
+}
+.wrap .titleBox .cityName {
+  position: relative;
+  font-size: 26px;
+  font-weight: 500;
+  z-index: 2;
+}
+.wrap .titleBox div {
+  position: relative;
+  margin-bottom: 10px;
+}
+.wrap input {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #cbcbcb;
+  font-size: 13px;
+  padding-left: 5px;
+}
+.wrap .content {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px 0;
+}
+.wrap .content .item {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+.wrap .content .item .num {
+  color: #4b9cff;
+  margin: 0 2px;
+}
+.wrap .content .item .tips {
+  color: #9197a3;
+  font-size: 13px;
+  margin-top: 6px;
+  font-weight: normal;
+}
+.wrap .content .nums {
+  width: 80%;
+  background: #f1fafe;
+  color: #0ca1d4;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 17px;
+  border-radius: 5px;
+}
+.wrap .content .nums .tips {
+  font-size: 12px;
+}
+.yes{
+  background-color: #55a9b6;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  width: 100%;
+  font-size: 18px;
+}

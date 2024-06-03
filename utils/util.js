@@ -280,3 +280,28 @@ export const autoChooseDisCount = ({ discountList, totalAmount, payItem }) => {
       return item.discountAmount > finalItem.discountAmount ? item : finalItem;
   }, null);
 };
+
+
+/*对象属性值-快速排序-降序
+ * @arr 数组对象
+ * @key 属性名
+ * Usage: quickSortObjDesc([{a:2},{a:1},{a:3}],'a'))
+ * Result:: [{"a":3},{"a":2},{"a":1}]
+ * */
+export const quickSortObjDesc = (arr, key) => {
+  if (!arr.length) {
+      return [];
+  }
+  let [pivot, ...rest] = arr;
+  return [
+      ...quickSortObjDesc(
+          rest.filter((x) => x[key] > pivot[key]),
+          key
+      ),
+      pivot,
+      ...quickSortObjDesc(
+          rest.filter((x) => x[key] <= pivot[key]),
+          key
+      ),
+  ];
+};

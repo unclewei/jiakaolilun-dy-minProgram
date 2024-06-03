@@ -26,51 +26,43 @@ Page({
     if (options.fromWho) {
       wx.setStorageSync('fromWho', options.fromWho)
     }
+    if (options.source) {
+      wx.setStorageSync('source', options.source)
+    }
     // this.chosenAndWrong()
     this.setBodyHeight()
     autoLogin((res) => {
-      this.chosenAndWrong();
       if (res == 'fail') {
         return
       }
       // 请求成功，提示信息
-      this.setData({
-        isLogin: true,
-        userConfig: getApp().globalData.userConfig,
-        userInfo: getApp().globalData.userInfo,
-        isCoach: getApp().globalData.userInfo.userType === 2
-      })
+      this.onLoginSuccess()
     })
   },
   onShow() {
     this.setData({
       isLogin: !!getApp().globalData.userInfo._id,
       userInfo: getApp().globalData.userInfo,
+      userConfig: getApp().globalData.userConfig,
       isCoach: getApp().globalData.userInfo.userType === 2
     })
     this.chosenAndWrong()
-  },
-
-  setBodyHeight() {
-    const that = this
-    const query = wx.createSelectorQuery()
-    query.select('#mainContent').boundingClientRect()
-    query.exec(function (res) {
-      console.log('res[0].height', res[0].height);
-      that.setData({
-        mainHeight: res[0].height
-      })
-    })
   },
 
   /**  登录成功*/
   onLoginSuccess() {
+    this.chosenAndWrong()
     this.setData({
       isLogin: true,
       userInfo: getApp().globalData.userInfo,
+      userConfig: getApp().globalData.userConfig,
       isCoach: getApp().globalData.userInfo.userType === 2
     })
-    this.chosenAndWrong()
+    if(getApp().globalData.userInfo.userType === 1&& getApp().globalData.userConfig.isInit){
+      wx.navigateTo({
+        url: '/pages/UserConfigInit/index',
+      })
+    }
   },
 
   chosenAndWrong() {
@@ -186,6 +178,19 @@ Page({
     let that = this
     that.setData({
       userConfig: getApp().globalData.userConfig
+    })
+  },
+
+
+  setBodyHeight() {
+    const that = this
+    const query = wx.createSelectorQuery()
+    query.select('#mainContent').boundingClientRect()
+    query.exec(function (res) {
+      console.log('res[0].height', res[0].height);
+      that.setData({
+        mainHeight: res[0].height
+      })
     })
   },
 

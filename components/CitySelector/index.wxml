@@ -50,3 +50,6 @@
 
 <!-- 登录 -->
 <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
+
+<!-- 新题目弹窗 -->
+<SubjectLocationInfo id="SubjectLocationInfo"  tick='{{subjectLocationTick}}' UserConfig='{{userConfig}}' locationData='{{locationData}}'/>

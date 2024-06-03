@@ -20,7 +20,7 @@ Component({
 
   observers: {
     'step': function (step) {
-      const itemData = this?.data?.totalItem?.filter(p => p.step.includes(Number.parseInt(step))) || []
+      const itemData = this?.data?.totalItem?.filter(p => !p.isCoachHide && p.step.includes(Number.parseInt(step))) || []
       this.setData({
         itemData,
       })
@@ -83,7 +83,7 @@ Component({
           }
         })
         console.log('resData', resData);
-        const itemData = resData.filter(p => p.step.includes(Number.parseInt(this.data.step)))
+        const itemData = resData.filter(p => !p.isCoachHide && p.step.includes(Number.parseInt(this.data.step)))
         console.log('itemData', itemData);
         this.setData({
           totalItem: resData,

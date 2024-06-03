@@ -1,0 +1,26 @@
+<baseModal id="baseModal" showImage='{{false}}'>
+  <div class='wrap'>
+    <div class='titleBox'>
+      <image class="titleBg" src="../../images/banner.png" mode="aspectFit" />
+      <div class='cityName' style="font-size: 20px;">题库切换至</div>
+      <div class='cityName'>{{cityItem.cityName}}</div>
+    </div>
+    <div class='content'>
+      <div class='item' wx:if="{{data.ke1}}">
+        <span>科目一<span class='num'>{{data.ke1.subjectCount}}</span>题</span>
+        <view class='tips' wx:if="{{data.ke1.combinePool}}">{{combinePoolOneText}}</view>
+        <view class='tips' wx:else>
+          全国题{{data.ke1.subjectCount}}题
+        </view>
+      </div>
+      <div class='item' wx:if="{{data.ke4}}">
+        <span>科目四<span class='num'>{{data.ke4.subjectCount}}</span>题</span>
+        <view class='tips' wx:if="{{data.ke4.combinePool}}">{{combinePoolFourText}}</view>
+        <view class='tips' wx:else>
+          全国题{{data.ke4.subjectCount}}题
+        </view>
+      </div>
+    </div>
+    <view class="yes" bindtap="hideModal">确 定</view>
+  </div>
+</baseModal>

@@ -1,0 +1,28 @@
+<view class='init'>
+  <view class='header'>
+    <image class='headerIcom' src="../../images/banner.png" mode="widthFix" />
+    <view class='title1'>请选择你要考试的题库类型</view>
+    <view class='title2'>所有题目均已更新至2024年最新版</view>
+  </view>
+  <view class='wrap'>
+    <view class='title'>学车类型</view>
+    <view class='itemWrap'>
+      <view wx:for="{{carTypes}}" wx:key="key" wx:for-item="i" class='item {{carItem && i.key === carItem.key ? "itemSelect":""}}' bind:tap="onCardTypeChange" data-item='{{i}}'>
+        <image class='itemIcon' src="{{i.img}}" mode="widthFix" />
+        <span class='name'>{{i.name}}</span>
+        <span class='name2'>{{i.name2}}</span>
+      </view>
+    </view>
+  </view>
+  <view class='subjectWrap'>
+    <view class='title'>学车阶段</view>
+    <view class='itemWrap'>
+      <view wx:for="{{subjectSteps}}" wx:key='name' wx:for-item="i" class='item {{stepItem && i.key == stepItem.key  && "itemSelect"}}' bind:tap="onStepChange" data-item='{{i}}'>
+        {{i.name}}
+      </view>
+    </view>
+  </view>
+  <view class='confirm' bind:tap="onConfirm">
+    确定
+  </view>
+</view>

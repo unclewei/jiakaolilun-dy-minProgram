@@ -1,0 +1,63 @@
+<baseModal id="baseModal"  >
+  <div class='doalog' wx:if="{{isCoach}}">
+                        <div class='not'>教练您好</div>
+                        <div class='description'>你可申请试用权限，继续体验剩余题目！</div>
+                    </div>
+                    <div class='doalog' wx:else>
+                    <image class="close" src="../../icon/wrong.ong" bind:tap="onClose" mode="aspectFit" />
+                    <div class='not'>
+                        您还未开通<span class='highLight'>科{{step == 1 ? '一' : '四'}}会员</span>
+                    </div>
+                    <div class='content'>
+                        <div class='selector'>
+                                    <span
+                                    wx:for="{{itemData}}"
+                                    wx:for-item="i"
+                                        wx:key="_id"
+                                        class='notActive {{selectItem._id === i._id ? "isSelected":""}}'
+                                        bind:tap="onSelect"
+                                        data-item='{{i}}'
+                                        
+                                    >
+                                        {{i.name}} {{i.price}}元
+                                    </span>
+                        </div>
+                        <div class='benefit'>
+                            <div
+                                class='title'
+                                bind:tap="toIncPage"
+                            >
+                                点击查看更多会员权益>>
+                            </div>
+                            <div class='benifyBox'>
+                                    <div
+                                        wx:for="{{benifyList}}"
+                                        wx:key="text"
+                                        class='benifyItem {{item.mustRefund && !selectItem.refund ? "disabled":""}}'
+                                    >
+                                        <div class='benifyImageBox'>
+                                            <image  class='benifyImage' src={item.image} mode="aspectFit" />
+                                        </div>
+                                        <div class='benifyText'>{{item.text}}</div>
+                                    </div>
+                            </div>
+                        </div>
+                    </div>
+                        <div class='couponWrap' wx:if="{{selectFitCoupon}}">
+                            <span  class='price'>原价￥{{selectItem.price}}</span>
+                            <span class='coupon'>
+                                <img src={rightIcon} />
+                                使用{{selectFitCoupon.name}}
+                            </span>
+                        </div>
+                    <div class='footer'>
+                            <span class='share' bindtap="gotoShop">
+                                 <span wx:if="{{selectFitCoupon}}">券后</span>￥{{selectPrice}}/年 立即开通
+                            </span>
+                    </div>
+                   <div  wx:if='{{selectItem && selectItem._id }}' class='bag'>开通后有效期{{selectItem.durText}}，{{selectItem.refund?'一次不合格无条件补偿！':'考不过无补偿'}}</div>
+                </div>
+</baseModal>
+
+<!-- 购买弹窗 -->
+<ShoppingDrawer id="ShoppingDrawer" selectItem="{{selectItem}}" bindOnSuccess='buySuccess' />

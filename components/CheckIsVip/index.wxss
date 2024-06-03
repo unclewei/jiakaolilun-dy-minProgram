@@ -1,0 +1,140 @@
+/** @format */
+.doalog {
+  position: relative;
+  padding: 15px;
+}
+.doalog .close {
+  width: 20px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+.not {
+  text-align: center;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  font-weight: 600;
+}
+.content {
+  border: 1px solid #fde3b4;
+  border-radius: 3px;
+  padding-top: 0;
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+}
+.content .selector {
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 13px;
+}
+.content .selector .notActive {
+  width: 50%;
+  background-color: #fde3b4;
+  color: #9d690d;
+  padding: 10px 5px;
+}
+.content .selector .active {
+  width: 50%;
+  background-color: #fff !important;
+  color: black !important;
+  padding: 10px 5px;
+}
+.content .benefit {
+  background-color: #fff;
+  color: #404040;
+}
+.content .benefit .title {
+  color: #404040;
+  margin: 20px 0;
+  font-weight: 600;
+}
+.content .benefit .benifyBox {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.content .benefit .benifyBox .disabled {
+  opacity: 0.25;
+}
+.content .benefit .benifyBox .benifyItem {
+  position: relative;
+  width: 25%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  padding: 0 6px;
+  margin-bottom: 0;
+}
+.content .benefit .benifyBox .benifyItem .benifyImageBox {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin-bottom: 10px;
+  overflow: hidden;
+  background: #fbf5eb;
+}
+.content .benefit .benifyBox .benifyItem .benifyImageBox .benifyImage {
+  width: 60%;
+  height: 60px;
+  object-fit: contain;
+}
+.content .benefit .benifyBox .benifyItem .benifyText {
+  font-weight: 600;
+  font-size: 12px;
+}
+.couponWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+.couponWrap .price {
+  color: #0b93ff;
+}
+.couponWrap .coupon {
+  font-size: 12px;
+  text-align: center;
+  color: #333;
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+  margin-left: 5px;
+}
+.couponWrap .coupon img {
+  width: 13px;
+  margin-right: 2px;
+}
+.footer {
+  width: 100%;
+  padding-bottom: 10px;
+}
+.footer .share {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  border-radius: 40px;
+  background: linear-gradient(to right, #fff4e2, #e1cb96);
+  color: #3a1d19;
+  font-weight: 600;
+  font-size: 16px;
+}
+.bag {
+  font-size: 12px;
+  margin-top: 15px;
+  color: #404040;
+}

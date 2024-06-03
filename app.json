@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/UserConfigInit/index",
     "pages/UserInfo/index",
     "pages/SubjectMiddlePage/index",
     "pages/LearnPlanPage/index",

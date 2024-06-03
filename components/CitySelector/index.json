@@ -2,6 +2,7 @@
   "component": true,
   "usingComponents": {
     "baseModal": "../baseModal/baseModal",
+    "SubjectLocationInfo": "../SubjectLocationInfo/index",
     "LoginModal":"../LoginModal/index"
   }
 }

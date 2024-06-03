@@ -331,3 +331,16 @@ export const subjectCommentList = (data) => {
     data,
   })
 }
+
+/**
+ * 地域下的顺序题
+ * @param params
+ * @returns {*}
+ */
+export const locationSequence = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/pool/locationSequence`,
+    method: 'post',
+    data,
+  })
+}
