@@ -1,0 +1,11 @@
+{
+  "component": true,
+  "usingComponents": {
+    "LoginModal": "../components/LoginModal",
+    "UserInfoSupply": "../components/UserInfoSupply",
+    "DanMu": "../components/DanMu",
+    "CountDown": "../components/CountDown",
+    "ShoppingDrawer": "../components/ShoppingDrawer"
+
+  }
+}

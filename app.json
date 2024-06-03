@@ -10,6 +10,7 @@
     "pages/SubjectQuestionPage/index",
     "pages/orderList/index",
     "pages/SubjectIncPage/index",
+    "pages/SubjectIncTab/index",
     "pages/Exam/index"
   ],
   "tabBar": {
@@ -23,7 +24,7 @@
         "selectedIconPath": "./images/exam.png"
       },
       {
-        "pagePath": "pages/SubjectIncPage/index",
+        "pagePath": "pages/SubjectIncTab/index",
         "text": "VIP",
         "iconPath": "./images/vip2.png",
         "selectedIconPath": "./images/vip2.png"

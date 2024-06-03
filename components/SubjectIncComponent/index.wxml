@@ -1,0 +1,135 @@
+<view class='Content'>
+  <DanMu VipList='{{itemData}}' />
+  <view>
+    <view class='headerBox'>
+      <image class="headerBoxImg" src="../../images/inc/vipBg.png" mode="widthFix" />
+      <view class='header'>
+        <view class='bigTitle'>VIP高效学习</view>
+      </view>
+      <view class='stepText' bindtap='onStepChange'>
+        <view class='stepTitle'>科目{{step == 1 ? '一' : '四'}}VIP</view>
+        <span class='cc'>可点击切换至科目{{step == 1 ? '四' : '一'}}</span>
+      </view>
+    </view>
+    <view class='bodyBox'>
+      <view class='menu'>
+        <view class='menuContent' wx:for="{{itemData}}" wx:key='id' bindtap="onSelect" data-item="{{item}}">
+          <view class="menuItem {{selectItem._id === item._id && 'menuItemActive'}}">
+            <view class="menuItemContent {{selectItem._id === item._id && 'menuItemContentActive'}}">
+              {{item.name}}
+              <view class='price'>
+                <span class='priceNum'>￥{{item.fitPrice}}</span>
+                <span>/{{item.durText}}</span>
+              </view>
+            </view>
+            <view wx:if="{{item.isRecommend}}" class="moreUser">立省{{item.discountPrice}}元</view>
+            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" wx:if="{{item.refund}}">
+              考不过补偿{{item.refund}}元
+            </view>
+            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" wx:else>
+              考不过无补偿
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='titleBox'>
+        <image class='titleBar' src='../../images/inc/title-bar.png' mode="widthFix" alt="" />
+        <view class='titleText'>会员权益</view>
+        <image class='titleBar' style='transform: rotate(180deg)' src='../../images/inc/title-Bar.png' mode="widthFix" />
+      </view>
+
+      <view class='rightBox'>
+        <view class='rightItems'>
+          <view class='rightItem'>权益</view>
+          <view class='rightItemCenter'>普通会员</view>
+          <view class='rightItemCenter'>尊享会员</view>
+        </view>
+        <view class='rightItems' wx:for="{{rightsList}}" wx:key="name">
+          <view class='rightItem'>{{item.name}}</view>
+          <view class='rightItemCenter'>
+            <view class="rightUpText" wx:if="{{item.isText}}">{{item.normalVipText}}</view>
+            <image class="{{item.normalVipClass}}" wx:else src="{{item.normalVipImg}}" mode="widthFix" />
+          </view>
+          <view class='rightItemCenter'>
+            <view class="rightUpText" wx:if="{{item.isText}}">{{item.upVipText}}</view>
+            <image class="{{item.upVipClass}}" wx:else src="{{item.upVipImg}}" mode="widthFix" />
+          </view>
+        </view>
+      </view>
+
+      <view class='titleBox'>
+        <image class='titleBar' src='../../images/inc/title-bar.png' mode="widthFix" alt="" />
+        <view class='titleText'>为什么选我们</view>
+        <image class='titleBar' style='transform: rotate(180deg)' src='../../images/inc/title-Bar.png' mode="widthFix" />
+      </view>
+
+      <view class='resonBox'>
+        <view class="reasonItem {{item.type==='tranditional' && 'reasonItemTrandtional'}} {{item.type==='al' && 'reasonItemAl'}} {{item.isFinal && 'reasonItemFinal'}}" wx:for="{{reasonList}}" wx:key="text">
+          <image class='reasonIcon' src='{{item.icon}}' mode="aspectFit" />
+          <view class='reasonText'>{{item.text}}</view>
+        </view>
+      </view>
+
+      <view class='titleBox' wx:if="{{!!selectItem.refund}}">
+        <image class='titleBar' src='../../images/inc/title-bar.png' mode="widthFix" alt="" />
+        <view class='titleText'>四步轻松补偿</view>
+        <image class='titleBar' style='transform: rotate(180deg)' src='../../images/inc/title-Bar.png' mode="widthFix" />
+      </view>
+
+      <view class='refundStep' wx:if="{{!!selectItem.refund}}">
+        <view class='data'>
+          <view class='item'>
+            <view class='content'>
+              <view class='title'>第一步、购买尊享VIP</view>
+              <p>只有尊享VIP才可享受不过补偿权益！</p>
+            </view>
+          </view>
+          <view class='item'>
+            <view class='content'>
+              <view class='title'>第二步、完善个人资料</view>
+              <p class='longP'>注意：最晚在正式考试前24时完善个人资料，否则无法补偿！</p>
+              <p wx:if="{{isUserInfoOK}}">
+              <p class='info'>姓名：{userInfo.name}</p>
+              <p class='info'>手机：{userInfo.phoneNum}</p>
+              </p>
+            </view>
+            <UserInfoSupply disabled='{{isUserInfoOK}}'>
+              <span class="btn {{isUserInfoOK && 'success'}}">
+                {{isUserInfoOK ? '已完善' : '去完善'}}
+              </span>
+            </UserInfoSupply>
+          </view>
+          <view class='item'>
+            <view class='content'>
+              <view class='title'>第三步、联系文明一点通客服</view>
+              <p class='longP'>考试不通过，马上联系文明一点通客服！</p>
+            </view>
+            <button class='cleanButton btn' open-type="contact">去联系</button>
+          </view>
+          <view class='item'>
+            <view class='content'>
+              <view class='title'>第四步、客服确认后发放补偿</view>
+              <p class='longP'>客服确认用户身份信息及考试分数后，发放补偿至原支付路径。</p>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class='buy'>
+      <CountDown wx:if="{{!selectItem.isPaidDone}}" discountPrice='{{selectItem.discountPrice}}' />
+      <view class="payment">
+        <view class='buyButton'>
+          <span wx:if="{{selectItem.isPaidDone}}">您已开通该服务</span>
+          <span wx:else>￥<span class='priceNum'>{{selectItem.price}}</span>/{{selectItem.durText}}</span>
+          <view class='insideBtn insideBtnPaidDone' wx:if="{{selectItem.isPaidDone || insideBtnPaidDone}}" bindtap="gotoSubjectPage">立即做题</view>
+          <view class='insideBtn' bindtap="gotoShop" wx:else>立即开通</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+
+
+<!-- 购买弹窗 -->
+<ShoppingDrawer id="ShoppingDrawer" selectItem="{{selectItem}}" bindOnSuccess='buySuccess' />
