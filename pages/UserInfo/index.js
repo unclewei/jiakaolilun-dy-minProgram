@@ -62,6 +62,11 @@ Page({
       frontColor: '#ffffff',
     })
   },
+  onShow(){
+    wx.setTabBarStyle({
+      backgroundColor: '#fff',
+    })
+  },
   onStepUpdate() {
     const newStep = wx.getStorageSync("step") || "1"
     this.setData({

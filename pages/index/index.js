@@ -40,6 +40,9 @@ Page({
     })
   },
   onShow() {
+    wx.setTabBarStyle({
+      backgroundColor: '#fff',
+    })
     this.setData({
       isLogin: !!getApp().globalData.userInfo._id,
       userInfo: getApp().globalData.userInfo,

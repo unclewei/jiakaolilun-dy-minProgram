@@ -36,13 +36,15 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const stepStorage = wx.getStorageSync('step')
+  
     this.setData({
-      step: options.step,
+      step: options.step || stepStorage,
       User: getApp().globalData.userInfo,
       isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
     })
     this.itemDataGet({
-      step: Number.parseInt(options.step)
+      step: Number.parseInt(options.step || stepStorage)
     })
   },
 
@@ -57,7 +59,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    wx.setTabBarStyle({
+      backgroundColor: '#171619',
+    })
   },
 
   /**
@@ -103,17 +107,27 @@ Page({
   },
 
   onStepChange() {
+    if (!getApp().globalData.hasLogin) {
+      this.selectComponent("#LoginModal").showModal();
+      return;
+    }
     const itemData = this.data.totalItem.filter(p => p.step.includes(Number.parseInt(this.data.step)))
     const paidItem = itemData.find(p => p.isPaidDone)
     const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
+    const newStep = this.data.step == 1 ? 4 : 1
+    wx.setStorageSync('step', newStep)
     this.setData({
-      step: this.data.step == 1 ? 4 : 1,
+      step: newStep,
       itemData,
       selectItem: paidItem || isDefaultSelectedItem || itemData[0] || {}
     })
   },
 
   onSelect(e) {
+    if (!getApp().globalData.hasLogin) {
+      this.selectComponent("#LoginModal").showModal();
+      return;
+    }
     const item = e.currentTarget.dataset.item
     this.setData({
       selectItem: item
@@ -137,6 +151,10 @@ Page({
   },
 
   gotoShop() {
+    if (!getApp().globalData.hasLogin) {
+      this.selectComponent("#LoginModal").showModal();
+      return;
+    }
     this.selectComponent("#ShoppingDrawer").showModal()
   },
 

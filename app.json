@@ -13,14 +13,20 @@
     "pages/Exam/index"
   ],
   "tabBar": {
-    "selectedColor": "#333333",
+    "selectedColor": "#54b63e",
     "color": "#aaaaaa",
     "list": [
       {
         "pagePath": "pages/index/index",
-        "text": "科一科四",
-        "iconPath": "./images/icon/book.png",
-        "selectedIconPath": "./images/icon/book.png"
+        "text": "考试",
+        "iconPath": "./images/exam.png",
+        "selectedIconPath": "./images/exam.png"
+      },
+      {
+        "pagePath": "pages/SubjectIncPage/index",
+        "text": "VIP",
+        "iconPath": "./images/vip2.png",
+        "selectedIconPath": "./images/vip2.png"
       },
       {
         "pagePath": "pages/UserInfo/index",

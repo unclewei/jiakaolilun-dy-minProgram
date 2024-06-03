@@ -3,6 +3,7 @@
   "navigationBarBackgroundColor": "#201e24",
   "navigationBarTextStyle": "white",
   "usingComponents": {
+    "LoginModal": "../../components/LoginModal",
     "UserInfoSupply": "../../components/UserInfoSupply",
     "DanMu": "../../components/DanMu",
     "CountDown": "../../components/CountDown",
