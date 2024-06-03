@@ -1,5 +1,9 @@
-import { updateUserConfig } from "../../plugins/wxapi";
-import { showToast } from "../../utils/util";
+import {
+  updateUserConfig
+} from "../../plugins/wxapi";
+import {
+  showToast
+} from "../../utils/util";
 
 Component({
   /**
@@ -49,6 +53,11 @@ Component({
       });
     },
     showModal() {
+      if (!getApp().globalData.hasLogin) {
+        this.selectComponent("#LoginModal").showModal()
+        return
+      }
+
       const userConfig = getApp().globalData.userConfig
       const locationData = getApp().globalData.locationData
       this.setData({
@@ -120,7 +129,7 @@ Component({
         updateUserConfig({
           provinceId: that.data.provinceId,
           cityId: that.data.cityId,
-        },(res)=>{
+        }, (res) => {
           wx.hideLoading()
           if (res == 'fail') {
             showToast('网络错误，稍后再试')
@@ -138,6 +147,15 @@ Component({
         })
       }
       that.hideModal()
+    },
+
+    /**  登录成功*/
+    onLoginSuccess() {
+      this.setData({
+        isLogin: true,
+        userInfo: getApp().globalData.userInfo,
+        isCoach: getApp().globalData.userInfo.userType === 2
+      })
     },
   },
 });

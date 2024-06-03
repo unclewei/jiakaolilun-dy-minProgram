@@ -17,3 +17,6 @@
     <image src='../../images/computer.jpg' mode="aspectFit" class='img' />
   </div>
 </div>
+
+<!-- 登录 -->
+<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />

@@ -1,11 +1,6 @@
 import {
-  poolData,
   isItemValid,
   getUserMoniPool,
-  subjectList,
-  userWrongSubjectRemove,
-  syncSubject,
-  subjectToUserPool
 } from '../../utils/api'
 
 Component({
@@ -60,7 +55,7 @@ Component({
     poolDataGet({
       step
     }) {
-      const that  = this
+      const that = this
       getUserMoniPool({
         step
       }).then((res) => {
@@ -102,6 +97,10 @@ Component({
     },
 
     onclick() {
+      if (!getApp().globalData.hasLogin) {
+        this.selectComponent("#LoginModal").showModal()
+        return
+      }
       if (!this.data.poolId) {
         wx.navigateTo({
           url: `/pages/SubjectIncPage/index`,
@@ -112,5 +111,18 @@ Component({
         url: `/pages/Exam/index?step=${this.data.step}&poolId=${this.data.poolId}`,
       })
     },
-  }
+  },
+
+  /**  登录成功*/
+  onLoginSuccess() {
+    this.setData({
+      isLogin: true,
+      userInfo: getApp().globalData.userInfo,
+      isCoach: getApp().globalData.userInfo.userType === 2
+    })
+    this.poolDataGet({
+      step: this.data.step
+    })
+  },
+
 })

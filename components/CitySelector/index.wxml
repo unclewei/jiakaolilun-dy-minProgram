@@ -46,3 +46,7 @@
     </view>
   </view>
 </view>
+
+
+<!-- 登录 -->
+<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />

@@ -21,7 +21,7 @@
         </view>
         <view class='vipBuy'>
           <view wx:if="{{!isPaidDone && !isCoach}}">高效学科{{step == 1 ? '一' : '四'}}</view>
-          <view class='button buyButton' data-item='incPage' bind:tap="gotoIncPage">
+          <view class='button buyButton'  bindtap="gotoPage" data-pooltype="incPage">
             <image src='../../images/right.png' class='doneIcon' wx:if="{{isPaidDone || isCoach}}" mode="aspectFit" />
             {{isCoach ? '已注册为一点通教练' : isPaidDone ? '你已开通会员' : '开通会员'}}
           </view>

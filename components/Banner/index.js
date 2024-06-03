@@ -26,7 +26,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    gotoInc(){
+    gotoInc() {
+      if (!getApp().globalData.hasLogin) {
+        this.selectComponent("#LoginModal").showModal()
+        return
+      }
       wx.navigateTo({
         url: `/pages/SubjectIncPage/index?step=${wx.getStorageSync('step') || '1'}`,
       })
@@ -55,6 +59,17 @@ Component({
           banners
         })
       })
-    }
+    },
+    /**  登录成功*/
+    onLoginSuccess() {
+      this.setData({
+        isLogin: true,
+        userInfo: getApp().globalData.userInfo,
+        isCoach: getApp().globalData.userInfo.userType === 2
+      })
+      this.poolDataGet({
+        step: this.data.step
+      })
+    },
   },
 });

@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
+    "LoginModal":"../LoginModal/index",
     "baseModal": "../baseModal/baseModal"
   }
 }

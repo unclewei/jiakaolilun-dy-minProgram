@@ -131,12 +131,6 @@ Page({
       data: getApp().globalData.userInfo.openId,
     });
   },
-  gotoIncPage() {
-    wx.navigateTo({
-      url: `/pages/SubjectIncPage/index`,
-    });
-  },
-
   gotoNP(e) {
     const item = e.currentTarget.dataset.item
     wx.navigateToMiniProgram({
