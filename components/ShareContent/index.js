@@ -60,35 +60,26 @@ Component({
      * 请求对应科目权益套餐
      */
     itemDataGet() {
-      wx.showLoading()
-      subjectItemList().then((res) => {
-        wx.hideLoading()
-        if (res.data.code !== 200) {
-          showNetWorkToast(res.data.msg)
-          return
+      const subjectItemList = getApp().globalData.subjectItemList
+      const resData = subjectItemList.map(p => {
+        let fitCoupon =
+          autoChooseDisCount({
+            discountList: [],
+            totalAmount: p.price,
+            payItem: p
+          });
+        let fitPrice = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.price);
+        let refund = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.refund);
+        return {
+          ...p,
+          fitPrice,
+          refund
         }
-        const resData = res.data.data.map(p => {
-          let fitCoupon =
-            autoChooseDisCount({
-              discountList: [],
-              totalAmount: p.price,
-              payItem: p
-            });
-          let fitPrice = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.price);
-          let refund = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.refund);
-          return {
-            ...p,
-            fitPrice,
-            refund
-          }
-        })
-        console.log('resData', resData);
-        const itemData = resData.filter(p => !p.isCoachHide && p.step.includes(Number.parseInt(this.data.step)))
-        console.log('itemData', itemData);
-        this.setData({
-          totalItem: resData,
-          itemData,
-        })
+      })
+      const itemData = resData.filter(p => !p.isCoachHide && p.step.includes(Number.parseInt(this.data.step)))
+      this.setData({
+        totalItem: resData,
+        itemData,
       })
     },
 

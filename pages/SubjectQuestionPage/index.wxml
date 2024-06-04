@@ -90,3 +90,5 @@
   </view>
 </view>
 <Colloct />
+
+<CheckIsVip poolData='{{poolData}}' poolId='{{poolId}}' isVipValid='{{isItemValid}}' step='{{step}}' currentIndex='{{currentIndex}}' bindOnBuySuccess='onBuySuccess'/>

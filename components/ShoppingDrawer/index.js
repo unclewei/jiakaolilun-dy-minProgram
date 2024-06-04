@@ -25,7 +25,6 @@ Component({
 
   methods: {
     showModal: function () {
-      console.log(31231);
       this.selectComponent("#baseDrawer").showModal();
     },
     hideModal: function () {

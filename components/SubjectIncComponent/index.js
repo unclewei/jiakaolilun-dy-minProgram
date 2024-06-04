@@ -1,8 +1,4 @@
 import {
-  subjectItemList,
-} from '../../utils/api'
-
-import {
   autoChooseDisCount,
   floatNumFormatted,
   showNetWorkToast,
@@ -62,39 +58,32 @@ Component({
     itemDataGet({
       step
     }) {
-      wx.showLoading()
-      subjectItemList().then((res) => {
-        wx.hideLoading()
-        if (res.data.code !== 200) {
-          showNetWorkToast(res.data.msg)
-          return
+      const subjectItemList = getApp().globalData.subjectItemList
+      const resData = subjectItemList.map(p => {
+        const isPaidDone = !!this.data.User.paidItems.find(payItem => payItem._id === p._id)
+        let fitCoupon = isPaidDone ?
+          undefined :
+          autoChooseDisCount({
+            discountList: [],
+            totalAmount: p.price,
+            payItem: p
+          });
+        let fitPrice = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.price);
+        let refund = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.refund);
+        return {
+          ...p,
+          isPaidDone,
+          fitPrice,
+          refund
         }
-        const resData = res.data.data.map(p => {
-          const isPaidDone = !!this.data.User.paidItems.find(payItem => payItem._id === p._id)
-          let fitCoupon = isPaidDone ?
-            undefined :
-            autoChooseDisCount({
-              discountList: [],
-              totalAmount: p.price,
-              payItem: p
-            });
-          let fitPrice = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.price);
-          let refund = floatNumFormatted(fitCoupon ? p.price - fitCoupon.discountAmount : p.refund);
-          return {
-            ...p,
-            isPaidDone,
-            fitPrice,
-            refund
-          }
-        })
-        const itemData = resData.filter(p => p.step.includes(step))
-        const paidItem = itemData.find(p => p.isPaidDone)
-        const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
-        this.setData({
-          totalItem: resData,
-          itemData,
-          selectItem: paidItem || isDefaultSelectedItem || itemData[0] || {}
-        })
+      })
+      const itemData = resData.filter(p => p.step.includes(Number.parseInt(step)))
+      const paidItem = itemData.find(p => p.isPaidDone)
+      const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
+      this.setData({
+        totalItem: resData,
+        itemData,
+        selectItem: paidItem || isDefaultSelectedItem || itemData[0] || {}
       })
     },
 

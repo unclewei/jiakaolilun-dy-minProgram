@@ -2,6 +2,7 @@
 .doalog {
   position: relative;
   padding: 15px;
+  padding-top: 0;
 }
 .doalog .close {
   width: 20px;
@@ -35,7 +36,7 @@
   width: 50%;
   background-color: #fde3b4;
   color: #9d690d;
-  padding: 10px 5px;
+  padding: 15px 5px;
 }
 .content .selector .active {
   width: 50%;
@@ -49,8 +50,10 @@
 }
 .content .benefit .title {
   color: #404040;
-  margin: 20px 0;
+  margin-top: 15px;
   font-weight: 600;
+  font-size: 14px;
+  text-align: center;
 }
 .content .benefit .benifyBox {
   position: relative;

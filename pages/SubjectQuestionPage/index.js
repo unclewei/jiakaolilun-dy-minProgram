@@ -47,6 +47,8 @@ Page({
     step: '1', // 科目几
     poolType: '', // 题库类型
     poolId: undefined, // 题库Id
+    isItemValid: false, // 题库购买状态
+    isForFree: false, // 是否免费
     isSeeMode: false, // 答题模式 | 背题模式
     poolData: {}, // 题库数据
     subjectData: {}, // 题目数据
@@ -114,6 +116,17 @@ Page({
     //按顺序请求题库数据-个人做题状态-题库内题目数据
     this.getPoolData();
   },
+  onShow() {
+    this.setData({
+      userInfo: getApp().globalData.userInfo,
+      isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2,
+    })
+  },
+  //购买成功
+  onBuySuccess() {
+    wx.showLoading()
+    this.getPoolData();
+  },
 
   /**
    * 获取题库数据
@@ -146,12 +159,17 @@ Page({
       })
       // 验证用户是购买 或者数据是否免费
       isItemValid({
-        step: resData.step
+        step: resData.step,
+        poolId: resData._id,
       }).then(validRes => {
         if (validRes.data.code !== 200) {
           showNetWorkToast(validRes.data.msg)
           return
         }
+        this.setData({
+          isItemValid: validRes.data.data,
+          isForFree: resData.isForFree
+        })
         if (validRes.data.data || resData.isForFree) {
           //获取用户做题状态
           that.userSubjectDataGet({
