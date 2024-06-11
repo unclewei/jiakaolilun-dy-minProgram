@@ -8,8 +8,6 @@ const NO_NEXT_PAGE = -2
 Component({
   observers: {
     'current': function (index) {
-      console.log('current', index);
-      console.log('list', this.data.list);
       let that = this
       let current = index % SWIPER_LENGTH
       let {
@@ -22,7 +20,7 @@ Component({
         return
       }
       // 如果change后还是之前的那一个item，直接return
-      if (current == swiperIndex && swiperList[swiperIndex].index == index) {
+      if (current == swiperIndex && swiperList[swiperIndex].currentIndex == index) {
         return
       }
       that.init(index)
@@ -52,11 +50,6 @@ Component({
     current: {
       type: Number,
       value: 0
-    },
-    // 值为0禁止切换动画
-    swiperDuration: {
-      type: String,
-      value: "250"
     },
     // 分页需要传此数据
     total: {
@@ -125,7 +118,6 @@ Component({
       }
       // 默认显示的index
       let current = defaulaIndex % SWIPER_LENGTH
-      console.log('that.getInitSwiperList(list, defaulaIndex)', that.getInitSwiperList(list, defaulaIndex));
       that.setData({
         swiperList: that.getInitSwiperList(list, defaulaIndex),
         swiperIndex: current,
@@ -184,13 +176,6 @@ Component({
       // 是正向衔接
       let isLoopPositive = current == START && lastIndex == END
 
-      // if ((current - lastIndex == 1 || isLoopPositive)&& currentItem != null) {
-      //   that.triggerEvent("OnNext")
-      // }
-      // if ((lastIndex - current == 1 || isLoopNegative) && currentItem != null) {
-
-      //   that.triggerEvent("OnLast")
-      // }
       this.cleanQuestionStatus()
       setTimeout(() => {
         if (current - lastIndex == 1 || isLoopPositive) {
@@ -234,7 +219,7 @@ Component({
 
       }, 100);
       if (currentItem == null) return
-      info.current = currentItem.index
+      info.current = currentItem.currentIndex
       that.triggerEvent("change", info)
       // 记录滑过来的位置，此值对于下一次滑动的计算很重要
       that.data.swiperIndex = current
@@ -255,7 +240,6 @@ Component({
       swiperList[current] = currentItem
       swiperList[that.getLastSwiperChangeIndex(current)] = that.getLastSwiperNeedItem(currentItem, list)
       swiperList[that.getNextSwiperChangeIndex(current)] = that.getNextSwiperNeedItem(currentItem, list)
-      console.log("初始化swiperList", swiperList)
       return swiperList;
     },
     /**
@@ -279,12 +263,12 @@ Component({
       let realIndex = list.findIndex(function (item) {
         return item.currentIndex == listNeedIndex
       })
-      if (realIndex == -1) return null
+      if (realIndex == -1) return {}
       let item = listNeedIndex == -1 ? null : list[realIndex]
       return item
     },
     /**
-     * 获取下一个要替换的list中的item
+     * 获取下一个要替换的list中的itemde
      */
     getNextSwiperNeedItem: function (currentItem, list) {
       if (currentItem == null) return null;
@@ -292,7 +276,7 @@ Component({
       let realIndex = list.findIndex(function (item) {
         return item.currentIndex == listNeedIndex
       })
-      if (realIndex == -1) return null
+      if (realIndex == -1) return {}
       let total = this.data.total != 0 ? this.data.total : list.length
       let item = listNeedIndex == total ? null : list[realIndex]
       return item

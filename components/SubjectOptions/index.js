@@ -62,13 +62,19 @@ Component({
   },
 
   observers: {
-    'optionContent,subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex,isShowNow,isSwipering': function (optionContent, subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex,isShowNow,isSwipering) {
+    'subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex,isShowNow,isSwipering': function ( subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex,isShowNow,isSwipering) {
       let answer = subjectItem?.answer?.toString() || '';
       answer = [...answer]
       answer = answer.map(i => Number(i));
       let isRightAnswer = answer.includes(answerNum); //这个选项是对的
       let isMutType = subjectItem.type === 3; //是否为多选题
       const isOptionSelected = optionIndex.includes(answerNum); //是否选中
+      if (isRightAnswer && isSeeMode) {
+        //历史做对、背题模式都显示正确的答案
+        return this.opStyleInit({
+          type: 'right'
+        })
+      }
       if(!isShowNow){
         return this.opStyleInit({
           type: 'default'

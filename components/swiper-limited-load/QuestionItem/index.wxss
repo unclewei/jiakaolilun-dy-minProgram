@@ -92,8 +92,7 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  position: fixed;
-  bottom: 50px;
+  margin-top: 30rpx;
 }
 .disableBtn{
   opacity: 0.7;

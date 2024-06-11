@@ -44,13 +44,34 @@ Component({
       type: Boolean,
       value: false,
     },
-    isSwipering:{
-      type:Boolean,
-      value:false,
+    isSwipering: {
+      type: Boolean,
+      value: false,
     },
   },
 
   observers: {
+
+    'isNowWrong,isSeeMode,wrongHistory,rightHistory,isConfirm,isShowNow,isSwipering': function (isNowWrong, isSeeMode, wrongHistory, rightHistory, isConfirm, isShowNow, isSwipering) {
+      if (isSeeMode) { // 背题模式，最高优先级
+        this.setData({
+          show: true
+        })
+        return
+      }
+      if (!isShowNow || isSwipering) { // 不是本题的数据，或者滑动中，先不展示
+        this.setData({
+          show: false
+        })
+        return
+      }
+      // 其他情况
+      if (isNowWrong || wrongHistory?.subjectId || rightHistory || isConfirm) {
+        this.setData({
+          show: true
+        })
+      }
+    },
     'subjectItem': function (subjectItem) {
       let answerNum = subjectItem?.answer?.toString() || '';
       let answer = '';
@@ -76,6 +97,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+    show: false,
     answer: '',
   },
 

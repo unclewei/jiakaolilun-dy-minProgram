@@ -65,8 +65,6 @@ Page({
     wrongHistory: {}, // 错误历史
     requestPoolObj: {}, // 请求的数据池子对象
 
-
-    swiperDuration: "250",
   },
 
   /**
