@@ -116,7 +116,15 @@
       </view>
     </view>
 
-    <view class='buy'>
+    <view wx:if="{{isApproval}}" class='buy' >
+      <view class="payment">
+        <view class='buyButton'>
+          <span>由于相关规范，iOS功能暂不可用</span>
+        </view>
+      </view>
+    </view>
+    
+    <view class='buy' wx:else="">
       <CountDown wx:if="{{!selectItem.isPaidDone}}" discountPrice='{{selectItem.discountPrice}}' />
       <view class="payment">
         <view class='buyButton'>

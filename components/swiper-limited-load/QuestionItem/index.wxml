@@ -1,0 +1,20 @@
+<wxs src="../../../utils/config.wxs" module="utils"></wxs>
+
+<view class='questionItem'>
+  <view class='question'>
+    <span class='type'>{{item.typeStr}}</span>
+    {{item.question}}
+  </view>
+  <SubjectAudio subjectItem='{{item}}' />
+  <view class='imgWrap' wx:if="{{item.imgName}}">
+    <image class='img' src="{{urlPrefix}}{{stepFolder}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
+  </view>
+  <view class='options'>
+    <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' />
+  </view>
+  <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' />
+
+  <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+    确定
+  </view>
+</view>

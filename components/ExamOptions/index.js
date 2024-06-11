@@ -56,7 +56,7 @@ Component({
   observers: {
     'optionContent,subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex': function (optionContent, subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex) {
      console.log('subjectItem',subjectItem);
-      let answer = subjectItem.answer.toString();
+      let answer = subjectItem?.answer?.toString() || '';
       answer = [...answer]
       answer = answer.map(i => Number(i));
       let isRightAnswer = answer.includes(answerNum); //这个选项是对的

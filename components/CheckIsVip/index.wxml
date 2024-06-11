@@ -30,11 +30,14 @@
     <view class='couponWrap' wx:if="{{selectFitCoupon}}">
       <span class='price'>原价￥{{selectItem.price}}</span>
       <span class='coupon'>
-      <image src='../../images/right.png' mode="aspectFit" class='icon' />
+        <image src='../../images/right.png' mode="aspectFit" class='icon' />
         使用{{selectFitCoupon.name}}
       </span>
     </view>
-    <view class='footer'>
+    <view class='footer' wx:if="{{isApproval}}">
+      <span class='share'>由于相关规范，iOS功能暂不可用</span>
+    </view>
+    <view class='footer' wx:else>
       <span class='share' bindtap="gotoShop">
         <span wx:if="{{selectFitCoupon}}">券后</span>￥{{selectItem.price}}/年 立即开通
       </span>

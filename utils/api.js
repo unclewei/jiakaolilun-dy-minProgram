@@ -13,6 +13,14 @@ export const login = (data) => {
     data,
   })
 }
+// 获取版本信息
+export const getVersion = (data) => {
+  return xapi.request({
+    method: 'post',
+    url: `${baseApi}/version/compareVersion`,
+    data
+  })
+}
 
 //获取用户信息
 export const userInfo = () => {

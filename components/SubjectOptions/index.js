@@ -43,6 +43,10 @@ Component({
       type: Boolean,
       value: false,
     },
+    isShowNow: {
+      type: Boolean,
+      value: false,
+    },
     answerNum: {
       type: Number,
       value: undefined,
@@ -51,16 +55,30 @@ Component({
       type: Array,
       value: [],
     },
+    isSwipering:{
+      type:Boolean,
+      value:false,
+    },
   },
 
   observers: {
-    'optionContent,subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex': function (optionContent, subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex) {
-      let answer = subjectItem.answer.toString();
+    'optionContent,subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex,isShowNow,isSwipering': function (optionContent, subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex,isShowNow,isSwipering) {
+      let answer = subjectItem?.answer?.toString() || '';
       answer = [...answer]
       answer = answer.map(i => Number(i));
       let isRightAnswer = answer.includes(answerNum); //这个选项是对的
       let isMutType = subjectItem.type === 3; //是否为多选题
       const isOptionSelected = optionIndex.includes(answerNum); //是否选中
+      if(!isShowNow){
+        return this.opStyleInit({
+          type: 'default'
+        })
+      }
+      if(isSwipering){
+        return this.opStyleInit({
+          type: 'default'
+        }) 
+      }
       //渲染做错过的题的选项
       if (wrongHistory && wrongHistory.subjectId) {
         let isUseAnswerIncludes = wrongHistory.options.includes(answerNum); //当时选择的答案是否包含这个选项

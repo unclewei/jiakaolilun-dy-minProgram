@@ -1,0 +1,14 @@
+{
+  "component": true,
+  "usingComponents": {
+    "Restart": "../../../components/Restart",
+    "SubjectOptions": "../../../components/SubjectOptions",
+    "AnswerAndExplain": "../../../components/AnswerAndExplain",
+    "Finish": "../../../components/Finish",
+    "Colloct": "../../../components/Colloct",
+    "SubjectAudio": "../../../components/SubjectAudio",
+    "CheckIsVip": "../../../components/CheckIsVip",
+    "VisSwiper": "../../../components/swiper-limited-load",
+    "SubjectCountdown": "../../../components/SubjectCountdown"
+  }
+}

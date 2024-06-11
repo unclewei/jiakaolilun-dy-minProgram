@@ -64,6 +64,9 @@ Page({
     rightHistory: false, // 正确历史;
     wrongHistory: {}, // 错误历史
     requestPoolObj: {}, // 请求的数据池子对象
+
+
+    swiperDuration: "250",
   },
 
   /**
@@ -87,6 +90,7 @@ Page({
       step,
       poolId,
       from,
+      swiperHeight: wx.getSystemInfoSync().windowHeight,
       userSubjectData: userSubjectJson, // 做题状态
       urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
       stepFolder: step == 1 ? 'subject/one/' : 'subject/four/',
@@ -636,9 +640,10 @@ Page({
    * */
   loadMore({
     currentIndex,
-    isNext = false
+    isNext = false,
+    isSelectMode = false
   }) {
-    if (this.data.isSelectMode) {
+    if (isSelectMode) {
       this.getSubjectData({
         currentIndex: currentIndex,
         isLoadMore: true
@@ -750,7 +755,6 @@ Page({
    * @param item
    */
   useToDoWrong(item) {
-    console.log('item', item);
     let subjectId = item?._id;
     if (!this.data.userSubjectData) return false;
     const {
@@ -772,7 +776,6 @@ Page({
    * @param item
    */
   useToDoRight(item) {
-    console.log('item', item);
     let subjectId = item?._id;
     if (!this.data.userSubjectData) return false;
     const {
@@ -860,7 +863,7 @@ Page({
 
   // 多选选择问题 确定
   onAnswerConfirm(e) {
-    const subject = e.currentTarget.dataset.item
+    const subject = e.detail
     if (this.isDone(subject)) {
       showToast('此题已做，请做下一题')
       return
@@ -883,6 +886,13 @@ Page({
     this.wrongSubject({
       subjectId: subject._id,
       options: this.data.optionIndex
+    });
+  },
+
+  CurrentChange(e) {
+    this.loadMore({
+      currentIndex: e.detail.currentIndex,
+      isSelectMode: true
     });
   },
 

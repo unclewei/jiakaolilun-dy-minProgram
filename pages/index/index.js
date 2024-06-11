@@ -23,6 +23,7 @@ Page({
     isCoach: false,
   },
   onLoad(options) {
+    console.log(options);
     if (options.fromWho) {
       wx.setStorageSync('fromWho', options.fromWho)
     }

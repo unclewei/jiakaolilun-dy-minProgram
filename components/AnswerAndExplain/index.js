@@ -36,15 +36,23 @@ Component({
       type: Boolean,
       value: false,
     },
+    isShowNow: {
+      type: Boolean,
+      value: false,
+    },
     isConfirm: {
       type: Boolean,
       value: false,
+    },
+    isSwipering:{
+      type:Boolean,
+      value:false,
     },
   },
 
   observers: {
     'subjectItem': function (subjectItem) {
-      let answerNum = subjectItem.answer.toString();
+      let answerNum = subjectItem?.answer?.toString() || '';
       let answer = '';
       if (answerNum.includes(1)) {
         answer += 'A'

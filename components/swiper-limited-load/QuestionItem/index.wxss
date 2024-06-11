@@ -1,0 +1,159 @@
+
+.questionItem {
+  width: 100%;
+  height: calc(100% - 150rpx);
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+.question {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+.imgWrap {
+  width: 90%;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+.imgWrap .img {
+  width: 100%;
+  height: 130px;
+}
+.wrongTips {
+  font-weight: 600;
+  color: red;
+  font-size: 14px;
+  margin-left: 5px;
+  margin-top: 10px;
+  text-align: right;
+}
+.options {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 20px;
+}
+.options .rightOption {
+  color: #1AAD19;
+}
+.options .wrongOption {
+  color: red;
+}
+.options .selectOption {
+  background-color: #fafbfc !important;
+}
+.options .optionTextRightButNotChoice {
+  background-color: #fff !important;
+  box-shadow: 0 0px 0px 0 #2fc8e1 !important;
+  border: 1px solid #2895a7;
+}
+.options .optionTextRight {
+  color: #2895a7 !important;
+}
+.options .optionTextWrong {
+  color: #ff4c4c !important;
+}
+.options .option {
+  padding: 10px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+}
+.options .option .optionA {
+  width: 25px;
+  height: 25px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 10px;
+  border-radius: 50%;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.2);
+}
+.options .option .optionNormal {
+  background: #ffffff;
+}
+.options .option .optionRight {
+  background: #2895a7 !important;
+  color: #fff;
+}
+.options .option .optionWrong {
+  background: #ff4c4c !important;
+  color: #fff;
+}
+.options .option .selectAsw {
+  margin-left: 10px;
+  color: #2f54eb;
+  font-weight: 600;
+}
+.confirmBtn {
+  width: 95%;
+  height: 70rpx;
+  border-radius: 10rpx;
+  background-color: #1AAD19;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  position: fixed;
+  bottom: 50px;
+}
+.disableBtn{
+  opacity: 0.7;
+}
+.init .footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  padding: 0 10px;
+  height: 50px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  border-top: 1px solid #f5f5f5;
+  color: #777;
+  background-color: #fff;
+  z-index: 2;
+}
+.init .footer .finishItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  color: #3591f4;
+  font-weight: 600;
+  padding: 10px 5px;
+}
+.init .footer .finishItem .finishIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 3px;
+}
+.init .footer .icon {
+  width: 15px;
+  height: 15px;
+  margin-right: 3px;
+}
+.init .footer .iconItem {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.init .footer .collect {
+  display: flex;
+  align-items: center;
+}
+.init .footer .collect .tips {
+  margin-right: 5px;
+}
+.init .footer .rightInfo {
+  display: flex;
+  align-items: center;
+}
+.doalog .title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.doalog .description {
+  text-align: left;
+}

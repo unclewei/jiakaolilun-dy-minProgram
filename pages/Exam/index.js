@@ -629,7 +629,6 @@ Page({
    * @param item
    */
   useToDoRight(item) {
-    console.log('item', item);
     let subjectId = item._id;
     if (!this.data.userSubjectData) return false;
     const {

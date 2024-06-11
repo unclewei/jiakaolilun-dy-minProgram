@@ -50,7 +50,7 @@ Component({
 
   observers: {
     'subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,optionIndex': function (subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex) {
-      let answer = subjectItem.answer.toString().split();
+      let answer = subjectItem?.answer?.toString().split();
       if (wrongHistory && wrongHistory.subjectId && wrongHistory.subjectId === subjectItem._id) {
         this.setData({
           type:'wrong',

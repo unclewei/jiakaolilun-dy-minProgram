@@ -31,7 +31,7 @@ Component({
     isUserInfoOK: false, // 是否有手机号码和姓名
     step: '1',
     insideBtnPaidDone: false,
-
+    isSwitchPage: true, // 是否在跟页面
     rightsList,
     reasonList
   },
@@ -39,7 +39,9 @@ Component({
   ready() {
     const stepStorage = wx.getStorageSync('step')
     this.setData({
+      isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
       User: getApp().globalData.userInfo,
+      isSwitchPage: getCurrentPages().length === 1,
       isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
     })
     this.itemDataGet({
@@ -121,6 +123,12 @@ Component({
 
     gotoSubjectPage() {
       if (this.data.selectItem.isPaidDone) {
+        if (this.data.isSwitchPage) {
+          wx.switchTab({
+            url: '/pages/index/index',
+          })
+          return
+        }
         wx.navigateBack();
       }
     },

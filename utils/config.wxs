@@ -52,6 +52,18 @@ module.exports.onMyList = function (list, value) {
 }
 
 /**
+ * key是否在对象中
+ * @param state 
+ * @returns 
+ */
+module.exports.onMyObject = function (object, value) {
+  if (!object || !Object.keys(object).length || !value) {
+    return false
+  }
+  return !!object[value]
+}
+
+/**
  * key是否在列表中
  * @param state 
  * @returns 

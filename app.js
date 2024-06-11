@@ -3,6 +3,7 @@ import {
   getEnumeMap,
   getLocationData,
   subjectItemList,
+  getVersion,
 } from './utils/api'
 App({
 
@@ -11,6 +12,7 @@ App({
       success: res => {
         const patt = /ios/i
         const isIos = patt.test(res.system) //判断设备是否为苹果手机
+        this.globalData.isIos = isIos
         // 得到安全区域高度res.safeArea.top
         if (res.safeArea.top > 20 && isIos) { //IPhoneX 等刘海手机底部横条高度大约为68rpx 
           this.globalData.isBangs = true
@@ -19,17 +21,29 @@ App({
         }
       }
     })
+    this.getVersion()
     this.getSubjectItemList()
+    this.getEnumeMap()
+    this.getLocationDatas()
+    this.onShareAppMessage()
+  },
+
+  getVersion() {
+    getVersion().then(res => {
+      if (res.data.code !== 200) {
+        return
+      }
+      this.globalData.isApproval = res.data.data < this.globalData.version
+    })
+  },
+  getEnumeMap() {
     getEnumeMap().then(res => {
       if (res.data.code !== 200) {
         return
       }
       this.globalData.enumeMap = res.data.data
     })
-    this.getLocationDatas()
-    this.onShareAppMessage()
   },
-
   getSubjectItemList() {
     subjectItemList().then(res => {
       if (res.data.code !== 200) {
@@ -80,8 +94,10 @@ App({
   globalData: {
     paidEntry: 'xcx_500',
     from: 'theory',
-    version: 5,
+    version: 1.2,
     cookies: null,
+    isApproval: true,
+    isIos: false, // 是否苹果手机
     userInfo: {},
     userConfig: {}, // 用户配置
     hasLogin: false,

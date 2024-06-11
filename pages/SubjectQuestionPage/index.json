@@ -7,7 +7,9 @@
     "Finish": "../../components/Finish",
     "Colloct": "../../components/Colloct",
     "SubjectAudio": "../../components/SubjectAudio",
+    "CurrentIndexSelector": "../../components/CurrentIndexSelector",
     "CheckIsVip": "../../components/CheckIsVip",
+    "VisSwiper": "../../components/swiper-limited-load",
     "SubjectCountdown": "../../components/SubjectCountdown"
   }
 }

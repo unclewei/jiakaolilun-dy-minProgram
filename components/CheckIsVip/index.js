@@ -44,6 +44,9 @@ Component({
 
   observers: {
     "poolData": function (poolData) {
+      if(Object.keys(poolData).length === 0){
+        return
+      }
       this.setData({
         freeSubjectNums: poolData.freeSubjectNums || 0,
         isForFree: poolData.isForFree || false,
@@ -54,12 +57,16 @@ Component({
         step
       })
     },
-    "isVipValid,isForFree,currentIndex,freeSubjectNums": function (isVipValid, isForFree, currentIndex, freeSubjectNums) {
+    "isVipValid,isForFree,currentIndex,poolData": function (isVipValid, isForFree, currentIndex, poolData) {
+      if(Object.keys(poolData).length === 0){
+        return
+      }
       if (isVipValid || isForFree) {
         //有效
         return;
       }
-      if (!freeSubjectNums || currentIndex > freeSubjectNums) {
+
+      if (poolData && !poolData.freeSubjectNums || currentIndex > poolData.freeSubjectNums) {
         this.showModal()
       }
     },
@@ -72,6 +79,7 @@ Component({
 
   ready() {
     this.setData({
+      isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
       userConfig: getApp().globalData.userConfig,
       userInfo: getApp().globalData.userInfo,
       isCoach: getApp().globalData.userInfo.userType === 2

@@ -242,7 +242,6 @@ var MpProgress = /*#__PURE__*/function () {
             this._context.shadowColor = 'transparent';
             this._context.shadowBlur = 0;
           } else {
-            console.log('init'); // 找到最大宽度的bar
 
             var maxBarWidth = 0;
 

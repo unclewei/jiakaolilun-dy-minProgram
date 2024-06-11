@@ -1,6 +1,6 @@
 <wxs src="../../utils/config.wxs" module="utils"></wxs>
 
-<view wx:if="{{!(isNowWrong || isSeeMode || (wrongHistory && wrongHistory.subjectId) || rightHistory || isConfirm)}}" />
+<view wx:if="{{!(isNowWrong || isSeeMode  || (wrongHistory && wrongHistory.subjectId) || rightHistory || isConfirm) || !isShowNow || (!isShowNow && isSwipering)}}" />
 <view class='init' wx:else>
   <view class='answer'>
     <span class='text'>答案 {{answer}}</span>

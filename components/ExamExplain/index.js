@@ -24,7 +24,7 @@ Component({
 
   observers: {
     'subjectItem': function (subjectItem) {
-      let answerNum = subjectItem.answer.toString();
+      let answerNum = subjectItem?.answer?.toString() || '';
       let answer = '';
       if (answerNum.includes(1)) {
         answer += 'A'
