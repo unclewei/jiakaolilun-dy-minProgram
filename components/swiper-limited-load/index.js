@@ -152,11 +152,6 @@ Component({
     swiperFinish() {
       // 有500ms的延迟
       const that = this
-      that.setData({
-        optionIndex: [],
-        isSelected: false,
-        isNowWrong: false,
-      })
       setTimeout(() => {
         that.setData({
           isSwipering: false

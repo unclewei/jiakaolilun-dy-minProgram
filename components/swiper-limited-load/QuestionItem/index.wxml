@@ -14,7 +14,7 @@
   </view>
   <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' />
 
-  <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+  <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3 && !isSwipering}}" bindtap="onAnswerConfirm" data-item="{{item}}">
     确定
   </view>
 </view>

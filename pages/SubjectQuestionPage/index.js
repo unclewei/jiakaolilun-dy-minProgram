@@ -127,6 +127,10 @@ Page({
   //购买成功
   onBuySuccess() {
     wx.showLoading()
+    this.setData({
+      userInfo: getApp().globalData.userInfo,
+      isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2,
+    })
     this.getPoolData();
   },
 
@@ -815,6 +819,7 @@ Page({
 
   // 选择问题答案
   onAnswerSelect(e) {
+    console.log('e',e);
     const {
       subjectItem,
       answerNum
@@ -826,8 +831,7 @@ Page({
       //多选逻辑
       if (this.data.optionIndex.includes(answerNum)) {
         //这里拿出原来的
-        const newOptionIndex = [...this.data.optionIndex || []]
-        newOptionIndex.splice(answerNum, 1)
+        const newOptionIndex = [...this.data.optionIndex || []].filter(p => p != answerNum)
         this.setData({
           optionIndex: newOptionIndex
         })

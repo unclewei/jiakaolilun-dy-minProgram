@@ -5,6 +5,21 @@
   overflow-y: auto;
   box-sizing: border-box;
 }
+.type {
+  box-sizing: border-box;
+  margin: 0;
+  list-style: none;
+  display: inline-block;
+  height: auto;
+  margin-right: 8px;
+  padding: 0 7px;
+  font-size: 13px;
+  line-height: 20px;
+  border-radius: 4px;
+  color: #fff;
+  background: #2895a7;
+  border-color: #2895a7;
+}
 .question {
   font-size: 18px;
   margin-bottom: 10px;
