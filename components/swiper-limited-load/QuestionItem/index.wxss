@@ -44,7 +44,6 @@
 .options {
   width: 100%;
   box-sizing: border-box;
-  margin-top: 20px;
 }
 .options .rightOption {
   color: #1AAD19;

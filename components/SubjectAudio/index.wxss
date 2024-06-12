@@ -10,6 +10,7 @@
   font-weight: 600;
   padding: 3px 10px;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 .read .readIcon {
   width: 16px;

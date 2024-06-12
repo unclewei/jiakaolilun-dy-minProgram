@@ -134,7 +134,6 @@ Component({
     //还原本题状态
     cleanQuestionStatus() {
       this.setData({
-        optionIndex: [],
         isSelected: false,
         isNowWrong: false
       })
@@ -149,9 +148,15 @@ Component({
       }
     },
     // 滑动结束
-    swiperFinish() {
+    swiperFinish(e) {
+      let current = e.detail.current
       // 有500ms的延迟
       const that = this
+      that.setData({
+        swiperCurrent:current,
+        isSelected: false,
+        isNowWrong: false,
+      })
       setTimeout(() => {
         that.setData({
           isSwipering: false
@@ -172,15 +177,13 @@ Component({
       let isLoopPositive = current == START && lastIndex == END
 
       this.cleanQuestionStatus()
+    
       setTimeout(() => {
         if (current - lastIndex == 1 || isLoopPositive) {
           // 如果是滑到了左边界或者下一个还未有值，弹回去
           if (currentItem == null) {
             info.current = NO_NEXT_PAGE
             that.triggerEvent("change", info)
-            that.setData({
-              swiperCurrent: lastIndex
-            })
             return
           }
           let swiperChangeItem = "swiperList[" + that.getNextSwiperChangeIndex(current) + "]"
@@ -199,9 +202,6 @@ Component({
           if (currentItem == null) {
             info.current = NO_PREV_PAGE
             that.triggerEvent("change", info)
-            that.setData({
-              swiperCurrent: lastIndex
-            })
             return
           }
           let swiperChangeItem = "swiperList[" + that.getLastSwiperChangeIndex(current) + "]"

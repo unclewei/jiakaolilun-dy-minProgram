@@ -1,6 +1,6 @@
 <wxs src="../../utils/config.wxs" module="utils"></wxs>
 
-<view class='init' wx:if="{{show}}">
+<view class='init' hidden="{{!show}}">
   <view class='answer'>
     <span class='text'>答案 {{answer}}</span>
   </view>
