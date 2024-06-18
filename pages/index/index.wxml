@@ -39,9 +39,9 @@
                 <span class="tag must">热门</span>
               </div>
             </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="newRule">
+            <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
               <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>新规秘卷
+              <div class='smallItemText'>图标速记
               </div>
             </div>
           </div>

@@ -10,7 +10,7 @@
       </view>
     </button>
     <view class="optionsItem" bindtap="onConfirm" wx:if="{{showOk}}">
-      <view class="optionText" wx:if="{{okText}}">{{okText}}</view>
+      <view class="optionText okText" wx:if="{{okText}}">{{okText}}</view>
       <view class="optionText" wx:else>
         <slot name='okText'></slot>
       </view>

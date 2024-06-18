@@ -164,6 +164,9 @@ export const gotoSubject = ({
     case 'learnPlanPage':
       url = '/pages/LearnPlanPage/index';
       break;
+    case 'ruleIconPage': //图形速记
+      url = '/pages/RuleIconPage/index';
+      break;
     case 'incPage':
       url = '/pages/SubjectIncPage/index';
       break;

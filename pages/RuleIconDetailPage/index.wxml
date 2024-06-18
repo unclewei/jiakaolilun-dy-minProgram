@@ -1,0 +1,10 @@
+<view class='init'>
+  <view class='wrap'>
+    <view wx:for="{{ruleIconList}}" wx:key='_id' wx:for-item="i" class='waysItem'>
+      <view class='wayTextWrap'>
+        <image class='iconImg' src='{{i.src}}' mode="aspectFit" bindtap="onShowGallery" data-item="{{i.src}}" />
+        <view class='title'>{{i.name}}</view>
+      </view>
+    </view>
+  </view>
+</view>

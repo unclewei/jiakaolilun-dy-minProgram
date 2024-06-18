@@ -22,6 +22,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  margin-bottom: 20px;
 }
 .titleBg{
   position: absolute;
@@ -66,6 +67,7 @@
   text-align: center;
   font-size: 16px;
   font-weight: 600;
+  margin-bottom: 20px;
 }
 .wrap .content .item .num {
   color: #4b9cff;

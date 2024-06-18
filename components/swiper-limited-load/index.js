@@ -24,14 +24,6 @@ Component({
         return
       }
       that.init(index)
-      // 如果change之后还是当前的current，比如之前是1、点击后是4  之前是2、点击后是5之类
-      // 那么不会走swiperChange的change方法，需要我们手动去给它加一个current，然后传出去
-      if (current == swiperIndex) {
-        that.triggerEvent("change", {
-          source: "",
-          current: index
-        })
-      }
     },
 
   },
@@ -152,6 +144,8 @@ Component({
       let current = e.detail.current
       // 有500ms的延迟
       const that = this
+      that.triggerEvent("Change",current)
+      console.log('滑动结束');
       that.setData({
         swiperCurrent:current,
         isSelected: false,
@@ -183,7 +177,6 @@ Component({
           // 如果是滑到了左边界或者下一个还未有值，弹回去
           if (currentItem == null) {
             info.current = NO_NEXT_PAGE
-            that.triggerEvent("change", info)
             return
           }
           let swiperChangeItem = "swiperList[" + that.getNextSwiperChangeIndex(current) + "]"
@@ -201,7 +194,6 @@ Component({
           // 如果滑到了右边界或者上一个还未有值，弹回去
           if (currentItem == null) {
             info.current = NO_PREV_PAGE
-            that.triggerEvent("change", info)
             return
           }
           let swiperChangeItem = "swiperList[" + that.getLastSwiperChangeIndex(current) + "]"
@@ -215,7 +207,6 @@ Component({
       }, 100);
       if (currentItem == null) return
       info.current = currentItem.currentIndex
-      that.triggerEvent("change", info)
       // 记录滑过来的位置，此值对于下一次滑动的计算很重要
       that.data.swiperIndex = current
 

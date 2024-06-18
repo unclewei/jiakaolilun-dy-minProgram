@@ -76,6 +76,7 @@
 }
 .init .skillTitle .skillIcon {
   width: 15px;
+  height: 15px;
 }
 .init .dec {
   width: 100%;

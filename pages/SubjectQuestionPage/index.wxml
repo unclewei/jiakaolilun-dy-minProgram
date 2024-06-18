@@ -20,8 +20,8 @@
   <view class='adBanner' />
 
   <!-- 答题内容 -->
-  <view class='content'>
-    <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}"list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}' stepFolder='{{stepFolder}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindchange="swiperChange" bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next' />
+  <view class='content' id="questionBody">
+    <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}"list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}' stepFolder='{{stepFolder}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next'  />
 
   </view>
 
@@ -67,7 +67,7 @@
           </span>
           <span class='iconItem'>
             <image class='icon' src='../../images/icon/more.png' mode="widthFix" />
-            <b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}
+            <span><b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}</span>
           </span>
         </span>
       </CurrentIndexSelector>

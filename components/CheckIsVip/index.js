@@ -58,6 +58,9 @@ Component({
       })
     },
     "isVipValid,isForFree,currentIndex,poolData": function (isVipValid, isForFree, currentIndex, poolData) {
+      if(!currentIndex || isVipValid === undefined || isForFree === undefined){
+        return
+      }
       if(Object.keys(poolData).length === 0){
         return
       }

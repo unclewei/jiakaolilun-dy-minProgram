@@ -47,7 +47,7 @@ Page({
     step: '1', // 科目几
     poolType: '', // 题库类型
     poolId: undefined, // 题库Id
-    isItemValid: false, // 题库购买状态
+    isItemValid: true, // 题库购买状态
     isForFree: false, // 是否免费
     isSeeMode: false, // 答题模式 | 背题模式
     poolData: {}, // 题库数据
@@ -446,6 +446,7 @@ Page({
     if (this.isDisabledNext()) {
       return;
     }
+    this.scrollTop()
     const {
       currentIndex
     } = this.data || {}
@@ -474,6 +475,7 @@ Page({
       currentIndex
     } = this.data || {}
     if (currentIndex == 0) return;
+    this.scrollTop()
     this.setData({
       currentIndex: currentIndex - 1
     })
@@ -819,7 +821,7 @@ Page({
 
   // 选择问题答案
   onAnswerSelect(e) {
-    console.log('e',e);
+    console.log('e', e);
     const {
       subjectItem,
       answerNum
@@ -907,6 +909,13 @@ Page({
       propName: 'limitTime',
       value: value
     });
+
+  },
+
+  scrollTop() {
+    wx.pageScrollTo({
+      selector:'content'
+    })
 
   },
 

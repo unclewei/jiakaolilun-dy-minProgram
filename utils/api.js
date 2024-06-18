@@ -352,3 +352,28 @@ export const locationSequence = (data) => {
     data,
   })
 }
+
+/**
+ * 交通图标类型列表
+ * @param params
+ * @returns {*}
+ */
+export const ruleIconTypeList = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/ruleIconType/ruleIconTypeList`,
+    method: 'post',
+    data,
+  })
+}
+/**
+ * 交通图标类型列表
+ * @param params
+ * @returns {*}
+ */
+export const ruleIconList = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/ruleIcon/ruleIconList`,
+    method: 'post',
+    data,
+  })
+}

@@ -58,6 +58,7 @@
   background: #fff !important;
   padding: 5px 10px;
   border: 1px solid #484848;
+  border-radius: 5px;
 }
 .init .header .redo {
   color: #333;
@@ -202,7 +203,7 @@
   position: fixed;
   bottom: 0;
   padding: 0 10px;
-  height: 50px;
+  height: 60px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -231,12 +232,15 @@
 .init .footer .icon {
   width: 15px;
   height: 15px;
-  margin-right: 3px;
 }
 .init .footer .iconItem {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  margin-left: 10px;
+  justify-content: center;
+  margin-left: 20px;
+  font-size: 14px;
+
 }
 .init .footer .collect {
   display: flex;

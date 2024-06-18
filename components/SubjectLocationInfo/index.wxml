@@ -1,4 +1,4 @@
-<baseModal id="baseModal" showImage='{{false}}'>
+<baseModal id="baseModal" showImage='{{false}}' className="cityCount" bodyContentClassName='noBorder'>
   <div class='wrap'>
     <div class='titleBox'>
       <image class="titleBg" src="../../images/banner.png" mode="aspectFit" />

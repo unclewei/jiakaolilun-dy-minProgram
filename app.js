@@ -83,7 +83,7 @@ App({
       // 若想给个别页面做特殊处理 可以给特殊页面加isOverShare为true 就不会重写了
       view.onShareAppMessage = () => { //重写分享配置
         return {
-          imageUrl: './images/theorybanner4.png',
+          imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png',
           title: `邀请你学习驾考理论知识，精选500题，驾考决胜法宝`,
           path: '/pages/index/index?fromWho=' + that.globalData.userInfo._id
         }
@@ -94,7 +94,7 @@ App({
   globalData: {
     paidEntry: 'xcx_500',
     from: 'theory',
-    version: 1.1,
+    version: 1.3,
     cookies: null,
     isApproval: true,
     isIos: false, // 是否苹果手机
