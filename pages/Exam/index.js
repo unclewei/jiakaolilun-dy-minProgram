@@ -668,11 +668,11 @@ Page({
 
   // 选择问题答案
   onAnswerSelect(e) {
+    console.log('回答了了',e);
     const {
       subjectItem,
       answerNum
     } = e.detail || {};
-
     if (this.isDisabledSelect(subjectItem)) {
       return
     };

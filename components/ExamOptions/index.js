@@ -55,7 +55,6 @@ Component({
 
   observers: {
     'optionContent,subjectItem,isSeeMode,isNowWrong,wrongHistory,rightHistory,isConfirm,answerNum,optionIndex': function (optionContent, subjectItem, isSeeMode, isNowWrong, wrongHistory, rightHistory, isConfirm, answerNum, optionIndex) {
-     console.log('subjectItem',subjectItem);
       let answer = subjectItem?.answer?.toString() || '';
       answer = [...answer]
       answer = answer.map(i => Number(i));
@@ -121,6 +120,7 @@ Component({
       if (!isConfirm) {
         //没确定的选项
         if (isMutType && isOptionSelected) {
+          console.log('地方对了');
           return this.opStyleInit({
             type: 'isMutSelect'
           })
@@ -196,7 +196,7 @@ Component({
           break;
         case 'isMutSelect': //做题时多选选中
           styles = 'isMutSelect';
-          textStyles = 'optionTextNormal'
+          textStyles = 'isMutSelect'
           break;
         default:
           styles = 'optionNormal';

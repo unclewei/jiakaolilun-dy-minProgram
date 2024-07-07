@@ -8,7 +8,7 @@
   background-color: #fafbfc !important;
 }
 .isMutSelect {
-  background-color: #000000 !important;
+  background-color: #1c92f3 !important;
   color: #fff;
 }
 .optionTextRightButNotChoice {

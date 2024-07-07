@@ -45,7 +45,7 @@ Component({
       isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
     })
     this.itemDataGet({
-      step: Number.parseInt(this.data.step || stepStorage),
+      step: Number.parseInt(this.data.step || stepStorage || 1),
     })
   },
   /**
