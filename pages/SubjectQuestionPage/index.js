@@ -444,6 +444,7 @@ Page({
   //下一题
   next() {
     if (this.isDisabledNext()) {
+      showToast('没有下一题咯')
       return;
     }
     this.scrollTop()
@@ -474,7 +475,10 @@ Page({
     const {
       currentIndex
     } = this.data || {}
-    if (currentIndex == 0) return;
+    if (currentIndex <= 0) {
+      showToast('没有上一题咯')
+      return
+    };
     this.scrollTop()
     this.setData({
       currentIndex: currentIndex - 1
@@ -531,14 +535,16 @@ Page({
     } = this.data || {}
     if (isTypeWrong) {
       setTimeout(() => {
-        that.clean();
+        // that.clean();
         if (isWrongDelete) {
-          that.removeWrongWhileDoRight({
-            subjectId,
-            currentIndex
-          })
+          // that.removeWrongWhileDoRight({
+          //   subjectId,
+          //   userPoolId:that.data.poolId,
+          //   currentIndex
+          // })
           userWrongSubjectRemove({
             subjectId,
+            userPoolId: that.data.poolId,
             step
           })
           return
@@ -722,9 +728,10 @@ Page({
       currentIndex,
       loading
     } = this.data || {}
+    const hasPoolData = poolData && Object.keys(poolData).length > 0
     if (subjectData.length == 0) return true;
-    if ((poolData && poolData.subjectCount == currentIndex + 1) || loading) return true
-    if (!poolData && subjectData.length == currentIndex + 1) return true; //错题情况
+    if ((hasPoolData && Object.keys && (poolData.subjectCount == (currentIndex + 1))) || loading) return true
+    if (!hasPoolData && (subjectData.length == (currentIndex + 1))) return true; //错题情况
     return false
   },
   /**
@@ -914,7 +921,7 @@ Page({
 
   scrollTop() {
     wx.pageScrollTo({
-      selector:'content'
+      selector: 'content'
     })
 
   },

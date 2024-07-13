@@ -1,6 +1,6 @@
 <wxs src="../../../utils/config.wxs" module="utils"></wxs>
 
-<view class='questionItem'>
+<view class='questionItem' wx:if="{{item.question}}">
   <view class='question'>
     <span class='type'>{{item.typeStr}}</span>
     {{item.question}}
@@ -17,4 +17,8 @@
   <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3 && !isSwipering}}" bindtap="onAnswerConfirm" data-item="{{item}}">
     确定
   </view>
+</view>
+<view class="emptyBox" wx:else>
+  <image class="emptyIcon" src="../../../images/learnPage.png" mode="widthFix" /> 
+  <view class="emptyText">没题目拉~</view>
 </view>

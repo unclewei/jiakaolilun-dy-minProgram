@@ -21,7 +21,7 @@
 
   <!-- 答题内容 -->
   <view class='content' id="questionBody">
-    <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}"list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}' stepFolder='{{stepFolder}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next'  />
+    <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}" list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}' stepFolder='{{stepFolder}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' total='{{poolData.subjectCount || subjectData.length || 0}}' bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next' />
 
   </view>
 
@@ -39,7 +39,7 @@
   <view class='footer'>
     <span>
       <!-- 错题 -->
-      <span class='collect' wx:if="{{poolType === 'myWrong'}}">
+      <span class='collect' wx:if="{{poolType === 'wrong'}}">
         <span class='tips'>做对后移除错题</span>
         <switch checked='{{isWrongDelete}}' type='checkbox' bindchange="onWrongSwitchChange" />
       </span>
@@ -57,11 +57,11 @@
     <span>
       <CurrentIndexSelector poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectData='{{userSubjectData}}' bindCurrentChange='CurrentChange'>
         <span class='rightInfo'>
-          <span class='iconItem' wx:if="{{poolType !== 'myWrong'}}">
+          <span class='iconItem' wx:if="{{poolType !== 'wrong'}}">
             <image class='icon' src='../../images/icon/right.png' mode="widthFix" />
             {{userSubjectData.rightSubjectIds.length}}
           </span>
-          <span class='iconItem' wx:if="{{poolType !== 'myWrong'}}">
+          <span class='iconItem' wx:if="{{poolType !== 'wrong'}}">
             <image class='icon' src='../../images/icon/wrong.png' mode="widthFix" />
             {{userSubjectData.wrongSubjectItems.length}}
           </span>

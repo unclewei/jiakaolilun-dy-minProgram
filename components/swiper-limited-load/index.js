@@ -48,7 +48,6 @@ Component({
       type: Number,
       value: 0
     },
-
     urlPrefix: {
       type: String,
       value: ''
@@ -144,10 +143,9 @@ Component({
       let current = e.detail.current
       // 有500ms的延迟
       const that = this
-      that.triggerEvent("Change",current)
-      console.log('滑动结束');
+      that.triggerEvent("Change", current)
       that.setData({
-        swiperCurrent:current,
+        swiperCurrent: current,
         isSelected: false,
         isNowWrong: false,
       })
@@ -171,7 +169,7 @@ Component({
       let isLoopPositive = current == START && lastIndex == END
 
       this.cleanQuestionStatus()
-    
+
       setTimeout(() => {
         if (current - lastIndex == 1 || isLoopPositive) {
           // 如果是滑到了左边界或者下一个还未有值，弹回去
@@ -264,6 +262,8 @@ Component({
       })
       if (realIndex == -1) return {}
       let total = this.data.total != 0 ? this.data.total : list.length
+      console.log('total', total);
+      console.log('listNeedIndex', listNeedIndex);
       let item = listNeedIndex == total ? null : list[realIndex]
       return item
     },
