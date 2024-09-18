@@ -29,7 +29,9 @@ Page({
         poolType: "learnPlanPage",
       },
       {
-        name: "精选500题",
+        name: `精选${
+          getApp().globalData.userConfig.examType === "moto" ? "100" : "500"
+        }题`,
         icon: "../../images/vipIcon/vip.png",
         poolType: "chosen",
       },
@@ -58,25 +60,41 @@ Page({
       this.onLoginSuccess();
     });
     wx.setNavigationBarColor({
-      backgroundColor: this.data.step == 1 ? '#46b978' : '#2196f3',
-      frontColor: '#ffffff',
-    })
+      backgroundColor: this.data.step == 1 ? "#46b978" : "#2196f3",
+      frontColor: "#ffffff",
+    });
   },
-  onShow(){
+  onShow() {
+    this.setData({
+      userConfig: getApp().globalData.userConfig,
+      enumeMap: getApp().globalData.enumeMap,
+    });
     wx.setTabBarStyle({
-      backgroundColor: '#fff',
+      backgroundColor: "#fff",
+    });
+    this.getBenefitItemData()
+  },
+
+  getBenefitItemData() {
+    const index = this.data.benefitItemData.findIndex(p => p.poolType === 'chosen')
+    let newList = [...this.data.benefitItemData];
+    newList[index].name = `精选${
+      getApp().globalData.userConfig.examType === "moto" ? "100" : "500"
+    }题`
+    this.setData({
+      benefitItemData: newList
     })
   },
   onStepUpdate() {
-    const newStep = wx.getStorageSync("step") || "1"
+    const newStep = wx.getStorageSync("step") || "1";
     this.setData({
-      step: newStep
-    })
+      step: newStep,
+    });
     wx.setNavigationBarColor({
-      backgroundColor: newStep == 1 ? '#46b978' : '#2196f3',
-      frontColor: '#ffffff',
-    })
-    this.userPoolsGet(newStep)
+      backgroundColor: newStep == 1 ? "#46b978" : "#2196f3",
+      frontColor: "#ffffff",
+    });
+    this.userPoolsGet(newStep);
   },
   /**
    * 获取用户个人题库
@@ -84,7 +102,7 @@ Page({
   userPoolsGet(step) {
     if (!step) return;
     userPoolList({
-      step
+      step,
     }).then((res) => {
       if (res.data.data) {
         this.setData({
@@ -93,7 +111,8 @@ Page({
       }
     });
     poolList({
-      step
+      step,
+      examType: getApp().globalData.userConfig.examType
     }).then((res) => {
       if (res.data.code !== 200) {
         return;
@@ -118,17 +137,21 @@ Page({
       isLogin: true,
       userInfo,
       userConfig: getApp().globalData.userConfig,
+      enumeMap: getApp().globalData.enumeMap,
       isPaidDone: userInfo?.itemValidMap?.[`ke${this.data.step}`],
     });
+    this.getBenefitItemData()
     this.userPoolsGet(this.data.step);
   },
 
   // 用户配置更新
   onUserConfigUpdate() {
-    let that = this
+    let that = this;
     that.setData({
-      userConfig: getApp().globalData.userConfig
-    })
+      userConfig: getApp().globalData.userConfig,
+      enumeMap: getApp().globalData.enumeMap,
+    });
+    this.getBenefitItemData()
   },
 
   copyId() {
@@ -137,23 +160,21 @@ Page({
     });
   },
   gotoNP(e) {
-    const item = e.currentTarget.dataset.item
+    const item = e.currentTarget.dataset.item;
     wx.navigateToMiniProgram({
       appId: item,
-    })
+    });
   },
 
   showRQCode() {
     this.selectComponent("#QRModal").showModal({
-      src: '../../images/gzhqrcode.jpg',
-      desc: '长按识别图中二维码进入公众号',
-      descTwo: '科二科三实地视频为你驾考保驾护航'
-    })
+      src: "../../images/gzhqrcode.jpg",
+      desc: "长按识别图中二维码进入公众号",
+      descTwo: "科二科三实地视频为你驾考保驾护航",
+    });
   },
 
-  gotoMiniPro() {
-
-  },
+  gotoMiniPro() {},
 
   gotoPage(e) {
     const poolType = e.currentTarget.dataset.pooltype;
@@ -165,8 +186,8 @@ Page({
     gotoSubject({
       step: step,
       poolType: poolType,
-      poolId: poolType === 'chosen' ? poolListMap?.[poolType]?._id : undefined,
-    })
+      poolId: poolType === "chosen" ? poolListMap?.[poolType]?._id : undefined,
+    });
   },
 
   gotoOrderList(e) {
@@ -178,5 +199,4 @@ Page({
       url: `/pages/orderList/index`,
     });
   },
-
 });

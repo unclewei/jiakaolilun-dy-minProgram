@@ -33,7 +33,8 @@ Page({
     this.setData({
       step: options.step,
       poolId: options.poolId,
-      userInfo:getApp().globalData.userInfo
+      userInfo:getApp().globalData.userInfo,
+      examType:getApp().globalData.userConfig.examType
     })
     this.poolDataGet({
       step: options.step

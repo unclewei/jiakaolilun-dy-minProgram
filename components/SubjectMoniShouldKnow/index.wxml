@@ -4,7 +4,7 @@
   </span>
 </view>
 
-<ConfirmModal id="ConfirmModal" imageSrc=''  cancelText='知道了' showOk='{{false}}' bindCancel='hideModal'>
+<ConfirmModal id="ConfirmModal" imageSrc='' cancelText='知道了' showOk='{{false}}' bindCancel='hideModal'>
   <view class='wrap'>
     <view class='title'>
       <view>科目{{step == 1 ? '一' : '四'}} 模考须知</view>
@@ -12,11 +12,11 @@
     <view class='content'>
       <view class='item'>
         <span class='label'>考试类型：</span>
-        <span>小车-C1/C2/C3。</span>
+        <span>{{examTypeName}}</span>
       </view>
       <view class='item'>
         <span class='label'>考试标准：</span>
-        <span>45分钟，{{step == 1 ? '100' : '50'}}题。</span>
+        <span>45分钟，{{poolData.subjectCount}}题。</span>
       </view>
       <view class='item'>
         <span class='label'>合格标准：</span>
@@ -29,8 +29,8 @@
     </view>
     <view class='tips'>
       <view>
-        <span>规则：</span>模拟考试下不可修改答案，错一题扣{{step == 1 ? '1' : '2'}}分，错题累积超
-        {{step == 1 ? '10' : '5'}}题则考试不通过，系统自动提醒交卷。
+        <span>规则：</span>模拟考试下不可修改答案，错一题扣{{poolData.eachScore || '-'}}分，错题累积超
+        {{(poolData.eachScore * 5 )||'-'}}题则考试不通过，系统自动提醒交卷。
       </view>
     </view>
   </view>

@@ -1,0 +1,3 @@
+<view class='{{class}}' bind:tap="gotoConfigPage">
+  {{name}}
+</view>

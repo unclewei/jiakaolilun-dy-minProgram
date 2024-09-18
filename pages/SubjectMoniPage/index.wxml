@@ -50,12 +50,12 @@
       </view>
       <view class='btn' bindtap="gotoSubject" data-item="chosen">
         <span class='special'>
-          精选500题
+          精选{{examType === 'moto' ? '100' : '500'}}题
           <image class="hot" src='../../images/icon/hot.png' mode="widthFix" />
           <image class='img2' src='../../images/icon/hot.png' mode="widthFix" />
         </span>
       </view>
-      <SubjectMoniShouldKnow step='{{step}}'>
+      <SubjectMoniShouldKnow step='{{step}}' poolData='{{unDoMoniPool}}'>
         <view class='tips'>
           <image class='icon' src='../../images/subjectIconFour.png' mode="widthFix" /> 模考须知
         </view>

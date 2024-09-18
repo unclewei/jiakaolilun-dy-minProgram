@@ -39,12 +39,12 @@ Page({
   onLoad(options) {
     this.setData({
       step: options.step,
-      poolId:options.poolId,
+      poolId: options.poolId,
       isWrongDelete: getApp().globalData.userConfig.isWrongDelete
     })
   },
 
-  onShow(){
+  onShow() {
     this.getUserPoolShow({
       step: this.data.step,
       userPoolType: this.data.userPoolType
@@ -60,7 +60,8 @@ Page({
     userPoolShow({
       step,
       type: userPoolType,
-      isShowToday: true
+      isShowToday: true,
+      examType: getApp().globalData.userConfig.examType
     }).then(res => {
       wx.hideLoading()
       if (res.data.code !== 200) {
@@ -125,7 +126,7 @@ Page({
   gotoSubject() {
     gotoSubject({
       step: this.data.step,
-      poolType:'wrong',
+      poolType: 'wrong',
       poolId: this.data.userPoolDetail._id
     })
   },

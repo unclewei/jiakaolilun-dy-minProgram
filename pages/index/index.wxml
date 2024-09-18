@@ -16,7 +16,8 @@
     </div>
 
     <view class='province'>
-      <span>小车·</span>
+      <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
+      <span>·</span>
       <CitySelector class='provinceSelect' showLocationIcon bindUserConfigUpdate='onUserConfigUpdate' />
     </view>
 
@@ -48,7 +49,7 @@
           <div class='bodyBig' bindtap="gotoSubject" data-item="chosen">
             <div class='bodyBigItem'>
               <div class='bodyBigIcon' />
-              <div class='bodyBigTitle'>精选500题</div>
+              <div class='bodyBigTitle'>精选{{poolDataObj.chosen.subjectCount || '500'}}题</div>
               <div class='svgContent'>
                 <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
               </div>

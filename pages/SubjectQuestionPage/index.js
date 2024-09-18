@@ -389,7 +389,9 @@ Page({
     });
     subjectToUserPool({
       subjectId,
-      type: "wrong"
+      type: "wrong",
+      step: this.data.step ? this.data.step : undefined,
+      examType: this.data.poolData.examType,
     })
   },
   /**

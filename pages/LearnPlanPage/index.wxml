@@ -14,7 +14,7 @@
           <view class='wayContent'>
             <image src='../../images/num1.png' mode="widthFix" class='itemIcon' />
             <view class='wayTextWrap'>
-              <view class='wayText'>做完精选500题</view>
+              <view class='wayText'>做完精选{{poolDataObj.chosen.subjectCount}}题</view>
               <view class='wayText2'>
                 达标进度:
                 <span class='wayText3'>

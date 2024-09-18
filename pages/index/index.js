@@ -48,6 +48,7 @@ Page({
       isLogin: !!getApp().globalData.userInfo._id,
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,
+      enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2
     })
     this.chosenAndWrong()
@@ -55,11 +56,13 @@ Page({
 
   /**  登录成功*/
   onLoginSuccess() {
+    console.log('laile');
     this.chosenAndWrong()
     this.setData({
       isLogin: true,
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,
+      enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2
     })
     if(getApp().globalData.userInfo.userType === 1&& getApp().globalData.userConfig.isInit){
@@ -73,7 +76,8 @@ Page({
     const that = this
     // wx.showLoading()
     userPoolList({
-      step: that.data.step
+      step: that.data.step,
+      examType: getApp().globalData.userConfig.examType
     }).then((res) => {
       wx.hideLoading()
       if (res.data.code !== 200) {
@@ -90,7 +94,8 @@ Page({
       })
     })
     poolList({
-      step: that.data.step
+      step: that.data.step,
+      examType: getApp().globalData.userConfig.examType
     }).then((res) => {
       wx.hideLoading()
       if (res.data.code !== 200) {
@@ -181,7 +186,8 @@ Page({
   onUserConfigUpdate() {
     let that = this
     that.setData({
-      userConfig: getApp().globalData.userConfig
+      userConfig: getApp().globalData.userConfig,
+      enumeMap: getApp().globalData.enumeMap,
     })
   },
 

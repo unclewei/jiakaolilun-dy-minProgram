@@ -7,7 +7,7 @@
   <view class='wrap'>
     <view class='title'>学车类型</view>
     <view class='itemWrap'>
-      <view wx:for="{{carTypes}}" wx:key="key" wx:for-item="i" class='item {{carItem && i.key === carItem.key ? "itemSelect":""}}' bind:tap="onCardTypeChange" data-item='{{i}}'>
+      <view wx:for="{{examTypes}}" wx:key="key" wx:for-item="i" class='item {{examType && i.key === examType.key ? "itemSelect":""}}' bind:tap="onCardTypeChange" data-item='{{i}}'>
         <image class='itemIcon' src="{{i.img}}" mode="widthFix" />
         <span class='name'>{{i.name}}</span>
         <span class='name2'>{{i.name2}}</span>

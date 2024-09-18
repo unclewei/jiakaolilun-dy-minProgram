@@ -42,7 +42,8 @@
   <view class='selection'>
     <StepSwitch bindUpdate='onStepUpdate' />
     <view class='province'>
-      <span>小车·</span>
+      <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
+      <span>·</span>
       <CitySelector class='provinceSelect' bindUserConfigUpdate='onUserConfigUpdate' />
     </view>
   </view>

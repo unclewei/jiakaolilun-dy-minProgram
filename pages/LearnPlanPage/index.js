@@ -61,7 +61,8 @@ Page({
    */
   userPoolsGet() {
     userPoolList({
-      step: this.data.step
+      step: this.data.step,
+      examType: getApp().globalData.userConfig.examType
     }).then(res => {
       if (res.data.code !== 200) {
         return

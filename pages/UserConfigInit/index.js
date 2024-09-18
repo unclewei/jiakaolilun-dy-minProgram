@@ -9,12 +9,20 @@ Page({
    * 页面的初始数据
    */
   data: {
-    carTypes: [{
+    examTypes: [{
         name: '小车',
         type: 'car',
         key: 'car',
         name2: 'C1/C2/C3',
         img: '../../images/car/car.png'
+      },
+      {
+        name: '摩托',
+        type: 'moto',
+        key: 'moto',
+        name2: 'D/E/F',
+        img: '../../images/car/motorcycle.png',
+        disabled: true
       },
       {
         name: '货车',
@@ -30,14 +38,6 @@ Page({
         key: 'bus',
         name2: 'A1/A2/B1',
         img: '../../images/car/bus.png',
-        disabled: true
-      },
-      {
-        name: '摩托',
-        type: 'car',
-        key: 'motorcycle',
-        name2: 'D/E/F',
-        img: '../../images/car/motorcycle.png',
         disabled: true
       },
     ],
@@ -82,10 +82,10 @@ Page({
       userConfig: getApp().globalData.userConfig,
       step: getApp().globalData.userConfig.step || 1,
       stepItem: this.data.subjectSteps[getApp().globalData.userConfig.step || 1],
-      carItem: this.data.carTypes[0]
+      examType: getApp().globalData.userConfig.examType ? this.data.examTypes.find(p => p.key === getApp().globalData.userConfig.examType) : this.data.examTypes[0]
     })
   },
-  
+
   onStepChange(e) {
     const item = e.currentTarget.dataset.item;
     this.setData({
@@ -95,11 +95,11 @@ Page({
   onCardTypeChange(e) {
     const item = e.currentTarget.dataset.item;
     this.setData({
-      carItem: item
+      examType: item
     })
   },
   onConfirm() {
-    if (!this.data.carItem || !this.data.stepItem || !this.data.carItem.type || !this.data.stepItem.step) {
+    if (!this.data.examType || !this.data.stepItem || !this.data.examType.type || !this.data.stepItem.step) {
       props.dispatch(
         MessageAction.setMessage({
           msg1: `请选择学车类型以及学车阶段哦`,
@@ -117,7 +117,7 @@ Page({
     const initData = {
       isInit: true,
       step: this.data.stepItem.step,
-      carType: this.data.carItem.type,
+      examType: this.data.examType.type,
     };
     updateUserConfig(initData, (res) => {
       if (res == 'fail') {

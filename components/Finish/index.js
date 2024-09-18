@@ -169,7 +169,7 @@ Component({
       if (step == 1) {
         return userSubjectData.rightSubjectIds?.length || 0;
       }
-      return (userSubjectData.rightSubjectIds?.length || 0) * 2 || 0;
+      return (userSubjectData.rightSubjectIds?.length || 0) * this.data.poolData.eachScore || 0;
     },
     //做错丢失的分
     wrongScore() {
@@ -180,7 +180,7 @@ Component({
       if (step == 1) {
         return userSubjectData.wrongSubjectItems?.length || 0;
       }
-      return (userSubjectData.wrongSubjectItems?.length || 0) * 2 || 0;
+      return (userSubjectData.wrongSubjectItems?.length || 0) * this.data.poolData.eachScore || 0;
     },
     unAnswer() {
       const {

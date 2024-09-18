@@ -10,6 +10,7 @@
     "BottomTips": "../../components/BottomTips",
     "Banner": "../../components/Banner",
     "Comments": "../../components/Comments",
+    "CarType": "../../components/CarType",
     "SubjectUpdate": "../../components/SubjectUpdate"
   }
 }
