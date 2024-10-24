@@ -7,7 +7,7 @@
   </view>
   <SubjectAudio subjectItem='{{item}}' />
   <view class='imgWrap' wx:if="{{item.imgName}}">
-    <image class='img' src="{{urlPrefix}}{{stepFolder}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
+    <image class='img' src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
   </view>
   <view class='options'>
     <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' />

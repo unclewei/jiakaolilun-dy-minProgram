@@ -52,10 +52,6 @@ Component({
       type: String,
       value: ''
     },
-    stepFolder: {
-      type: String,
-      value: ''
-    },
     optionIndex: {
       type: Array,
       value: []

@@ -84,7 +84,6 @@ Page({
       poolId,
       from,
       userSubjectData: userSubjectJson, // 做题状态
-      stepFolder: step == 1 ? 'subject/one/' : 'subject/four/',
     })
     autoLogin((res) => {
       if (res == 'fail') {
@@ -151,7 +150,6 @@ Page({
         poolType: resData.type,
         poolId: resData._id,
         step: resData.step,
-        stepFolder: resData.step == 1 ? 'subject/one/' : 'subject/four/',
       })
       // 因为是模拟考试，不用获取历史数据，清除一下本地缓存
       let key = resData._id || `${resData.step}_${resData.type}`;

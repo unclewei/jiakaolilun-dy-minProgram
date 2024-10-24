@@ -209,6 +209,17 @@ module.exports.getImgNmae = function (imgName) {
   return arr[arr.length - 1];
 }
 
+
+// 获取img的名字
+module.exports.getImgStep = function (item) {
+  if (!item.step) {
+    return ''
+  }
+  return item.step == 1 ? 'subject/one/' : 'subject/four/'
+}
+
+
+
 // 解析
 module.exports.explainInit = function (subject) {
   var explain = subject.aiExplain || subject.explain;

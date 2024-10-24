@@ -67,7 +67,7 @@
   <!-- 下半部分 -->
   <ExamBox title='图片信息' class="bottomContentContetnt" titleLocation='left'>
     <view class="imgBox">
-      <image class='img'  wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}" src="{{urlPrefix}}{{stepFolder}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
+      <image class='img'  wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}" src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
     </view>
   </ExamBox>
 </view>
