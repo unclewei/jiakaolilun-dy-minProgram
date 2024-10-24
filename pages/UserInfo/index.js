@@ -199,4 +199,15 @@ Page({
       url: `/pages/orderList/index`,
     });
   },
+  cleanAccount() {
+    wx.clearStorageSync()
+    getApp().globalData.cookies = null
+    getApp().globalData.userInfo = {}
+    this.setData({
+      isLogin: false
+    })
+    wx.reLaunch({
+      url: '/pages/index/index',
+    });
+  }
 });

@@ -17,8 +17,8 @@ Component({
   ready() {
     setTimeout(() => {
       this.checkColloct()
-    }, 1000 * 60 * 5);
-    // 5分钟后，出现
+    }, 1000 * 60 * 1);
+    // 1分钟后，出现
   },
 
   /**

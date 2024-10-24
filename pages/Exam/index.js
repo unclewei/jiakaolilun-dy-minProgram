@@ -84,6 +84,10 @@ Page({
       poolId,
       from,
       userSubjectData: userSubjectJson, // 做题状态
+      requestPoolObj: { // 请求的数据池子对象
+        poolId: poolId,
+        userPoolId: undefined
+      }
     })
     autoLogin((res) => {
       if (res == 'fail') {
@@ -166,14 +170,19 @@ Page({
         }
         if (validRes.data.data || resData.isForFree) {
 
-        that.getSubjectData({
-          currentIndex: 0,
-          poolId: resData._id,
-          poolType: resData.type,
-          limit: 100,
-          skip: 0,
-          loading: true,
-          step: resData.step,
+          that.getSubjectData({
+            currentIndex: 0,
+            poolId: resData._id,
+            poolType: resData.type,
+            limit: 100,
+            skip: 0,
+            loading: true,
+            step: resData.step,
+          });
+       
+           //获取用户做题状态
+        that.userSubjectDataGet({
+          isSyncSubject: false
         });
 
           return
@@ -203,8 +212,7 @@ Page({
     step_ = 0,
     propName = '',
     value = 'undefined',
-    type = 'get',
-    stopSetData = false
+    type = 'get'
   }) {
     const that = this
     let _poolId = that.data.poolId || poolId_;
@@ -214,9 +222,6 @@ Page({
     let keyName = `localPoolStatus_${key}`;
     if (fullUserSubjectConfig) {
       wx.setStorageSync(keyName, fullUserSubjectConfig)
-      if (stopSetData) {
-        return
-      }
       this.setData({
         userSubjectData: fullUserSubjectConfig
       })
@@ -243,13 +248,11 @@ Page({
     userSubjectConfig[propName] = value;
 
     wx.setStorageSync(keyName, userSubjectConfig)
-    if (stopSetData) {
-      return
-    }
     this.setData({
       userSubjectData: userSubjectConfig
     })
   },
+
 
   /**
    * 获取题库中的题目数据
@@ -308,6 +311,59 @@ Page({
 
 
   /**
+   * 获取用户做题状态
+   * @param poolData
+   * @param poolType
+   * @param poolId
+   * @param step
+   * @param isSyncSubject 是否同步请求
+   */
+  userSubjectDataGet({
+    isSyncSubject = false
+  }) {
+    const that = this
+    const poolType = that.data.poolType
+    const poolId = that.data.poolId
+    const step = that.data.step
+
+    let json = that.localUserSubjectStatusGet({
+      poolId_: poolId,
+      poolType_: poolType,
+      step_: step,
+      type: 'get'
+    });
+    // wx.showLoading()
+    userSubjectGet({
+      type: poolType,
+      ...that.data.requestPoolObj,
+      step
+    }).then(res => {
+      wx.hideLoading()
+      if (res.data.code !== 200) {
+        showNetWorkToast(res.data.msg)
+        return
+      }
+      const resData = res.data.data;
+      let useJson = json;
+      if (resData && resData.date >= json.date) {
+        //远程的新，用远程的，同时同步至本地
+        useJson = resData;
+      }
+      //错题集的情况下，直接使用默认值
+      if (that.data.isTypeWrong) {
+        useJson = json;
+      }
+      that.localUserSubjectStatusGet({
+        fullUserSubjectConfig: useJson,
+        poolId_: poolId,
+        poolType_: poolType,
+        step_: step
+      });
+    })
+  },
+
+
+  /**
    * 同步做题状态，并返回最新做题状态
    * 如果是错题，还需要增加来源
    */
@@ -322,18 +378,21 @@ Page({
     if (subjectId) {
       obj.subjectId = subjectId
     }
+    console.log('json', json);
     let params = Object.assign({}, json, {
       userSubjectId: json._id,
       subjectId,
     });
     syncSubject(params).then((res) => {
+      this.userSubjectDataGet({
+        isSyncSubject: true
+      });
       callback()
     });
-
     subjectToUserPool({
       subjectId,
       type: "wrong",
-      step: this.data.poolData ? this.data.poolData.step : undefined,
+      step: this.data.step ? this.data.step : undefined,
       examType: this.data.poolData.examType,
     })
   },
@@ -746,13 +805,10 @@ Page({
   // 获取正确的分数
   getScore() {
     const {
-      step,
-      userSubjectData
+      userSubjectData,
+      poolData
     } = this.data
-    if (step == 1) {
-      return userSubjectData.rightSubjectIds?.length || 0;
-    }
-    return (userSubjectData.rightSubjectIds?.length || 0) * 2 || 0;
+      return userSubjectData.rightSubjectIds?.length * poolData.eachScore|| 0;
   },
 
   // 获取错误的扣分
@@ -817,7 +873,20 @@ Page({
       success: (res) => {
         if (res.confirm) {
           const score = this.getScore()
-          if (score > 98) {
+          this.localUserSubjectStatusGet({
+            type: 'set',
+            propName: 'isSubmit',
+            value: true
+          });
+          this.localUserSubjectStatusGet({
+            type: 'set',
+            propName: 'score',
+            value: score
+          });
+          this.syncSubject({
+            subjectId: this.data.subjectData._id,
+          });
+          if (score >= 90) {
             wx.showModal({
               title: '考试结果',
               content: '考试通过！',
@@ -840,12 +909,15 @@ Page({
             confirmText: '重新考试',
             success: (res) => {
               if (res.cancel) {
-                wx.redirectTo({
-                  url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
+                wx.switchTab({
+                  url: '/pages/index/index',
                 })
               }
               if (res.confirm) {
                 // 重新给一个题目
+                wx.redirectTo({
+                  url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
+                })
               }
             }
           })

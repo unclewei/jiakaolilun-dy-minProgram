@@ -23,12 +23,12 @@ Page({
     isCoach: false,
   },
   onLoad(options) {
-    console.log(options);
-    if (options.fromWho) {
-      wx.setStorageSync('fromWho', options.fromWho)
+    console.log('options', options);
+    if (options?.fromWho) {
+      wx.setStorageSync('fromWho', options?.fromWho)
     }
-    if (options.source) {
-      wx.setStorageSync('source', options.source)
+    if (options?.source) {
+      wx.setStorageSync('source', options?.source)
     }
     // this.chosenAndWrong()
     this.setBodyHeight()
@@ -65,7 +65,7 @@ Page({
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2
     })
-    if(getApp().globalData.userInfo.userType === 1&& getApp().globalData.userConfig.isInit){
+    if (getApp().globalData.userInfo.userType === 1 && getApp().globalData.userConfig.isInit) {
       wx.navigateTo({
         url: '/pages/UserConfigInit/index',
       })
@@ -208,7 +208,7 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-   
+
   }
 
 })

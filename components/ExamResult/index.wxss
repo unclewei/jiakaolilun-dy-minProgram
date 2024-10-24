@@ -4,20 +4,18 @@
   margin-bottom: 0px;
   width: 100%;
   text-align: left;
+  font-size: 15rpx;
 }
 
 .correct {
   color: #5baf72;
-  font-size: 30rpx;
 }
 
 .wrong {
   color: #f4551b;
-  font-size: 30rpx;
 }
 
 .why {
-  font-size: 30rpx;
   margin-left: 5px;
   color: #51a9f2;
 }

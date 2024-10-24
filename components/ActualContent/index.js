@@ -56,6 +56,9 @@ Component({
       step
     }) {
       const that = this
+      if(!that.data.isLogin){
+        return
+      }
       getUserMoniPool({
         step
       }).then((res) => {

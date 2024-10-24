@@ -164,23 +164,19 @@ Component({
     scoreInit() {
       const {
         step,
-        userSubjectData
+        userSubjectData,
+        poolData
       } = this.data
-      if (step == 1) {
-        return userSubjectData.rightSubjectIds?.length || 0;
-      }
-      return (userSubjectData.rightSubjectIds?.length || 0) * this.data.poolData.eachScore || 0;
+      return userSubjectData.rightSubjectIds?.length * poolData.eachScore|| 0;
     },
     //做错丢失的分
     wrongScore() {
       const {
         step,
-        userSubjectData
+        userSubjectData,
+        poolData
       } = this.data
-      if (step == 1) {
-        return userSubjectData.wrongSubjectItems?.length || 0;
-      }
-      return (userSubjectData.wrongSubjectItems?.length || 0) * this.data.poolData.eachScore || 0;
+      return (userSubjectData.wrongSubjectItems?.length || 0) * poolData.eachScore || 0;
     },
     unAnswer() {
       const {

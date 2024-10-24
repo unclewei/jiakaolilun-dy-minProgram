@@ -91,6 +91,7 @@ Page({
       swiperHeight: wx.getSystemInfoSync().windowHeight,
       userSubjectData: userSubjectJson, // 做题状态
       urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
+      userPoolId: poolType === 'wrong' ? poolId : undefined,
       requestPoolObj: { // 请求的数据池子对象
         poolId: poolType === 'wrong' ? undefined : poolId,
         userPoolId: poolType === 'wrong' ? poolId : undefined
