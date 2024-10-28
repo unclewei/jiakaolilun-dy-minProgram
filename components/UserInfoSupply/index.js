@@ -5,8 +5,11 @@ import {
 
 import {
   coachPhoneNum,
-  userInfo
 } from '../../utils/api'
+
+import {
+  autoLogin
+} from "../../plugins/wxapi";
 
 
 Component({
@@ -80,17 +83,11 @@ Component({
           return
         }
         showToast(`用户基本信息完善成功`)
-        userInfo().then(res => {
-
-          if (res.data.code !== 200) {
-            showNetWorkToast(res.data.msg)
-            return
-          }
-          const resData = res.data.data;
-          getApp().globalData.userInfo = resData
+        autoLogin(()=>{
           that.triggerEvent('Update')
           that.hideModal()
         })
+
       });
     },
 

@@ -186,6 +186,7 @@
 
 .doneIcon {
   width: 15px;
+  height: 15px;
   margin-right: 3px;
 }
 

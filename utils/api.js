@@ -22,17 +22,10 @@ export const getVersion = (data) => {
   })
 }
 
-//获取用户信息
-export const userInfo = () => {
-  return xapi.requestWithJwt({
-    url: `${baseApi}/userInfo`
-  })
-}
-
 // 更新用户信息
 export const updateUserInfo = (userInfo) => {
   return xapi.requestWithJwt({
-    url: `${baseApi}/user/updateUserInfo`,
+    url: `${baseApi}/user/userInfoEdit`,
     method: 'post',
     data: userInfo
   })
@@ -46,7 +39,7 @@ export const updateUserInfo = (userInfo) => {
 export const coachPhoneNum = (data) => {
   return xapi.requestWithJwt({
     method: 'post',
-    url: `${baseApi}/user/coachPhoneNum`,
+    url: `${baseApi}/user/userInfoEdit`,
     data
   });
 }

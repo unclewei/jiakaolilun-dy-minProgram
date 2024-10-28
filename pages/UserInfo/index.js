@@ -69,12 +69,29 @@ Page({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
     });
+    this.checkPaidDone(this.data.step)
     wx.setTabBarStyle({
       backgroundColor: "#fff",
     });
     this.getBenefitItemData()
   },
 
+  // 检测这个科目是否已经购买
+  checkPaidDone(step) {
+    const subjectItemList = getApp().globalData.subjectItemList
+    const resData = subjectItemList.map(p => {
+      const isPaidDone = this.data.userInfo && this.data.userInfo.paidItems.find(payItem => payItem._id === p._id)
+      return {
+        ...p,
+        isPaidDone,
+      }
+    })
+    const isPaidDone = !!resData.filter(p => p.step.includes(Number.parseInt(step))).find(p => p.isPaidDone)
+    this.setData({
+      isPaidDone
+    })
+
+  },
   getBenefitItemData() {
     const index = this.data.benefitItemData.findIndex(p => p.poolType === 'chosen')
     let newList = [...this.data.benefitItemData];
@@ -90,6 +107,8 @@ Page({
     this.setData({
       step: newStep,
     });
+
+    this.checkPaidDone(newStep)
     wx.setNavigationBarColor({
       backgroundColor: newStep == 1 ? "#46b978" : "#2196f3",
       frontColor: "#ffffff",
@@ -138,8 +157,8 @@ Page({
       userInfo,
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
-      isPaidDone: userInfo?.itemValidMap?.[`ke${this.data.step}`],
     });
+    this.checkPaidDone(this.data.step)
     this.getBenefitItemData()
     this.userPoolsGet(this.data.step);
   },

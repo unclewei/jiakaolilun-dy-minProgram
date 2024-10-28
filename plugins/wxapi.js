@@ -79,7 +79,7 @@ export const loginFailOption = (callback, res, isInit) => {
 }
 
 // 获取用户配置
-export const getUserConfig = (callBack)=>{
+export const getUserConfig = (callBack) => {
   userConfigGet().then(res => {
     wx.hideLoading()
     if (res.data.code !== 200) {
@@ -92,7 +92,7 @@ export const getUserConfig = (callBack)=>{
   })
 }
 // 更新用户配置
-export const updateUserConfig = (data,callBack)=>{
+export const updateUserConfig = (data, callBack) => {
   wx.showLoading()
   syncUserConfig(data).then(res => {
     if (res.data.code !== 200) {
@@ -170,14 +170,7 @@ export const afterPayFunc = (orderId, callback) => {
       return
     }
     // 更新用户信息 
-    userInfo().then(res => {
-      if (res.data.code !== 200) {
-        showNetWorkToast(res.data.msg)
-        callback('fail')
-        return
-      }
-      const resData = res.data.data;
-      getApp().globalData.userInfo = resData
+    autoLogin(() => {
       callback('success')
     })
   })

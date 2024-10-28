@@ -87,13 +87,13 @@
           <view class='item'>
             <view class='content'>
               <view class='title'>第二步、完善个人资料</view>
-              <p class='longP'>注意：最晚在正式考试前24时完善个人资料，否则无法补偿！</p>
-              <p wx:if="{{isUserInfoOK}}">
-              <p class='info'>姓名：{userInfo.name}</p>
-              <p class='info'>手机：{userInfo.phoneNum}</p>
-              </p>
+              <view class='longP'>注意：最晚在正式考试前24时完善个人资料，否则无法补偿！</view>
+              <view wx:if="{{isUserInfoOK}}">
+                <view class='info'>姓名：{{userInfo.name}}</view>
+                <view class='info'>手机：{{userInfo.phoneNum}}</view>
+              </view>
             </view>
-            <UserInfoSupply disabled='{{isUserInfoOK}}'>
+            <UserInfoSupply disabled='{{isUserInfoOK}}' bindUpdate='updateUserInfo'>
               <span class="btn {{isUserInfoOK && 'success'}}">
                 {{isUserInfoOK ? '已完善' : '去完善'}}
               </span>
@@ -116,14 +116,14 @@
       </view>
     </view>
 
-    <view wx:if="{{isApproval}}" class='buy' >
+    <view wx:if="{{isApproval}}" class='buy'>
       <view class="payment">
         <view class='buyButton'>
           <span>由于相关规范，iOS功能暂不可用</span>
         </view>
       </view>
     </view>
-    
+
     <view class='buy' wx:else="">
       <CountDown wx:if="{{!selectItem.isPaidDone}}" discountPrice='{{selectItem.discountPrice}}' />
       <view class="payment">

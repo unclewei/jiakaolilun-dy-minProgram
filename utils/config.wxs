@@ -243,6 +243,10 @@ module.exports.startInit = function (level) {
   var arr = []
   for (var i = 0; i < level; i++) {
     arr.push(i);
-}
+  }
   return arr
+};
+// string 按需切开
+module.exports.stringSplit = function (content = '', splitKey = '/') {
+  return content.split(splitKey)
 };

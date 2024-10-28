@@ -40,10 +40,15 @@
                 <span class="tag must">热门</span>
               </div>
             </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
-              <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>图标速记
+            <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" wx:if="{{examType !== 'moto'}}">
+              <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
+              <div class='smallItemText'>500题技巧
+                <span class="tag must">必学</span>
               </div>
+            </div>
+            <div class='smallItem' bindtap="gotoSubject" data-item="secret" wx:else>
+              <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
+              <div class='smallItemText'>考前秘卷</div>
             </div>
           </div>
           <div class='bodyBig' bindtap="gotoSubject" data-item="chosen">
@@ -78,11 +83,11 @@
           <div class='bodySmall'>
             <div class='smallItem' bindtap="gotoSubject" data-item="special">
               <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>专项练习</div>
+              <div class='smallItemText'>图标速记</div>
             </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="hard">
+            <div class='smallItem' bindtap="gotoSubject" data-item="newRule">
               <image mode="aspectFill" src='../../images/subjectIconThree.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>难题练习</div>
+              <div class='smallItemText'>新规密卷</div>
             </div>
           </div>
           <div class='bodyBig'>
@@ -93,9 +98,9 @@
             </div>
           </div>
           <div class='bodySmall'>
-            <div class='smallItem' bindtap="gotoSubject" data-item="secret">
-              <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>考前秘卷</div>
+            <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
+              <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
+              <div class='smallItemText'>专项练习</div>
             </div>
             <button class="cleanButton" open-type="contact">
               <div class='smallItem'>

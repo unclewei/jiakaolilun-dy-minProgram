@@ -1,0 +1,33 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<view class='init'>
+  <view class='headerWrap'>
+    <view class='header'>
+      <image class="headerIcon" src="../../images/minePage.png" mode="widthFix" />
+      <view class='title1'>技巧学习，事半功倍</view>
+      <view class='title2'>通过技巧来学习精选500题</view>
+    </view>
+  </view>
+  <view class='wrap'>
+    <view class='item' wx:for="{{poolData}}">
+      <view class='itemTitle' bindtap="gotoPage" data-poolid="{{item._id}}">
+        <view class='nums'>
+          <view class='num'>{{index + 1}}</view>
+          <view class='name'>{{item.name}}</view>
+        </view>
+        <view class='itemCount'>
+          <view>
+            {{userSubjectMap[item._id].currentIndex ? userSubjectMap[item._id].currentIndex + 1 : 0}}/{{item.subjectCount}}
+          </view>
+          <image src='../../images/icon/arrow-right.png' class='subjectCount' mode="aspectFit" />
+        </view>
+      </view>
+      <view class='skillContent'>
+        <view class='line' wx:for="{{utils.stringSplit(item.note)}}" wx:for-item='textItem'>
+          <view class='dot' />
+          {{textItem}}
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

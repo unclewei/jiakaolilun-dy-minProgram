@@ -27,7 +27,7 @@ Component({
 
     itemData: [], // 权益数据
     selectItem: {}, // 选择的权益数据
-    User: getApp().globalData.userInfo || {},
+    userInfo: getApp().globalData.userInfo || {},
     isUserInfoOK: false, // 是否有手机号码和姓名
     step: '1',
     insideBtnPaidDone: false,
@@ -40,7 +40,7 @@ Component({
     const stepStorage = wx.getStorageSync('step')
     this.setData({
       isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
-      User: getApp().globalData.userInfo,
+      userInfo: getApp().globalData.userInfo,
       isSwitchPage: getCurrentPages().length === 1,
       isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
     })
@@ -62,7 +62,7 @@ Component({
     }) {
       const subjectItemList = getApp().globalData.subjectItemList
       const resData = subjectItemList.map(p => {
-        const isPaidDone = !!this.data.User.paidItems.find(payItem => payItem._id === p._id)
+        const isPaidDone = !!this.data.userInfo.paidItems.find(payItem => payItem._id === p._id)
         let fitCoupon = isPaidDone ?
           undefined :
           autoChooseDisCount({
@@ -134,7 +134,7 @@ Component({
     },
     updateUserInfo() {
       this.setData({
-        User: getApp().globalData.userInfo,
+        userInfo: getApp().globalData.userInfo,
         isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
       })
     },
@@ -151,7 +151,7 @@ Component({
       this.selectComponent("#ShoppingDrawer").hideModal()
       this.setData({
         insideBtnPaidDone: true,
-        User: getApp().globalData.userInfo,
+        userInfo: getApp().globalData.userInfo,
         isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
       })
     },

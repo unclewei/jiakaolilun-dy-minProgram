@@ -49,21 +49,22 @@ Page({
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
-      isCoach: getApp().globalData.userInfo.userType === 2
+      isCoach: getApp().globalData.userInfo.userType === 2,
+      examType: getApp().globalData.userConfig.examType
     })
     this.chosenAndWrong()
   },
 
   /**  登录成功*/
   onLoginSuccess() {
-    console.log('laile');
     this.chosenAndWrong()
     this.setData({
       isLogin: true,
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
-      isCoach: getApp().globalData.userInfo.userType === 2
+      isCoach: getApp().globalData.userInfo.userType === 2,
+      examType: getApp().globalData.userConfig.examType
     })
     if (getApp().globalData.userInfo.userType === 1 && getApp().globalData.userConfig.isInit) {
       wx.navigateTo({

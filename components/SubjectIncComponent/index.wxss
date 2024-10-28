@@ -512,12 +512,16 @@ page{
   color: #9197a3;
   font-size: 13px;
 }
-.refundStep .data .item .content .longP {
+.longP {
   width: 90%;
+  color: #9197a3;
+  font-size: 13px;
+  margin-bottom: 10px;
 }
 .refundStep .data .item .content .info {
   margin-bottom: 0px !important;
   color: #00a3ff !important;
+  font-size: 13px;
 }
 .refundStep .data .item .btn {
   display: flex;

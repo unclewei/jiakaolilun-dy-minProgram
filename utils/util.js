@@ -170,6 +170,9 @@ export const gotoSubject = ({
     case 'incPage':
       url = '/pages/SubjectIncPage/index';
       break;
+    case 'skillPage': // 技巧学习页
+      url = '/pages/SkillPage/index';
+      break;
   }
   url = appendUrlPara(url, params);
   if (isReplace) {
