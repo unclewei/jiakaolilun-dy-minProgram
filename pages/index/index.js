@@ -205,6 +205,13 @@ Page({
     })
   },
 
+  // 添加到桌面 提示
+  addToDesk(){
+    wx.navigateTo({
+      url: '/pages/AddToDesk/index',
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */

@@ -1,0 +1,3 @@
+<!--pages/AddToDesk/index.wxml-->
+<image class="img" src="../../images/addToDesk.jpg" mode="widthFix" />
+<image class="img" wx:if="{{isIos}}" src="../../images/addToDeskIOS.jpg" mode="widthFix" />

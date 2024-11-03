@@ -85,9 +85,9 @@
               <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
               <div class='smallItemText'>图标速记</div>
             </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="newRule">
-              <image mode="aspectFill" src='../../images/subjectIconThree.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>新规密卷</div>
+            <div class='smallItem' bindtap="addToDesk">
+              <image mode="aspectFill" src='../../images/icon/xcx.png' class='smallItemIcon' alt="" />
+              <div class='smallItemText'>添加到桌面</div>
             </div>
           </div>
           <div class='bodyBig'>
