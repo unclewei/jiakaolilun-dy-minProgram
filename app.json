@@ -4,6 +4,7 @@
     "pages/RuleIconPage/index",
     "pages/RuleIconDetailPage/index",
     "pages/UserConfigInit/index",
+    "pages/UserAcCodePage/index",
     "pages/AddToDesk/index",
     "pages/SkillPage/index",
     "pages/UserInfo/index",

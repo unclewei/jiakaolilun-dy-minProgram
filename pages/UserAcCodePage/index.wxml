@@ -1,0 +1,33 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+
+<view class='init'>
+  <view class='headerWrap'>
+    <view class='header'>
+      <image class="headerIcon" src="../../images/minePage.png" mode="widthFix" />
+      <view class='title1'>输入激活码</view>
+      <view class='title2'>技巧学习，不过补偿！</view>
+    </view>
+  </view>
+
+
+  <view class='item'>
+    <input value='{{content}}' bindinput="onInputChange" class='textArea' placeholder='点击填写激活码' auto-focus />
+    <view class='button {{!content || content.length===0 && "disableBtn"}}' bindtap='onPost'>
+      {{loading ? '激活中' : '提交'}}
+    </view>
+  </view>
+  <view wx:if="{{userAcCodeData}}">
+    <view class='result'>
+      <image src='../../images/icon/arrow-right.png' mode="widthFix" class='icon' />
+      <span>成功激活权益：{{userAcCodeData.paidObject.name}}</span>
+    </view>
+    <view class='secondTips' bindtap='goToDetail'>激活时间：{{utils.toDate(userAcCodeData.activeDate)}}</view>
+    <view class='gotoPage' bindtap='goToDetail'>回到首页开始做题吧>></view>
+  </view>
+  <view class='result' wx:if="{{errorMsg}}">
+    <span>激活权益失败：{{errorMsg}}</span>
+  </view>
+
+
+</view>

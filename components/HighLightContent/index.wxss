@@ -18,10 +18,10 @@
 
 }
 .isHighLight {
-  padding: 1rpx 5rpx;
-  font-size: 30rpx;
+  /* padding: 1rpx 5rpx; */
+  /* font-size: 30rpx; */
   background-color: #268fff;
   color: #fff;
-  margin: 0 3rpx;
+  /* margin: 0 3rpx; */
   border-radius: 10rpx;
 }

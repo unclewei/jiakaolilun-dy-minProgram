@@ -35,25 +35,33 @@ Component({
     rightsList,
     reasonList
   },
-
-  ready() {
-    const stepStorage = wx.getStorageSync('step')
-    this.setData({
-      isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
-      userInfo: getApp().globalData.userInfo,
-      isSwitchPage: getCurrentPages().length === 1,
-      isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum,
-      step: Number.parseInt(this.data.step || stepStorage || 1),
-    })
-    this.itemDataGet({
-      step: Number.parseInt(this.data.step || stepStorage || 1),
-    })
+  pageLifetimes: {
+    show() {
+      // 组件所在的页面显示时触发
+      this.initData()
+    }
   },
+  ready() {
+    this.initData()
+  },
+
   /**
    * 组件的方法列表
    */
   methods: {
-
+    initData() {
+      const stepStorage = wx.getStorageSync('step')
+      this.setData({
+        isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
+        userInfo: getApp().globalData.userInfo,
+        isSwitchPage: getCurrentPages().length === 1,
+        isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum,
+        step: Number.parseInt(this.data.step || stepStorage || 1),
+      })
+      this.itemDataGet({
+        step: Number.parseInt(this.data.step || stepStorage || 1),
+      })
+    },
 
     /**
      * 请求对应科目权益套餐
@@ -95,10 +103,11 @@ Component({
         this.selectComponent("#LoginModal").showModal();
         return;
       }
-      const itemData = this.data.totalItem.filter(p => p.step.includes(Number.parseInt(this.data.step)))
-      const paidItem = itemData.find(p => p.isPaidDone)
-      const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
       const newStep = this.data.step == 1 ? 4 : 1
+      const itemData = this.data.totalItem.filter(p => p.step.includes(newStep))
+      const paidItem = itemData?.find(p => p.isPaidDone)
+      const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
+     
       wx.setStorageSync('step', newStep)
       this.setData({
         step: newStep,

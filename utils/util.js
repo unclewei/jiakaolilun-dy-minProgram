@@ -173,6 +173,9 @@ export const gotoSubject = ({
     case 'skillPage': // 技巧学习页
       url = '/pages/SkillPage/index';
       break;
+    case 'userAcCodePage': // 兑换码
+      url = '/pages/UserAcCodePage/index';
+      break;
   }
   url = appendUrlPara(url, params);
   if (isReplace) {

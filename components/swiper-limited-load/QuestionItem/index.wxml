@@ -4,21 +4,34 @@
   <view class='question'>
     <span class='type'>{{item.typeStr}}</span>
     {{item.question}}
+    <HighLightContent keys='{{item.questionKeys}}' content="{{item.question}}" isNotHighLight='{{!(isShowAnswer || isShowKeyWorld || isSeeMode )}}' />
   </view>
-  <SubjectAudio subjectItem='{{item}}' />
+
+  <view class='buttons'>
+    <view class='skill {{isShowKeyWorld && "highLight"}}' bindtap='onButtonClick' data-item='keyWorld' wx:if="{{item.questionKeys}}">
+      <image src='../../../images/vip2.png' class='skillIcon' mode="widthFix" />
+      关键字显示
+    </view>
+    <view class='skill {{isShowAnswer && "highLight"}}' bindtap='onButtonClick' data-item='answer'>
+      <image src='../../../images/right.png' class='skillIcon' mode="widthFix" />
+      答案显示
+    </view>
+    <SubjectAudio subjectItem='{{item}}' />
+  </view>
+
   <view class='imgWrap' wx:if="{{item.imgName}}">
     <image class='img' src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
   </view>
   <view class='options'>
-    <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' />
+    <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode || isShowAnswer}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' />
   </view>
-  <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' />
+  <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode || isShowAnswer}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' />
 
   <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3 && !isSwipering}}" bindtap="onAnswerConfirm" data-item="{{item}}">
     确定
   </view>
 </view>
 <view class="emptyBox" wx:else>
-  <image class="emptyIcon" src="../../../images/learnPage.png" mode="widthFix" /> 
+  <image class="emptyIcon" src="../../../images/learnPage.png" mode="widthFix" />
   <view class="emptyText">没题目拉~</view>
 </view>

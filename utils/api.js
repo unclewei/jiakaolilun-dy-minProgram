@@ -370,3 +370,15 @@ export const ruleIconList = (data) => {
     data,
   })
 }
+/**
+ * 激活码激活
+ * @param params
+ * @returns {*}
+ */
+export const userAcCodeActive = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/userAcCode/userAcCodeActive`,
+    method: 'post',
+    data,
+  })
+}

@@ -19,6 +19,7 @@ Page({
     examType: 'car',
     userSubjectMap: {},
     poolData: [],
+    poolIds: [],
   },
 
   /**
@@ -50,7 +51,7 @@ Page({
     this.setData({
       examType: getApp().globalData.userConfig.examType
     })
-    if (this.data.poolIds.length) {
+    if (this.data.poolIds?.length) {
       this.userPoolsGet({
         step: this.data.step,
         poolIds: this.data.poolIds,

@@ -22,7 +22,7 @@
           <image src='../../images/icon/arrow-right.png' class='subjectCount' mode="aspectFit" />
         </view>
       </view>
-      <view class='skillContent'>
+      <view class='skillContent' bindtap="gotoPage" data-poolid="{{item._id}}">
         <view class='line' wx:for="{{utils.stringSplit(item.note)}}" wx:for-item='textItem'>
           <view class='dot' />
           {{textItem}}

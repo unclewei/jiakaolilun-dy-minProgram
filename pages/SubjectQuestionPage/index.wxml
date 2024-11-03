@@ -11,7 +11,7 @@
         背题模式
       </span>
     </span>
-    <Restart poolId='{{poolId}}' bindReSet='onReSet'>
+    <Restart poolId='{{poolId}}'  bindReSet='onReSet'>
       <span class='modeBtn'>重做</span>
     </Restart>
   </view>

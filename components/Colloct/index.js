@@ -18,6 +18,11 @@ Component({
     setTimeout(() => {
       this.checkColloct()
     }, 1000 * 60 * 1);
+
+    setTimeout(() => {
+      // 1分钟后自动关闭
+      this.onColloct()
+    }, 1000 * 60 * 2);
     // 1分钟后，出现
   },
 

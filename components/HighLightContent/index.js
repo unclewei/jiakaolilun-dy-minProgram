@@ -13,16 +13,28 @@ Component({
       type: String,
       value: '',
     },
+    isNotHighLight: {
+      type: Boolean,
+      value: false
+    }
   },
 
   observers: {
-    'content,keys': function (content, keys) {
+    'content,keys,isNotHighLight': function (content, keys, isNotHighLight) {
+      if (isNotHighLight) {
+        this.setData({
+          skillList: [{
+            text: content
+          }]
+        })
+        return
+      }
       let highLightKeys = keys ? keys.split('/') : [];
       for (let i of highLightKeys) {
         content = content.replace(i, `[[${i}]]`);
       }
       const reg = new RegExp(/\[\[(.*?)\]\]/);
-     const skillList =   content.split(reg).reduce((prev, current, i) => {
+      const skillList = content.split(reg).reduce((prev, current, i) => {
         if (!i) return [{
           text: current
         }]
@@ -31,7 +43,7 @@ Component({
           class: highLightKeys.includes(current) ? "isHighLight" : ''
         }]
       }, [])
-      console.log('skillList',skillList);
+      console.log('skillList', skillList);
       this.setData({
         skillList
       })

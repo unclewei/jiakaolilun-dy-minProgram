@@ -64,6 +64,10 @@
         <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
         <view class='secText'>科二科三</view>
       </view>
+      <view class='secItem' bindtap="gotoPage" data-pooltype='userAcCodePage'>
+        <image class='secIcon' src='../../images/dotIcon/earth.png' mode="widthFix" />
+        <view class='secText'>激活码</view>
+      </view>
       <button class="cleanButton secItem" open-type="contact">
         <image class="secIcon" src="../../images/dotIcon/mine.png" mode="widthFix" />
         <view class="secText">联系客服</view>

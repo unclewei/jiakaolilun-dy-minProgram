@@ -9,6 +9,7 @@
     "SubjectAudio": "../../../components/SubjectAudio",
     "CheckIsVip": "../../../components/CheckIsVip",
     "VisSwiper": "../../../components/swiper-limited-load",
+    "HighLightContent": "../../../components/HighLightContent/index",
     "SubjectCountdown": "../../../components/SubjectCountdown"
   }
 }

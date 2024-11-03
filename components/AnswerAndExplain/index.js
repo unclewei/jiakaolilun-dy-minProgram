@@ -71,6 +71,9 @@ Component({
           show: true
         })
       }
+      this.setData({
+        show: false
+      })
     },
     'subjectItem': function (subjectItem) {
       let answerNum = subjectItem?.answer?.toString() || '';
