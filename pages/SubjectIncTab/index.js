@@ -12,7 +12,7 @@ Page({
   onLoad(options) {
     const stepStorage = wx.getStorageSync('step')
     this.setData({
-      step: options.step || stepStorage,
+      step: options.step || stepStorage || 1,
     })
   },
 

@@ -10,9 +10,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const stepStorage = wx.getStorageSync('step')
+    console.log('stepStorage',stepStorage);
     this.setData({
-      step: options.step || stepStorage,
+      step: options.step || stepStorage || 1,
     })
   },
 

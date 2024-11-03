@@ -65,9 +65,11 @@ Page({
     });
   },
   onShow() {
+    const stepStorage = wx.getStorageSync('step')
     this.setData({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
+      step: stepStorage || 1,
     });
     this.checkPaidDone(this.data.step)
     wx.setTabBarStyle({
@@ -175,7 +177,7 @@ Page({
 
   copyId() {
     wx.setClipboardData({
-      data: getApp().globalData.userInfo.openId,
+      data: getApp().globalData.userInfo._id,
     });
   },
   gotoNP(e) {

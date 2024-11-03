@@ -81,7 +81,7 @@
         <!-- {/* 模拟考试部分 */} -->
         <div class='bodyBox'>
           <div class='bodySmall'>
-            <div class='smallItem' bindtap="gotoSubject" data-item="special">
+            <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
               <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
               <div class='smallItemText'>图标速记</div>
             </div>
@@ -98,7 +98,7 @@
             </div>
           </div>
           <div class='bodySmall'>
-            <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
+            <div class='smallItem' bindtap="gotoSubject" data-item="special">
               <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
               <div class='smallItemText'>专项练习</div>
             </div>

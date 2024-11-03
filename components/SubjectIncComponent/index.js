@@ -42,7 +42,8 @@ Component({
       isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
       userInfo: getApp().globalData.userInfo,
       isSwitchPage: getCurrentPages().length === 1,
-      isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum
+      isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum,
+      step: Number.parseInt(this.data.step || stepStorage || 1),
     })
     this.itemDataGet({
       step: Number.parseInt(this.data.step || stepStorage || 1),
