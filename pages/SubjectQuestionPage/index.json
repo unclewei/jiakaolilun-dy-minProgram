@@ -6,6 +6,7 @@
     "AnswerAndExplain": "../../components/AnswerAndExplain",
     "Finish": "../../components/Finish",
     "Colloct": "../../components/Colloct",
+    "SubjectVideo": "../../components/SubjectVideo",
     "SubjectAudio": "../../components/SubjectAudio",
     "CurrentIndexSelector": "../../components/CurrentIndexSelector",
     "CheckIsVip": "../../components/CheckIsVip",

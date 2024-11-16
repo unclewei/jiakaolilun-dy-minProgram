@@ -61,6 +61,9 @@
   color: #353535;
   font-weight: 600;
   margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .init .skillTitle {
   display: inline-flex;

@@ -260,3 +260,15 @@
 .doalog .description {
   text-align: left;
 }
+
+.normalItem{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+  font-size: 11px;
+}
+.readIcon {
+  width: 16px;
+  height: 16px;
+}

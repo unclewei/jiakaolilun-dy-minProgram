@@ -1,6 +1,7 @@
 {
   "component": true,
   "usingComponents": {
+    "HighLightContent": "../HighLightContent/index",
     "ConfirmModal": "../ConfirmModal/index"
   }
 }

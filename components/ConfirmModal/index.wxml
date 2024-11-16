@@ -1,4 +1,4 @@
-<baseModal id="baseModal" title='{{title}}' imageSrc='{{imageSrc}}'>
+<baseModal id="baseModal" title='{{title}}' imageSrc='{{imageSrc}}' showImage='{{showImage}}' bindHide='bindHide' bindShow='bindShow'>
   <slot></slot>
 
   <!-- 操作区域 -->

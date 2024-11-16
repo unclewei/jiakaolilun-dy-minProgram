@@ -229,6 +229,7 @@
   justify-content: flex-end;
   margin-top: 8px;
   box-sizing: border-box;
+  margin-bottom: 8px;
 }
 
 .audio {
@@ -236,7 +237,7 @@
 }
 
 .highLight {
-  background-color: #009aff !important;
+  background-color: #f77246 !important;
   color: #fff !important;
 }
 

@@ -1,0 +1,16 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<div class='init'>
+  <span bindtap="showModal">
+    <slot></slot>
+  </span>
+
+  <ConfirmModal id="ConfirmModal" okText='关闭' showCancel='{{false}}' showImage='{{false}}' bindConfirm='onConfirm' imageSrc='' title='视频技巧' bindHide='bindHide' bindShow='bindShow'>
+
+    <view class="videoBox">
+
+      <video class="video" src='{{palyUrl}}' wx:if="{{showPlay}}" autoplay object-fit="contain" />
+    </view>
+
+  </ConfirmModal>
+</div>

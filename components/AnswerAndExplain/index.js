@@ -70,6 +70,7 @@ Component({
         this.setData({
           show: true
         })
+        return
       }
       this.setData({
         show: false

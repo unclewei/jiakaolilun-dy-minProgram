@@ -23,6 +23,10 @@ Component({
       type: Boolean,
       value: true
     },
+    showImage: {
+      type: Boolean,
+      value: true
+    },
     showCancel: {
       type: Boolean,
       value: true
@@ -55,9 +59,17 @@ Component({
 
     hideModal: function () {
       this.selectComponent("#baseModal").hideModal()
+
     },
     showModal: function () {
       this.selectComponent("#baseModal").showModal()
+    },
+
+    bindHide() {
+      this.triggerEvent('Hide')
+    },
+    bindShow() {
+      this.triggerEvent('Show')
     },
 
     onConfirm() {

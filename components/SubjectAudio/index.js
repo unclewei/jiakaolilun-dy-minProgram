@@ -7,6 +7,14 @@ Component({
     subjectItem: {
       type: Object,
       value: {}
+    },
+    title: {
+      type: String,
+      value: '读题'
+    },
+    type: {
+      type: String,
+      value: 'questionTitle'
     }
   },
 
@@ -53,8 +61,25 @@ Component({
         urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
       });
     },
+    getPlayUrl() {
+      if (this.data.type === 'questionTitle') {
+        return this.data.subjectItem.questionTitleAudioUrl
+      }
+      if (this.data.type === 'questionKeys') {
+        return this.data.subjectItem.questionKeysAudioUrl
+      }
+      if (this.data.type === 'answer') {
+        return this.data.subjectItem.answerAudioUrl
+      }
+      if (this.data.type === 'skill') {
+        return this.data.subjectItem.skillAudioUrl
+      }
+      return undefined
+
+    },
     onPlayMusic() {
-      if (!this.data.stepFolder || !this.data.urlPrefix || !this.data.subjectItem._id) {
+      const playUrl = this.getPlayUrl()
+      if (!this.data.stepFolder || !this.data.urlPrefix || !playUrl) {
         return
       }
 
@@ -62,8 +87,8 @@ Component({
         getApp().globalData.innerAudioContext?.stop()
         getApp().globalData.innerAudioContext = null
       }
-     
-      const playId = this.data.urlPrefix + this.data.stepFolder  + this.data.subjectItem._id + '.mp3'
+
+      const playId = this.data.urlPrefix + playUrl
       const innerAudioContext = getApp().globalData.innerAudioContext || wx.createInnerAudioContext({
         useWebAudioImplement: true // 默认关闭。对于短音频、播放频繁的音频建议开启此选项
       })

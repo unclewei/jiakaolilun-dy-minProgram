@@ -59,6 +59,10 @@ Component({
       type:Boolean,
       value:false,
     },
+    isSkillOpen:{
+      type:Boolean,
+      value:false,
+    },
   },
 
   observers: {

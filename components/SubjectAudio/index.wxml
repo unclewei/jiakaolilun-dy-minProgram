@@ -1,6 +1,6 @@
 <span class='read' bindtap="onPlayMusic">
   <image src='../../images/player.png' class='readIcon' mode="widthFix" />
-  <span>读题<span wx:if="{{isReading}}">中</span></span>
+  <span>{{title}}<span wx:if="{{isReading}}">中</span></span>
   <span class='preloader_1' wx:if="{{isReading}}">
     <span />
     <span />

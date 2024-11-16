@@ -3,7 +3,6 @@
 <view class='questionItem' wx:if="{{item.question}}">
   <view class='question'>
     <span class='type'>{{item.typeStr}}</span>
-    {{item.question}}
     <HighLightContent keys='{{item.questionKeys}}' content="{{item.question}}" isNotHighLight='{{!(isShowAnswer || isShowKeyWorld || isSeeMode )}}' />
   </view>
 
@@ -23,7 +22,7 @@
     <image class='img' src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
   </view>
   <view class='options'>
-    <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode || isShowAnswer}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' />
+    <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode || isShowAnswer}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' isNotHighLight='{{isShowAnswer || isShowKeyWorld || isSeeMode }}' />
   </view>
   <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode || isShowAnswer}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' />
 

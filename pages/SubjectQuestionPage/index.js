@@ -17,11 +17,14 @@ import {
   showNetWorkToast,
   showToast,
   deleteArrObjMember,
-  deleteArrMember
+  deleteArrMember,
 } from '../../utils/util'
 import {
   autoLogin
 } from "../../plugins/wxapi";
+const {
+  watch
+} = require('../../utils/watch.js');
 
 
 /***用户在本题库做题状态数据,用于同步到数据库***/
@@ -65,7 +68,9 @@ Page({
     wrongHistory: {}, // 错误历史
     requestPoolObj: {}, // 请求的数据池子对象
 
+    subjectItem: {}
   },
+
 
   /**
    * 生命周期函数--监听页面加载
@@ -83,6 +88,7 @@ Page({
       goBack()
       return
     };
+    this.onUpdateSubjectItem()
     this.setData({
       poolType,
       step,
@@ -123,6 +129,15 @@ Page({
       userInfo: getApp().globalData.userInfo,
       isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2,
     })
+  },
+
+  onUpdateSubjectItem() {
+    // 监听 myValue 的变化
+    watch(this, 'currentIndex', (newCurrentIndex) =>{
+      this.setData({
+        subjectItem: this.data.subjectData.find(p => p.currentIndex === newCurrentIndex)
+      })
+    });
   },
   //购买成功
   onBuySuccess() {

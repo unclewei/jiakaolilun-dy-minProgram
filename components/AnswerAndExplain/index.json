@@ -3,6 +3,7 @@
   "usingComponents": {
     "ConfirmModal": "../ConfirmModal/index",
     "SubjectComment": "../SubjectComment/index",
+    "SubjectAudio": "../SubjectAudio/index",
     "HighLightContent": "../HighLightContent/index"
   }
 }

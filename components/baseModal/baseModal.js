@@ -64,6 +64,7 @@ Component({
           isShow: !this.data.isShow,
           hidding: false
         })
+        this.triggerEvent('Hide')
       }
     },
 
@@ -80,6 +81,7 @@ Component({
         this.setData({
           isShow: !this.data.isShow
         })
+        this.triggerEvent('Show')
       }
     },
   }

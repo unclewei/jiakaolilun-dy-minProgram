@@ -10,6 +10,7 @@
         <image src='../../images/icon/light.png' class='skillIcon' mode="widthFix" />
         盲选技巧
       </span>
+      <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' />
     </view>
     <HighLightContent keys='{{subjectItem.skillKeys}}' content="{{subjectItem.skillContent}}" />
   </view>

@@ -11,7 +11,7 @@
         背题模式
       </span>
     </span>
-    <Restart poolId='{{poolId}}'  bindReSet='onReSet'>
+    <Restart poolId='{{poolId}}' bindReSet='onReSet'>
       <span class='modeBtn'>重做</span>
     </Restart>
   </view>
@@ -21,7 +21,7 @@
 
   <!-- 答题内容 -->
   <view class='content' id="questionBody">
-    <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}" list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}'  optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' total='{{poolData.subjectCount || subjectData.length || 0}}' bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next' />
+    <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}" list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' total='{{poolData.subjectCount || subjectData.length || 0}}' bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next' />
 
   </view>
 
@@ -49,6 +49,12 @@
           <image class='finishIcon' src='../../images/subjectIconSeven.png' mode="widthFix" />交卷
         </span>
       </Finish>
+      <SubjectVideo wx:if="{{poolData.type !== 'moni' && subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
+        <span class='normalItem'>
+          <image src='../../images/player.png' class='readIcon' mode="widthFix" />
+          <view>视频技巧</view>
+        </span>
+      </SubjectVideo>
     </span>
 
     <span wx:if="{{poolData.type ==='moni'}}">
