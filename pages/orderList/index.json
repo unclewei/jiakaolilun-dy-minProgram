@@ -1,7 +1,5 @@
 {
-  "navigationBarTitleText": "订单历史",
-  "navigationStyle": "default",
-  "navigationBarBackgroundColor": "#000000",
+  "navigationBarTitleText": "我的订单",
   "usingComponents": {
     "LoginModal": "../../components/LoginModal"
   }

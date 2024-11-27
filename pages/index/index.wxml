@@ -35,7 +35,8 @@
           <div class='bodySmall'>
 
             <div class='smallItem' bindtap="gotoPage" data-item="incPage">
-              <image mode="aspectFill" src='../../images/subjectIconFive.png' class='smallItemIcon' alt="" />
+              <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
+              <div class='shine' />
               <div class='smallItemText'>不过补偿
                 <span class="tag must">热门</span>
               </div>
@@ -55,7 +56,7 @@
             <div class='bodyBigItem'>
               <div class='bodyBigIcon' />
               <div class='bodyBigTitle'>精选{{poolDataObj.chosen.subjectCount || '500'}}题</div>
-              <div class='svgContent'>
+              <div class='svgContent' wx:if="{{isinitProgrss}}">
                 <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
               </div>
             </div>

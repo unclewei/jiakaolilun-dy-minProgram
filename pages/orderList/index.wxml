@@ -2,19 +2,15 @@
 
 <view class="contentBox" wx:if="{{userInfo.avatarUrl}}">
 
-  <view class="locationItem" wx:for="{{orderList}}" wx:key="_id" data-item='{{item}}'>
+  <view class="locationItem" wx:for="{{paidItems}}" wx:key="_id" data-item='{{item}}'>
 
     <!-- 数据展示 -->
     <view class="locationBody">
       <!-- 赏品详情 -->
-      <view class="disFlexBet" style="margin-bottom: 10rpx;">
-        <image class="cardImg" wx:if="{{item.paidType === 'ticket'}}" src="../../images/redCard.png" mode="widthFix" />
-        <view class="cardName" wx:if="{{item.paidType === 'ticket'}}">{{item.paid.name}} X {{item.times}}</view>
-        <image class="cardImg" wx:if="{{item.paidType === 'vip'}}" src="{{'../../images/'+item.vipType+'VIP.png'}}" mode="widthFix" />
-        <view class="cardName" wx:if="{{item.paidType === 'vip'}}">{{vipType[item.vipType]}} X 1</view>
-      </view>
-      <view class="name">总价：{{item.totalFee / 100}} 元</view>
-      <view class="location"> 购买时间：{{utils.toDate(item.orderStart)}}</view>
+      <view class="name">{{item.name}}</view>
+      <view class="name">总价：{{item.price }} 元</view>
+      <view class="location"> 购买时间：{{utils.toDate(item.date)}}</view>
+      <view class="location"> 会员时效：{{item.durDay}}天</view>
     </view>
   </view>
   <!-- 缺省图 -->

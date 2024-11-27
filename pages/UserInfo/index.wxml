@@ -80,6 +80,10 @@
         <image class='secIcon' src='../../images/dotIcon/mine.png' mode="widthFix" />
         <view class='secText'>补全手机</view>
       </view>
+      <view class='secItem' bindtap="gotoOrderList" >
+        <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
+        <view class='secText'>我的订单</view>
+      </view>
       <view class='secItem' bindtap="cleanAccount" data-item="wx439070b4fa97462b">
         <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
         <view class='secText'>刷新</view>

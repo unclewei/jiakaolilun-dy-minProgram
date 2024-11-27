@@ -21,6 +21,7 @@ Page({
     percentage: 0,
     cricleConfig: {},
     isCoach: false,
+    isinitProgrss: false, // 页面是否初始化成功，初始化成功后，再渲染做题进度条
   },
   onLoad(options) {
     console.log('options', options);
@@ -30,6 +31,12 @@ Page({
     if (options?.source) {
       wx.setStorageSync('source', options?.source)
     }
+    // 就当他2s后渲染成功吧
+    setTimeout(() => {
+      this.setData({
+        isinitProgrss: true
+      })
+    }, 1000 * 2);
     // this.chosenAndWrong()
     this.setBodyHeight()
     autoLogin((res) => {
@@ -66,7 +73,7 @@ Page({
       isCoach: getApp().globalData.userInfo.userType === 2,
       examType: getApp().globalData.userConfig.examType
     })
-    if (getApp().globalData.userInfo.userType === 1 && getApp().globalData.userConfig.isInit) {
+    if (getApp().globalData.userInfo.userType === 1 && !getApp().globalData.userConfig.isInit) {
       wx.navigateTo({
         url: '/pages/UserConfigInit/index',
       })
@@ -206,7 +213,7 @@ Page({
   },
 
   // 添加到桌面 提示
-  addToDesk(){
+  addToDesk() {
     wx.navigateTo({
       url: '/pages/AddToDesk/index',
     })

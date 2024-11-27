@@ -4,7 +4,6 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #F6DFB4;
   box-sizing: border-box;
   padding: 30rpx;
   box-sizing: border-box;
@@ -45,7 +44,7 @@
   bottom: 20rpx;
   width: 120rpx;
   height: 10rpx;
-  background-color: #ffBE1C;
+  background-color: #a7a7a7;
   transform: rotate(-6deg);
   z-index: 1;
 }
@@ -88,7 +87,7 @@
   border-radius: 20rpx;
   overflow: hidden;
   border: 4rpx #421611 solid;
-  background-color: #FFFFD5;
+  background-color: #fcf4f4;
   display: flex;
   flex-direction: row;
   margin-bottom: 20rpx;
