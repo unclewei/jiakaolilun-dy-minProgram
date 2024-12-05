@@ -48,60 +48,18 @@ Component({
       type: Boolean,
       value: false,
     },
-  },
-
-  observers: {
-
-    'isNowWrong,isSeeMode,wrongHistory,rightHistory,isConfirm,isShowNow,isSwipering': function (isNowWrong, isSeeMode, wrongHistory, rightHistory, isConfirm, isShowNow, isSwipering) {
-      if (isSeeMode) { // 背题模式，最高优先级
-        this.setData({
-          show: true
-        })
-        return
-      }
-      if (!isShowNow || isSwipering) { // 不是本题的数据，或者滑动中，先不展示
-        this.setData({
-          show: false
-        })
-        return
-      }
-      // 其他情况
-      if (isNowWrong || wrongHistory?.subjectId || rightHistory || isConfirm) {
-        this.setData({
-          show: true
-        })
-        return
-      }
-      this.setData({
-        show: false
-      })
+    isShowAnswer: {
+      type: Boolean,
+      value: false,
     },
-    'subjectItem': function (subjectItem) {
-      let answerNum = subjectItem?.answer?.toString() || '';
-      let answer = '';
-      if (answerNum.includes(1)) {
-        answer += 'A'
-      }
-      if (answerNum.includes(2)) {
-        answer += 'B'
-      }
-      if (answerNum.includes(3)) {
-        answer += 'C'
-      }
-      if (answerNum.includes(4)) {
-        answer += 'D'
-      }
-      this.setData({
-        answer
-      })
-    }
   },
+
+
 
   /**
    * 组件的初始数据
    */
   data: {
-    show: false,
     answer: '',
   },
 

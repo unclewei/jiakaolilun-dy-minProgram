@@ -13,15 +13,15 @@ Component({
       type: String,
       value: '',
     },
-    isNotHighLight: {
+    isHighLight: {
       type: Boolean,
-      value: false
+      value: true
     }
   },
 
   observers: {
-    'content,keys,isNotHighLight': function (content, keys, isNotHighLight) {
-      if (isNotHighLight) {
+    'content,keys,isHighLight': function (content, keys, isHighLight) {
+      if (!isHighLight) {
         this.setData({
           skillList: [{
             text: content

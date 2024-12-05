@@ -48,7 +48,39 @@ Component({
       type: Boolean,
       value: false,
     },
+    isShowKeyWorld: {
+      type: Boolean,
+      value: false,
+    },
 
+  },
+
+  observers: {
+
+    'isNowWrong,isSeeMode,wrongHistory,rightHistory,isConfirm,isShowNow,isSwipering': function (isNowWrong, isSeeMode, wrongHistory, rightHistory, isConfirm, isShowNow, isSwipering) {
+      if (isSeeMode) { // 背题模式，最高优先级
+        this.setData({
+          isShowAnswer: true
+        })
+        return
+      }
+      if (!isShowNow || isSwipering) { // 不是本题的数据，或者滑动中，先不展示
+        this.setData({
+          isShowAnswer: false
+        })
+        return
+      }
+      // 其他情况
+      if (isNowWrong || wrongHistory?.subjectId || rightHistory || isConfirm) {
+        this.setData({
+          isShowAnswer: true
+        })
+        return
+      }
+      this.setData({
+        isShowAnswer: false
+      })
+    },
   },
 
   /**
@@ -56,7 +88,6 @@ Component({
    */
   data: {
     isShowAnswer: false,
-    isShowKeyWorld: false
   },
 
   /**
@@ -78,7 +109,6 @@ Component({
       if (item === 'answer') {
         this.setData({
           isShowAnswer: !this.data.isShowAnswer,
-          isShowKeyWorld: false
         })
       }
     },

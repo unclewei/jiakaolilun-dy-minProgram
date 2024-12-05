@@ -15,6 +15,10 @@ Component({
     type: {
       type: String,
       value: 'questionTitle'
+    },
+    isBottom: {
+      type: Boolean,
+      value: false
     }
   },
 

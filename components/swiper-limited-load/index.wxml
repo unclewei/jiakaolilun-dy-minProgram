@@ -6,6 +6,7 @@
     <item-view item="{{item}}" swiperHeight="{{swiperHeight}}" urlPrefix='{{urlPrefix}}' answerIndex='{{answerIndex}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' 
     isShowNow='{{swiperCurrent === index}}'
     isSwipering='{{isSwipering}}'
+    isShowKeyWorld='{{!isSwipering && swiperCurrent === index && isShowKeyWorld}}'
     bindOptionSelect='onAnswerSelect'
     bindAnswerConfirm='onAnswerConfirm'
     />

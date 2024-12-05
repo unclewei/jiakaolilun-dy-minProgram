@@ -39,6 +39,7 @@ const userSubjectJson = {
   score: false, //分数
   date: 0,
   limitTime: 2700, //考试剩余时间,初始值45分钟，模拟题需要
+  isShowKeyWorld: false
 };
 
 Page({
@@ -94,7 +95,7 @@ Page({
       step,
       poolId,
       from,
-      swiperHeight: wx.getSystemInfoSync().windowHeight,
+      swiperHeight: wx.getSystemInfoSync().windowHeight - 80,
       userSubjectData: userSubjectJson, // 做题状态
       urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
       userPoolId: poolType === 'wrong' ? poolId : undefined,
@@ -133,7 +134,7 @@ Page({
 
   onUpdateSubjectItem() {
     // 监听 myValue 的变化
-    watch(this, 'currentIndex', (newCurrentIndex) =>{
+    watch(this, 'currentIndex', (newCurrentIndex) => {
       this.setData({
         subjectItem: this.data.subjectData.find(p => p.currentIndex === newCurrentIndex)
       })
@@ -188,19 +189,13 @@ Page({
           return
         }
         this.setData({
-          isItemValid: validRes.data.data,
+          isItemValid: !!validRes.data.data,
           isForFree: resData.isForFree
         })
-        if (validRes.data.data || resData.isForFree) {
-          //获取用户做题状态
-          that.userSubjectDataGet({
-            isSyncSubject: false
-          });
-          return
-        }
-        wx.redirectTo({
-          url: `/pages/SubjectIncPage/index?step=${that.data.step}`,
-        })
+        that.userSubjectDataGet({
+          isSyncSubject: false
+        });
+
       })
     })
   },
@@ -475,6 +470,7 @@ Page({
       value: currentIndex + 1
     });
     this.setData({
+      isShowKeyWorld: false,
       currentIndex: currentIndex + 1
     })
     this.loadMore({
@@ -498,6 +494,7 @@ Page({
     };
     this.scrollTop()
     this.setData({
+      isShowKeyWorld: false,
       currentIndex: currentIndex - 1
     })
     this.clean();
@@ -940,7 +937,11 @@ Page({
     wx.pageScrollTo({
       selector: 'content'
     })
-
+  },
+  showSkill() {
+    this.setData({
+      isShowKeyWorld: true
+    })
   },
 
 

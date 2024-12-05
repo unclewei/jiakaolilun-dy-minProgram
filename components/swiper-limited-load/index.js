@@ -76,6 +76,10 @@ Component({
       type: Boolean,
       value: false,
     },
+    isShowKeyWorld: {
+      type: Boolean,
+      value: false,
+    },
 
   },
 

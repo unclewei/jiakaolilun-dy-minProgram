@@ -7,6 +7,6 @@
   </span>
   <span class='optionA {{styles}}' wx:else>{{optionSuffix}}</span>
   <div class='text'>
-    <HighLightContent keys='{{subjectItem.optionsKeys}}' content='{{optionText}}' isNotHighLight='{{!isSkillOpen}}' />
+    <HighLightContent keys='{{subjectItem.optionsKeys}}' content='{{optionText}}' isHighLight='{{isSkillOpen}}' />
   </div>
 </div>

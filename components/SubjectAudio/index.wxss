@@ -60,3 +60,17 @@
     background: #9b59b6;
   }
 }
+
+
+.normalItem {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-weight: 600;
+  padding: 0 10px;
+  font-size: 11px;
+}
+.readIcon {
+  width: 20px;
+  height: 20px;
+}

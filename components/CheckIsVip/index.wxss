@@ -36,6 +36,7 @@
   width: 50%;
   background-color: #fde3b4;
   color: #9d690d;
+  line-height: 1.8;
   padding: 15px 5px;
 }
 .content .selector .active {

@@ -5,7 +5,7 @@
     <slot></slot>
   </span>
 
-  <ConfirmModal id="ConfirmModal" cancelText='{{cancelText}}' okText='{{okText}}' bindCancel='{{isOk ? "hideModal" :"hideModal"}}' bindConfirm='onConfirm'>
+  <ConfirmModal id="ConfirmModal" cancelText='{{cancelText}}' okText='{{okText}}' bindCancel='{{isOk ? "hideModal" :"hideModal"}}' bindConfirm='onConfirm' showImage='{{false}}'>
     <view slot="cancelText">
       <Restart poolId='{{poolId}}' bindReSet='onReSet'>
         重新考试

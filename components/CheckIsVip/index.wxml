@@ -1,4 +1,4 @@
-<baseModal id="baseModal" imageSrc='../../images/theorybanner4.png'>
+<baseModal id="baseModal" imageSrc='../../images/theorybanner4.png' showImage='{{isCoach}}' block="{{!isCoach}}">
   <view class='doalog' wx:if="{{isCoach}}">
     <view class='not'>教练您好</view>
     <view class='description'>你可申请试用权限，继续体验剩余题目！</view>

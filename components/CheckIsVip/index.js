@@ -44,7 +44,7 @@ Component({
 
   observers: {
     "poolData": function (poolData) {
-      if(Object.keys(poolData).length === 0){
+      if (Object.keys(poolData).length === 0) {
         return
       }
       this.setData({
@@ -58,10 +58,10 @@ Component({
       })
     },
     "isVipValid,isForFree,currentIndex,poolData": function (isVipValid, isForFree, currentIndex, poolData) {
-      if(!currentIndex || isVipValid === undefined || isForFree === undefined){
+      if (!currentIndex || isVipValid === undefined || isForFree === undefined) {
         return
       }
-      if(Object.keys(poolData).length === 0){
+      if (Object.keys(poolData).length === 0) {
         return
       }
       if (isVipValid || isForFree) {
@@ -108,7 +108,11 @@ Component({
           isNoTips: true
         });
       }
-
+    },
+    toIncPage() {
+      wx.navigateTo({
+        url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
+      })
     },
 
     onSelect(e) {

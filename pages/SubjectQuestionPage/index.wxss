@@ -3,20 +3,24 @@
   box-sizing: border-box;
   color: #333;
 }
+
 .init .resultContent {
   text-align: center;
 }
+
 .init .resultContent .resultIcon {
   width: 120px;
   margin-top: 100px;
   margin-bottom: 10px;
 }
+
 .init .resultContent .score {
   font-size: 25px;
   font-weight: 600;
   margin-top: 20px;
 }
-.NextLastBox{
+
+.NextLastBox {
   position: fixed;
   right: 20px;
   bottom: 28%;
@@ -24,6 +28,7 @@
   display: flex;
   flex-direction: column;
 }
+
 .init .controlBtn {
   background-color: #fff;
   color: #333;
@@ -31,13 +36,15 @@
   margin-bottom: 5px;
   padding: 3px 5px;
 }
-.init .lastBtn {
-}
+
+.init .lastBtn {}
+
 .init .nextBtn {
   color: #2f54eb;
   background: #f0f5ff;
   border-color: #adc6ff;
 }
+
 .init .header {
   width: 100%;
   height: 50px;
@@ -50,6 +57,7 @@
   z-index: 2;
   font-size: 13px;
 }
+
 .init .header .modeBtn {
   color: #333;
   margin: 0;
@@ -60,6 +68,7 @@
   border: 1px solid #484848;
   border-radius: 5px;
 }
+
 .init .header .redo {
   color: #333;
   margin: 0;
@@ -69,23 +78,27 @@
   padding: 3px 12px;
   border: 1px solid #484848;
 }
+
 .init .header .active {
   color: #fff;
   background: #484848 !important;
   border: 1px solid #484848;
 }
+
 .init .header .setting {
   width: 30px;
 }
+
 .init .content {
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 120px);
   box-sizing: border-box;
   padding: 10px;
   position: relative;
-  padding-bottom: 200px;
+  /* padding-bottom: 200px; */
   overflow: scroll;
 }
+
 .init .content .type {
   box-sizing: border-box;
   margin: 0;
@@ -101,23 +114,28 @@
   background: #2895a7;
   border-color: #2895a7;
 }
+
 .init .content .questionItem {
   width: 100%;
   box-sizing: border-box;
 }
+
 .init .content .question {
   font-size: 18px;
   margin-bottom: 10px;
 }
+
 .init .content .imgWrap {
   width: 90%;
   box-sizing: border-box;
   margin: 0 auto;
 }
+
 .init .content .imgWrap .img {
   width: 100%;
   height: 130px;
 }
+
 .init .content .wrongTips {
   font-weight: 600;
   color: red;
@@ -126,36 +144,45 @@
   margin-top: 10px;
   text-align: right;
 }
+
 .init .content .options {
   width: 100%;
   box-sizing: border-box;
   margin-top: 20px;
 }
+
 .init .content .options .rightOption {
   color: #1AAD19;
 }
+
 .init .content .options .wrongOption {
   color: red;
 }
+
 .init .content .options .selectOption {
   background-color: #fafbfc !important;
 }
+
 .init .content .options .optionTextRightButNotChoice {
   background-color: #fff !important;
   box-shadow: 0 0px 0px 0 #2fc8e1 !important;
   border: 1px solid #2895a7;
 }
+
 .init .content .options .optionTextRight {
   color: #2895a7 !important;
 }
+
 .init .content .options .optionTextWrong {
   color: #ff4c4c !important;
 }
+
 .init .content .options .option {
   padding: 10px;
   margin-bottom: 15px;
   border-radius: 8px;
 }
+
 .init .content .options .option .optionA {
   width: 25px;
   height: 25px;
@@ -164,24 +191,29 @@
   justify-content: center;
   margin-right: 10px;
   border-radius: 50%;
-  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.2);
+  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.2);
 }
+
 .init .content .options .option .optionNormal {
   background: #ffffff;
 }
+
 .init .content .options .option .optionRight {
   background: #2895a7 !important;
   color: #fff;
 }
+
 .init .content .options .option .optionWrong {
   background: #ff4c4c !important;
   color: #fff;
 }
+
 .init .content .options .option .selectAsw {
   margin-left: 10px;
   color: #2f54eb;
   font-weight: 600;
 }
+
 .confirmBtn {
   width: 95%;
   height: 70rpx;
@@ -195,15 +227,17 @@
   position: fixed;
   margin-top: 30rpx;
 }
-.disableBtn{
+
+.disableBtn {
   opacity: 0.7;
 }
+
 .init .footer {
   width: 100%;
   position: fixed;
   bottom: 0;
-  padding: 0 10px;
-  height: 60px;
+  padding: 0 15px;
+  height: 80px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -215,6 +249,7 @@
   background-color: #fff;
   z-index: 2;
 }
+
 .init .footer .finishItem {
   display: flex;
   justify-content: space-between;
@@ -224,51 +259,110 @@
   font-weight: 600;
   padding: 10px 5px;
 }
+
 .init .footer .finishItem .finishIcon {
   width: 20px;
   height: 20px;
   margin-right: 3px;
 }
+
 .init .footer .icon {
   width: 15px;
   height: 15px;
 }
+
 .init .footer .iconItem {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-left: 20px;
   font-size: 14px;
+  padding: 0 10px;
 
 }
+
 .init .footer .collect {
   display: flex;
   align-items: center;
 }
+
 .init .footer .collect .tips {
   margin-right: 5px;
 }
+
 .init .footer .rightInfo {
+  flex: 1;
   display: flex;
   align-items: center;
 }
+
 .doalog .title {
   font-weight: 600;
   margin-bottom: 10px;
 }
+
 .doalog .description {
   text-align: left;
 }
 
-.normalItem{
+.normalItem {
+  flex: 1;
   display: flex;
   align-items: center;
   flex-direction: column;
   font-weight: 600;
+  padding: 0 10px;
   font-size: 11px;
 }
+
+.arrowItem {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  font-weight: 600;
+  padding: 0 10px;
+  font-size: 11px;
+  margin-bottom: 10rpx;
+}
+.transArrowItem{
+  align-items: flex-start;
+}
+
+.countBoxItem {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 600;
+  padding: 0 10px;
+  font-size: 11px;
+}
+
+.vountIcon {
+  width: 10px;
+  height: 10px;
+  margin-right: 2px;
+
+}
+
 .readIcon {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
+}
+
+.transtIcon {
+  transform: rotate(180deg);
+}
+
+.disFlex {
+  display: flex;
+  align-items: center;
+}
+
+.arrowIcon {
+  width: 25px;
+  height: 25px;
+
 }
