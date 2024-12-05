@@ -39,10 +39,10 @@
   flex-direction: column;
 }
 .init .titleContent .titleBox .titleBoxText .titleText {
-  font-size: 16px;
+  font-size: 1rem;
 }
 .init .titleContent .titleBox .titleBoxText .titleDecs {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .init .bodyContent {
   position: relative;
@@ -72,11 +72,11 @@
   margin-bottom: 5px;
 }
 .init .bodyContent .bodyItem .bodyTitle {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-bottom: 5px;
 }
 .init .bodyContent .bodyItem .bodyDesc {
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #9197a3;
 }
 .init .detailContent {
@@ -92,7 +92,7 @@
 }
 .init .detailContent .detailTitle {
   width: 100%;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 500;
   line-height: 30px;
   color: #444;
@@ -117,19 +117,19 @@
   background: #4392ec;
   border-radius: 50px;
   margin-right: 7px;
-  font-size: 10px;
+  font-size: 0.625rem;
 }
 .init .detailContent .detailNum:nth-child(even) {
   padding-left: 15px;
 }
 .init .detailContent .detailTtiel {
-  font-size: 16px;
+  font-size: 1rem;
   color: #444;
 }
 .init .detailContent .detailDecs {
   flex: 1;
   text-align: end;
-  font-size: 10px;
+  font-size: 0.625rem;
   color: #9197a3;
 }
 .init .detailContent .detailDecs:nth-child(odd) {

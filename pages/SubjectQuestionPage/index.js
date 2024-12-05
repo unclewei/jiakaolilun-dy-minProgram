@@ -91,6 +91,7 @@ Page({
     };
     this.onUpdateSubjectItem()
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       poolType,
       step,
       poolId,

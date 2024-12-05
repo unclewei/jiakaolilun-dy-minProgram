@@ -1,50 +1,52 @@
-<view class='init'>
-  <view class='topContent'>
-    <view class='header'>
-      <view class='menuItemWrap' wx:for="{{userPoolTypeArr}}" ex:key='type' bindtap="onMenuPress" data-item="{{item}}">
-        <view class='menuItem {{userPoolType===item.type && "menuItemActive"}}'>
-          {{item.name}}
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <view class='init'>
+    <view class='topContent'>
+      <view class='header'>
+        <view class='menuItemWrap' wx:for="{{userPoolTypeArr}}" ex:key='type' bindtap="onMenuPress" data-item="{{item}}">
+          <view class='menuItem {{userPoolType===item.type && "menuItemActive"}}'>
+            {{item.name}}
+          </view>
+          <view class='stick' wx:if="{{userPoolType === item.type}}" />
         </view>
-        <view class='stick' wx:if="{{userPoolType === item.type}}" />
+      </view>
+      <view class='count'>
+        <view class='titleWrap'>
+          <view class='title'>{{typeText}}统计</view>
+        </view>
+        <view class='removeOP' wx:if="{{userPoolType === 'wrong'}}">
+          答对后移除错题
+          <switch class="switch" checked="{{isWrongDelete}}" bindtap="onSwitchChange" />
+        </view>
+        <view class='countWrap'>
+          <view class='countItem'>
+            <view class='countKey'>{{typeText}}总数</view>
+            <view class='countValueWrap'>
+              <view class='countValue'>
+                {{userPoolDetail.subjectIds ? userPoolDetail.subjectIds.length : 0}}
+              </view>
+            </view>
+          </view>
+          <view class='lineStick' />
+          <view class='countItem countLeft'>
+            <view class='countKey'>今日{{typeText}}</view>
+            <view class='countValueWrap'>
+              <view class='countValue'>
+                {{userPoolDetail.todaySubjects ? userPoolDetail.todaySubjects.length : 0}}
+              </view>
+            </view>
+          </view>
+        </view>
       </view>
     </view>
-    <view class='count'>
-      <view class='titleWrap'>
-        <view class='title'>{{typeText}}统计</view>
-      </view>
-      <view class='removeOP' wx:if="{{userPoolType === 'wrong'}}">
-        答对后移除错题
-        <switch class="switch" checked="{{isWrongDelete}}" bindtap="onSwitchChange" />
-      </view>
-      <view class='countWrap'>
-        <view class='countItem'>
-          <view class='countKey'>{{typeText}}总数</view>
-          <view class='countValueWrap'>
-            <view class='countValue'>
-              {{userPoolDetail.subjectIds ? userPoolDetail.subjectIds.length : 0}}
-            </view>
-          </view>
-        </view>
-        <view class='lineStick' />
-        <view class='countItem countLeft'>
-          <view class='countKey'>今日{{typeText}}</view>
-          <view class='countValueWrap'>
-            <view class='countValue'>
-              {{userPoolDetail.todaySubjects ? userPoolDetail.todaySubjects.length : 0}}
-            </view>
-          </view>
+    <view class='subjectList'>
+      <view class='titleWrap'>已{{userPoolType === 'wrong' ? '做错' : '收藏'}}题目</view>
+      <view class='content'>
+        <view wx:if="{{subjectList.length === 0}}">暂无数据</view>
+        <view class='item' wx:for="{{subjectList}}" wx:key='_id' bindtap="gotoSubject">
+          <view class='itemText'>{{item.question}}</view>
+          <image class='itemTextIcon' src='../../images/right.png' mode="widthFix" />
         </view>
       </view>
     </view>
   </view>
-  <view class='subjectList'>
-    <view class='titleWrap'>已{{userPoolType === 'wrong' ? '做错' : '收藏'}}题目</view>
-    <view class='content'>
-      <view wx:if="{{subjectList.length === 0}}">暂无数据</view>
-      <view class='item' wx:for="{{subjectList}}" wx:key='_id' bindtap="gotoSubject">
-        <view class='itemText'>{{item.question}}</view>
-        <image class='itemTextIcon' src='../../images/right.png' mode="widthFix" />
-      </view>
-    </view>
-  </view>
-</view>
+</page-meta>

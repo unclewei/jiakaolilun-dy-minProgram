@@ -17,6 +17,7 @@ Page({
   onLoad(options) {
     console.log('options',options);
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       ruleIconTypeId: options.ruleIconTypeId
     })
     wx.setNavigationBarTitle({

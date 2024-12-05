@@ -1,11 +1,11 @@
-// pages/AddToDesk/index.js
+// pages/Setting/index.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    isIos: false
+
   },
 
   /**
@@ -13,8 +13,21 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
-      isIos: getApp().globalData.isIos
+      fontSize: wx.getStorageSync('fontSize') || 16,
+
+    })
+  },
+
+  radioChange(e) {
+    const fontSize = e.detail.value
+    this.setData({
+      fontSize
+    })
+  },
+  onConfirm(){
+    wx.setStorageSync('fontSize', this.data.fontSize)
+    wx.switchTab({
+      url: '/pages/index/index',
     })
   },
 

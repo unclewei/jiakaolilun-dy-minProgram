@@ -27,6 +27,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       step: options.step || 1,
       examType: getApp().globalData.userConfig.examType
     })

@@ -12,7 +12,7 @@
   color: white;
   padding: 3px 7px;
   border-radius: 50px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .passRate .insideBox {
   display: flex;
@@ -31,10 +31,10 @@
   align-items: baseline;
 }
 .passRate .insideBox .rate .num {
-  font-size: 35px;
+  font-size: 2.1875rem;
 }
 .passRate .insideBox .rateText {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-top: -8px;
 }
 .passRate .insideBox .upButton {
@@ -42,7 +42,7 @@
   background: linear-gradient(to right, #edd3b0, #e7ab6d) !important;
   font-weight: 500;
   margin-left: 5px;
-  font-size: 14px;
+  font-size: 0.875rem;
   padding: 3px 10px;
 }
 .progressBox {
@@ -65,12 +65,12 @@
 .progressBox .progressItem .progress1 {
   display: flex;
   align-items: baseline;
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: #333;
 }
 .progressBox .progressItem .progress1 .num {
   color: #111;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: 600;
 }
 .progressBox .progressItem .progress1 .dander {
@@ -78,6 +78,6 @@
 }
 .progressBox .progressItem .progress2 {
   color: #111;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 500;
 }

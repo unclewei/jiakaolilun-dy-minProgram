@@ -10,8 +10,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log('stepStorage',stepStorage);
+    console.log('stepStorage', stepStorage);
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       step: options.step || stepStorage || 1,
     })
   },

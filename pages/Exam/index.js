@@ -79,6 +79,7 @@ Page({
       return
     };
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       poolType,
       step,
       poolId,

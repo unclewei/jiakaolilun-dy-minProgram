@@ -26,6 +26,7 @@ Page({
       title: `科目${options.step == 1 ? '一' : '四'}专项训练`,
     })
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       step: options.step,
       poolType: options.poolType,
     })

@@ -12,6 +12,7 @@ Page({
   onLoad(options) {
     const stepStorage = wx.getStorageSync('step')
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       step: options.step || stepStorage || 1,
     })
   },

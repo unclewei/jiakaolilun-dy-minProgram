@@ -52,6 +52,7 @@ Page({
       backgroundColor: '#fff',
     })
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       isLogin: !!getApp().globalData.userInfo._id,
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,

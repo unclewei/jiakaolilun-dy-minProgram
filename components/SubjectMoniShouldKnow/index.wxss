@@ -12,7 +12,7 @@
 
 .wrap .title {
   width: 100%;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   color: #fff;
   text-align: center;
@@ -26,13 +26,13 @@
   height: 30px;
   border-radius: 5px;
   border: 1px solid #cbcbcb;
-  font-size: 13px;
+  font-size: 0.8125rem;
   padding-left: 5px;
 }
 
 .wrap .content {
   box-sizing: border-box;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .wrap .content .item {
@@ -50,13 +50,13 @@
 
 .wrap .tips div {
   color: #9197a3;
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-bottom: 10px;
 }
 
 .wrap .titleSecond {
   margin-bottom: 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
   text-align: left;
   font-weight: 600;
 }
@@ -65,7 +65,7 @@
   width: 100%;
   padding: 8px;
   outline: none;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .wrap .description {
@@ -79,7 +79,7 @@
 
 .close {
   border-top: 2px solid #f5f5f5;
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #33718d;
   font-weight: 500;
   padding: 10px;

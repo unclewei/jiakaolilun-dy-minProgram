@@ -8,7 +8,7 @@
 .content .item {
   margin-bottom: 40px;
   text-align: center;
-  font-size: 19px;
+  font-size: 1.1875rem;
   font-weight: 500;
   display: flex;
   align-items: baseline;
@@ -17,7 +17,7 @@
 
 .content .item .tips {
   color: #9197a3;
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-top: 6px;
   align-self: flex-end;
 }
@@ -29,7 +29,7 @@
   margin-bottom: 40px;
   padding: 10px;
   font-weight: 600;
-  font-size: 17px;
+  font-size: 1.0625rem;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -37,7 +37,7 @@
 
 .content .nums .tips {
   color: red;
-  font-size: 12px;
+  font-size: 0.75rem;
   margin-top: 20px;
   text-align: right;
 }
@@ -58,7 +58,7 @@
   height: 100%;
   flex: 1;
   margin: 0 10rpx;
-  font-size: 34rpx;
+  font-size: 1.0625rem;
   font-weight: bold;
   color: #000;
   display: flex;

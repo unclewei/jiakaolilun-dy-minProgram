@@ -1,77 +1,78 @@
 <wxs src="../../utils/config.wxs" module="utils"></wxs>
-
-<view class='init'>
-  <!-- 上半部分 -->
-  <view class="topContent">
-    <!-- 上半部分-左边 -->
-    <view class="topLeftContetnt">
-      <!-- 标题 -->
-      <ExamBox title='理论考试' class="examTitle">第01号考场</ExamBox>
-      <!-- 考生信息 -->
-      <ExamBox title='考生信息' class="studentInfo">
-        <view class="studentAvaor"></view>
-        <view class="subjectName">科目{{step === 1 ? "一":"四"}}</view>
-        <view class="infoDesc">考生姓名：</view>
-        <view class="infoDesc">考武題数：{{step === 1 ? "100":"50"}}</view>
-        <view class="infoDesc">考试时间：45分钟</view>
-        <view class="infoDesc">満分100分，90分及格</view>
-      </ExamBox>
-    </view>
-    <!-- 上半部分-中间 -->
-    <ExamBox title='考试题目' class="topContentContetnt">
-      <!-- 答题内容 -->
-      <view class='content'>
-        <view class="questionContent" wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
-          <view class='question'>{{currentIndex+1}}、{{item.question}}</view>
-          <view class='optionsText' wx:for="{{item.options}}" wx:key="$this">{{item}}</view>
-          <view class='options'>
-            <ExamResult wx:if="{{utils.onMyList(userSubjectData.rightSubjectIds,item._id) || utils.isWrong(userSubjectData.wrongSubjectItems,item._id)}}" subjectItem='{{item}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' />
-            <view class='options' wx:else>
-              <ExamOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
-              <view class='confirmBtn' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
-                确定
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <view class='init'>
+    <!-- 上半部分 -->
+    <view class="topContent">
+      <!-- 上半部分-左边 -->
+      <view class="topLeftContetnt">
+        <!-- 标题 -->
+        <ExamBox title='理论考试' class="examTitle">第01号考场</ExamBox>
+        <!-- 考生信息 -->
+        <ExamBox title='考生信息' class="studentInfo">
+          <view class="studentAvaor"></view>
+          <view class="subjectName">科目{{step === 1 ? "一":"四"}}</view>
+          <view class="infoDesc">考生姓名：</view>
+          <view class="infoDesc">考武題数：{{step === 1 ? "100":"50"}}</view>
+          <view class="infoDesc">考试时间：45分钟</view>
+          <view class="infoDesc">満分100分，90分及格</view>
+        </ExamBox>
+      </view>
+      <!-- 上半部分-中间 -->
+      <ExamBox title='考试题目' class="topContentContetnt">
+        <!-- 答题内容 -->
+        <view class='content'>
+          <view class="questionContent" wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
+            <view class='question'>{{currentIndex+1}}、{{item.question}}</view>
+            <view class='optionsText' wx:for="{{item.options}}" wx:key="$this">{{item}}</view>
+            <view class='options'>
+              <ExamResult wx:if="{{utils.onMyList(userSubjectData.rightSubjectIds,item._id) || utils.isWrong(userSubjectData.wrongSubjectItems,item._id)}}" subjectItem='{{item}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' />
+              <view class='options' wx:else>
+                <ExamOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
+                <view class='confirmBtn' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+                  确定
+                </view>
               </view>
             </view>
           </view>
         </view>
-      </view>
-    </ExamBox>
-    <!-- 上半部分-右边边 -->
-    <view class="topRightContetnt">
-      <view class="questionItem {{index === currentIndex && 'currentItem'}} {{utils.onMyList(userSubjectData.rightSubjectIds,item._id) && 'correctItem'}}  {{utils.isWrong(userSubjectData.wrongSubjectItems,item._id) && 'wrongItem'}}" wx:for="{{subjectData}}" wx:key="_id" data-index='{{index}}' bindtap='onCurrentSelect'>
-        {{index+1}}
-      </view>
-    </view>
-  </view>
-  <!-- 中层 -->
-  <view class="contentContent">
-    <ExamBox title='剩余时间' class="topLeftContetnt">
-      <ExamCountdown class='countDown' mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindOnTimeOut='onTimeOut' />
-    </ExamBox>
-    <view class='cententContentContetnt'>
-      <ExamBox title='考试提示信息' class="typeBox">
-        <span class='type'>{{subjectData[currentIndex].typeStr}}</span>
       </ExamBox>
-      <view class="btns">
-        <view class='controlBtn lastBtn {{!currentIndex  && "nextDisable"}}' bindtap="last">
-          上一题
+      <!-- 上半部分-右边边 -->
+      <view class="topRightContetnt">
+        <view class="questionItem {{index === currentIndex && 'currentItem'}} {{utils.onMyList(userSubjectData.rightSubjectIds,item._id) && 'correctItem'}}  {{utils.isWrong(userSubjectData.wrongSubjectItems,item._id) && 'wrongItem'}}" wx:for="{{subjectData}}" wx:key="_id" data-index='{{index}}' bindtap='onCurrentSelect'>
+          {{index+1}}
         </view>
-        <view class='controlBtn nextBtn {{(currentIndex >= subjectData.length -1 ) && "nextDisable"}}' bindtap="next">
-          下一题
-        </view>
-        <view class='controlBtn finBtn' bindtap="onSubmit">交卷</view>
       </view>
     </view>
-    <view class="contentpRightContetnt" />
-  </view>
-  <!-- 下半部分 -->
-  <ExamBox title='图片信息' class="bottomContentContetnt" titleLocation='left'>
-    <view class="imgBox">
-      <image class='img'  wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}" src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
+    <!-- 中层 -->
+    <view class="contentContent">
+      <ExamBox title='剩余时间' class="topLeftContetnt">
+        <ExamCountdown class='countDown' mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindOnTimeOut='onTimeOut' />
+      </ExamBox>
+      <view class='cententContentContetnt'>
+        <ExamBox title='考试提示信息' class="typeBox">
+          <span class='type'>{{subjectData[currentIndex].typeStr}}</span>
+        </ExamBox>
+        <view class="btns">
+          <view class='controlBtn lastBtn {{!currentIndex  && "nextDisable"}}' bindtap="last">
+            上一题
+          </view>
+          <view class='controlBtn nextBtn {{(currentIndex >= subjectData.length -1 ) && "nextDisable"}}' bindtap="next">
+            下一题
+          </view>
+          <view class='controlBtn finBtn' bindtap="onSubmit">交卷</view>
+        </view>
+      </view>
+      <view class="contentpRightContetnt" />
     </view>
-  </ExamBox>
-</view>
+    <!-- 下半部分 -->
+    <ExamBox title='图片信息' class="bottomContentContetnt" titleLocation='left'>
+      <view class="imgBox">
+        <image class='img' wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}" src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
+      </view>
+    </ExamBox>
+  </view>
 
 
-<!-- 登录 -->
-<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' isLandscape='{{true}}' />
+  <!-- 登录 -->
+  <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' isLandscape='{{true}}' />
+</page-meta>

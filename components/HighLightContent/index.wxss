@@ -3,7 +3,7 @@
   list-style: none;
   display: inline-block;
   height: auto;
-  font-size: 13px;
+  font-size: 0.8125rem;
   line-height: 20px;
   margin-bottom: 30rpx;
   white-space: normal; /* 文本超过元素宽度时自动换行 */
@@ -19,7 +19,7 @@
 }
 .isHighLight {
   /* padding: 1rpx 5rpx; */
-  /* font-size: 30rpx; */
+  /* font-size: 0.9375rem; */
   background-color: #268fff;
   color: #fff;
   /* margin: 0 3rpx; */

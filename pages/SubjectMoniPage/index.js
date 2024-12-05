@@ -31,6 +31,7 @@ Page({
       title: `科目${options.step == 1 ? '一' : '四'}模拟考试`,
     })
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       step: options.step,
       poolId: options.poolId,
       userInfo:getApp().globalData.userInfo,

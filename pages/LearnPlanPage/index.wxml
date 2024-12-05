@@ -1,113 +1,115 @@
-<view class='init'>
-  <view class='header'>
-    <image class="headerbgIcon" src="../../images/minePage.png"  mode="widthFix"/>
-    <view class='title1'>你的忠实驾考“护盾”</view>
-    <view class='title2'>安心备考，不过补偿</view>
-  </view>
-  <view class='wrap'>
-    <view class='bg'>
-      <view class='content'>
-        <view class='rateText'>三天速成计划</view>
-      </view>
-      <view class='ways'>
-        <view class='waysItem'>
-          <view class='wayContent'>
-            <image src='../../images/num1.png' mode="widthFix" class='itemIcon' />
-            <view class='wayTextWrap'>
-              <view class='wayText'>做完精选{{poolDataObj.chosen.subjectCount}}题</view>
-              <view class='wayText2'>
-                达标进度:
-                <span class='wayText3'>
-                  {{chosenDoneSubjectNum}}/{{poolDataObj.chosen.subjectCount}}
-                </span>
-              </view>
-            </view>
-          </view>
-          <view class="btnWrap doBtnSuccess" bindtap="gotoPage" data-pooltype="chosen">
-            去做题
-          </view>
-        </view>
-        <view class='waysItem'>
-          <view class='wayContent'>
-            <image src='../../images/num2.png' mode="widthFix" class='itemIcon' />
-            <view class='wayTextWrap'>
-              <view class='wayText'>完成3次95分以上的模拟考试</view>
-              <view class='wayText2'>
-                达标进度:<span class='wayText3'>{{userMoniSubject.length}}/3</span>
-              </view>
-            </view>
-          </view>
-          <view class="btnWrap doBtnSuccess" bindtap="gotoPage" data-pooltype="moni">
-            去模拟
-          </view>
-        </view>
-        <view class='waysItem'>
-          <view class='wayContent'>
-            <image src='../../images/num3.png' mode="widthFix" class='itemIcon' />
-            <view class='wayTextWrap'>
-              <view class='wayText'>清零错题集里所有错题</view>
-              <view class='wayText2'>
-                剩余错题:
-                <span class='wayText3'>{{myWrongUserSubject.subjectIds.length || 0}}</span>
-              </view>
-            </view>
-          </view>
-          <view class="btnWrap doBtnSuccess" bindtap="gotoPage"  data-routetype="wrong" data-pooltype="WCPage">
-            <view class='doBtn'>去清零</view>
-          </view>
-        </view>
-      </view>
-      <view class='tips'>
-        一点通大数据显示：完成以上三项的学员，<span class='highLight'>通过率为98%</span>
-      </view>
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <view class='init'>
+    <view class='header'>
+      <image class="headerbgIcon" src="../../images/minePage.png" mode="widthFix" />
+      <view class='title1'>你的忠实驾考“护盾”</view>
+      <view class='title2'>安心备考，不过补偿</view>
     </view>
-    <view class='bg'>
-      <view class='content'>
-        <view class='userInfo'>
-          <view class='rate'>
-            <view class='rateText'>常见问题</view>
-          </view>
+    <view class='wrap'>
+      <view class='bg'>
+        <view class='content'>
+          <view class='rateText'>三天速成计划</view>
         </view>
-      </view>
-      <view class='ways'>
-        <view class='waysItem'>
-          <view class='wayContent'>
-            <image src='../../images/num1.png' mode="widthFix" class='itemIcon' />
-            <view class='wayTextWrap'>
-              <view class='wayText'>题目准吗?</view>
-              <view class='wayText4'>
-                我们的题目会定时同步各地车管所并经过严格审核和大量用户检验以此确保题目的严谨和准确度。
+        <view class='ways'>
+          <view class='waysItem'>
+            <view class='wayContent'>
+              <image src='../../images/num1.png' mode="widthFix" class='itemIcon' />
+              <view class='wayTextWrap'>
+                <view class='wayText'>做完精选{{poolDataObj.chosen.subjectCount}}题</view>
+                <view class='wayText2'>
+                  达标进度:
+                  <span class='wayText3'>
+                    {{chosenDoneSubjectNum}}/{{poolDataObj.chosen.subjectCount}}
+                  </span>
+                </view>
               </view>
             </view>
+            <view class="btnWrap doBtnSuccess" bindtap="gotoPage" data-pooltype="chosen">
+              去做题
+            </view>
           </view>
+          <view class='waysItem'>
+            <view class='wayContent'>
+              <image src='../../images/num2.png' mode="widthFix" class='itemIcon' />
+              <view class='wayTextWrap'>
+                <view class='wayText'>完成3次95分以上的模拟考试</view>
+                <view class='wayText2'>
+                  达标进度:<span class='wayText3'>{{userMoniSubject.length}}/3</span>
+                </view>
+              </view>
+            </view>
+            <view class="btnWrap doBtnSuccess" bindtap="gotoPage" data-pooltype="moni">
+              去模拟
+            </view>
+          </view>
+          <view class='waysItem'>
+            <view class='wayContent'>
+              <image src='../../images/num3.png' mode="widthFix" class='itemIcon' />
+              <view class='wayTextWrap'>
+                <view class='wayText'>清零错题集里所有错题</view>
+                <view class='wayText2'>
+                  剩余错题:
+                  <span class='wayText3'>{{myWrongUserSubject.subjectIds.length || 0}}</span>
+                </view>
+              </view>
+            </view>
+            <view class="btnWrap doBtnSuccess" bindtap="gotoPage" data-routetype="wrong" data-pooltype="WCPage">
+              <view class='doBtn'>去清零</view>
+            </view>
+          </view>
+        </view>
+        <view class='tips'>
+          一点通大数据显示：完成以上三项的学员，<span class='highLight'>通过率为98%</span>
+        </view>
+      </view>
+      <view class='bg'>
+        <view class='content'>
+          <view class='userInfo'>
+            <view class='rate'>
+              <view class='rateText'>常见问题</view>
+            </view>
+          </view>
+        </view>
+        <view class='ways'>
+          <view class='waysItem'>
+            <view class='wayContent'>
+              <image src='../../images/num1.png' mode="widthFix" class='itemIcon' />
+              <view class='wayTextWrap'>
+                <view class='wayText'>题目准吗?</view>
+                <view class='wayText4'>
+                  我们的题目会定时同步各地车管所并经过严格审核和大量用户检验以此确保题目的严谨和准确度。
+                </view>
+              </view>
+            </view>
 
-        </view>
-        <view class='waysItem'>
-          <view class='wayContent'>
-            <image src='../../images/num2.png' mode="widthFix" class='itemIcon' />
-            <view class='wayTextWrap'>
-              <view class='wayText'>补偿服务何时生效?</view>
-              <view class='wayText4'>
-                在考试前24小时购买并且完善个人基本信息，补偿服务才能生效。
+          </view>
+          <view class='waysItem'>
+            <view class='wayContent'>
+              <image src='../../images/num2.png' mode="widthFix" class='itemIcon' />
+              <view class='wayTextWrap'>
+                <view class='wayText'>补偿服务何时生效?</view>
+                <view class='wayText4'>
+                  在考试前24小时购买并且完善个人基本信息，补偿服务才能生效。
+                </view>
               </view>
             </view>
           </view>
-        </view>
-        <view class='waysItem'>
-          <view class='wayContent'>
-            <image src='../../images/num3.png' mode="widthFix" class='itemIcon' />
-            <view class='wayTextWrap'>
-              <view class='wayText'>如何完善个人信息?</view>
-              <view class='wayText2'>点击激活按钮进行完善。</view>
+          <view class='waysItem'>
+            <view class='wayContent'>
+              <image src='../../images/num3.png' mode="widthFix" class='itemIcon' />
+              <view class='wayTextWrap'>
+                <view class='wayText'>如何完善个人信息?</view>
+                <view class='wayText2'>点击激活按钮进行完善。</view>
+              </view>
             </view>
+            <UserInfoSupply>
+              <view class="btnWrap doBtnSuccess">
+                去激活
+              </view>
+            </UserInfoSupply>
           </view>
-          <UserInfoSupply>
-            <view class="btnWrap doBtnSuccess">
-              去激活
-            </view>
-          </UserInfoSupply>
         </view>
       </view>
     </view>
   </view>
-</view>
+</page-meta>

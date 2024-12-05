@@ -36,7 +36,7 @@
   padding: 0 5px;
   background-image: linear-gradient(90deg, #fa2727 0%, #ff9450 100%);
   color: #fff;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 .init .item .content {
   width: 100%;
@@ -60,11 +60,11 @@
   background: linear-gradient(to right, #fff4e2, #e1cb96);
   color: #3a1d19;
   font-weight: 600;
-  font-size: 16px;
+  font-size: 1rem;
 }
 .init .item .content .name {
   color: #111;
-  font-size: 15px;
+  font-size: 0.9375rem;
   font-weight: 600;
 }
 .init .item .content .highlight {
@@ -84,13 +84,13 @@
   flex-direction: column;
   margin-top: 5px;
   margin-left: 10px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 .init .item .left .text .money {
   color: #e5124b;
   font-weight: 600;
 }
 .init .item .left .text .secondText {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #9197a3;
 }

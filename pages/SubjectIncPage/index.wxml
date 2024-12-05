@@ -1,1 +1,3 @@
-<SubjectIncComponent step='{{step}}'/>
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <SubjectIncComponent step='{{step}}' />
+</page-meta>

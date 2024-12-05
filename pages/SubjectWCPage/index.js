@@ -38,6 +38,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       step: options.step,
       poolId: options.poolId,
       isWrongDelete: getApp().globalData.userConfig.isWrongDelete

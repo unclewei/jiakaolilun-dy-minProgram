@@ -67,6 +67,7 @@ Page({
   onShow() {
     const stepStorage = wx.getStorageSync('step')
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       step: stepStorage || 1,
@@ -219,6 +220,12 @@ Page({
     wx.navigateTo({
       url: `/pages/orderList/index`,
     });
+  },
+
+  gotoSetting(){
+    wx.navigateTo({
+      url: '/pages/Setting/index',
+    })
   },
   cleanAccount() {
     wx.clearStorageSync()

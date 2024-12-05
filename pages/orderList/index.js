@@ -24,6 +24,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
+    })
     autoLogin((res) => {
       if (res === 'fail') {
         return

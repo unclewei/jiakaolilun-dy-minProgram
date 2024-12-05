@@ -1,6 +1,7 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/Setting/index",
     "pages/RuleIconPage/index",
     "pages/RuleIconDetailPage/index",
     "pages/UserConfigInit/index",

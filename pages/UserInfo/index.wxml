@@ -1,99 +1,105 @@
-<view class='init'>
-  <view class='header {{ step == 1 && "headerStep1"}}  {{step != 1 && "headerStep2" }}'>
-    <image class="headerIcon" src='{{step == 1 ? "../../images/minePage.png" : "../../images/minePage2.png"}}' mode="aspectFit" />
-    <view class='userInfo'>
-      <Avatar userInfo='{{userInfo}}' className='avatar' />
-      <view class='headerText'>
-        <view class='nickName'>{{userInfo.nickName}}</view>
-        <view class='func'>
-          <view class="copyId" bindtap="copyId">复制ID</view>
-        </view>
-      </view>
-    </view>
-    <view class='vipItem'>
-      <view class='vipHeader'>
-        <view class='vipState'>
-          <view class='vipGroup'>
-            <image src='../../images/vipIcon/vip.png' class='vipIcon' mode="aspectFit" />
-            <view class='vipStep'>科{{step == 1 ? '一' : '四'}}</view>
-          </view>
-          <view class='state' wx:if="{{!isPaidDone}}">未开通</view>
-        </view>
-        <view class='vipBuy'>
-          <view wx:if="{{!isPaidDone && !isCoach}}">高效学科{{step == 1 ? '一' : '四'}}</view>
-          <view class='button buyButton'  bindtap="gotoPage" data-pooltype="incPage">
-            <image src='../../images/right.png' class='doneIcon' wx:if="{{isPaidDone || isCoach}}" mode="aspectFit" />
-            {{isCoach ? '已注册为一点通教练' : isPaidDone ? '你已开通会员' : '开通会员'}}
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <view class='init'>
+    <view class='header {{ step == 1 && "headerStep1"}}  {{step != 1 && "headerStep2" }}'>
+      <image class="headerIcon" src='{{step == 1 ? "../../images/minePage.png" : "../../images/minePage2.png"}}' mode="aspectFit" />
+      <view class='userInfo'>
+        <Avatar userInfo='{{userInfo}}' className='avatar' />
+        <view class='headerText'>
+          <view class='nickName'>{{userInfo.nickName}}</view>
+          <view class='func'>
+            <view class="copyId" bindtap="copyId">复制ID</view>
           </view>
         </view>
       </view>
-      <view class='benefitBox'>
+      <view class='vipItem'>
+        <view class='vipHeader'>
+          <view class='vipState'>
+            <view class='vipGroup'>
+              <image src='../../images/vipIcon/vip.png' class='vipIcon' mode="aspectFit" />
+              <view class='vipStep'>科{{step == 1 ? '一' : '四'}}</view>
+            </view>
+            <view class='state' wx:if="{{!isPaidDone}}">未开通</view>
+          </view>
+          <view class='vipBuy'>
+            <view wx:if="{{!isPaidDone && !isCoach}}">高效学科{{step == 1 ? '一' : '四'}}</view>
+            <view class='button buyButton' bindtap="gotoPage" data-pooltype="incPage">
+              <image src='../../images/right.png' class='doneIcon' wx:if="{{isPaidDone || isCoach}}" mode="aspectFit" />
+              {{isCoach ? '已注册为一点通教练' : isPaidDone ? '你已开通会员' : '开通会员'}}
+            </view>
+          </view>
+        </view>
+        <view class='benefitBox'>
 
-        <view wx:for="{{benefitItemData}}" wx:for-item="p" wx:key='name' class='benefitItem' bind:tap="gotoPage" data-pooltype='{{p.poolType}}'>
-          <image class='benefitIcon' src='{{p.icon}}' mode="aspectFit" />
-          <view class='benefitText'>{{p.name}}</view>
+          <view wx:for="{{benefitItemData}}" wx:for-item="p" wx:key='name' class='benefitItem' bind:tap="gotoPage" data-pooltype='{{p.poolType}}'>
+            <image class='benefitIcon' src='{{p.icon}}' mode="aspectFit" />
+            <view class='benefitText'>{{p.name}}</view>
+          </view>
         </view>
       </view>
     </view>
-  </view>
 
 
 
-  <view class='selection'>
-    <StepSwitch bindUpdate='onStepUpdate' />
-    <view class='province'>
-      <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
-      <span>·</span>
-      <CitySelector class='provinceSelect' bindUserConfigUpdate='onUserConfigUpdate' />
-    </view>
-  </view>
-  <PassRate step='{{step}}' examType="{{userConfig.examType}}" />
-
-  <view class='tabBox tabLast'>
-    <view class='title'>学员工具</view>
-    <view class='secTabBox'>
-      <view class='secItem' bindtap="gotoPage" data-pooltype="incPage">
-        <image class='secIcon' src='../../images/dotIcon/vip.png' mode="widthFix" />
-        <view class='secText'>VIP购买</view>
-      </view>
-      <view class='secItem' bindtap="gotoNP" data-item="wx439070b4fa97462b">
-        <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
-        <view class='secText'>灯光模拟</view>
-      </view>
-      <view class='secItem' bindtap="showRQCode" data-item="wx439070b4fa97462b">
-        <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
-        <view class='secText'>科二科三</view>
-      </view>
-      <view class='secItem' bindtap="gotoPage" data-pooltype='userAcCodePage'>
-        <image class='secIcon' src='../../images/dotIcon/earth.png' mode="widthFix" />
-        <view class='secText'>激活码</view>
-      </view>
-      <button class="cleanButton secItem" open-type="contact">
-        <image class="secIcon" src="../../images/dotIcon/mine.png" mode="widthFix" />
-        <view class="secText">联系客服</view>
-      </button>
-      <button class="cleanButton secItem" open-type="share">
-        <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
-        <view class="secText">分享</view>
-      </button>
-      <view class='secItem' wx:if="{{!userInfo.phoneNum}}" bindtap="gotoPage" data-pooltype="CoachRegisterSuccessPage">
-        <image class='secIcon' src='../../images/dotIcon/mine.png' mode="widthFix" />
-        <view class='secText'>补全手机</view>
-      </view>
-      <view class='secItem' bindtap="gotoOrderList" >
-        <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
-        <view class='secText'>我的订单</view>
-      </view>
-      <view class='secItem' bindtap="cleanAccount" data-item="wx439070b4fa97462b">
-        <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
-        <view class='secText'>刷新</view>
+    <view class='selection'>
+      <StepSwitch bindUpdate='onStepUpdate' />
+      <view class='province'>
+        <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
+        <span>·</span>
+        <CitySelector class='provinceSelect' bindUserConfigUpdate='onUserConfigUpdate' />
       </view>
     </view>
-  </view>
+    <PassRate step='{{step}}' examType="{{userConfig.examType}}" />
 
-  <BottomTips />
-</view>
-<!-- 登录 -->
-<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
-<!-- 公众号二维码 -->
-<QRModal id="QRModal" />
+    <view class='tabBox tabLast'>
+      <view class='title'>学员工具</view>
+      <view class='secTabBox'>
+        <view class='secItem' bindtap="gotoPage" data-pooltype="incPage">
+          <image class='secIcon' src='../../images/dotIcon/vip.png' mode="widthFix" />
+          <view class='secText'>VIP购买</view>
+        </view>
+        <view class='secItem' bindtap="gotoNP" data-item="wx439070b4fa97462b">
+          <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
+          <view class='secText'>灯光模拟</view>
+        </view>
+        <view class='secItem' bindtap="showRQCode" data-item="wx439070b4fa97462b">
+          <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
+          <view class='secText'>科二科三</view>
+        </view>
+        <view class='secItem' bindtap="gotoPage" data-pooltype='userAcCodePage'>
+          <image class='secIcon' src='../../images/dotIcon/earth.png' mode="widthFix" />
+          <view class='secText'>激活码</view>
+        </view>
+        <button class="cleanButton secItem" open-type="contact">
+          <image class="secIcon" src="../../images/dotIcon/mine.png" mode="widthFix" />
+          <view class="secText">联系客服</view>
+        </button>
+        <button class="cleanButton secItem" bindtap="gotoSetting">
+          <image class="secIcon" src="../../images/dotIcon/setting.png" mode="widthFix" />
+          <view class="secText">字体大小</view>
+        </button>
+        <button class="cleanButton secItem" open-type="share">
+          <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
+          <view class="secText">分享</view>
+        </button>
+        <view class='secItem' wx:if="{{!userInfo.phoneNum}}" bindtap="gotoPage" data-pooltype="CoachRegisterSuccessPage">
+          <image class='secIcon' src='../../images/dotIcon/mine.png' mode="widthFix" />
+          <view class='secText'>补全手机</view>
+        </view>
+        <view class='secItem' bindtap="gotoOrderList">
+          <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
+          <view class='secText'>我的订单</view>
+        </view>
+        <view class='secItem' bindtap="cleanAccount" data-item="wx439070b4fa97462b">
+          <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
+          <view class='secText'>刷新</view>
+        </view>
+      </view>
+    </view>
+
+    <BottomTips />
+  </view>
+  <!-- 登录 -->
+  <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
+  <!-- 公众号二维码 -->
+  <QRModal id="QRModal" />
+</page-meta>

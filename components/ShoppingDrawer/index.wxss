@@ -23,7 +23,7 @@
 }
 
 .tips{
-  font-size: 30rpx;
+  font-size: 0.9375rem;
   color: #000;
   margin-bottom: 30rpx;
 }
@@ -62,7 +62,7 @@
   height: 60%;
   display: flex;
   align-items: center;
-  font-size: 32rpx;
+  font-size: 1rem;
   font-weight: bold;
   padding: 10rpx 20rpx;
   border-bottom: 5rpx #000 solid;
@@ -72,7 +72,7 @@
   flex: 1;
   display: flex;
   align-items: center;
-  font-size: 26rpx;
+  font-size: 0.8125rem;
   padding: 10rpx 20rpx;
 }
 .conveninetBox{
@@ -144,7 +144,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 34rpx;
+  font-size: 1.0625rem;
   font-weight: bold;
   box-sizing: border-box;
   color: #000;
@@ -172,14 +172,14 @@
   box-sizing: border-box;
   padding: 15rpx 0rpx;
   border-bottom: 2rpx #000 solid;
-  font-size: 30rpx;
+  font-size: 0.9375rem;
   font-weight: bold;
 }
 
 .extraBox{
   display: flex;
   flex-direction: column;
-  font-size: 26rpx;
+  font-size: 0.8125rem;
   color: #444;
   margin-top: 20rpx;
 }
@@ -190,7 +190,7 @@
 .totalAmount{
   width: 240rpx;
   height: 70rpx;
-  font-size: 38rpx;
+  font-size: 1.1875rem;
   font-weight: bold;
   text-align: center;
   color: red;

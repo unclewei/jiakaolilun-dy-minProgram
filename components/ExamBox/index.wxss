@@ -9,7 +9,7 @@
   position: absolute;
   background-color: white;
   color: #333;
-  font-size: 12px;
+  font-size: 0.75rem;
   top: 0%;
   transform: translateY(-50%);
 

@@ -29,7 +29,7 @@
   border-radius: 8px;
 }
 .option .text {
-  font-size: 16px !important;
+  font-size: 1rem !important;
 }
 .option .icon {
   width: 25px;

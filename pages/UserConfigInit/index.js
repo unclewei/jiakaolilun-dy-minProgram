@@ -79,6 +79,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
+      fontSize: wx.getStorageSync('fontSize'),
       userConfig: getApp().globalData.userConfig,
       step: getApp().globalData.userConfig.step || 1,
       stepItem: this.data.subjectSteps[getApp().globalData.userConfig.step || 1],

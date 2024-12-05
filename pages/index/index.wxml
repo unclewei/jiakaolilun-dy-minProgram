@@ -1,131 +1,133 @@
-<view class='init'>
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <view class='init'>
 
-  <div class="select">
+    <div class="select">
 
-    <div class='kemu'>
-      <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">
-        <span class='text'>科目一
+      <div class='kemu'>
+        <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">
+          <span class='text'>科目一
+          </span>
+          <span class='stick {{step == 1 && "activeStick"}}' />
         </span>
-        <span class='stick {{step == 1 && "activeStick"}}' />
-      </span>
-      <span class='kemuItem {{step == 4 && "active"}}' bindtap="onStepChange" data-item="4">
-        <span class='text'>科目四
+        <span class='kemuItem {{step == 4 && "active"}}' bindtap="onStepChange" data-item="4">
+          <span class='text'>科目四
+          </span>
+          <span class='stick {{step == 4 && "activeStick"}}' />
         </span>
-        <span class='stick {{step == 4 && "activeStick"}}' />
-      </span>
-    </div>
-
-    <view class='province'>
-      <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
-      <span>·</span>
-      <CitySelector class='provinceSelect' showLocationIcon bindUserConfigUpdate='onUserConfigUpdate' />
-    </view>
-
-  </div>
-  <Banner />
-  <!-- 通知组件 -->
-  <SubjectUpdate step='{{step}}' />
-  <!-- 教练分享工具 -->
-  <ShareContent wx:if="{{isCoach}}" step='{{step}}' />
-
-  <swiper class="swiper" style="height:{{mainHeight}}px" current='{{step == 1 ? 0 : 1}}' bindanimationfinish='swiperChange'>
-    <swiper-item wx:for="14" wx:key="$this">
-      <div class='mainContent' id="mainContent">
-        <div class='bodyBox'>
-          <div class='bodySmall'>
-
-            <div class='smallItem' bindtap="gotoPage" data-item="incPage">
-              <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
-              <div class='shine' />
-              <div class='smallItemText'>不过补偿
-                <span class="tag must">热门</span>
-              </div>
-            </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" wx:if="{{examType !== 'moto'}}">
-              <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>500题技巧
-                <span class="tag must">必学</span>
-              </div>
-            </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="secret" wx:else>
-              <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>考前秘卷</div>
-            </div>
-          </div>
-          <div class='bodyBig' bindtap="gotoSubject" data-item="chosen">
-            <div class='bodyBigItem'>
-              <div class='bodyBigIcon' />
-              <div class='bodyBigTitle'>精选{{poolDataObj.chosen.subjectCount || '500'}}题</div>
-              <div class='svgContent' wx:if="{{isinitProgrss}}">
-                <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
-              </div>
-            </div>
-          </div>
-          <div class='bodySmall'>
-
-            <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
-              <image mode="aspectFill" src='../../images/subjectIconOne.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>
-                顺序练习
-                <span class='tag'>题全</span>
-              </div>
-            </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="WCPage">
-              <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>
-                我的错题
-                <span class='tag dot'>{{userSubject.myWrongUserSubject.subjectIds.length || 0}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- {/* 模拟考试部分 */} -->
-        <div class='bodyBox'>
-          <div class='bodySmall'>
-            <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
-              <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>图标速记</div>
-            </div>
-            <div class='smallItem' bindtap="addToDesk">
-              <image mode="aspectFill" src='../../images/icon/xcx.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>添加到桌面</div>
-            </div>
-          </div>
-          <div class='bodyBig'>
-            <div class='bodyBigItem' bindtap="gotoSubject" data-item="moni">
-              <div class="bodyBigIcon bodyBigIconGreen" />
-              <div class='bodyBigTitle'>模拟考试</div>
-              <div class='bodyBigDesc'>仿真冲刺</div>
-            </div>
-          </div>
-          <div class='bodySmall'>
-            <div class='smallItem' bindtap="gotoSubject" data-item="special">
-              <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>专项练习</div>
-            </div>
-            <button class="cleanButton" open-type="contact">
-              <div class='smallItem'>
-                <image mode="aspectFill" src='../../images/subjectIconTen.png' class='smallItemIcon' alt="" />
-                <div class='smallItemText'>问题反馈</div>
-              </div>
-            </button>
-          </div>
-        </div>
       </div>
-    </swiper-item>
-  </swiper>
 
-  <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
+      <view class='province'>
+        <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
+        <span>·</span>
+        <CitySelector class='provinceSelect' showLocationIcon bindUserConfigUpdate='onUserConfigUpdate' />
+      </view>
 
-  <!-- <image class="bannerBottom" bindtap="gotoPage" data-item="incPage" src="../../images/theorybanner1.jpg" mode="widthFix" /> -->
-  <Comments wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
+    </div>
+    <Banner />
+    <!-- 通知组件 -->
+    <SubjectUpdate step='{{step}}' />
+    <!-- 教练分享工具 -->
+    <ShareContent wx:if="{{isCoach}}" step='{{step}}' />
 
-  <BottomTips />
-</view>
+    <swiper class="swiper" style="height:{{mainHeight}}px" current='{{step == 1 ? 0 : 1}}' bindanimationfinish='swiperChange'>
+      <swiper-item wx:for="14" wx:key="$this">
+        <div class='mainContent' id="mainContent">
+          <div class='bodyBox'>
+            <div class='bodySmall'>
+
+              <div class='smallItem' bindtap="gotoPage" data-item="incPage">
+                <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
+                <div class='shine' />
+                <div class='smallItemText'>不过补偿
+                  <span class="tag must">热门</span>
+                </div>
+              </div>
+              <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" wx:if="{{examType !== 'moto'}}">
+                <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
+                <div class='smallItemText'>500题技巧
+                  <span class="tag must">必学</span>
+                </div>
+              </div>
+              <div class='smallItem' bindtap="gotoSubject" data-item="secret" wx:else>
+                <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
+                <div class='smallItemText'>考前秘卷</div>
+              </div>
+            </div>
+            <div class='bodyBig' bindtap="gotoSubject" data-item="chosen">
+              <div class='bodyBigItem'>
+                <div class='bodyBigIcon' />
+                <div class='bodyBigTitle'>精选{{poolDataObj.chosen.subjectCount || '500'}}题</div>
+                <div class='svgContent' wx:if="{{isinitProgrss}}">
+                  <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
+                </div>
+              </div>
+            </div>
+            <div class='bodySmall'>
+
+              <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
+                <image mode="aspectFill" src='../../images/subjectIconOne.png' class='smallItemIcon' alt="" />
+                <div class='smallItemText'>
+                  顺序练习
+                  <span class='tag'>题全</span>
+                </div>
+              </div>
+              <div class='smallItem' bindtap="gotoSubject" data-item="WCPage">
+                <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
+                <div class='smallItemText'>
+                  我的错题
+                  <span class='tag dot'>{{userSubject.myWrongUserSubject.subjectIds.length || 0}}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- {/* 模拟考试部分 */} -->
+          <div class='bodyBox'>
+            <div class='bodySmall'>
+              <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
+                <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
+                <div class='smallItemText'>图标速记</div>
+              </div>
+              <div class='smallItem' bindtap="addToDesk">
+                <image mode="aspectFill" src='../../images/icon/xcx.png' class='smallItemIcon' alt="" />
+                <div class='smallItemText'>添加到桌面</div>
+              </div>
+            </div>
+            <div class='bodyBig'>
+              <div class='bodyBigItem' bindtap="gotoSubject" data-item="moni">
+                <div class="bodyBigIcon bodyBigIconGreen" />
+                <div class='bodyBigTitle'>模拟考试</div>
+                <div class='bodyBigDesc'>仿真冲刺</div>
+              </div>
+            </div>
+            <div class='bodySmall'>
+              <div class='smallItem' bindtap="gotoSubject" data-item="special">
+                <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
+                <div class='smallItemText'>专项练习</div>
+              </div>
+              <button class="cleanButton" open-type="contact">
+                <div class='smallItem'>
+                  <image mode="aspectFill" src='../../images/subjectIconTen.png' class='smallItemIcon' alt="" />
+                  <div class='smallItemText'>问题反馈</div>
+                </div>
+              </button>
+            </div>
+          </div>
+        </div>
+      </swiper-item>
+    </swiper>
+
+    <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
+
+    <!-- <image class="bannerBottom" bindtap="gotoPage" data-item="incPage" src="../../images/theorybanner1.jpg" mode="widthFix" /> -->
+    <Comments wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
+
+    <BottomTips />
+  </view>
 
 
 
-<!-- 登录 -->
-<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
-<!-- 公众号二维码 -->
-<QRModal id="QRModal" />
+  <!-- 登录 -->
+  <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
+  <!-- 公众号二维码 -->
+  <QRModal id="QRModal" />
+</page-meta>

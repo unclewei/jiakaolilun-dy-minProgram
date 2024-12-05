@@ -1,26 +1,27 @@
 <wxs src="../../utils/config.wxs" module="utils"></wxs>
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <view class="contentBox" wx:if="{{userInfo.avatarUrl}}">
 
-<view class="contentBox" wx:if="{{userInfo.avatarUrl}}">
+    <view class="locationItem" wx:for="{{paidItems}}" wx:key="_id" data-item='{{item}}'>
 
-  <view class="locationItem" wx:for="{{paidItems}}" wx:key="_id" data-item='{{item}}'>
-
-    <!-- 数据展示 -->
-    <view class="locationBody">
-      <!-- 赏品详情 -->
-      <view class="name">{{item.name}}</view>
-      <view class="name">总价：{{item.price }} 元</view>
-      <view class="location"> 购买时间：{{utils.toDate(item.date)}}</view>
-      <view class="location"> 会员时效：{{item.durDay}}天</view>
+      <!-- 数据展示 -->
+      <view class="locationBody">
+        <!-- 赏品详情 -->
+        <view class="name">{{item.name}}</view>
+        <view class="name">总价：{{item.price }} 元</view>
+        <view class="location"> 购买时间：{{utils.toDate(item.date)}}</view>
+        <view class="location"> 会员时效：{{item.durDay}}天</view>
+      </view>
     </view>
+    <!-- 缺省图 -->
+    <view wx:if="{{isEmpty}}">订单空空如也，快抽赏吧~</view>
   </view>
-  <!-- 缺省图 -->
-  <view wx:if="{{isEmpty}}">订单空空如也，快抽赏吧~</view>
-</view>
 
-<view class="contentBox">
-  <button wx:if="{{!userInfo.avatarUrl}}" bindtap="onLogin">一键登录</button>
-</view>
+  <view class="contentBox">
+    <button wx:if="{{!userInfo.avatarUrl}}" bindtap="onLogin">一键登录</button>
+  </view>
 
 
-<!-- 登录 -->
-<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
+  <!-- 登录 -->
+  <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
+</page-meta>

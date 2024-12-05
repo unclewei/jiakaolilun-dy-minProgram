@@ -1,18 +1,20 @@
-<view class='init'>
-  <view class='wrap'>
-    <view wx:for="{{ruleIconTypeList}}" wx:key='_id' wx:for-item="i" class='waysItem' bindtap="gotoPage" data-item="{{i}}">
-      <view class='wayTextWrap'>
-        <view class='title'>
-          <view class='wayText'>{{i.name}}</view>
-          <view class='numWrap'>
-            <view class='nums'>{{i.iconCount}}张</view>
-            <image class='iconRight' src='../../images/icon/arrow-right.png' mode="aspectFit" />
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+  <view class='init'>
+    <view class='wrap'>
+      <view wx:for="{{ruleIconTypeList}}" wx:key='_id' wx:for-item="i" class='waysItem' bindtap="gotoPage" data-item="{{i}}">
+        <view class='wayTextWrap'>
+          <view class='title'>
+            <view class='wayText'>{{i.name}}</view>
+            <view class='numWrap'>
+              <view class='nums'>{{i.iconCount}}张</view>
+              <image class='iconRight' src='../../images/icon/arrow-right.png' mode="aspectFit" />
+            </view>
           </view>
-        </view>
-        <view class='iconWrap'>
-          <image class='iconImg' wx:for="{{i.ruleIconList}}" wx:for-item="o" wx:for-index="imgIndex" src='{{urlPrefix + o.imgPath}}' mode="aspectFit" catchtap="onShowGallery" data-images="{{i.ruleIconList}}" data-item="{{o}}" />
+          <view class='iconWrap'>
+            <image class='iconImg' wx:for="{{i.ruleIconList}}" wx:for-item="o" wx:for-index="imgIndex" src='{{urlPrefix + o.imgPath}}' mode="aspectFit" catchtap="onShowGallery" data-images="{{i.ruleIconList}}" data-item="{{o}}" />
+          </view>
         </view>
       </view>
     </view>
   </view>
-</view>
+</page-meta>

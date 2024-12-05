@@ -1,5 +1,5 @@
 .init{
   font-weight: 600;
   color: #555555;
-  font-size: 14px;
+  font-size: 0.875rem;
 }

@@ -1,46 +1,46 @@
 <wxs src="../../utils/config.wxs" module="utils"></wxs>
 
-
-<view class='init'>
-  <view class='header'>
-    <span wx:if="{{poolData.type !=='moni'}}">
-      <span class='modeBtn {{!isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="false">
-        答题模式
+<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 26}}px">
+  <view class='init'>
+    <view class='header'>
+      <span wx:if="{{poolData.type !=='moni'}}">
+        <span class='modeBtn {{!isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="false">
+          答题模式
+        </span>
+        <span class='modeBtn {{isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="true">
+          背题模式
+        </span>
       </span>
-      <span class='modeBtn {{isSeeMode && "active"}}' bindtap="setIsSeeMode" data-item="true">
-        背题模式
+      <!-- 倒计时 -->
+      <span wx:if="{{poolData.type ==='moni'}}">
+        <SubjectCountdown mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
       </span>
-    </span>
-    <!-- 倒计时 -->
-    <span wx:if="{{poolData.type ==='moni'}}">
-      <SubjectCountdown mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
-    </span>
-    <!-- 错题 -->
-    <span class='collect' wx:if="{{poolType === 'wrong'}}">
-      <span class='tips'>做对后移除错题</span>
-      <switch checked='{{isWrongDelete}}' type='checkbox' bindchange="onWrongSwitchChange" />
-    </span>
-    <!-- 完成 -->
-    <Finish wx:elif="{{poolData.type === 'moni'}}" poolId='{{poolId}}' bindOnSubmit='onSubmit' userSubjectData='{{userSubjectData}}' step='{{step}}' poolData='{{poolData}}' bindReSet='onReSet'>
-      <span class='modeBtn'>交卷</span>
-    </Finish>
-    <!-- 重做 -->
-    <Restart poolId='{{poolId}}' bindReSet='onReSet' wx:else>
-      <span class='modeBtn'>重做</span>
-    </Restart>
-  </view>
+      <!-- 错题 -->
+      <span class='collect' wx:if="{{poolType === 'wrong'}}">
+        <span class='tips'>做对后移除错题</span>
+        <switch checked='{{isWrongDelete}}' type='checkbox' bindchange="onWrongSwitchChange" />
+      </span>
+      <!-- 完成 -->
+      <Finish wx:elif="{{poolData.type === 'moni'}}" poolId='{{poolId}}' bindOnSubmit='onSubmit' userSubjectData='{{userSubjectData}}' step='{{step}}' poolData='{{poolData}}' bindReSet='onReSet'>
+        <span class='modeBtn'>交卷</span>
+      </Finish>
+      <!-- 重做 -->
+      <Restart poolId='{{poolId}}' bindReSet='onReSet' wx:else>
+        <span class='modeBtn'>重做</span>
+      </Restart>
+    </view>
 
-  <!-- {/*广告*/} -->
-  <view class='adBanner' />
+    <!-- {/*广告*/} -->
+    <view class='adBanner' />
 
-  <!-- 答题内容 -->
-  <view class='content' id="questionBody">
-    <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}" list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' total='{{poolData.subjectCount || subjectData.length || 0}}' isShowKeyWorld='{{isShowKeyWorld}}' bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next' />
+    <!-- 答题内容 -->
+    <view class='content' id="questionBody">
+      <VisSwiper id="swiper" swiperHeight="{{swiperHeight}}" list="{{subjectData}}" current="{{currentIndex}}" urlPrefix='{{urlPrefix}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' total='{{poolData.subjectCount || subjectData.length || 0}}' isShowKeyWorld='{{isShowKeyWorld}}' bindOptionSelect='onAnswerSelect' bindAnswerConfirm='onAnswerConfirm' bindOnLast='last' bindOnNext='next' />
 
-  </view>
+    </view>
 
-  <!-- 答题操作 -->
-  <!-- <span class="NextLastBox">
+    <!-- 答题操作 -->
+    <!-- <span class="NextLastBox">
     <view class='controlBtn lastBtn' wx:if="{{currentIndex > 0}}" bindtap="last">
       上一题
     </view>
@@ -49,51 +49,52 @@
     </view>
   </span> -->
 
-  <!-- 底部操作 -->
-  <view class='footer'>
-    <!-- 上一题 -->
-    <span class='arrowItem transArrowItem' bindtap="last">
-      <image src='../../images/icon/arrow-right.png' class='arrowIcon transtIcon' mode="widthFix" />
-      <view>上一题</view>
-    </span>
-    <!-- 答题正确数据 -->
-    <span class="countBoxItem" wx:if="{{poolType !== 'wrong'}}">
-      <span class='disFlex'>
-        <image class='vountIcon' src='../../images/icon/right.png' mode="widthFix" />
-        {{userSubjectData.rightSubjectIds.length}}
+    <!-- 底部操作 -->
+    <view class='footer'>
+      <!-- 上一题 -->
+      <span class='arrowItem transArrowItem' bindtap="last">
+        <image src='../../images/icon/arrow-right.png' class='arrowIcon transtIcon' mode="widthFix" />
+        <view>上一题</view>
       </span>
-      <span class='disFlex'>
-        <image class='vountIcon' src='../../images/icon/wrong.png' mode="widthFix" />
-        {{userSubjectData.wrongSubjectItems.length}}
-      </span>
-    </span>
-
-    <!-- 语音技巧 -->
-    <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' isBottom='{{true}}' bindPlay="showSkill" />
-    <!-- 视频技巧 -->
-    <SubjectVideo wx:if="{{poolData.type !== 'moni' && subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
-      <span class='normalItem'>
-        <image src='../../images/player.png' class='readIcon' mode="widthFix" />
-        <view>视频技巧</view>
-      </span>
-    </SubjectVideo>
-
-
-    <CurrentIndexSelector poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectData='{{userSubjectData}}' bindCurrentChange='CurrentChange'>
-      <span class='rightInfo'>
-        <span class='iconItem'>
-          <image class='icon' src='../../images/icon/more.png' mode="widthFix" />
-          <span><b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}</span>
+      <!-- 答题正确数据 -->
+      <span class="countBoxItem" wx:if="{{poolType !== 'wrong'}}">
+        <span class='disFlex'>
+          <image class='vountIcon' src='../../images/icon/right.png' mode="widthFix" />
+          {{userSubjectData.rightSubjectIds.length}}
+        </span>
+        <span class='disFlex'>
+          <image class='vountIcon' src='../../images/icon/wrong.png' mode="widthFix" />
+          {{userSubjectData.wrongSubjectItems.length}}
         </span>
       </span>
-    </CurrentIndexSelector>
-    <span class='arrowItem' bindtap="next">
-      <image src='../../images/icon/arrow-right.png' class='arrowIcon' mode="widthFix" />
-      <view>下一题</view>
-    </span>
+
+      <!-- 语音技巧 -->
+      <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' isBottom='{{true}}' bindPlay="showSkill" />
+      <!-- 视频技巧 -->
+      <SubjectVideo wx:if="{{poolData.type !== 'moni' && subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
+        <span class='normalItem'>
+          <image src='../../images/player.png' class='readIcon' mode="widthFix" />
+          <view>视频技巧</view>
+        </span>
+      </SubjectVideo>
+
+
+      <CurrentIndexSelector poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectData='{{userSubjectData}}' bindCurrentChange='CurrentChange'>
+        <span class='rightInfo'>
+          <span class='iconItem'>
+            <image class='icon' src='../../images/icon/more.png' mode="widthFix" />
+            <span><b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}</span>
+          </span>
+        </span>
+      </CurrentIndexSelector>
+      <span class='arrowItem' bindtap="next">
+        <image src='../../images/icon/arrow-right.png' class='arrowIcon' mode="widthFix" />
+        <view>下一题</view>
+      </span>
+    </view>
   </view>
-</view>
 
-<Colloct />
+  <Colloct />
 
-<CheckIsVip poolData='{{poolData}}' poolId='{{poolId}}' isVipValid='{{isItemValid}}' step='{{step}}' currentIndex='{{currentIndex}}' bindOnBuySuccess='onBuySuccess' />
+  <CheckIsVip poolData='{{poolData}}' poolId='{{poolId}}' isVipValid='{{isItemValid}}' step='{{step}}' currentIndex='{{currentIndex}}' bindOnBuySuccess='onBuySuccess' />
+</page-meta>

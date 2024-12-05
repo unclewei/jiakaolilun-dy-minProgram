@@ -14,7 +14,7 @@
   color: white;
   padding: 3px 7px;
   border-radius: 50px;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .headerStep1 {
@@ -53,18 +53,18 @@
 }
 
 .nickName {
-  font-size: 18px;
+  font-size: 1.125rem;
   color: #fff;
   font-weight: 600;
 }
 
 .phoneNum {
   color: #fff;
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .tips {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #111;
   font-weight: 600;
 }
@@ -78,7 +78,7 @@
   display: inline-block;
   background-color: #4b9cff;
   color: #fff;
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 2px 4px;
   font-weight: 600;
   border-radius: 3px;
@@ -93,7 +93,7 @@
   display: inline-block;
   background-color: #ff6235;
   color: #fff;
-  font-size: 12px;
+  font-size: 0.75rem;
   padding: 2px 4px;
   font-weight: 600;
   border-radius: 3px;
@@ -151,7 +151,7 @@
   height: 23px;
   /* background: linear-gradient(to right, #747474, #c7c9c8) !important; */
   color: #353535;
-  font-size: 14px;
+  font-size: 0.875rem;
   font-weight: 600;
   padding-right: 3px;
   padding-left: 3px;
@@ -161,7 +161,7 @@
 }
 
 .state {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-left: 5px;
   font-weight: 600;
   color: #a7a7a7;
@@ -170,7 +170,7 @@
 .vipBuy {
   display: flex;
   align-items: center;
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #b6a994;
 }
 
@@ -225,12 +225,12 @@
 }
 
 .benefitText {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: #b6a994;
 }
 
 .cityContent {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: #ff5566;
   font-weight: 600;
   margin-top: 5px;
@@ -258,7 +258,7 @@
 }
 
 .province {
-  font-size: 15px;
+  font-size: 0.9375rem;
   width: 200px;
   text-align: right;
   display: flex;
@@ -336,7 +336,7 @@
 }
 
 .secText {
-  font-size: 12px;
+  font-size: 0.75rem;
 }
 
 .highLight {

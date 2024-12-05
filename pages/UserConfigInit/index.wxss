@@ -30,13 +30,13 @@
 }
 
 .init .header .title1 {
-  font-size: 22px;
+  font-size: 1.375rem;
   margin-bottom: 15px;
   font-weight: 600;
   z-index: 2;
 }
 .init .header .title2 {
-  font-size: 14px;
+  font-size: 0.875rem;
   z-index: 2;
 }
 .init .wrap {
@@ -69,7 +69,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
+  font-size: 0.75rem;
   padding-bottom: 15px;
   padding-top: 15px;
   color: #9197a3;
@@ -97,7 +97,7 @@
   display: flex;
   margin-bottom: 10px;
   color: #444;
-  font-size: 13px;
+  font-size: 0.8125rem;
 }
 .init .confirm {
   background-color: #4b9cffe0;

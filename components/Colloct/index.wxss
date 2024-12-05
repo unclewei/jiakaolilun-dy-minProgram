@@ -25,5 +25,5 @@
 }
 
 .content {
-  font-size: 28rpx;
+  font-size: 0.875rem;
 }

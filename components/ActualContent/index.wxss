@@ -19,7 +19,7 @@
 }
 
 .title {
-  font-size: 20px;
+  font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 7px;
 }
@@ -27,7 +27,7 @@
 .text {
   display: flex;
   align-items: center;
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-bottom: 5px;
 }
 
@@ -47,7 +47,7 @@
   background: #009aff;
   color: #fff;
   border: none;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   margin-left: 15px;
   margin-top: 8px;
@@ -57,7 +57,7 @@
 }
 
 .arrow {
-  font-size: 14px;
+  font-size: 0.875rem;
   margin-left: 2px;
 }
 

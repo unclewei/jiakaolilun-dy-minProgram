@@ -1,7 +1,7 @@
 /** @format */
 .init {
   padding: 10px 10px;
-  font-size: 13px;
+  font-size: 0.8125rem;
   position: relative;
 }
 .init .post {
@@ -14,7 +14,7 @@
   background: #e9f4ff;
   color: #444;
   border-radius: 10px;
-  font-size: 13px;
+  font-size: 0.8125rem;
   font-weight: 600;
   padding: 2px 8px;
   margin-bottom: 5px;

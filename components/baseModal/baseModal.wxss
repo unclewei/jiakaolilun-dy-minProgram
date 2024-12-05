@@ -196,7 +196,7 @@
 }
 
 .titleText {
-  font-size: 40rpx;
+  font-size: 1.25rem;
   font-weight: bold;
   letter-spacing: 10rpx;
   margin: 0 50rpx;

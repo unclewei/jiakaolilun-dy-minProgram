@@ -1,0 +1,14 @@
+<!--pages/Setting/index.wxml-->
+<view class="content">
+  <view class="title">字体设置</view>
+  <view class="body">
+  <radio-group bindchange="radioChange">
+    <radio class="one" value="16" checked='{{fontSize == 16}}'>标准</radio>
+    <radio class="two" value="28" checked='{{fontSize == 18}}'>大号</radio>
+    <radio class="three" value="20" checked='{{fontSize == 20}}'>超大号</radio>
+    <radio class="four" value="22" checked='{{fontSize == 22}}'>超超大号</radio>
+  </radio-group>
+  </view>
+
+  <view class="confirm" bindtap="onConfirm">确定</view>
+</view>

@@ -25,7 +25,7 @@ page {
   width: 100%;
   box-sizing: border-box;
   display: flex;
-  font-size: 18px;
+  font-size: 1.125rem;
 }
 .kemu .kemuItem {
   width: 80px;
@@ -53,14 +53,13 @@ page {
 }
 
 .province {
-  font-size: 16px;
   width: inherit;
   text-align: right;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   padding-right: 10px;
-  font-size: 26rpx;
+  font-size: 1rem;
 }
 
 .provinceSelect {
@@ -91,7 +90,7 @@ page {
   background-color: #fbffc4;
   width: 100%;
   border-radius: 3px;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .mainContent .inform .type {
@@ -135,7 +134,7 @@ page {
 
 .mainContent .bodyBox .bodySmall .smallItem .smallItemText {
   position: relative;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 .mainContent .bodyBox .bodySmall .smallItem .smallItemText .tag {
@@ -143,7 +142,7 @@ page {
   top: -55px;
   right: -16px;
   width: 40px;
-  font-size: 12px;
+  font-size: 0.75rem;
   text-align: center;
   border-radius: 10px;
   background-color: #0ab10f;
@@ -210,13 +209,13 @@ page {
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigTitle {
   z-index: 3;
-  font-size: 16px;
+  font-size: 1rem;
   margin-bottom: 2px;
 }
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigDesc {
   z-index: 3;
-  font-size: 14px;
+  font-size: 0.875rem;
 }
 
 
@@ -244,7 +243,7 @@ page {
   height: 60px;
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.05);
   z-index: 2;
-  font-size: 15px;
+  font-size: 0.9375rem;
 }
 
 .secondLine {
@@ -256,7 +255,7 @@ page {
 }
 
 .otherTitle {
-  font-size: 30rpx;
+  font-size: 0.9375rem;
   font-weight: bold;
   margin-bottom: 15rpx;
   font-weight: bold;
