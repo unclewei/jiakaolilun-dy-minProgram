@@ -25,6 +25,8 @@ Page({
   },
   onLoad(options) {
     console.log('options', options);
+
+
     if (options?.fromWho) {
       wx.setStorageSync('fromWho', options?.fromWho)
     }
@@ -51,8 +53,9 @@ Page({
     wx.setTabBarStyle({
       backgroundColor: '#fff',
     })
+    const fontSize = this.getDefaultFonSize()
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: fontSize || wx.getStorageSync('fontSize'),
       isLogin: !!getApp().globalData.userInfo._id,
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,
@@ -61,6 +64,34 @@ Page({
       examType: getApp().globalData.userConfig.examType
     })
     this.chosenAndWrong()
+  },
+
+  getDefaultFonSize() {
+    try {
+      const appBaseInfo = wx.getAppBaseInfo()
+      console.log('appBaseInfo.fontSizeScaleFactor', appBaseInfo.fontSizeScaleFactor);
+      if (appBaseInfo.fontSizeScaleFactor && !wx.getStorageSync('fontSize')) {
+        if (appBaseInfo.fontSizeScaleFactor <= 1) {
+          wx.setStorageSync('fontSize', 16)
+          return 16
+        }
+        if (appBaseInfo.fontSizeScaleFactor <= 1.14) {
+          wx.setStorageSync('fontSize', 18)
+          return 18
+        }
+        if (appBaseInfo.fontSizeScaleFactor <= 1.20) {
+          wx.setStorageSync('fontSize', 20)
+          return 20
+        }
+        if (appBaseInfo.fontSizeScaleFactor > 1.20) {
+          wx.setStorageSync('fontSize', 22)
+          return 22
+        }
+        return 16
+      }
+    } catch (error) {
+      return 16
+    }
   },
 
   /**  登录成功*/
