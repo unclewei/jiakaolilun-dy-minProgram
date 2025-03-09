@@ -43,7 +43,14 @@ export const coachPhoneNum = (data) => {
     data
   });
 }
-
+// 查询优惠券列表
+export const getUserCouponList = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/userCoupon/userCouponList`,
+    method: 'post',
+    data,
+  })
+}
 
 // 获取基本信息
 export const getBaseConfig = (data) => {

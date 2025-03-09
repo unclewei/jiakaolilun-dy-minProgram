@@ -22,4 +22,10 @@
       </view>
     </view>
   </view>
+  <view class='tips' bindtap="showQRCode">返现请关注公众号【文明一点通】</view>
+  <view class='tips' bindtap="showQRCode">进入【科一科四】进行提现</view>
+  <view class='tips' bindtap="showQRCode">点击关注</view>
 </view>
+
+  <!-- 公众号二维码 -->
+  <QRModal id="QRModal" />

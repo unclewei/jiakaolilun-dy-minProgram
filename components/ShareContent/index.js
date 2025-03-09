@@ -83,5 +83,13 @@ Component({
       })
     },
 
+    showQRCode(){
+      this.selectComponent("#QRModal").showModal({
+        src: "../../images/wmQRCode.jpg",
+        desc: "长按识别图中二维码进入公众号",
+        descTwo: "进入【科一科四】，在下方选择提现",
+      });
+    },
+
   }
 })

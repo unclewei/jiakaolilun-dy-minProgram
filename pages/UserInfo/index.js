@@ -227,6 +227,11 @@ Page({
       url: '/pages/Setting/index',
     })
   },
+  gotoDiscount(){
+    wx.navigateTo({
+      url: '/pages/Discount/index',
+    })
+  },
   cleanAccount() {
     wx.clearStorageSync()
     getApp().globalData.cookies = null

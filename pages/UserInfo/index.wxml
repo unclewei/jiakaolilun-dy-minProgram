@@ -69,6 +69,10 @@
           <image class='secIcon' src='../../images/dotIcon/earth.png' mode="widthFix" />
           <view class='secText'>激活码</view>
         </view>
+        <view class='secItem' bindtap="gotoDiscount">
+          <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
+          <view class='secText'>优惠卷</view>
+        </view>
         <button class="cleanButton secItem" open-type="contact">
           <image class="secIcon" src="../../images/dotIcon/mine.png" mode="widthFix" />
           <view class="secText">联系客服</view>

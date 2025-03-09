@@ -36,8 +36,8 @@ page{
   color: #fff;
   margin-bottom: 5px;
 }
-.Content .headerBox .stepText .stepTitle .cc {
-  font-size: 0.875rem;
+.cc {
+  font-size: 20rpx;
 }
 
 .headerBoxImg{

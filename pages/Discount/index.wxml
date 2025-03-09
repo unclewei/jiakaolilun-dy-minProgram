@@ -1,0 +1,30 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<view class="discountContent">
+  <!-- 优惠券列表 -->
+  <view class="disCountItem" wx:key="_id" wx:for="{{discountList}}">
+    <view class="discountLeft">
+      <view class="discountLeftTop">
+        <view class="unit">￥</view>
+        <view class="money">{{item.discountAmount}}</view>
+      </view>
+      <view class="discountType">满{{item.amount}}元可用</view>
+    </view>
+    <view class="discountRight">
+      <view class="discountName">
+        <view>
+          {{item.name}}
+        </view>
+        <view style="color: #f25728;">
+          {{item.times}}张
+        </view>
+      </view>
+      <view class="discountTime">
+        {{utils.toDateYMD(item.startDate)}} ~ {{utils.toDateYMD(item.endDate)}}
+      </view>
+    </view>
+  </view>
+  <!-- 缺省图 -->
+  <div class="empty" wx:if="{{isEmpty}}">暂无优惠卷</div>
+
+</view>

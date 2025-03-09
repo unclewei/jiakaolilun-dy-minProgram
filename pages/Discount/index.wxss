@@ -1,0 +1,100 @@
+
+.discountContent{
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 100vh;
+  background-color: #FFFFDD;
+  padding: 30rpx;
+  box-sizing: border-box;
+}
+
+.empty{
+  margin-top: 100rpx;
+  width: 100%;
+  text-align: center;
+}
+
+.disCountItem {
+  margin-left: 10rpx;
+  width: 660rpx;
+  min-height: 140rpx;
+  display: flex;
+  position: relative;
+  background: radial-gradient(circle at right top, transparent 10rpx, #f25728 0) top left / 260rpx 51% no-repeat,
+    radial-gradient(circle at right bottom, transparent 10rpx, #f25728 0) bottom left /260rpx 51% no-repeat,
+    radial-gradient(circle at left top, transparent 10rpx, #eeeeee 0) top right /400rpx 51% no-repeat,
+    radial-gradient(circle at left bottom, transparent 10rpx, #eeeeee 0) bottom right /400rpx 51% no-repeat;
+  filter: drop-shadow(3rpx 3rpx 3rpx rgba(0, 0, 0, .3));
+  margin-bottom: 20rpx;
+  border-top-left-radius: 20rpx;
+  border-bottom-left-radius: 20rpx;
+}
+
+.disCountItem::before {
+  content: '';
+  height: 80rpx;
+  border: 1rpx dashed #fff;
+  position: absolute;
+  left: 256rpx;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.disCountItem::after {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 5rpx;
+  top: 0;
+  right: -5rpx;
+  background-image: linear-gradient(to bottom, #eeeeee 5rpx, transparent 5rpx, transparent),
+    radial-gradient(10rpx circle at 5rpx 10rpx, transparent 5rpx, #eeeeee 5rpx);
+  background-size: 5rpx 15rpx;
+}
+
+.discountLeft{
+  display: flex;
+  flex-direction: column;
+  width: 250rpx;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+}
+.discountLeftTop{
+  display: flex;
+  align-items: baseline;
+}
+.unit{
+  font-size: 36rpx;
+}
+.money{
+  font-size: 50rpx;
+  font-weight: bold;
+}
+
+.discountType{
+  font-size: 28rpx;
+}
+.discountRight{
+  width: 400rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50rpx;
+  color: #000;
+}
+.discountName{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+  margin-right: 110rpx;
+}
+.discountTime{
+  font-size: 20rpx;
+}

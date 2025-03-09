@@ -1,4 +1,4 @@
-<BaseModal id="baseModal" image=''>
+<BaseModal id="baseModal" showImage='{{false}}' title='关注'>
   <view class="content">
     <image class="qrImg" src="{{src}}" mode="widthFix" show-menu-by-longpress />
     <view class="desc">{{desc}}</view>

@@ -12,6 +12,12 @@
   color: #e5124b;
   font-weight: 600;
 }
+.tips{
+  color: #e5124b;
+  font-weight: 600;
+  padding: 3px 0;
+  text-align: center;
+}
 .init .item {
   width: 100%;
   box-sizing: border-box;
