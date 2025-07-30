@@ -9,6 +9,7 @@
     "ShareContent": "../../components/ShareContent",
     "BottomTips": "../../components/BottomTips",
     "Banner": "../../components/Banner",
+    "UserInfoSupply": "../../components/UserInfoSupply",
     "Comments": "../../components/Comments",
     "CarType": "../../components/CarType",
     "SubjectUpdate": "../../components/SubjectUpdate"

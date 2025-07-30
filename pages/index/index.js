@@ -109,6 +109,10 @@ Page({
       wx.navigateTo({
         url: '/pages/UserConfigInit/index',
       })
+      return
+    }
+    if(!wx.getStorageSync('fromWho') && !getApp().globalData.userInfo.phoneNum ){
+      this.selectComponent("#UserInfoSupply").showModal()
     }
   },
 
