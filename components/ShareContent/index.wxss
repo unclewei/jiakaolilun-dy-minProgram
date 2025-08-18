@@ -100,3 +100,14 @@
   font-size: 0.75rem;
   color: #9197a3;
 }
+
+.borderline{
+  border: 1rpx solid #e5124b;
+  background-color: #e5124b;
+  color: white;
+  padding: 3epx 6rpx;
+  width: 330rpx;
+  border-radius: 6rpx;
+  margin: 0 auto;
+  margin-bottom: 20rpx;
+}
