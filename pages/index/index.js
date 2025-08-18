@@ -111,9 +111,9 @@ Page({
       })
       return
     }
-    if(!wx.getStorageSync('fromWho') && !getApp().globalData.userInfo.phoneNum ){
-      this.selectComponent("#UserInfoSupply").showModal()
-    }
+    // if(!wx.getStorageSync('fromWho') && !getApp().globalData.userInfo.phoneNum ){
+    //   this.selectComponent("#UserInfoSupply").showModal()
+    // }
   },
 
   chosenAndWrong() {
