@@ -97,10 +97,22 @@
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 70%;
+  height: 85%;
   bottom: 0;
   background-color: #fff;
   z-index: 1004;
+}
+.endSearchIcon{
+  width: 25rpx;
+  height: 25rpx;
+  padding: 26rpx 0 ;
+  padding-left: 24rpx;
+  padding-right: 2px;
+}
+.searchTitle{
+  font-size: 32rpx;
+  font-weight: bold;
+
 }
 .init .wrap .option {
   display: flex;
@@ -219,3 +231,50 @@
   background-color: #fff !important;
 }
 
+
+.searchBox{
+  position: relative;
+  width: 100%;
+  background-color: #efefef;
+  padding: 16rpx;
+  box-sizing: border-box;
+  margin: 12rpx 0;
+}
+.searchContent{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 6rpx 16rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  box-sizing: border-box;
+
+}
+.searchIcon{
+  width: 30rpx;
+  height: 30rpx;
+  padding: 12rpx;
+  margin-right: 16rpx;
+}
+.searchInput{
+  flex: 1;
+  text-align: left;
+}
+.searchClearIcon{
+  width: 30rpx;
+  height: 30rpx;
+  padding: 12rpx;
+  margin-left: 16rpx;
+}
+.searchConent{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.searchItem{
+  text-align: left;
+  padding: 16rpx 32rpx;
+  border-bottom: 1rpx solid #e7e7e7;
+}

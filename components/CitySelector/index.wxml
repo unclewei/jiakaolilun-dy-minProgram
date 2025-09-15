@@ -8,15 +8,31 @@
   <view class='mask' bindtap='hideModal' />
   <view class='wrap {{visible && "DrawerContainerShow"}} {{hidding && "DrawerContainerHide"}}'>
 
-    <view class='option'>
+
+    <view class='option' wx:if="{{isSearch}}">
+      <image class='endSearchIcon' mode="widthFix" bindtap='endSearch' src="../../images/closeX.png" />
+      <view class="searchTitle">选择城市</view>
+      <view class='confirm'></view>
+    </view>
+    <view class='option' wx:else="">
       <view class='cancel' bindtap='hideModal'>
         取消
       </view>
+      <view class="searchTitle">选择城市</view>
       <view class='confirm' bindtap='onConfirm'>
         确定
       </view>
     </view>
-    <view class='recommend'>
+
+    <View class="searchBox">
+      <view class="searchContent" bind:tap="starSearch">
+        <image class="searchIcon" mode="widthFix" src="../../images/search.png" />
+        <input class="searchInput" placeholder="点击搜索" auto-focus="{{isSearch}}" value="{{searchText}}" bindinput="onSearchInput" />
+        <image class="searchClearIcon" mode="widthFix" src="../../images/close.png" wx:if="{{!!searchText}}" bind:tap="cleanSearchText" />
+      </view>
+    </View>
+
+    <view class='recommend' wx:if="{{!isSearch}}">
       <view class='title'>热门城市</view>
       <view class='recommendWrap'>
         <view wx:for="{{recommendCityData}}" wx:for-item="i" wx:key='cityId' class='recommendCityWrap' bindtap="onCityClick" data-item="{{i}}">
@@ -26,7 +42,7 @@
         </view>
       </view>
     </view>
-    <view class='content'>
+    <view class='content' wx:if="{{!isSearch}}">
       <view class='aside'>
         <view class='cityItem {{i.provinceId === provinceId && "isActive"}}' wx:for="{{provinceData}}" wx:for-item="i" wx:key='provinceId' bindtap="onProvinceClick" data-item="{{i}}">
           {{i.provinceName}}
@@ -44,6 +60,10 @@
         </view>
       </view>
     </view>
+    <view class="searchConent" wx:if="{{isSearch}}">
+      <view class="searchItem" wx:for="{{searchCityList}}" wx:key="cityId" bind:tap="onCityExactClick" data-item="{{item}}">{{item.cityName}}
+      </view>
+    </view>
   </view>
 </view>
 
@@ -52,4 +72,4 @@
 <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
 
 <!-- 新题目弹窗 -->
-<SubjectLocationInfo id="SubjectLocationInfo"  tick='{{subjectLocationTick}}' UserConfig='{{userConfig}}' locationData='{{locationData}}'/>
+<SubjectLocationInfo id="SubjectLocationInfo" tick='{{subjectLocationTick}}' UserConfig='{{userConfig}}' locationData='{{locationData}}' />

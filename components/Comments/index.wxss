@@ -36,10 +36,26 @@
   flex-direction: column;
 }
 
+.nameBox {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1px;
+}
+
 .nickName {
   color: #111;
   font-size: 0.875rem;
   margin-bottom: 1px;
+}
+
+.isGovNickName {
+  color: rgb(248, 45, 45);
+}
+
+.govIcon {
+  width: 25rpx;
+  height: 25rpx;
+  margin-left: 8rpx;
 }
 
 .runDateProvince {

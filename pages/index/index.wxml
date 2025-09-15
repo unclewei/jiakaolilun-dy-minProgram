@@ -40,13 +40,13 @@
                   <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
                   <div class='shine' />
                   <div class='smallItemText'>不过补偿
-                    <span class="tag must">热门</span>
+                    <!-- <span class="tag must">热门</span> -->
                   </div>
                 </div>
                 <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" wx:if="{{examType !== 'moto'}}">
                   <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
-                  <div class='smallItemText'>500题技巧
-                    <span class="tag must">必学</span>
+                  <div class='smallItemText'>速记口诀
+                    <!-- <span class="tag must">必学</span> -->
                   </div>
                 </div>
                 <div class='smallItem' bindtap="gotoSubject" data-item="secret" wx:else>

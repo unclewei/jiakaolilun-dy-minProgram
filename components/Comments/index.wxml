@@ -5,7 +5,10 @@
   <div class='commentItem' wx:key='_id' wx:for="{{commentList}}">
     <Avatar className='comAvatar' userInfo='{{item.user}}' />
     <div class='comBody'>
-      <div class='nickName'>{{item.user.nickName}}</div>
+    <div class="nameBox">
+      <div class='nickName {{item.isGov && "isGovNickName"}}'>{{item.user.nickName}}</div>
+      <image class="govIcon" wx:if="{{item.isGov}}" mode="widthFix" src="../../images/gov.png" />
+    </div>
       <!-- <div class='runDateProvince'>{{utils.toDate(item.time)}}</div> -->
       <div class='commentText'>{{item.content}}</div>
 
