@@ -199,12 +199,12 @@ page {
   border-radius: 50%;
   overflow: hidden;
   z-index: 1;
-  background: #4a8ff3;
+  background: linear-gradient(to Bottom, #9bc0f9,#4a8ff3);
   box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.4);
 }
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigIconGreen {
-  background: #51c59E;
+  background: linear-gradient(to Bottom, #bdefde,#51c59E);
 }
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigTitle {

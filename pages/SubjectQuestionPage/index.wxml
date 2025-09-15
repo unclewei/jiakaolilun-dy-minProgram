@@ -71,12 +71,12 @@
       <!-- 语音技巧 -->
       <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' isBottom='{{true}}' bindPlay="showSkill" />
       <!-- 视频技巧 -->
-      <SubjectVideo wx:if="{{poolData.type !== 'moni' && subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
+      <!-- <SubjectVideo wx:if="{{poolData.type !== 'moni' && subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
         <span class='normalItem'>
           <image src='../../images/player.png' class='readIcon' mode="widthFix" />
           <view>视频技巧</view>
         </span>
-      </SubjectVideo>
+      </SubjectVideo> -->
 
 
       <CurrentIndexSelector poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectData='{{userSubjectData}}' bindCurrentChange='CurrentChange'>

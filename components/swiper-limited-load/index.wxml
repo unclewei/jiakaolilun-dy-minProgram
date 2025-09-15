@@ -1,9 +1,9 @@
 <!--components/swiper-limited-load/index.wxml-->
 
 <!-- 这里我没用到别的属性，如果你们用到其它属性的话可以查下文档，直接加进来就行 -->
-<swiper style="height:{{swiperHeight}}px" current="{{swiperCurrent}}" bindchange="swiperChange" bindanimationfinish="swiperFinish" bindtransition='swiperTranstion' circular duration='100'>
-  <swiper-item wx:key="_id" wx:for="{{swiperList}}">
-    <item-view item="{{item}}" swiperHeight="{{swiperHeight}}" urlPrefix='{{urlPrefix}}' answerIndex='{{answerIndex}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' 
+<swiper style="height:{{swiperHeight}}px" current="{{swiperCurrent}}" bindchange="swiperChange" bindanimationfinish="swiperFinish" bindtransition='swiperTranstion' circular duration='50'>
+  <swiper-item wx:key="_id" wx:for="{{swiperList}}" class="{{isSwipering && 'content'}}">
+    <item-view item="{{item}}" swiperHeight="{{swiperHeight}}" urlPrefix='{{urlPrefix}}' answerIndex='{{answerIndex}}' optionIndex='{{optionIndex}}' isSelected='{{isSelected}}' isNowWrong='{{ isNowWrong}}' isSeeMode='{{isSeeMode}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' 
     isShowNow='{{swiperCurrent === index}}'
     isSwipering='{{isSwipering}}'
     isShowKeyWorld='{{!isSwipering && swiperCurrent === index && isShowKeyWorld}}'

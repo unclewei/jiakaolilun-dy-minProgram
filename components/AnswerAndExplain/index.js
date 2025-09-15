@@ -61,11 +61,15 @@ Component({
    */
   data: {
     answer: '',
+    urlPrefix:""
   },
 
 
   ready: function () {
 
+    this.setData({
+      urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
+    });
   },
 
   /**

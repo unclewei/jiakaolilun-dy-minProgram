@@ -1,4 +1,4 @@
-import MpProgress from "./progress.min.js";
+import MpProgress from "./progress.js";
 
 Component({
   options: {
@@ -15,18 +15,19 @@ Component({
     }
   },
   data: {
+    oldpercentage: null,
     customOptions: {
       canvasSize: {
-        width: 750 / wx.getSystemInfoSync().windowWidth *140,
-        height: 750 / wx.getSystemInfoSync().windowWidth * 140
+        width: 750 / wx.getSystemInfoSync().windowWidth * 150,
+        height: 750 / wx.getSystemInfoSync().windowWidth * 150
       },
       percent: 100,
       barStyle: [{
         width: 10,
-        fillStyle: '#f0f0f0'
+        fillStyle: '#f0f0f050'
       }, {
         width: 10,
-        animate: true,
+        animate: false,
         fillStyle: [{
           position: 0,
           color: '#56B37F'
@@ -37,11 +38,11 @@ Component({
       }],
       needDot: true,
       dotStyle: [{
-        r: 10,
+        r: 16,
         fillStyle: '#ffffff',
         shadow: 'rgba(0,0,0,.15)'
       }, {
-        r: 10,
+        r: 12,
         fillStyle: '#56B37F'
       }]
 
@@ -49,7 +50,6 @@ Component({
     canvasId: `mp_progress_${new Date().getTime()}`
   },
   attached() {
-    console.log('wx.getSystemInfoSync().windowWidth',wx.getSystemInfoSync().windowWidth);
     const customOptions = Object.assign({}, this.data.customOptions, this.data.config);
     this.setData({
       customOptions
@@ -60,14 +60,78 @@ Component({
       canvasId: this.data.canvasId,
       target: this
     }));
+    this.clockDrawer()
     this._mpprogress.draw(this.data.percentage || 0);
   },
   observers: {
     'percentage': function (percentage) {
+      if (this.data.oldpercentage === percentage) {
+        return
+      }
       if (this._mpprogress) {
         // 第一次进来的时候还没有初始化完成
         this._mpprogress.draw(percentage);
+        this.data.oldpercentage = percentage
       }
     },
+  },
+  methods: {
+    clockDrawer() {
+      const query = wx.createSelectorQuery().in(this);
+      query
+        .select('#clock')
+        .fields({
+          node: true,
+          size: true
+        }) // 拿到 node 和 尺寸
+        .exec((res) => {
+          const canvas = res[0].node; // 拿到 canvas 节点
+          const ctx = canvas.getContext('2d');
+          const dpr = wx.getSystemInfoSync().pixelRatio; // 设备像素比
+
+          // 设置真实像素大小，避免模糊
+          canvas.width = res[0].width * dpr;
+          canvas.height = res[0].height * dpr;
+          ctx.scale(dpr, dpr);
+
+          this.drawClockTicks(ctx, 134);
+        })
+
+    },
+    drawClockTicks(ctx, size) {
+      const centerNub = (16 - size) / 2
+      const cx = size + centerNub;
+      const cy = size + centerNub;
+      const radius = Math.floor(size / 2);
+
+      // 参数可调整
+      const minorLen = 4; // 小刻度长度
+      const minorWidth = 1; // 小刻度线宽（逻辑像素）
+      const tickColor = 'rgba(0,0,0,0.4)'; // 刻度颜色（透明度可调）
+      const count = 40; // 刻度数量
+      // 清空（不填充背景，保持透明） 
+
+      ctx.save(); // 保存初始状态
+      // 我们先 translate 到中心，后面使用 rotate 绘制
+      ctx.translate(cx, cy);
+
+      // 先画 60 个小刻度（包含大刻度的位置）
+      for (let i = 0; i < count; i++) {
+        ctx.beginPath();
+        ctx.moveTo(0, -radius); // 从外圆边缘开始
+        ctx.lineTo(0, -radius + minorLen); // 向内画到 (len) 的位置
+        ctx.lineCap = 'round'; // 线帽
+        ctx.lineWidth = minorWidth; // 线宽
+        ctx.strokeStyle = tickColor; // 颜色
+        ctx.stroke();
+        ctx.rotate((Math.PI * 2) / count); // 旋转 1/60 圈
+      }
+
+      // 恢复坐标系（将 translate 复位）
+      ctx.translate(-cx, -cy);
+      ctx.restore(); // 恢复坐标系，避免影响后续绘制
+
+
+    }
   }
 });

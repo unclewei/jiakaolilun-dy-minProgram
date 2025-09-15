@@ -15,6 +15,16 @@
     <HighLightContent keys='{{subjectItem.skillKeys}}' content="{{subjectItem.skillContent}}" />
   </view>
 
+  <view class='skill' wx:if="{{subjectItem.skillVideoUrl}}">
+    <view class='title'>
+      <span class='skillTitle'>
+        <image src='../../images/player.png' class='skillIcon' mode="widthFix" />
+        视频讲解技巧
+      </span> 
+    </view>
+    <video class="video" src='{{urlPrefix + subjectItem.skillVideoUrl }}'  object-fit="contain" />
+  </view>
+
   <view class='skillNormal' wx:if="{{subjectItem.normalSkillContent}}">
     <view class='title' wx:if="{{subjectItem.skillContent}}">
       <span class='skillTitle'>

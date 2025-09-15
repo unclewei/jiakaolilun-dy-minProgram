@@ -203,7 +203,6 @@ var MpProgress = /*#__PURE__*/function () {
           }
 
           query.select("#".concat(this._options.canvasId)).node(function (res) {
-            console.log(res);
             var canvas = res.node;
             _this._requestAnimationFrame = canvas.requestAnimationFrame.bind(canvas);
             var ctx = canvas.getContext('2d');
@@ -230,7 +229,6 @@ var MpProgress = /*#__PURE__*/function () {
 
         if (barStyle.length > 0) {
           if (this.isInit) {
-            console.log(this._positionInfo); // 需要清除画布
 
             if (this._percent === 100) {
               this._context.clearRect(-this._positionInfo.originX, -this._positionInfo.originY, this.convertLength(this._options.canvasSize.width), this.convertLength(this._options.canvasSize.height));
@@ -295,7 +293,6 @@ var MpProgress = /*#__PURE__*/function () {
               }
             }
 
-            console.log(originX, originY, this.convertLength(originX), this.convertLength(originY)); // arc原点默认为3点钟方向，需要调整到12点
 
             var rotateDeg = this._percent === 100 ? -90 : ((100 - this._percent + (this._percent - 50) / 2) / 100).toFixed(2) * 360;
             this._positionInfo = {
@@ -307,7 +304,6 @@ var MpProgress = /*#__PURE__*/function () {
 
             this._context.rotate(rotateDeg * Math.PI / 180);
 
-            console.log('_r', _r);
             this._r = this.convertLength(_r);
           } // 需要旋转的角度
 
@@ -359,7 +355,6 @@ var MpProgress = /*#__PURE__*/function () {
       } // console.log(`startAngle: ${startAngle}, endAngle: ${endAngle}`);
 
 
-      console.log("endAngle: ".concat(endAngle));
 
       this._context.beginPath();
 
@@ -451,7 +446,6 @@ var MpProgress = /*#__PURE__*/function () {
   }, {
     key: "drawCircleWithFillStyle",
     value: function drawCircleWithFillStyle(style) {
-      console.log(style);
 
       this._context.beginPath();
 

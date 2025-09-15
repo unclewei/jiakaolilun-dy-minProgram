@@ -1,1 +1,4 @@
+<!-- 刻度 -->
+<canvas class="mp-clock" type="2d" id="clock" style="width: {{customOptions.canvasSize.width}}rpx; height: {{customOptions.canvasSize.height}}rpx" />
+<!-- 进度 -->
 <canvas class="mp-progress" type="2d" id="{{canvasId}}" wx:if="{{customOptions.canvasSize.width}}" style="width: {{customOptions.canvasSize.width}}rpx; height: {{customOptions.canvasSize.height}}rpx" />

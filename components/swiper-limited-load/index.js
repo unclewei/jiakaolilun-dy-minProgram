@@ -109,6 +109,7 @@ Component({
       }
       // 默认显示的index
       let current = defaulaIndex % SWIPER_LENGTH
+      console.log('current',current)
       that.setData({
         swiperList: that.getInitSwiperList(list, defaulaIndex),
         swiperIndex: current,
@@ -153,7 +154,7 @@ Component({
         that.setData({
           isSwipering: false
         })
-      }, 275);
+      }, 50);
     },
 
     swiperChange: function (e) {
@@ -168,7 +169,7 @@ Component({
       // 是正向衔接
       let isLoopPositive = current == START && lastIndex == END
 
-      this.cleanQuestionStatus()
+      // this.cleanQuestionStatus()
 
       setTimeout(() => {
         if (current - lastIndex == 1 || isLoopPositive) {
@@ -262,8 +263,6 @@ Component({
       })
       if (realIndex == -1) return {}
       let total = this.data.total != 0 ? this.data.total : list.length
-      console.log('total', total);
-      console.log('listNeedIndex', listNeedIndex);
       let item = listNeedIndex == total ? null : list[realIndex]
       return item
     },
