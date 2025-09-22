@@ -8,9 +8,17 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    class: {
+      type: String,
+        value: ''
+    },
     step: {
       type: String,
       value: '1'
+    },
+    poolId: {
+      type: String,
+      value: undefined
     },
     isLogin: {
       type: Boolean,
@@ -22,9 +30,7 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {
-    poolId: undefined
-  },
+  data: {},
 
   observers: {
     'step,isLogin': function (step, isLogin) {
@@ -56,7 +62,7 @@ Component({
       step
     }) {
       const that = this
-      if(!that.data.isLogin){
+      if (!that.data.isLogin) {
         return
       }
       getUserMoniPool({
@@ -105,8 +111,16 @@ Component({
         return
       }
       if (!this.data.poolId) {
-        wx.navigateTo({
-          url: `/pages/SubjectIncPage/index`,
+        wx.showModal({
+          title: '模拟卷已做完',
+          content: '请到模拟考试，下面点击【重做】',
+          complete: (res) => {
+            if (res.confirm) {
+              wx.navigateTo({
+                url: `/pages/SubjectMoniPage/index`,
+              })
+            }
+          }
         })
         return
       }

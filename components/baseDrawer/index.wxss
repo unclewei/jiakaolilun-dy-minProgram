@@ -63,6 +63,7 @@
   transform: translate(0, 100%);
   z-index: 12;
   padding: 20rpx;
+  border-radius: 16rpx;
 }
 
 .DrawerContainerShow {
@@ -111,5 +112,5 @@
   flex-direction: column;
   background-color: #FFF4DB;
   border: 5rpx #000 solid;
-  border-radius: 10rpx;
+  border-radius: 20rpx;
 }

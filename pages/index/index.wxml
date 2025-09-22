@@ -23,14 +23,12 @@
       </view>
 
     </div>
-    <scroll-view scroll-y='true' style="height: {{windowHeight}}px;" enable-back-to-top='true' refresher-enabled='true'
-      refresher-triggered="{{pullTriggered}}" bindrefresherrefresh="onRefresh">
+    <scroll-view scroll-y='true' style="height: {{windowHeight}}px;" enable-back-to-top='true' refresher-enabled='true' refresher-triggered="{{pullTriggered}}" bindrefresherrefresh="onRefresh">
       <Banner />
       <!-- 教练分享工具 -->
       <ShareContent wx:if="{{isCoach}}" step='{{step}}' />
 
-      <swiper class="swiper" style="height:{{mainHeight}}px" current='{{step == 1 ? 0 : 1}}'
-        bindanimationfinish='swiperChange'>
+      <swiper class="swiper" style="height:{{mainHeight}}px" current='{{step == 1 ? 0 : 1}}' bindanimationfinish='swiperChange'>
         <swiper-item wx:for="14" wx:key="$this">
           <div class='mainContent' id="mainContent">
             <div class='bodyBox'>
@@ -76,7 +74,7 @@
                 <div class='smallItem' bindtap="gotoSubject" data-item="WCPage">
                   <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
                   <div class='smallItemText'>
-                    我的错题
+                    错题·收藏
                     <span class='tag dot'>{{userSubject.myWrongUserSubject.subjectIds.length || 0}}</span>
                   </div>
                 </div>
@@ -114,11 +112,35 @@
                 </button>
               </div>
             </div>
+
+
+            <!-- 下面4个类型 -->
+            <view class="otherContent">
+              <view class="otherItem" bindtap="gotoSubject" data-item="chosen">
+                <view class="otherText">500题直播</view>
+                <image class="otherIcon" mode="widthFix" src="../../images/otherOne.png" />
+              </view>
+              <view class="otherItem" bind:tap="gotoLearnPage">
+                <view class="otherText">三天速成</view>
+                <image class="otherIcon" mode="widthFix" src="../../images/otherTwo.png" />
+              </view>
+              <view class="otherItem" bindtap="gotoPage" data-item="incPage">
+                <view class="otherText">扣满12分</view>
+                <image class="otherIcon" mode="widthFix" src="../../images/otherThree.png" />
+              </view>
+              <view class="otherItem" bind:tap="gotoReviewLicense">
+                <view class="otherText">恢复驾驶证</view>
+                <image class="otherIcon" mode="widthFix" src="../../images/otherFour.png" />
+              </view>
+
+            </view>
           </div>
         </swiper-item>
       </swiper>
 
+      <view class="actualContent">
       <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
+      </view>
 
       <!-- <image class="bannerBottom" bindtap="gotoPage" data-item="incPage" src="../../images/theorybanner1.jpg" mode="widthFix" /> -->
       <Comments wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />

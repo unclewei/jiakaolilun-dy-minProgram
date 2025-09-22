@@ -18,6 +18,7 @@
     "pages/orderList/index",
     "pages/SubjectIncPage/index",
     "pages/SubjectIncTab/index",
+    "pages/ReviewLicense/index",
     "pages/Exam/index"
   ],
   "tabBar": {

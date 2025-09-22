@@ -51,27 +51,31 @@
 
     <!-- 底部操作 -->
     <view class='footer'>
+      <view class="disFlex">
+        <ColloctBox subjectId="{{subjectItem._id}}" />
+      </view>
       <!-- 上一题 -->
-      <span class='arrowItem transArrowItem' bindtap="last">
+      <!-- <span class='arrowItem transArrowItem' bindtap="last">
         <image src='../../images/icon/arrow-right.png' class='arrowIcon transtIcon' mode="widthFix" />
         <view>上一题</view>
-      </span>
-      <!-- 答题正确数据 -->
-      <span class="countBoxItem" wx:if="{{poolType !== 'wrong'}}">
-        <span class='disFlex'>
-          <image class='vountIcon' src='../../images/icon/right.png' mode="widthFix" />
-          {{userSubjectData.rightSubjectIds.length}}
+      </span> -->
+      <view class="disFlex">
+        <!-- 答题正确数据 -->
+        <span class="countBoxItem" wx:if="{{poolType !== 'wrong'}}">
+          <span class='disFlex'>
+            <image class='vountIcon' src='../../images/icon/right.png' mode="widthFix" />
+            <view class="rightItemText">{{userSubjectData.rightSubjectIds.length}}</view>
+          </span>
+          <span class='disFlex'>
+            <image class='vountIcon' src='../../images/icon/wrong.png' mode="widthFix" />
+            <view class="wrongItemText">{{userSubjectData.wrongSubjectItems.length}}</view>
+          </span>
         </span>
-        <span class='disFlex'>
-          <image class='vountIcon' src='../../images/icon/wrong.png' mode="widthFix" />
-          {{userSubjectData.wrongSubjectItems.length}}
-        </span>
-      </span>
 
-      <!-- 语音技巧 -->
-      <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' isBottom='{{true}}' bindPlay="showSkill" />
-      <!-- 视频技巧 -->
-      <!-- <SubjectVideo wx:if="{{poolData.type !== 'moni' && subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
+        <!-- 语音技巧 -->
+        <!-- <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' isBottom='{{true}}' bindPlay="showSkill" /> -->
+        <!-- 视频技巧 -->
+        <!-- <SubjectVideo wx:if="{{poolData.type !== 'moni' && subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
         <span class='normalItem'>
           <image src='../../images/player.png' class='readIcon' mode="widthFix" />
           <view>视频技巧</view>
@@ -79,18 +83,19 @@
       </SubjectVideo> -->
 
 
-      <CurrentIndexSelector poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectData='{{userSubjectData}}' bindCurrentChange='CurrentChange'>
-        <span class='rightInfo'>
-          <span class='iconItem'>
-            <image class='icon' src='../../images/icon/more.png' mode="widthFix" />
-            <span><b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}</span>
+        <CurrentIndexSelector poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectData='{{userSubjectData}}' bindCurrentChange='CurrentChange'>
+          <span class='rightInfo'>
+            <span class='iconItem'>
+              <image class='icon' src='../../images/icon/more.png' mode="widthFix" />
+              <span><b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}</span>
+            </span>
           </span>
-        </span>
-      </CurrentIndexSelector>
-      <span class='arrowItem' bindtap="next">
+        </CurrentIndexSelector>
+        <!-- <span class='arrowItem' bindtap="next">
         <image src='../../images/icon/arrow-right.png' class='arrowIcon' mode="widthFix" />
         <view>下一题</view>
-      </span>
+      </span> -->
+      </view>
     </view>
   </view>
 

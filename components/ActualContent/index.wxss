@@ -1,5 +1,5 @@
 .init {
-  width: 690rpx;
+  width: 100%;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -8,8 +8,10 @@
   background-color: #e0f7fd;
   border-radius: 10px;
   padding-left: 10px;
-  margin-left: 30rpx;
   margin-bottom: 20px;
+}
+.fullActualContent{
+
 }
 
 .left {

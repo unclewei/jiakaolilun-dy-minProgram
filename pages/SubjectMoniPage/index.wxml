@@ -62,6 +62,9 @@
         </SubjectMoniShouldKnow>
       </view>
     </view>
+
+    <ActualContent class="fullActualContent" step='{{step}}' isLogin='{{isLogin}}' poolId='{{poolId}}' />
+
     <view class='content'>
       <view class='title'>以往模拟成绩一览</view>
       <view class='historyItem'>

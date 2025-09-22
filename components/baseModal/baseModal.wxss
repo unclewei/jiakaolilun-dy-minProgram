@@ -64,6 +64,7 @@
   transform: translate(-50%, -50%) scale(1);
   z-index: 12;
   box-sizing: border-box;
+  border-radius: 60rpx;
 }
 .cityCount{
   width: 560rpx;
@@ -85,9 +86,10 @@
   overflow-y: auto;
   overflow-x: hidden;
   background-color: #FFF;
-  border: 5rpx #000 solid;
+  /* border: 5rpx #000 solid; */
   border-radius: 10rpx;
   animation-fill-mode: forwards;
+  border-radius: 60rpx;
 }
 
 .modalContainerShow {

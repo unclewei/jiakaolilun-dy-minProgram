@@ -1,0 +1,6 @@
+<view class="collectContent" bindtap="onColloct">
+  <image class="collectIcon" mode="widthFix" src="../../images/{{isCollectNow ? 'collection_fill':'collection'}}.png" />
+  <view class="content">{{ isCollectNow ? '已收藏':"收藏" }}</view>
+</view>
+
+<ColloectTipsModal id='ColloectTipsModal' />

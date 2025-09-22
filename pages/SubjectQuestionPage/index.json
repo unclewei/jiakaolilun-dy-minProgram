@@ -10,6 +10,7 @@
     "SubjectAudio": "../../components/SubjectAudio",
     "CurrentIndexSelector": "../../components/CurrentIndexSelector",
     "CheckIsVip": "../../components/CheckIsVip",
+    "ColloctBox": "../../components/ColloctBox",
     "VisSwiper": "../../components/swiper-limited-load",
     "SubjectCountdown": "../../components/SubjectCountdown"
   }

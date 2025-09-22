@@ -16,6 +16,7 @@ Page({
     thisMoniPool: undefined,
     unDoMoniPool: undefined,
     isKeepGoing: false,
+    isLogin: true,
     allDoneSubject: [],
     isDoneMoniPool: [],
 
@@ -34,8 +35,9 @@ Page({
       fontSize: wx.getStorageSync('fontSize'),
       step: options.step,
       poolId: options.poolId,
-      userInfo:getApp().globalData.userInfo,
-      examType:getApp().globalData.userConfig.examType
+      userInfo: getApp().globalData.userInfo,
+      examType: getApp().globalData.userConfig.examType,
+      isLogin: !!getApp().globalData.userInfo._id,
     })
     this.poolDataGet({
       step: options.step
@@ -93,7 +95,7 @@ Page({
       }
       that.setData({
         allDoneSubject: userMoniSubject,
-        lastDoneSubject:userMoniSubject.length > 0 ? userMoniSubject[0]:undefined,
+        lastDoneSubject: userMoniSubject.length > 0 ? userMoniSubject[0] : undefined,
         unDoMoniPool: nextMoniPool,
         isDoneMoniPool: isDoneMoniPool
       })
@@ -147,7 +149,7 @@ Page({
     })
   },
 
-  onReSet(){
+  onReSet() {
     this.onLoad({
       poolType: this.data.poolType,
       step: this.data.step,

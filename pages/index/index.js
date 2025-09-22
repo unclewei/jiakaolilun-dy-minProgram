@@ -285,6 +285,17 @@ Page({
     })
   },
 
+  gotoLearnPage() {
+    wx.navigateTo({
+      url: '/pages/LearnPlanPage/index',
+    })
+  },
+  gotoReviewLicense() {
+    wx.navigateTo({
+      url: '/pages/ReviewLicense/index',
+    })
+  },
+
   /**
    * 用户点击右上角分享
    */

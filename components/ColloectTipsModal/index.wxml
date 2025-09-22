@@ -1,0 +1,7 @@
+<baseModal id="baseModal" title='' imageSrc='{{imageSrc}}' showImage='{{showImage}}' bindHide='bindHide' bindShow='bindShow'>
+  <view class="content">
+  <view class="text">在首页这个地方可以查看您的收藏题</view>
+  <image class="image" mode="widthFix" src="../../images/collectTipsImage.png" />
+  <view class="confirm" bind:tap="hideModal">我知道了</view>
+  </view>
+</baseModal>
