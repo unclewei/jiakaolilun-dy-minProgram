@@ -20,9 +20,13 @@
       <span class='skillTitle'>
         <image src='../../images/player.png' class='skillIcon' mode="widthFix" />
         视频讲解技巧
-      </span> 
+      </span>
     </view>
-    <video class="video" src='{{urlPrefix + subjectItem.skillVideoUrl }}'  object-fit="contain" />
+    <SubjectVideo wx:if="{{  subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
+      <image class="videoPosyImg" src="../../images/aiBg.png" mode="aspectFill" />
+      <image class="videoPlay" src="../../images/play.png" mode="widthFix" />
+    </SubjectVideo>
+    <!-- <video class="video" poster='../../images/aiBg.png' src='{{urlPrefix + subjectItem.skillVideoUrl }}' object-fit="contain" /> -->
   </view>
 
   <view class='skillNormal' wx:if="{{subjectItem.normalSkillContent}}">

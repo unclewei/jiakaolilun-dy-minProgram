@@ -1,0 +1,41 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<div class='init'>
+  <span style="position: relative;" bindtap="showModal">
+    <slot></slot>
+  </span>
+
+  <baseDrawer id="baseDrawer" bindHide='bindHide' bindShow='bindShow'>
+
+    <view class="content">
+      <view class="itemBox">
+        <view class="itemText">答对自动跳转至下一题</view>
+        <switch checked='{{autoNextWhenRight}}' bindchange="onAutoNextWhenRight" />
+      </view>
+      <view class="itemBox">
+        <view class="itemText">答错停留在当前题</view>
+        <switch checked='{{stayWhenWrong}}' bindchange="onStayWhenWrong" />
+      </view>
+      <view class="itemBox">
+        <view class="itemText">高亮盲选技巧的关键字</view>
+        <switch checked='{{isShowKeyWorld}}' bindchange="onIsShowKeyWorld" />
+      </view>
+      <view class="itemBox"  wx:if="{{poolType === 'wrong'}}">
+        <view class="itemText">做对后移除错题</view>
+        <switch checked='{{isWrongDelete}}' bindchange="onIsWrongDelete" />
+      </view>
+      <view class="itemBox">
+        <view class="itemText">复制当前题目ID</view>
+        <view class="itemBtn" bind:tap="copyId">复制</view>
+      </view>
+      <view class="itemBox">
+        <view class="itemText">做对后移除错题</view>
+        <view class="itemBtn" bind:tap="copySkill">复制题目技巧内容</view>
+      </view>
+      <Restart poolId='{{poolId}}' bindReSet='onReSet'>
+        <view class="cleanBtn">清除数据，重新做题</view>
+      </Restart>
+    </view>
+
+  </baseDrawer>
+</div>

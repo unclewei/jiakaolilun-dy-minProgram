@@ -4,6 +4,7 @@
     "ConfirmModal": "../ConfirmModal/index",
     "SubjectComment": "../SubjectComment/index",
     "SubjectAudio": "../SubjectAudio/index",
+    "SubjectVideo": "../SubjectVideo/index",
     "HighLightContent": "../HighLightContent/index"
   }
 }

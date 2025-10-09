@@ -2,6 +2,9 @@
 <wxs src="./index.wxs" module="localUtils"></wxs>
 <page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
   <view class='init'>
+    <view class="tipsOne">连续两次模拟考试</view>
+    <view class="tipsTwo">90分以上再去考试！</view>
+    <image class="tipsImg" mode="widthFix" src="../../images/minePage2.png" />
     <view class='content'>
       <view class='userInfo'>
         <open-data class='avatar' type="userAvatarUrl" />

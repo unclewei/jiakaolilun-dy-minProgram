@@ -62,14 +62,17 @@ Page({
     isSelected: false, //答题确定选择
     isNowWrong: false, //当前题目做错（做错时不会自动进入下一题）
     isTypeWrong: false, // 是否在做我的错题
-    isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
     userSubjectData: userSubjectJson, // 做题状态
     isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
     rightHistory: false, // 正确历史;
     wrongHistory: {}, // 错误历史
     requestPoolObj: {}, // 请求的数据池子对象
-
-    subjectItem: {}
+    subjectItem: {},
+    // 设置配置
+    autoNextWhenRight: true, // 答对自动跳转下一题
+    stayWhenWrong: true, // 答错停留在当前题目
+    isShowKeyWorld: false, // 是否展示关键词
+    isWrongDelete: true, // 错题集的情况下，做对是否移除错题。
   },
 
 
@@ -471,7 +474,6 @@ Page({
       value: currentIndex + 1
     });
     this.setData({
-      isShowKeyWorld: false,
       currentIndex: currentIndex + 1
     })
     this.loadMore({
@@ -495,7 +497,6 @@ Page({
     };
     this.scrollTop()
     this.setData({
-      isShowKeyWorld: false,
       currentIndex: currentIndex - 1
     })
     this.clean();
@@ -603,8 +604,12 @@ Page({
       propName: 'wrongSubjectItems',
       value: wrongSubjectItems
     });
+
     setTimeout(() => {
-      that.next();
+      // 是否自动跳转下一题
+      if(that.data.autoNextWhenRight){
+        that.next();
+      }
     }, 1000);
   },
 
@@ -657,6 +662,12 @@ Page({
     this.syncSubject({
       subjectId
     });
+    setTimeout(() => {
+      // 是否自动跳转下一题
+      if(!this.data.stayWhenWrong){
+        this.next();
+      }
+    }, 1000);
   },
 
 
@@ -939,9 +950,28 @@ Page({
       selector: 'content'
     })
   },
-  showSkill() {
+  onAutoNextWhenRight(e) {
+    const check = e.detail.value
     this.setData({
-      isShowKeyWorld: true
+      autoNextWhenRight: check
+    })
+  },
+  onStayWhenWrong(e) {
+    const check = e.detail.value
+    this.setData({
+      stayWhenWrong: check
+    })
+  },
+  onIsShowKeyWorld(e) {
+    const check = e.detail.value
+    this.setData({
+      isShowKeyWorld: check
+    })
+  },
+  onIsWrongDelete(e) {
+    const check = e.detail.value
+    this.setData({
+      isWrongDelete: check
     })
   },
 

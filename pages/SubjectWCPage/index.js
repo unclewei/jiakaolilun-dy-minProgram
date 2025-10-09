@@ -24,10 +24,10 @@ Page({
         type: 'wrong',
         name: '我的错题'
       },
-      // {
-      //   type: 'collect',
-      //   name: '我的收藏'
-      // },
+      {
+        type: 'collect',
+        name: '我的收藏'
+      },
     ],
     typeText: '错题',
     step: 1,
@@ -127,7 +127,7 @@ Page({
   gotoSubject() {
     gotoSubject({
       step: this.data.step,
-      poolType: 'wrong',
+      poolType: this.data.userPoolType,
       poolId: this.data.userPoolDetail._id
     })
   },

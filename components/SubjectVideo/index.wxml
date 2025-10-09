@@ -1,7 +1,7 @@
 <wxs src="../../utils/config.wxs" module="utils"></wxs>
 
 <div class='init'>
-  <span bindtap="showModal">
+  <span style="position: relative;" bindtap="showModal">
     <slot></slot>
   </span>
 

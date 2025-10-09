@@ -1,5 +1,7 @@
 {
   "navigationBarTitleText": "模拟考试",
+  "navigationBarBackgroundColor": "#54bbff",
+  "navigationBarTextStyle": "white",
   "usingComponents": {
     "Restart": "../../components/Restart",
     "ActualContent": "../../components/ActualContent",

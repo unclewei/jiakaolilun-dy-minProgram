@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "baseDrawer": "../baseDrawer/index",
+    "Restart": "../Restart/index"
+  }
+}
