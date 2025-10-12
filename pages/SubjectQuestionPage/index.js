@@ -62,6 +62,7 @@ Page({
     isSelected: false, //答题确定选择
     isNowWrong: false, //当前题目做错（做错时不会自动进入下一题）
     isTypeWrong: false, // 是否在做我的错题
+    isTypeCollect: false, // 是否在做我的收藏
     userSubjectData: userSubjectJson, // 做题状态
     isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2, // 是否教练
     rightHistory: false, // 正确历史;
@@ -102,10 +103,10 @@ Page({
       swiperHeight: wx.getSystemInfoSync().windowHeight - 80,
       userSubjectData: userSubjectJson, // 做题状态
       urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
-      userPoolId: poolType === 'wrong' ? poolId : undefined,
+      userPoolId: ['wrong', 'collect'].includes(poolType) ? poolId : undefined,
       requestPoolObj: { // 请求的数据池子对象
-        poolId: poolType === 'wrong' ? undefined : poolId,
-        userPoolId: poolType === 'wrong' ? poolId : undefined
+        poolId: ['wrong', 'collect'].includes(poolType) ? undefined : poolId,
+        userPoolId: ['wrong', 'collect'].includes(poolType) ? poolId : undefined
       }
     })
     //若当前为我的错题情况下
@@ -123,6 +124,15 @@ Page({
       this.setData({
         isWrongDelete: typeof isWrongDelete == 'boolean' ? isWrongDelete : true,
         isTypeWrong: true,
+      })
+    }
+    //若当前为我的收藏情况下
+    if (poolType == 'collect') {
+      wx.setNavigationBarTitle({
+        title: `我的科目${step == 1 ? '一' : '四'}收藏集合`,
+      })
+      this.setData({
+        isTypeCollect: true,
       })
     }
 
@@ -161,6 +171,13 @@ Page({
     const that = this
     // 请求错题数据
     if (that.data.isTypeWrong) {
+      that.userSubjectDataGet({
+        isSyncSubject: false
+      })
+      return
+    }
+    // 请求错题数据
+    if (that.data.isTypeCollect) {
       that.userSubjectDataGet({
         isSyncSubject: false
       })
@@ -244,7 +261,7 @@ Page({
         useJson = resData;
       }
       //错题集的情况下，直接使用默认值
-      if (that.data.isTypeWrong) {
+      if (that.data.isTypeWrong || that.data.isTypeCollect) {
         useJson = json;
       }
       that.localUserSubjectStatusGet({
@@ -357,7 +374,7 @@ Page({
       const nowItem = resData.find(p => p.currentIndex === finalCurrentIndex)
       that.useToDoWrong(nowItem)
       that.useToDoRight(nowItem)
-      if (!that.data.isTypeWrong && currentIndex !== 0 && !isLoadMore) {
+      if (!that.data.isTypeWrong && !that.data.isTypeCollect && currentIndex !== 0 && !isLoadMore) {
         showToast(`上次做到第${currentIndex + 1}题`)
       }
     })
@@ -607,7 +624,7 @@ Page({
 
     setTimeout(() => {
       // 是否自动跳转下一题
-      if(that.data.autoNextWhenRight){
+      if (that.data.autoNextWhenRight) {
         that.next();
       }
     }, 1000);
@@ -664,7 +681,7 @@ Page({
     });
     setTimeout(() => {
       // 是否自动跳转下一题
-      if(!this.data.stayWhenWrong){
+      if (!this.data.stayWhenWrong) {
         this.next();
       }
     }, 1000);

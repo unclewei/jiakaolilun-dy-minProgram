@@ -12,6 +12,9 @@ Component({
    * 组件的属性列表
    */
   properties: {
+    step: {
+      type: String,
+    },
     subjectId: {
       type: String,
     },
@@ -28,6 +31,16 @@ Component({
     isCollectNow: false,
   },
 
+  observers: {
+    'subjectId,colloectIdList': function (subjectId, colloectIdList) {
+      if (subjectId) {
+        this.setData({
+          isCollectNow: colloectIdList?.includes(subjectId)
+        })
+      }
+    }
+  },
+
   ready() {
     this.getUserPoolShow()
   },
@@ -36,14 +49,11 @@ Component({
    * 组件的方法列表
    */
   methods: {
-
-
     getUserPoolShow() {
       wx.showLoading()
       userPoolShow({
-        step: this.data.poolData.step,
+        step: this.data.step,
         type: 'collect',
-        isShowToday: true,
         examType: getApp().globalData.userConfig.examType
       }).then(res => {
         wx.hideLoading()
@@ -53,16 +63,11 @@ Component({
         }
         const resData = res.data.data
         this.setData({
-          colloectIdList: resData.subjectIds
+          colloectIdList: resData.subjectIds,
         })
       })
     },
 
-
-    // 获取收藏列表
-    getCollectList() {
-
-    },
 
     onColloct() {
       if (this.data.isCollectNow) {
@@ -81,11 +86,13 @@ Component({
       }
       subjectToUserPool({
         ...this.data.poolData,
+        type: 'collect',
         subjectId: this.data.subjectId,
         isRemove: false,
       }).then(() => {
         this.setData({
-          colloectIdList: [...this.data.colloectIdList, this.data.poolData._id]
+          colloectIdList: [...this.data.colloectIdList || [], this.data.subjectId],
+          isCollectNow: true
         })
       })
 
@@ -94,11 +101,13 @@ Component({
     unColloect() {
       subjectToUserPool({
         ...this.data.poolData,
+        type: 'collect',
         subjectId: this.data.subjectId,
         isRemove: true,
       }).then(() => {
         this.setData({
-          colloectIdList: this.data.colloectIdList.filter(p => p !== this.data.poolData._id)
+          colloectIdList: this.data.colloectIdList.filter(p => p !== this.data.subjectId),
+          isCollectNow: false
         })
       })
     }

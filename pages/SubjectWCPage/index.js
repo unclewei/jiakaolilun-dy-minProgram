@@ -102,7 +102,8 @@ Page({
   onMenuPress(e) {
     const item = e.currentTarget.dataset.item;
     this.setData({
-      userPoolType: item.type
+      userPoolType: item.type,
+      typeText: item.type === 'wrong' ? '错题' : '收藏'
     })
     this.getUserPoolShow({
       step: this.data.step,
