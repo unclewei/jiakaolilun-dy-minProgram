@@ -114,9 +114,10 @@ Page({
       })
       return
     }
-    // if(!wx.getStorageSync('fromWho') && !getApp().globalData.userInfo.phoneNum ){
-    //   this.selectComponent("#UserInfoSupply").showModal()
-    // }
+    // 购买了，没有手机号，需要补充
+    if (!getApp().globalData.userInfo.phoneNum && !getApp().globalData.userInfo.isPaid) {
+      this.selectComponent("#UserInfoSupply").showModal()
+    }
   },
 
   chosenAndWrong() {
