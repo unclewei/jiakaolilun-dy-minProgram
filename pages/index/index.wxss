@@ -200,11 +200,12 @@ page {
   overflow: hidden;
   z-index: 1;
   background: linear-gradient(to Bottom, #9bc0f9,#4a8ff3);
-  box-shadow: 0 1px 10px 0 rgba(0, 0, 0, 0.4);
+  /* box-shadow: 0 1px 20px 0 #9bc0f9ee; */
 }
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigIconGreen {
   background: linear-gradient(to Bottom, #bdefde,#51c59E);
+  box-shadow: 0 1px 10px 0 #51c59E;
 }
 
 .mainContent .bodyBox .bodyBig .bodyBigItem .bodyBigTitle {

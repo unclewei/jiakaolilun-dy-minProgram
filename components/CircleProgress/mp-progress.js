@@ -18,8 +18,8 @@ Component({
     oldpercentage: null,
     customOptions: {
       canvasSize: {
-        width: 750 / wx.getSystemInfoSync().windowWidth * 150,
-        height: 750 / wx.getSystemInfoSync().windowWidth * 150
+        width: 750 / wx.getSystemInfoSync().windowWidth * 144,
+        height: 750 / wx.getSystemInfoSync().windowWidth * 144
       },
       percent: 100,
       barStyle: [{
@@ -30,20 +30,20 @@ Component({
         animate: false,
         fillStyle: [{
           position: 0,
-          color: '#56B37F'
+          color: '#5a99f4'
         }, {
           position: 1,
-          color: '#c0e674'
+          color: '#fff'
         }]
       }],
       needDot: true,
       dotStyle: [{
-        r: 16,
-        fillStyle: '#ffffff',
+        r: 4,
+        fillStyle: '#5a99f4',
         shadow: 'rgba(0,0,0,.15)'
       }, {
-        r: 12,
-        fillStyle: '#56B37F'
+        r: 2,
+        fillStyle: '#5a99f4'
       }]
 
     },
@@ -107,11 +107,19 @@ Component({
       // 参数可调整
       const minorLen = 4; // 小刻度长度
       const minorWidth = 1; // 小刻度线宽（逻辑像素）
-      const tickColor = 'rgba(0,0,0,0.4)'; // 刻度颜色（透明度可调）
+      const tickColor = '#97bff870'; // 刻度颜色（透明度可调）
+      const backgroundColor = '#e8f9fe' // 背景色
       const count = 40; // 刻度数量
       // 清空（不填充背景，保持透明） 
 
       ctx.save(); // 保存初始状态
+       // ===== 外圈圆线 =====
+       ctx.beginPath();
+       ctx.arc(cx, cy, radius, 0, Math.PI * 2);
+       ctx.lineWidth = 6;
+       ctx.strokeStyle = backgroundColor;
+       ctx.stroke();
+       
       // 我们先 translate 到中心，后面使用 rotate 绘制
       ctx.translate(cx, cy);
 
@@ -131,6 +139,7 @@ Component({
       ctx.translate(-cx, -cy);
       ctx.restore(); // 恢复坐标系，避免影响后续绘制
 
+     
 
     }
   }

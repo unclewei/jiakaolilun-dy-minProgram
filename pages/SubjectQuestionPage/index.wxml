@@ -16,11 +16,11 @@
         <SubjectCountdown mss='{{userSubjectData.limitTime}}' poolData='{{poolData}}' bindSetLocal='setLocal' />
       </span>
       <!-- 完成 -->
-      <Finish wx:elif="{{poolData.type === 'moni'}}" poolId='{{poolId}}' bindOnSubmit='onSubmit' userSubjectData='{{userSubjectData}}' step='{{step}}' poolData='{{poolData}}' bindReSet='onReSet'>
+      <Finish wx:if="{{poolData.type === 'moni'}}" poolId='{{poolId}}' bindOnSubmit='onSubmit' userSubjectData='{{userSubjectData}}' step='{{step}}' poolData='{{poolData}}' bindReSet='onReSet'>
         <span class='modeBtn'>交卷</span>
       </Finish>
       <!-- 重做 -->
-      <SubjectSetting poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectId="{{userSubjectId}}" subjectItem='{{subjectItem}}' subjectId="{{subjectItem._id}}" poolType='{{poolType}}' autoNextWhenRight='{{autoNextWhenRight}}' stayWhenWrong='{{stayWhenWrong}}' isShowKeyWorld='{{isShowKeyWorld}}' isWrongDelete='{{isWrongDelete}}' bindReSet='onReSet' bindAutoNextWhenRight='onAutoNextWhenRight' bindStayWhenWrong='onStayWhenWrong' bindIsShowKeyWorld='onIsShowKeyWorld' bindIsWrongDelete='onIsWrongDelete' wx:else>
+      <SubjectSetting poolId='{{poolId}}' userPoolId='{{userPoolId}}' userSubjectId="{{userSubjectId}}" subjectItem='{{subjectItem}}' subjectId="{{subjectItem._id}}" poolType='{{poolType}}' autoNextWhenRight='{{autoNextWhenRight}}' fontSize='{{fontSize}}' stayWhenWrong='{{stayWhenWrong}}' isShowKeyWorld='{{isShowKeyWorld}}' isWrongDelete='{{isWrongDelete}}' bindReSet='onReSet' bindAutoNextWhenRight='onAutoNextWhenRight' bindStayWhenWrong='onStayWhenWrong' bindIsShowKeyWorld='onIsShowKeyWorld' bindIsWrongDelete='onIsWrongDelete' bindFonstChange='onFonstChange' wx:else>
         <span class='modeBtn'>设置</span>
       </SubjectSetting>
     </view>
@@ -102,4 +102,7 @@
   <Colloct />
 
   <CheckIsVip poolData='{{poolData}}' poolId='{{poolId}}' isVipValid='{{isItemValid}}' step='{{step}}' currentIndex='{{currentIndex}}' bindOnBuySuccess='onBuySuccess' />
+
+  <!-- 错题提示 -->
+  <WrongSkillDrawer id='WrongSkillDrawer' subjectItem='{{subjectItem}}' />
 </page-meta>

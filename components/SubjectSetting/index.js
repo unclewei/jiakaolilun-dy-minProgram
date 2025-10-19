@@ -18,6 +18,9 @@ Component({
     poolType: {
       type: String,
     },
+    fontSize: {
+      type: String,
+    },
     poolId: {
       type: String,
     },
@@ -177,6 +180,16 @@ Component({
 
     onReSet() {
       this.triggerEvent('ReSet')
+    },
+    radioChange(e) {
+      const fontSize = e.detail.value
+      this.triggerEvent('FonstChange', {
+        value: fontSize
+      })
+      wx.setStorageSync('fontSize', fontSize)
+      this.setData({
+        fontSize
+      })
     },
 
   }

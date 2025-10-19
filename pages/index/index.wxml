@@ -128,7 +128,8 @@
                 <view class="otherText">扣满12分</view>
                 <image class="otherIcon" mode="widthFix" src="../../images/otherThree.png" />
               </view>
-              <view class="otherItem" bind:tap="gotoReviewLicense">
+              <!-- bind:tap="gotoReviewLicense"  -->
+              <view class="otherItem" bindtap="gotoPage" data-item="incPage">
                 <view class="otherText">恢复驾驶证</view>
                 <image class="otherIcon" mode="widthFix" src="../../images/otherFour.png" />
               </view>
@@ -139,7 +140,7 @@
       </swiper>
 
       <view class="actualContent">
-      <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
+        <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
       </view>
 
       <!-- <image class="bannerBottom" bindtap="gotoPage" data-item="incPage" src="../../images/theorybanner1.jpg" mode="widthFix" /> -->

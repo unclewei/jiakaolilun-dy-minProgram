@@ -26,7 +26,7 @@ Page({
       },
       {
         name: '货车',
-        type: 'car',
+        type: 'goods',
         key: 'goodsTrain',
         name2: 'A2/B2/C6',
         img: '../../images/car/goodsTrain.png',
@@ -34,7 +34,7 @@ Page({
       },
       {
         name: '客车',
-        type: 'car',
+        type: 'bus',
         key: 'bus',
         name2: 'A1/A2/B1',
         img: '../../images/car/bus.png',

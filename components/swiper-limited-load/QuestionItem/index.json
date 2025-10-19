@@ -7,6 +7,7 @@
     "Finish": "../../../components/Finish",
     "Colloct": "../../../components/Colloct",
     "SubjectAudio": "../../../components/SubjectAudio",
+    "WrongSkillDrawer": "../../../components/WrongSkillDrawer",
     "CheckIsVip": "../../../components/CheckIsVip",
     "VisSwiper": "../../../components/swiper-limited-load",
     "HighLightContent": "../../../components/HighLightContent/index",

@@ -1,6 +1,7 @@
 .collectContent{
   display: flex;
   align-items: center;
+  padding: 6rpx 12rpx;
 
 }
 .collectIcon{

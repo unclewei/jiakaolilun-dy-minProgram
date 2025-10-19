@@ -1,0 +1,164 @@
+.init {
+  width: 100%;
+  min-height: 100%;
+  position: fixed;
+  z-index: 1002;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+.init .mask {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 1003;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+
+.animatedShow {
+  animation: flexDowm 0.1s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flexDowm {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.animatedHide {
+  animation: flexHide 0.1s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flexHide {
+  0% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+
+.DrawerContainerShow {
+  animation: drawerShow 0.3s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes drawerShow {
+  0% {
+    transform: translate(0, 100%);
+  }
+
+  100% {
+    transform: translate(0%, 0%);
+  }
+}
+
+.DrawerContainerHide {
+  animation: drawerHide 0.3s linear alternate 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes drawerHide {
+  0% {
+    transform: translate(0%, 0%);
+  }
+
+  100% {
+    transform: translate(0%, 100%);
+  }
+}
+
+.init .wrap {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  bottom: 0;
+  background-color: #fff;
+  z-index: 1004;
+  padding-bottom: 80rpx;
+}
+
+
+.titleBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 26rpx;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.title {
+  color: #333;
+  font-size: 30rpx;
+}
+
+.closeIcon {
+  width: 25rpx;
+  height: 25rpx;
+}
+
+.content {
+  padding: 16rpx;
+}
+
+.skillBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+
+}
+
+.skillContent {
+  font-size: 32rpx;
+  margin-bottom: 16rpx;
+  padding: 0 16rpx;
+
+}
+
+.fastSkill {
+  font-size: 30rpx;
+  background-color: #f3f6f9;
+  padding: 16rpx;
+}
+
+.showTips {
+  background-color: #469af5;
+  padding: 16rpx 60rpx;
+  border-radius: 40rpx;
+  color: #fff;
+  font-size: 30rpx;
+  margin: 0 auto;
+  margin-top: 100rpx;
+  text-align: center;
+  width: fit-content;
+}
+.normalItem {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  padding: 0 10px;
+  font-size: 15px;
+  background: #e9f4ff;
+  border-radius: 20px;
+}
+.readIcon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12rpx;
+}

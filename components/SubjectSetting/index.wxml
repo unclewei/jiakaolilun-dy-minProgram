@@ -20,7 +20,7 @@
         <view class="itemText">高亮盲选技巧的关键字</view>
         <switch checked='{{isShowKeyWorld}}' bindchange="onIsShowKeyWorld" />
       </view>
-      <view class="itemBox"  wx:if="{{poolType === 'wrong'}}">
+      <view class="itemBox" wx:if="{{poolType === 'wrong'}}">
         <view class="itemText">做对后移除错题</view>
         <switch checked='{{isWrongDelete}}' bindchange="onIsWrongDelete" />
       </view>
@@ -31,6 +31,15 @@
       <view class="itemBox">
         <view class="itemText">做对后移除错题</view>
         <view class="itemBtn" bind:tap="copySkill">复制题目技巧内容</view>
+      </view>
+      <view class="itemBox">
+        <view class="itemText">字体大小</view>
+        <radio-group class="radioBox" bindchange="radioChange">
+          <radio class="one" value="16" checked='{{fontSize == 16}}'>标准</radio>
+          <radio class="two" value="18" checked='{{fontSize == 18}}'>大号</radio>
+          <radio class="three" value="20" checked='{{fontSize == 20}}'>超大号</radio>
+          <radio class="four" value="22" checked='{{fontSize == 22}}'>超超大号</radio>
+        </radio-group>
       </view>
       <Restart poolId='{{poolId}}' bindReSet='onReSet'>
         <view class="cleanBtn">清除数据，重新做题</view>

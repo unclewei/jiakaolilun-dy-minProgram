@@ -3,7 +3,7 @@
 <view class='questionItem' wx:if="{{item.question}}">
   <view class='question'>
     <span class='type'>{{item.typeStr}}</span>
-    <HighLightContent keys='{{item.questionKeys}}' content="{{item.question}}" isHighLight='{{(isShowAnswer || isShowKeyWorld || isSeeMode ||isSelected)}}' />
+    <HighLightContent keys='{{item.questionKeys}}' content="{{item.question}}" isHighLight='{{(isShowAnswer || isShowKeyWorld || isSeeMode)}}' />
   </view>
 
   <view class='buttons'>

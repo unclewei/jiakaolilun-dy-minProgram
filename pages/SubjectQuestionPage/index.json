@@ -12,6 +12,7 @@
     "CheckIsVip": "../../components/CheckIsVip",
     "ColloctBox": "../../components/ColloctBox",
     "SubjectSetting": "../../components/SubjectSetting",
+    "WrongSkillDrawer": "../../components/WrongSkillDrawer",
     "VisSwiper": "../../components/swiper-limited-load",
     "SubjectCountdown": "../../components/SubjectCountdown"
   }

@@ -200,6 +200,9 @@ Page({
       that.setData({
         poolData: resData,
       })
+      wx.setNavigationBarTitle({
+        title: resData.name,
+      })
       // 验证用户是购买 或者数据是否免费
       isItemValid({
         step: resData.step,
@@ -209,7 +212,7 @@ Page({
           showNetWorkToast(validRes.data.msg)
           return
         }
-        this.setData({
+        that.setData({
           isItemValid: !!validRes.data.data,
           isForFree: resData.isForFree
         })
@@ -679,6 +682,11 @@ Page({
     this.syncSubject({
       subjectId
     });
+    // 第一次错误，给模板提示
+    if (this.data.stayWhenWrong && !wx.getStorageSync('WrongSkillDrawerShow')) {
+      wx.setStorageSync('WrongSkillDrawerShow', true)
+      this.selectComponent("#WrongSkillDrawer").showModal()
+    }
     setTimeout(() => {
       // 是否自动跳转下一题
       if (!this.data.stayWhenWrong) {
@@ -992,11 +1000,15 @@ Page({
     })
   },
 
+  onFonstChange(e) {
+    const fontSize = e.detail.value
+    this.setData({
+      fontSize
+    })
+  },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage() {
-
-  }
+  onShareAppMessage() {}
 })

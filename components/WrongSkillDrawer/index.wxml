@@ -1,0 +1,29 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+
+<span bindtap="showSelector">
+  <slot></slot>
+</span>
+<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' wx:if="{{visible}}">
+  <view class='mask' bindtap='hideModal' />
+  <view class='wrap {{visible && "DrawerContainerShow"}} {{hidding && "DrawerContainerHide"}}'>
+
+    <view class="titleBox">
+      <view class="title">本题技巧</view>
+      <image class="closeIcon" src="../../images/closeX.png" mode="widthFix" bind:tap="hideModal" />
+    </view>
+
+    <view class='content'>
+      <view class="skillBox">
+        <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='语音技巧' type='skill' size='big' />
+      
+      </view>
+      <view class="skillContent" wx:if="{{subjectItem.normalSkillContent}}">
+        {{subjectItem.normalSkillContent}}
+      </view>
+      <view class="fastSkill" wx:if="{{subjectItem.skillContent}}">
+        盲选技巧：{{subjectItem.skillContent}}
+      </view>
+      <view class='showTips' bind:tap="hideModal">查看全部题目技巧</view>
+    </view>
+  </view>
+</view>

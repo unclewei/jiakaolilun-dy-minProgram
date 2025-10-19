@@ -35,3 +35,7 @@
   margin: 15rpx 0;
   text-align: center;
 }
+.radioBox{
+  width: 80%;
+  text-align: right;
+}

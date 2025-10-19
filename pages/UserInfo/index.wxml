@@ -58,11 +58,11 @@
           <view class='secText'>VIP购买</view>
         </view>
         <view class='secItem' bindtap="gotoNP" data-item="wx439070b4fa97462b">
-          <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
+          <image class='secIcon' src='../../images/dotIcon/phone.png' mode="widthFix" />
           <view class='secText'>灯光模拟</view>
         </view>
         <view class='secItem' bindtap="showRQCode" data-item="wx439070b4fa97462b">
-          <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
+          <image class='secIcon' src='../../images/dotIcon/earth.png' mode="widthFix" />
           <view class='secText'>科二科三</view>
         </view>
         <view class='secItem' bindtap="gotoPage" data-pooltype='userAcCodePage'>
@@ -94,7 +94,7 @@
           <view class='secText'>我的订单</view>
         </view>
         <view class='secItem' bindtap="cleanAccount" data-item="wx439070b4fa97462b">
-          <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
+          <image class='secIcon' src='../../images/dotIcon/location.png' mode="widthFix" />
           <view class='secText'>刷新</view>
         </view>
       </view>
