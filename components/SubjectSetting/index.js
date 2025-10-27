@@ -179,6 +179,7 @@ Component({
     },
 
     onReSet() {
+      this.hideModal()
       this.triggerEvent('ReSet')
     },
     radioChange(e) {

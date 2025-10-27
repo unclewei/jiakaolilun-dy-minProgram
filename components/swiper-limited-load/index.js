@@ -174,8 +174,11 @@ Component({
       setTimeout(() => {
         if (current - lastIndex == 1 || isLoopPositive) {
           // 如果是滑到了左边界或者下一个还未有值，弹回去
-          if (currentItem == null) {
+          if (currentItem == null || !Object.keys(currentItem).length) {
             info.current = NO_NEXT_PAGE
+            that.setData({
+              swiperCurrent: lastIndex
+            })
             return
           }
           let swiperChangeItem = "swiperList[" + that.getNextSwiperChangeIndex(current) + "]"
@@ -191,8 +194,12 @@ Component({
         var isLoopNegative = current == END && lastIndex == START
         if (lastIndex - current == 1 || isLoopNegative) {
           // 如果滑到了右边界或者上一个还未有值，弹回去
-          if (currentItem == null) {
+          if (currentItem == null || !Object.keys(currentItem).length) {
+            console.log('弹出')
             info.current = NO_PREV_PAGE
+            that.setData({
+              swiperCurrent: lastIndex
+            })
             return
           }
           let swiperChangeItem = "swiperList[" + that.getLastSwiperChangeIndex(current) + "]"
@@ -203,8 +210,8 @@ Component({
           that.triggerEvent("OnLast")
         }
 
-      }, 200);
-      if (currentItem == null) return
+      }, 400);
+      if (currentItem == null || !Object.keys(currentItem).length) return
       info.current = currentItem.currentIndex
       // 记录滑过来的位置，此值对于下一次滑动的计算很重要
       that.data.swiperIndex = current

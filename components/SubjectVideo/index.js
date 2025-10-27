@@ -49,17 +49,29 @@ Component({
       this.selectComponent("#ConfirmModal").hideModal()
     },
     showModal: function () {
-      console.log('url', this.data.urlPrefix + this.data.subjectItem.skillVideoUrl);
-
+      const palyUrl = this.data.urlPrefix + this.data.subjectItem.skillVideoUrl
+      console.log('url', palyUrl);
 
       this.setData({
         showPlay: true,
-        palyUrl: this.data.urlPrefix + this.data.subjectItem.skillVideoUrl
+        palyUrl: palyUrl
       })
-      this.selectComponent("#ConfirmModal").showModal()
+
+      // wx.previewMedia({
+      //   sources: [{
+      //     url: palyUrl,
+      //     type: 'video'
+      //   }],
+      // })
+      // this.selectComponent("#ConfirmModal").showModal()
 
     },
-    bindHide(){
+    close(){
+      this.setData({
+        showPlay: false,
+      })
+    },
+    bindHide() {
       this.setData({
         showPlay: false,
         palyUrl: undefined

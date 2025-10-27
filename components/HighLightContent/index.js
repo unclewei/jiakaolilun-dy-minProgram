@@ -43,7 +43,6 @@ Component({
           class: highLightKeys.includes(current) ? "isHighLight" : ''
         }]
       }, [])
-      console.log('skillList', skillList);
       this.setData({
         skillList
       })

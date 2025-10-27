@@ -55,7 +55,7 @@ Page({
     isForFree: false, // 是否免费
     isSeeMode: false, // 答题模式 | 背题模式
     poolData: {}, // 题库数据
-    subjectData: {}, // 题目数据
+    subjectData: [], // 题目数据
     currentIndex: 0, // 当前做到第几题
     loading: false,
     optionIndex: [], //选择的选项
@@ -856,7 +856,7 @@ Page({
     this.setData({
       isSeeMode: false, // 答题模式 | 背题模式
       poolData: {}, // 题库数据
-      subjectData: {}, // 题目数据
+      subjectData: [], // 题目数据
       currentIndex: 0, // 当前做到第几题
       loading: false,
       optionIndex: [], //选择的选项

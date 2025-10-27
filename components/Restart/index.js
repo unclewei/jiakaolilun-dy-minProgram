@@ -44,10 +44,10 @@ Component({
         return
       }
       wx.showModal({
-        title: '确定要重考吗？',
-        content: '重考将重置你本次考试的所有记录',
+        title: '确定要重置吗？',
+        content: '将重置你本次训练的所有记录',
         cancelText: '取消',
-        confirmText: '确定重考',
+        confirmText: '确定',
         success: (modalRes) => {
           if (modalRes.confirm) {
             wx.showLoading()
