@@ -3,8 +3,9 @@
   flex-direction: column;
   height: 100%;
   width: 100%;
-  padding: 20rpx;
+  padding: 20rpx 30rpx;
   box-sizing: border-box;
+  color: #333;
 }
 
 .bodyContent{
@@ -18,7 +19,7 @@
   font-size: 42rpx;
   font-style: italic;
   font-weight: bold;
-  color: #000;
+  color: #333;
   margin-bottom: 10rpx;
 }
 
@@ -65,7 +66,7 @@
   font-size: 1rem;
   font-weight: bold;
   padding: 10rpx 20rpx;
-  border-bottom: 5rpx #000 solid;
+  border-bottom: 2rpx #e7e7e7 solid;
 }
 
 .ticketOwner {
@@ -147,11 +148,10 @@
   font-size: 1.0625rem;
   font-weight: bold;
   box-sizing: border-box;
-  color: #000;
+  color: #fff;
   border-radius: 12rpx;
   overflow: hidden;
-  background-color: #FBDE9C;
-  border: 5rpx #000 solid;
+  background-color: #0fc160;
 }
 
 .buyOptions{
@@ -171,9 +171,8 @@
   justify-content: space-between;
   box-sizing: border-box;
   padding: 15rpx 0rpx;
-  border-bottom: 2rpx #000 solid;
-  font-size: 0.9375rem;
-  font-weight: bold;
+  border-bottom: 2rpx #e7e7e7 solid;
+  font-size: 30rpx;
 }
 
 .extraBox{

@@ -5,7 +5,7 @@
     <slot></slot>
   </span>
 
-  <baseDrawer id="baseDrawer" bindHide='bindHide' bindShow='bindShow'>
+  <baseDrawer id="baseDrawer" title='设置' bindHide='bindHide' bindShow='bindShow'>
 
     <view class="content">
       <view class="itemBox">

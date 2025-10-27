@@ -197,6 +197,10 @@ Page({
     })
     this.chosenAndWrong()
     wx.setStorageSync('step', step)
+    wx.showToast({
+      title: `已切换至 科目${step === 1 ? '一':'四'}`,
+      icon: 'none'
+    })
   },
   // 事件处理函数
   onStepChange(e) {

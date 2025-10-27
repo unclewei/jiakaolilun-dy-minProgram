@@ -1,28 +1,31 @@
 <wxs src="./index.wxs" module="utils"></wxs>
-<BaseDrawer id="baseDrawer">
+<BaseDrawer id="baseDrawer" title='购买VIP'>
   <view class="content">
-    <view class="title">购买</view>
     <!-- 票据购买 -->
     <view class="bodyContent">
-      <image class="cardImg" src="../../images/theorybanner4.png" mode="widthFix" />
+      <!-- <image class="cardImg" src="../../images/theorybanner4.png" mode="widthFix" /> -->
       <view class="cardItem">
-        <view>明信片名称</view>
-        <view>{{selectItem.name}} 明信片</view>
+        <view>卡片名称</view>
+        <view>{{selectItem.name}} 卡片</view>
       </view>
       <view class="cardItem">
-        <view>明信片单价</view>
+        <view>卡片单价</view>
         <view>￥ {{selectItem.price}}</view>
       </view>
       <view class="cardItem">
-        <view>购买明信片数量</view>
+        <view>购买卡片数量</view>
         <view>X 1</view>
       </view>
       <view class="cardItem">
-        <view>明信片材质</view>
-        <view>铜板纸单面印刷</view>
+        <view>赠送会员类型</view>
+        <view>{{selectItem.name}}</view>
       </view>
       <view class="cardItem">
-        <view>明信片尺寸</view>
+        <view>赠送会员时间</view>
+        <view>1年</view>
+      </view>
+      <view class="cardItem">
+        <view>卡片尺寸</view>
         <view>90*50mm</view>
       </view>
       <view class="cardItem" wx:if="{{disCountItem}}">
@@ -35,8 +38,8 @@
       </view>
       <view class="extraBox">
         <view class="extraText">备注：</view>
-        <view class="extraText">1.每张明信片附赠对应练习课程教程会员一年,每张兑换券都对应一件赠品</view>
-        <view class="extraText">2.购买明信片非质量问题不支持7天无理由退换货</view>
+        <view class="extraText">1.每张卡片附赠对应练习课程教程会员一年,每张兑换券都对应一件赠品</view>
+        <view class="extraText">2.购买卡片非质量问题不支持7天无理由退换货</view>
       </view>
       <view class="optionsBox buyOptions">
         <view class="totalAmount">总计:￥{{ selectItem.price - (disCountItem.discountAmount || 0)}}</view>

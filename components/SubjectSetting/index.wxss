@@ -1,15 +1,19 @@
 .content {
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 30px 15px;
 }
 
 .itemBox {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 0;
+  padding: 12px 0;
   border-bottom: 1rpx solid #e7e7e7;
+}
+
+.itemBox:last-child {
+  border-bottom: 0rpx solid #e7e7e7;
 }
 
 .itemText {
@@ -33,9 +37,11 @@
   font-size: 30rpx;
   border-radius: 6px;
   margin: 15rpx 0;
+  margin-top: 30px;
   text-align: center;
 }
-.radioBox{
+
+.radioBox {
   width: 80%;
   text-align: right;
 }
