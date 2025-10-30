@@ -12,7 +12,7 @@
       </view>
     </view>
     <view class='bodyBox'>
-      <view class='menu'>
+      <view class='menu'  wx:if="{{!isApproval}}">
         <view class='menuContent' wx:for="{{itemData}}" wx:key='id' bindtap="onSelect" data-item="{{item}}">
           <view class="menuItem {{selectItem._id === item._id && 'menuItemActive'}}">
             <view class="menuItemContent {{selectItem._id === item._id && 'menuItemContentActive'}}">

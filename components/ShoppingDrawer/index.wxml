@@ -1,5 +1,5 @@
 <wxs src="./index.wxs" module="utils"></wxs>
-<BaseDrawer id="baseDrawer" title='购买VIP'>
+<BaseDrawer id="baseDrawer" title='配置清单'>
   <view class="content">
     <!-- 票据购买 -->
     <view class="bodyContent">
