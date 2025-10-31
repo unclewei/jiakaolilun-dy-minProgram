@@ -30,7 +30,7 @@
     确定
   </view>
 </view>
-<view class="emptyBox" wx:else>
+<!-- <view class="emptyBox" wx:else>
   <image class="emptyIcon" src="../../../images/learnPage.png" mode="widthFix" />
   <view class="emptyText">没题目拉~</view>
-</view>
+</view> -->

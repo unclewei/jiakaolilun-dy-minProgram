@@ -109,7 +109,7 @@ Component({
       }
       // 默认显示的index
       let current = defaulaIndex % SWIPER_LENGTH
-      console.log('current',current)
+      console.log('current', current)
       that.setData({
         swiperList: that.getInitSwiperList(list, defaulaIndex),
         swiperIndex: current,
@@ -159,6 +159,7 @@ Component({
 
     swiperChange: function (e) {
       let that = this
+      let nextOptionsCurrent = that.data.current
       let current = e.detail.current
       let lastIndex = that.data.swiperIndex
       let currentItem = that.data.swiperList[current]
@@ -174,7 +175,8 @@ Component({
       setTimeout(() => {
         if (current - lastIndex == 1 || isLoopPositive) {
           // 如果是滑到了左边界或者下一个还未有值，弹回去
-          if (currentItem == null || !Object.keys(currentItem).length) {
+          nextOptionsCurrent = nextOptionsCurrent + 1
+          if (currentItem == null || nextOptionsCurrent >= that.data.total) {
             info.current = NO_NEXT_PAGE
             that.setData({
               swiperCurrent: lastIndex
@@ -194,7 +196,8 @@ Component({
         var isLoopNegative = current == END && lastIndex == START
         if (lastIndex - current == 1 || isLoopNegative) {
           // 如果滑到了右边界或者上一个还未有值，弹回去
-          if (currentItem == null || !Object.keys(currentItem).length) {
+          nextOptionsCurrent = nextOptionsCurrent - 1
+          if (currentItem == null || nextOptionsCurrent <= -1) {
             console.log('弹出')
             info.current = NO_PREV_PAGE
             that.setData({
