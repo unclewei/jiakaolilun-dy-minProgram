@@ -23,6 +23,10 @@
         </view>
       </view>
     </view>
+    <view class='subjectWrap'>
+      <view class='title'>城市选择</view>
+      <CitySelector id='CitySelector'  class='provinceSelect' showLocationIcon bindUserConfigUpdate='onUserConfigUpdate' />
+    </view>
     <view class='confirm' bind:tap="onConfirm">
       确定
     </view>

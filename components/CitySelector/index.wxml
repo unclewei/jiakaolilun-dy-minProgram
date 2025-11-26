@@ -1,5 +1,5 @@
 <view class='titleHeadn {{className}}' bindtap="showModal">
-  <view class="highlight" wx:if="{{!userConfig.cityId}}">未选择城市</view>
+  <view class="highlight" wx:if="{{!userConfig.cityId}}">点击选择城市</view>
   <view wx:else>{{myProvince}}</view>
   <image src='../../images/icon/{{showLocationIcon ? "location":"arrow-right"}}.png' class='locationIcon' mode="aspectFit" />
 </view>

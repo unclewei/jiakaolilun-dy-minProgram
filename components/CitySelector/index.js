@@ -40,6 +40,14 @@ Component({
   ready: function () {
     this.init();
   },
+  pageLifetimes: {
+    show() {
+      this.init();
+    },
+    hide() {
+      console.log('组件所在的页面隐藏了');
+    }
+  },
 
   /**
    * 组件的方法列表
@@ -101,10 +109,15 @@ Component({
         recommendCityData: locationData.filter((p) => p.isRecommend),
         provinceData: locationData.filter((p) => !p.cityId),
       });
+      if (!userConfig.cityId) {
+        this.setDataByIp()
+      }
       setTimeout(() => {
         this.getCityData();
       });
     },
+
+
 
     hideModal: function () {
       if (this.data.visible) {
@@ -120,6 +133,88 @@ Component({
             searchText: null,
           });
         }, 100);
+      }
+    },
+
+    /** 对外暴露的自动设置地区 */
+    autoSetCityByIp() {
+      const userConfig = getApp().globalData.userConfig;
+      if (userConfig.provinceId || userConfig.cityId) {
+        return
+      }
+      const locationData = getApp().globalData.locationData;
+      this.setData({
+        userConfig,
+        provinceId: userConfig.provinceId,
+        cityId: userConfig.cityId,
+        locationData,
+        myProvince: this.getOutsideName(userConfig.cityId),
+        recommendCityData: locationData.filter((p) => p.isRecommend),
+        provinceData: locationData.filter((p) => !p.cityId),
+      });
+
+
+      const {
+        cityId,
+        provinceId
+      } = this.setDataByIp()
+      if (cityId) {
+        this.setData({
+          myProvince: this.getOutsideName(cityId),
+          userConfig: {
+            ...this.data.userConfig || {},
+            cityId,
+            provinceId,
+          }
+        })
+        return {
+          cityId,
+          provinceId
+        }
+      }
+    },
+
+    // 通过ip的信息自动设置城市
+    setDataByIp() {
+      const ipLocationDataStr = wx.getStorageSync('ipLocationData')
+      const locationData = getApp().globalData.locationData;
+      try {
+        const ipLocationData = JSON.parse(ipLocationDataStr)
+        if (!ipLocationData || !ipLocationData?.cityName) {
+          return {}
+        }
+        const {
+          cityName
+        } = ipLocationData
+        let matchItem;
+        for (let i of locationData) {
+          let mapCityName = i.cityName;
+          if (i.cityName === '市辖区') {
+            mapCityName = i.provinceName;
+          }
+          if (mapCityName === cityName) {
+            matchItem = i;
+            break;
+          }
+        }
+        if (matchItem) {
+          this.setData({
+            provinceId: matchItem.provinceId,
+            cityId: matchItem.cityId,
+
+          })
+          wx.showToast({
+            title: '已自动定位地区',
+            icon: 'none',
+            duration: 1000 * 2
+          })
+          return {
+            provinceId: matchItem.provinceId,
+            cityId: matchItem.cityId,
+          }
+        }
+      } catch (error) {
+        return {}
       }
     },
 
@@ -156,7 +251,6 @@ Component({
     },
 
     onConfirm() {
-      const locationData = getApp().globalData.locationData;
       const that = this;
       wx.showLoading();
       if (that.data.provinceId && that.data.cityId) {

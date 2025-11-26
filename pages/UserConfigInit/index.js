@@ -1,6 +1,12 @@
 import {
   updateUserConfig
 } from "../../plugins/wxapi"
+import {
+  autoLocation
+} from "../../utils/api";
+import {
+  timeCodeFormatted
+} from "../../utils/util";
 
 // pages/UserConfigInit/index.js
 Page({
@@ -78,12 +84,67 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    const userConfig = getApp().globalData.userConfig
     this.setData({
       fontSize: wx.getStorageSync('fontSize'),
-      userConfig: getApp().globalData.userConfig,
-      step: getApp().globalData.userConfig.step || 1,
-      stepItem: this.data.subjectSteps[getApp().globalData.userConfig.step || 1],
-      examType: getApp().globalData.userConfig.examType ? this.data.examTypes.find(p => p.key === getApp().globalData.userConfig.examType) : this.data.examTypes[0]
+      userConfig,
+      step: userConfig.step || 1,
+      provinceId: userConfig.provinceId,
+      cityId: userConfig.cityId,
+      stepItem: this.data.subjectSteps[userConfig.step || 1],
+      examType: userConfig.examType ? this.data.examTypes.find(p => p.key === userConfig.examType) : this.data.examTypes[0]
+    })
+    this.autoGetCity()
+  },
+
+  // 自动获取地区
+  autoGetCity() {
+    let now = timeCodeFormatted();
+    let ipLocationData = wx.getStorageSync('ipLocationData');
+    if (ipLocationData) {
+      try {
+        ipLocationData = JSON.parse(ipLocationData);
+      } catch (e) {
+        ipLocationData = {};
+      }
+      let cacheTime = ipLocationData?.cacheTime;
+      if (cacheTime) {
+        cacheTime = Number.parseInt(cacheTime);
+        if (now - cacheTime < 86400) {
+          console.log('命中缓存内，不重复请求ip，节省次数。')
+          const data = this.selectComponent("#CitySelector").autoSetCityByIp();
+          console.log('data', data)
+          this.setData({
+            ...data || {}
+          })
+          return; //命中缓存内，不重复请求ip，节省次数。
+        }
+      }
+    }
+    autoLocation().then(res => {
+      try {
+        let obj = {
+          ...res?.data.data,
+          cacheTime: now
+        };
+        let locationData = JSON.stringify(obj);
+        wx.setStorageSync('ipLocationData', locationData)
+        // 自动设置地区
+
+        const data = this.selectComponent("#CitySelector").autoSetCityByIp();
+        this.setData({
+          ...data || {}
+        })
+      } catch (e) {}
+    })
+  },
+  // 用户配置更新
+  onUserConfigUpdate() {
+    let that = this
+    const userConfig = getApp().globalData.userConfig
+    that.setData({
+      provinceId: userConfig.provinceId,
+      cityId: userConfig.cityId,
     })
   },
 
@@ -119,7 +180,10 @@ Page({
       isInit: true,
       step: this.data.stepItem.step,
       examType: this.data.examType.type,
+      provinceId: this.data.provinceId,
+      cityId: this.data.cityId,
     };
+    wx.setStorageSync('step', this.data.stepItem.step)
     updateUserConfig(initData, (res) => {
       if (res == 'fail') {
         return

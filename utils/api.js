@@ -389,4 +389,15 @@ export const userAcCodeActive = (data) => {
     data,
   })
 }
- 
+
+/**
+ * 通过ip自动获取地址
+ * @param params
+ * @returns {*}
+ */
+export const autoLocation = () => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/userConfig/autoLocation`,
+    method: 'post',
+  })
+}
