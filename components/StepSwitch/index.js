@@ -17,6 +17,16 @@ Component({
       step: wx.getStorageSync("step") || "1",
     })
   },
+  pageLifetimes: {
+    show() {
+      this.setData({
+        step: wx.getStorageSync("step") || 1,
+      })
+    },
+    hide() {
+      console.log('组件所在的页面隐藏了');
+    }
+  },
 
   /**
    * 组件的方法列表

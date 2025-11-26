@@ -16,6 +16,9 @@ Component({
   observers: {
     "step": function (step) {
       const that = this
+      if(that.data.oldStep == step){
+        return
+      }
       if (!that.data.oldStep) {
         that.setData({
           oldStep: step

@@ -15,7 +15,7 @@ import {
 
 Page({
   data: {
-    step: wx.getStorageSync('step') || '1',
+    step: wx.getStorageSync('step') || 1,
     userSubject: {}, // 用户科目数据
     mainHeight: 400,
     windowHeight: 671,
@@ -64,7 +64,9 @@ Page({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
-      examType: getApp().globalData.userConfig.examType
+      examType: getApp().globalData.userConfig.examType,
+      step: wx.getStorageSync('step') || this.data.step || 1,
+
     })
     this.chosenAndWrong()
   },

@@ -1,7 +1,7 @@
 <view class="content {{show && 'contentShow'}}" wx:if="{{show}}">
   <view class="topText {{show && 'topTextShow'}}">
     <view class="title">您已切换到</view>
-    <view class="subjectText">科目{{step === 1 ? '一' : '四'}}</view>
+    <view class="subjectText">科目{{step == 1 ? '一' : '四'}}</view>
   </view>
   <view class="bottomBox {{show && 'bottomBoxShow'}}">
     <image class="bottomIcon" src="../../images/minePage2.png" mode="widthFix" />

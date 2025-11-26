@@ -59,13 +59,13 @@ Page({
       }
       this.onLoginSuccess();
     });
-    wx.setNavigationBarColor({
-      backgroundColor: this.data.step == 1 ? "#46b978" : "#2196f3",
-      frontColor: "#ffffff",
-    });
   },
   onShow() {
     const stepStorage = wx.getStorageSync('step')
+    wx.setNavigationBarColor({
+      backgroundColor: stepStorage == 1 ? "#46b978" : "#2196f3",
+      frontColor: "#ffffff",
+    });
     this.setData({
       fontSize: wx.getStorageSync('fontSize'),
       userConfig: getApp().globalData.userConfig,
@@ -222,12 +222,12 @@ Page({
     });
   },
 
-  gotoSetting(){
+  gotoSetting() {
     wx.navigateTo({
       url: '/pages/Setting/index',
     })
   },
-  gotoDiscount(){
+  gotoDiscount() {
     wx.navigateTo({
       url: '/pages/Discount/index',
     })
