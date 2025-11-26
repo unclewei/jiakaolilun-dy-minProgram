@@ -213,7 +213,7 @@ Component({
           that.triggerEvent("OnLast")
         }
 
-      }, 400);
+      }, 300);
       if (currentItem == null || !Object.keys(currentItem).length) return
       info.current = currentItem.currentIndex
       // 记录滑过来的位置，此值对于下一次滑动的计算很重要

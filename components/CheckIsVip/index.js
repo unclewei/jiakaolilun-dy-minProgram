@@ -82,7 +82,7 @@ Component({
 
   ready() {
     this.setData({
-      isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
+      isApproval: getApp().globalData.isApproval && getApp().globalData.isIos && !wx.getStorageSync('fromWho'),
       userConfig: getApp().globalData.userConfig,
       userInfo: getApp().globalData.userInfo,
       isCoach: getApp().globalData.userInfo.userType === 2

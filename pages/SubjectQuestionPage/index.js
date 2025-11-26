@@ -369,7 +369,7 @@ Page({
         return
       }
       const resData = res.data.data
-      const finalCurrentIndex = that.data.isTypeWroonAnswerSelectng ? 0 : currentIndex
+      const finalCurrentIndex = that.data.isTypeWrong || that.data.isTypeCollect ? 0 : currentIndex
       that.setData({
         subjectData: resData,
         currentIndex: finalCurrentIndex,
@@ -377,7 +377,7 @@ Page({
       const nowItem = resData.find(p => p.currentIndex === finalCurrentIndex)
       that.useToDoWrong(nowItem)
       that.useToDoRight(nowItem)
-      if (!that.data.isTypeWrong && !that.data.isTypeCollect && currentIndex !== 0 && !isLoadMore) {
+      if (!that.data.isTypeWrong && !that.data.isTypeCollect && !that.data.isTypeCollect && currentIndex !== 0 && !isLoadMore) {
         showToast(`上次做到第${currentIndex + 1}题`)
       }
     })

@@ -178,13 +178,15 @@ Page({
         showNetWorkToast(res.data.msg)
         return
       }
+
+      let userSubjectConfig = wx.getStorageSync(`localPoolStatus_${target._id}`) || {};
       const resData = res.data.data;
-      let currentIndex = resData.currentIndex || 0;
+      let currentIndex = userSubjectConfig.currentIndex || resData.currentIndex || 0;
       let rate = currentIndex / target.subjectCount * 100
       rate = Number.parseInt(rate) || 0;
       this.setData({
         percentage: rate || 0,
-        chosenIndex: resData.currentIndex
+        chosenIndex: currentIndex
       })
     })
   },
@@ -197,10 +199,6 @@ Page({
     })
     this.chosenAndWrong()
     wx.setStorageSync('step', step)
-    wx.showToast({
-      title: `已切换至 科目${step === 1 ? '一':'四'}`,
-      icon: 'none'
-    })
   },
   // 事件处理函数
   onStepChange(e) {

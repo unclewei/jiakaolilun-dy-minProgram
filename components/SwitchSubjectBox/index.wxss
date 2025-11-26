@@ -1,0 +1,99 @@
+.content {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 750rpx;
+  z-index: 1000;
+}
+
+@keyframes contentShowFrames {
+  0% {
+    background-color: transparent
+  }
+
+  1% {
+    background-color: #fff
+  }
+
+  95% {
+    background-color: #fff
+  }
+
+  100% {
+    background-color: transparent
+  }
+}
+
+.contentShow {
+  animation: contentShowFrames 3s linear alternate 1;
+}
+
+.topText {
+  position: absolute;
+  left: 50rpx;
+  top: 20%;
+  display: inline;
+  font-size: 38rpx;
+  font-weight: bold;
+}
+
+@keyframes topTextFrames {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(30rpx);
+  }
+}
+
+.topTextShow {
+  animation: topTextFrames 2s linear alternate 1 forwards;
+  animation-delay: 0.2s;
+}
+
+.title {
+  color: #333;
+
+}
+
+.subjectText {
+  font-size: 60rpx;
+  color: chocolate;
+}
+
+.bottomBox {
+  position: absolute;
+  right: 50rpx;
+  bottom: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+
+}
+
+@keyframes bottomBoxFrames {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-30rpx);
+  }
+}
+
+.bottomBoxShow {
+
+  animation: bottomBoxFrames 2s linear alternate 1 forwards;
+  animation-delay: 0.2s;
+}
+
+.bottomIcon {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.bottomText {
+  color: #666;
+}

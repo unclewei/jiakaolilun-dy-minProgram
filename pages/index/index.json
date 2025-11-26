@@ -12,6 +12,7 @@
     "UserInfoSupply": "../../components/UserInfoSupply",
     "Comments": "../../components/Comments",
     "CarType": "../../components/CarType",
+    "SwitchSubjectBox": "../../components/SwitchSubjectBox",
     "SubjectUpdate": "../../components/SubjectUpdate"
   }
 }

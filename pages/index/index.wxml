@@ -160,4 +160,6 @@
   <QRModal id="QRModal" />
   <!-- 手机号码补充 -->
   <UserInfoSupply id='UserInfoSupply' />
+  <!-- 切换科目提示 -->
+  <SwitchSubjectBox step='{{step}}' />
 </page-meta>

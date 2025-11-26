@@ -53,7 +53,7 @@ Component({
       const stepStorage = wx.getStorageSync('step')
       this.setData({
         fontSize: wx.getStorageSync('fontSize'),
-        isApproval: getApp().globalData.isApproval && getApp().globalData.isIos,
+        isApproval: getApp().globalData.isApproval && getApp().globalData.isIos && !wx.getStorageSync('fromWho'),
         userInfo: getApp().globalData.userInfo,
         isSwitchPage: getCurrentPages().length === 1,
         isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum,

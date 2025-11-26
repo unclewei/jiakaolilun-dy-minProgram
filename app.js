@@ -33,7 +33,8 @@ App({
       if (res.data.code !== 200) {
         return
       }
-      this.globalData.isApproval = res.data.data < this.globalData.version
+      // 有formid的人不影响
+      this.globalData.isApproval = res.data.data < this.globalData.version && !wx.getStorageSync('fromWho')
     })
   },
   getEnumeMap() {
@@ -94,7 +95,7 @@ App({
   globalData: {
     paidEntry: 'xcx_500',
     from: 'theory',
-    version: 8.7,
+    version: 9.2,
     cookies: null,
     isApproval: true,
     isIos: false, // 是否苹果手机
