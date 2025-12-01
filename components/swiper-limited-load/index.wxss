@@ -1,4 +1,4 @@
 /* components/swiper-limited-load/index.wxss */
 .content{
-  box-shadow: 10px 10px 10px 1px rgba(0,0,0,0.2);
+  /* box-shadow: 10px 10px 10px 1px rgba(0,0,0,0.2); */
 }
