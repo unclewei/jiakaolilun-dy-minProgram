@@ -154,7 +154,7 @@ Component({
         that.setData({
           isSwipering: false
         })
-      }, 100);
+      }, 50);
     },
 
     swiperChange: function (e) {
@@ -213,7 +213,7 @@ Component({
           that.triggerEvent("OnLast")
         }
 
-      }, 300);
+      }, 350);
       if (currentItem == null || !Object.keys(currentItem).length) return
       info.current = currentItem.currentIndex
       // 记录滑过来的位置，此值对于下一次滑动的计算很重要

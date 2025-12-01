@@ -26,15 +26,30 @@ Page({
     pullTriggered: false, // 下拉刷新loading
     isinitProgrss: false, // 页面是否初始化成功，初始化成功后，再渲染做题进度条
   },
+
   onLoad(options) {
     console.log('options', options);
-
-
     if (options?.fromWho) {
       wx.setStorageSync('fromWho', options?.fromWho)
     }
     if (options?.source) {
       wx.setStorageSync('source', options?.source)
+    }
+    // 二维码进来，需要解析参数
+    if (options.scene) {
+      try {
+        const sceneStr = decodeURIComponent(options.scene);
+        const params = this.parseQuery(sceneStr)
+        console.log('params', params);
+        if (params?.fromWho) {
+          wx.setStorageSync('fromWho', params?.fromWho)
+        }
+        if (params?.source) {
+          wx.setStorageSync('source', params?.source)
+        }
+      } catch (error) {
+
+      }
     }
     // 就当他2s后渲染成功吧
     setTimeout(() => {
@@ -69,6 +84,13 @@ Page({
 
     })
     this.chosenAndWrong()
+  },
+  parseQuery(str) {
+    return str.split('&').reduce((obj, item) => {
+      const [key, value] = item.split('=');
+      obj[key] = decodeURIComponent(value || '');
+      return obj;
+    }, {});
   },
 
   getDefaultFonSize() {
