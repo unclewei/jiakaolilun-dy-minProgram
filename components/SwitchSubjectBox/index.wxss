@@ -40,7 +40,7 @@
 
 .contentShow {
   /* 使用 cubic-bezier 或 ease-in-out 都能实现渐进渐出 */
-  animation: contentFade 2s cubic-bezier(.4, 0, .2, 1) forwards;
+  animation: contentFade 3s cubic-bezier(.4, 0, .2, 1) forwards;
 }
 
 .topText {
