@@ -19,7 +19,7 @@
   </view>
 
   <view class='imgWrap' wx:if="{{item.imgName}}">
-    <image class='img' src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
+    <image class='img' bindtap="showPrview"  data-item="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}"  src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="widthFix" />
   </view>
   <view class='options'>
     <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode || isShowAnswer}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' isSkillOpen='{{isShowAnswer || isShowKeyWorld || isSeeMode }}' />

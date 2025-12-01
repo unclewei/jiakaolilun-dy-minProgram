@@ -4,7 +4,7 @@
     <view class="subjectText">科目{{step == 1 ? '一' : '四'}}</view>
   </view>
   <view class="bottomBox {{show && 'bottomBoxShow'}}">
-    <image class="bottomIcon" src="../../images/minePage2.png" mode="widthFix" />
+    <image class="bottomIcon" src='{{step == 1 ? "../../images/minePage.png" : "../../images/minePage2.png"}}'mode="widthFix" />
     <view class="bottomText">文明一点通</view>
     <view class="bottomText">最有效率的驾考题库</view>
     <view class="bottomText">已服务超百万学员通过驾考</view>

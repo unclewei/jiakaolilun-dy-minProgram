@@ -115,5 +115,12 @@ Component({
     onAnswerConfirm(e) {
       this.triggerEvent("AnswerConfirm", e.currentTarget.dataset.item)
     },
+    showPrview(e){
+      const item = e.currentTarget.dataset.item;
+      wx.previewImage({
+        urls:[item],
+        current: 0
+      })
+    },
   }
 })

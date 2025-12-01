@@ -105,16 +105,20 @@ Component({
         return;
       }
       const newStep = this.data.step == 1 ? 4 : 1
-      const itemData = this.data.totalItem.filter(p => p.step.includes(newStep))
-      const paidItem = itemData?.find(p => p.isPaidDone)
-      const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
-     
-      wx.setStorageSync('step', newStep)
-      this.setData({
-        step: newStep,
-        itemData,
-        selectItem: paidItem || isDefaultSelectedItem || itemData[0] || {}
-      })
+
+      const that = this
+      that.selectComponent("#SwitchSubjectBox").switchStep(newStep)
+      setTimeout(() => {
+        const itemData = that.data.totalItem.filter(p => p.step.includes(newStep))
+        const paidItem = itemData?.find(p => p.isPaidDone)
+        const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
+        wx.setStorageSync('step', newStep)
+        that.setData({
+          step: newStep,
+          itemData,
+          selectItem: paidItem || isDefaultSelectedItem || itemData[0] || {}
+        })
+      }, 500);
     },
 
     onSelect(e) {

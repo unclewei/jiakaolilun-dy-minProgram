@@ -4,6 +4,7 @@
     "LoginModal": "../LoginModal",
     "UserInfoSupply": "../UserInfoSupply",
     "DanMu": "../DanMu",
+    "SwitchSubjectBox": "../SwitchSubjectBox",
     "CountDown": "../CountDown",
     "ShoppingDrawer": "../ShoppingDrawer"
 

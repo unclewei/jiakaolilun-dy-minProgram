@@ -82,6 +82,7 @@
             <view class='content'>
               <view class='title'>第一步、购买尊享VIP</view>
               <p>只有尊享VIP才可享受不过补偿权益！</p>
+              <view style="font-size: 24rpx;color: rgb(255, 125, 38);">需要模拟考试3次超过90分以上不过才补偿</view>
             </view>
           </view>
           <view class='item'>
@@ -141,3 +142,7 @@
 
 <!-- 购买弹窗 -->
 <ShoppingDrawer id="ShoppingDrawer" selectItem="{{selectItem}}" bindOnSuccess='buySuccess' />
+
+
+  <!-- 切换科目提示 -->
+  <SwitchSubjectBox id='SwitchSubjectBox' />

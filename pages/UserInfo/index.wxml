@@ -106,4 +106,6 @@
   <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
   <!-- 公众号二维码 -->
   <QRModal id="QRModal" />
+  <!-- 切换科目提示 -->
+  <SwitchSubjectBox id='SwitchSubjectBox' />
 </page-meta>

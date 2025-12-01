@@ -106,10 +106,15 @@ Page({
     })
   },
   onStepUpdate() {
+
     const newStep = wx.getStorageSync("step") || "1";
-    this.setData({
-      step: newStep,
-    });
+    const that = this
+    that.selectComponent("#SwitchSubjectBox").switchStep(newStep)
+    setTimeout(() => {
+      that.setData({
+        step: newStep,
+      });
+    }, 500);
 
     this.checkPaidDone(newStep)
     wx.setNavigationBarColor({

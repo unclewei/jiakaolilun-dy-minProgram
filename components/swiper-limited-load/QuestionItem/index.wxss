@@ -30,6 +30,7 @@
   width: 90%;
   box-sizing: border-box;
   margin: 0 auto;
+  margin-bottom: 30rpx;
 }
 
 .imgWrap .img {

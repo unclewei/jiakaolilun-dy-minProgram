@@ -227,11 +227,16 @@ Page({
   // 事件处理函数
   onStepChange(e) {
     const item = e.currentTarget.dataset.item
-    this.setData({
-      step: item
-    })
-    this.chosenAndWrong()
-    wx.setStorageSync('step', e.currentTarget.dataset.item)
+    const that = this
+    this.selectComponent("#SwitchSubjectBox").switchStep(item)
+
+    setTimeout(() => {
+      that.setData({
+        step: item
+      })
+      that.chosenAndWrong()
+      wx.setStorageSync('step', e.currentTarget.dataset.item)
+    }, 500);
   },
 
   gotoSubject(e) {

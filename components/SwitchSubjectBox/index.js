@@ -1,8 +1,6 @@
 Component({
   properties: {
-    step: {
-      type: Number,
-    },
+
   },
 
   /**
@@ -13,20 +11,20 @@ Component({
     oldStep: undefined,
     show: false,
   },
-  observers: {
-    "step": function (step) {
-      const that = this
-      if(that.data.oldStep == step){
+
+  methods: {
+    switchStep(step) {
+      console.log('step', step)
+      if (!step) {
         return
       }
-      if (!that.data.oldStep) {
-        that.setData({
-          oldStep: step
-        })
+      const that = this
+      if (that.data.oldStep == step) {
         return
       }
       that.setData({
         oldStep: step,
+        step,
         show: true,
       });
       setTimeout(() => {
@@ -34,6 +32,6 @@ Component({
           show: false
         })
       }, 1000 * 3);
-    },
+    }
   }
 })

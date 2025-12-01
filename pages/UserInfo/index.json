@@ -4,6 +4,7 @@
     "LoginModal": "../../components/LoginModal",
     "QRModal": "../../components/QRModal",
     "Avatar": "../../components/Avatar",
+    "SwitchSubjectBox": "../../components/SwitchSubjectBox",
     "StepSwitch": "../../components/StepSwitch",
     "PassRate": "../../components/PassRate",
     "CitySelector": "../../components/CitySelector",
