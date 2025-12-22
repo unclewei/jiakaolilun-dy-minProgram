@@ -91,11 +91,25 @@ App({
       }
     })
   },
+  // 全局刷新 tabBar 方法，可在任何页面调用
+  refreshTabBar() {
+    const pages = getCurrentPages();
+    if (pages.length === 0) return;
+
+    // 遍历页面栈，找到任何一个 tabBar 页面并刷新
+    for (let i = pages.length - 1; i >= 0; i--) {
+      const page = pages[i];
+      if (typeof page.getTabBar === 'function' && page.getTabBar()) {
+        page.getTabBar().refreshList();
+        break; // 找到一个就够了，因为所有 tabBar 实例共享逻辑
+      }
+    }
+  },
 
   globalData: {
     paidEntry: 'xcx_500',
     from: 'theory',
-    version: 9.4,
+    version: 9.6,
     cookies: null,
     isApproval: true,
     isIos: false, // 是否苹果手机

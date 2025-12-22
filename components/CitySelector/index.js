@@ -287,6 +287,8 @@ Component({
 
     /**  登录成功*/
     onLoginSuccess() {
+      // 关键：全局刷新 tabBar
+      getApp().refreshTabBar();
       this.setData({
         isLogin: true,
         userInfo: getApp().globalData.userInfo,

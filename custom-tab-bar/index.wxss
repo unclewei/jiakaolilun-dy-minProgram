@@ -1,0 +1,39 @@
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50px;
+  background: white;
+  display: flex;
+  padding-bottom: env(safe-area-inset-bottom); /* 适配 iPhone 刘海屏 */
+  border-top: 1px solid #eaeaea;
+}
+
+.tab-bar-border {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 1px;
+  background: #eaeaea;
+  transform: scaleY(0.5);
+}
+
+.tab-bar-item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+}
+
+.text {
+  font-size: 12px;
+  margin-top: 4px;
+}

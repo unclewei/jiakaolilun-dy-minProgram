@@ -22,6 +22,7 @@
     "pages/Exam/index"
   ],
   "tabBar": {
+    "custom": true,
     "selectedColor": "#54b63e",
     "color": "#aaaaaa",
     "list": [
@@ -34,6 +35,12 @@
       {
         "pagePath": "pages/SubjectIncTab/index",
         "text": "VIP",
+        "iconPath": "./images/vip2.png",
+        "selectedIconPath": "./images/vip2.png"
+      },
+      {
+        "pagePath": "pages/orderList/index",
+        "text": "赚钱",
         "iconPath": "./images/vip2.png",
         "selectedIconPath": "./images/vip2.png"
       },
