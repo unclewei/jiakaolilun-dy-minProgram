@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+
+    "Avatar": "../../../components/Avatar",
+    "EmptyBox": "../../../components/EmptyBox"
+  }
+}

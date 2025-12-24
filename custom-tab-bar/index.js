@@ -19,7 +19,7 @@ Component({
         key: "vip" // 给需要动态控制的 tab 加个标识 key
       },
       {
-        pagePath: "/pages/orderList/index",
+        pagePath: "/pages/MoneyPage/index",
         text: "赚钱",
         iconPath: "../images/vip2.png",
         selectedIconPath: "../images/vip2.png",

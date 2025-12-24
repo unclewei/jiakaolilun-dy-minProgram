@@ -1,0 +1,125 @@
+<wxs src="../../../utils/config.wxs" module="utils"></wxs>
+<view class="init">
+  <!-- 提现记录模式 -->
+
+  <view class="content payOrders">
+    <view class="item" wx:for="{{payOrderData}}" wx:key="_id">
+      <view class="itemContent">
+        <view class="itemTitle">
+          <view class="title">
+            <view>提现金额：{{item.amount}}元</view>
+            <view class="state">
+              <view wx:if="{{item.paymentTime}}" class="success">
+                已到账
+                <image class="rightIcon" src="../../../images/right.png" mode="widthFix" />
+              </view>
+              <view wx:else>提现中</view>
+            </view>
+          </view>
+          <view class="{{'date2 ' + (item.paymentTime ? 'success' : '')}}">
+            {{item.paymentTime ? '已于 ' + item.paymentTime + ' 到账！' : '您于 ' + utils.toDate(item.date, true) + ' 申请提现'}}
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 正常订单/推广人员模式 -->
+  <view>
+    <view class="wrap">
+      <view class="tab">
+        <view class="tabItem {{tabValue === item.value ? 'tabItemActive' : ''}}" wx:for="{{tabData}}" wx:key="value" bind:tap="onTabChange" data-value="{{item.value}}">
+          {{item.name}}
+          <view class="stick {{tabValue === item.value ? 'stickActive' : ''}}" />
+        </view>
+      </view>
+
+      <!-- 我推广的人员 - 子菜单 -->
+      <view wx:if="{{tabValue === 'myPromote'}}">
+        <button size="mini" class="btn {{memberType !== item.value ? 'btnNotActive' : ''}}" wx:for="{{menuData}}" wx:key="value" bind:tap="onMemberTypeChange" data-value="{{item.value}}">
+          {{item.name}}
+        </button>
+      </view>
+
+      <!-- 推广教练订单 - 子菜单（仅销售人员显示） -->
+      <view wx:if="{{tabValue === 'coachOrder' && userInfo.isSales}}">
+        <button size="mini" class="btn {{coachOrderType !== item.value ? 'btnNotActive' : ''}}" wx:for="{{coachMenuData}}" wx:key="value" bind:tap="onCoachOrderTypeChange" data-value="{{item.value}}">
+          {{item.name}}
+        </button>
+      </view>
+    </view>
+
+    <!-- 数据量提示 -->
+    <view class="tips">{{maxDataTips}}</view>
+
+    <!-- 内容主体（支持折叠/展开） -->
+    <view id="content" class="content {{!showAll && needShowAllBtn ? 'collapsed' : ''}} {{showAll ? 'expanded' : ''}}">
+
+      <block>
+        <!-- 订单列表 -->
+        <block wx:if="{{tabValue !== 'myPromote'}}">
+          <EmptyBox isEmpty="{{!contentList.length}}">空空如也~快去分享邀请吧~</EmptyBox>
+          <view class="item" wx:for="{{contentList}}" wx:key="_id">
+            <!-- 在途订单联系教练按钮 -->
+            <view wx:if="{{tabValue === 'coachOrder' && item.isSalesLock && item.firstFromUser}}" class="copy" bind:tap="onCopyPhone" data-phone="{{item.firstFromUser.phoneNum}}">
+              联系教练
+            </view>
+
+            <view class="itemContent">
+              <image class="itemImg" src="{{enumeMap.configMap.urlPrefix + item.paidObject.imageInfo.path}}" mode="aspectFill" />
+              <view class="itemTitle">
+                <view class="title">
+                  <text>{{item.paidObject.name}}</text>
+                </view>
+                <view wx:if="{{tabValue === 'studentOrder'}}" class="rebateRate">
+                  明细：学员付款{{item.totalFee}}元
+                </view>
+                <text class="date success">{{utils.timeFormatted_CN(item.orderEnd, true)}}</text>
+              </view>
+            </view>
+
+            <view class="itemFooter">
+              <view class="student">
+                <Avatar userInfo="{{tabValue === 'studentOrder' ? item.user : item.firstFromUser}}" className="footerAvatar" />
+                <view>
+                  {{tabValue === 'studentOrder' ? item.user.nickName : '教练：' + utils.nameHide(item.firstFromUser.nickName)}}
+                </view>
+              </view>
+              <view class="amount">
+                <text wx:if="{{tabValue === 'coachOrder' && userInfo.isSales && item.isSalesLock}}" class="highlight">（在途奖励）</text>
+                返现：{{tabValue === 'studentOrder' ? item.firstRebate : item.secondRebate}}元
+              </view>
+            </view>
+          </view>
+        </block>
+
+        <!-- 我推广的人员列表 -->
+        <block wx:if="{{tabValue === 'myPromote'}}">
+          <EmptyBox isEmpty="{{!contentList.length}}">空空如也~快去分享邀请吧~</EmptyBox>
+          <view class="coach" wx:for="{{contentList}}" wx:key="userId">
+            <avatar userInfo="{{item}}" class="coachAvatar" />
+            <view class="coachInfo">
+              <text class="name">{{item.userType === 1 ? item.nickName : utils.nameHide(item.nickName)}}</text>
+              <view wx:if="{{item.userType === 1}}" class="date">
+                {{utils.toDate(item.date)}}
+                <text class="{{item.isPaid ? 'paid' : 'unPaid'}}">
+                  {{item.isPaid ? '已购买' : '未购买'}}
+                </text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </block>
+
+      <!-- 底部渐变遮罩 -->
+      <view wx:if="{{!showAll && needShowAllBtn}}" class="fadeBottom" />
+    </view>
+
+    <!-- 显示全部 / 收起 按钮 -->
+    <view wx:if="{{needShowAllBtn && contentList.length}}" class="showAllBar">
+      <view class="showAllBtn" bind:tap="toggleShowAll">
+        {{showAll ? '收起' : '显示全部订单'}}
+      </view>
+    </view>
+  </view>
+</view>

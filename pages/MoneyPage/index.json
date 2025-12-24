@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "提现",
+  "usingComponents": {
+    "Avatar": "../../components/Avatar",
+    "MoneyContent":"./MoneyContent"
+  }
+}

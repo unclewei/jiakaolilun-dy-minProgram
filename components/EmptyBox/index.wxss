@@ -1,0 +1,21 @@
+.emptyBox {
+  margin-top: 120rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.emptyImg {
+  width: 300rpx;
+  height: 300rpx;
+}
+
+.emptyText {
+  margin-top: 30rpx;
+  font-size: 32rpx;
+  font-weight: bold;
+  font-style: italic;
+}

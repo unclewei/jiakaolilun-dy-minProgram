@@ -3,7 +3,7 @@ import xapi from "./xapi";
 // 测试服务器
 // const baseApi = 'https://test.fanstag.com/api'
 // 正式服务器
-const baseApi = 'https://ydt.biguojk.com/api'
+export const baseApi = 'https://ydt.biguojk.com/api'
 
 export const login = (data) => {
   return xapi.request({
@@ -399,5 +399,66 @@ export const autoLocation = () => {
   return xapi.requestWithJwtNoToast({
     url: `${baseApi}/userConfig/autoLocation`,
     method: 'post',
+  })
+}
+
+/**
+ * 用户佣金
+ * @param params
+ * @returns {*}
+ */
+export const userAmountGet = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/userAmount/userAmountGet`,
+    method: 'post',
+    data
+  })
+}
+/**
+ * 提现记录查询
+ * @param params
+ * @returns {*}
+ */
+export const payOrderList = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/payOrder/payOrderList`,
+    method: 'post',
+    data
+  })
+}
+/**
+ * 用户发起提现
+ * @param params
+ * @returns {*}
+ */
+export const payOrderBegin = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/payOrder/payOrderBegin`,
+    method: 'post',
+    data
+  })
+}
+/**
+ * 返回教练推广成功的订单
+ * @param params
+ * @returns {*}
+ */
+export const promoteOrderList = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/order/promoteOrderList`,
+    method: 'post',
+    data
+  })
+}
+/**
+ * 用户关系人员返回
+ * @param params
+ * @returns {*}
+ */
+export const myPromoteList = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/user/myPromoteList`,
+    method: 'post',
+    data
   })
 }

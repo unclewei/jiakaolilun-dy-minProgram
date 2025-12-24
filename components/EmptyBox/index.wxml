@@ -1,0 +1,4 @@
+<view class="emptyBox" wx:if="{{isEmpty}}">
+  <image class="emptyImg" src="../../images/learnPage.png" mode="widthFix" />
+  <view class="emptyText">{{text}}</view>
+</view>

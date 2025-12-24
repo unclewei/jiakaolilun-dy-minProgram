@@ -1,0 +1,205 @@
+/* pages/money/money.wxss */
+
+.init {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #111;
+  box-sizing: border-box;
+  padding-bottom: 200rpx;
+}
+
+.init .header {
+  position: relative;
+  width: 100%;
+  padding-top: 2rpx;
+}
+
+.init .header .payRecord {
+  position: absolute;
+  margin-top: 30rpx;
+  background-color: #4b9cff;
+  color: #fff;
+  font-size: 26rpx;
+  padding: 10rpx 20rpx;
+  border-radius: 6rpx;
+  right: 30rpx;
+  z-index: 9;
+  display: flex;
+  align-items: center;
+}
+
+.init .header .payRecord img {
+  width: 34rpx;
+  margin-right: 6rpx;
+}
+
+.init .header .bg {
+  width: 100%;
+  height: 340rpx;
+  background-color: #87cef0;
+  position: absolute;
+  z-index: 1;
+}
+
+.init .header .headerContent {
+  box-sizing: border-box;
+  position: relative;
+  background-color: #fff;
+  margin: 20rpx;
+  margin-bottom: 0;
+  border-radius: 10rpx;
+  overflow: hidden;
+  padding: 10px;
+  z-index: 2;
+}
+
+.init .header .headerContent .userInfo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 6rpx;
+  font-size: 36rpx;
+}
+
+.userAvatar {
+
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  min-height: 40px;
+  border-radius: 40px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.init .header .headerContent .userInfo .name {
+  display: flex;
+  align-items: center;
+  min-width: 400rpx;
+  width: 100%;
+  font-size: 26rpx;
+}
+
+.init .header .headerContent .userInfo .name img {
+  width: 26rpx;
+  margin-left: 4rpx;
+}
+
+.init .header .headerContent .userInfo .name2 {
+  font-size: 28rpx;
+  margin-bottom: 10rpx;
+  font-weight: 600;
+  color: black;
+}
+
+.init .header .headerContent .count {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 20rpx 0;
+}
+
+.init .header .headerContent .count .countItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-weight: 500;
+  font-size: 36rpx;
+}
+
+.init .header .headerContent .count .countItem .money {
+  margin-top: 6rpx;
+  font-size: 32rpx;
+  color: #e5124b;
+  /* 高亮数字颜色 */
+}
+
+.init .header .headerFooter {
+  box-sizing: border-box;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #f1edff;
+  padding: 20rpx 20rpx;
+  margin: 20rpx 20rpx 0 2rpx;
+}
+
+.init .header .headerFooter .batchMoney {
+  margin: 0;
+  background: #ff5000;
+  /* 建议提现按钮用醒目色，可自行调整 */
+  color: #fff;
+  font-size: 28rpx;
+  padding: 10rpx 40rpx;
+  border-radius: 50rpx;
+}
+
+.init .header .headerFooter .way {
+  font-size: 24rpx;
+  color: red;
+  margin-left: 4rpx;
+}
+
+.init .header .headerFooter2 {
+  position: relative;
+  box-sizing: border-box;
+  width: 100%;
+  background-color: #fff7ef;
+  padding: 10rpx 20rpx;
+  margin: 0 20rpx 0 2rpx;
+  font-size: 26rpx;
+  line-height: 44rpx;
+  color: #666;
+}
+
+.init .header .headerFooter2 .kefu {
+  display: inline-block;
+  color: red;
+}
+
+/* 分享底部栏 */
+.shareBar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 130rpx;
+  /* 避开 tabbar，通常 tabbar 高 100rpx + 安全区 */
+  width: 100%;
+  padding: 0 32rpx;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.shareBar .shareBarInner {
+  width: 100%;
+  max-width: 720px;
+  display: flex;
+  justify-content: center;
+}
+
+.shareBar .shareBarBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 80%;
+  height: 88rpx;
+  padding: 0 40rpx;
+  background: linear-gradient(90deg, #ff8a65, #ff7043);
+  color: #fff;
+  border: none;
+  border-radius: 44rpx;
+  box-shadow: 0 16rpx 40rpx rgba(255, 112, 67, 0.14);
+  font-weight: 600;
+  font-size: 32rpx;
+  letter-spacing: 2rpx;
+}
+.rightIcon{
+  width: 30rpx;
+  height: 30rpx;
+}

@@ -1,0 +1,71 @@
+<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<view class="init">
+  <!-- 主内容 -->
+  <view class="init">
+    <view class="header">
+      <view class="payRecord" bind:tap="togglePayRecord">
+        {{isShowPayOrderRecord ? '查看学员订单' : '查看提现记录'}}
+      </view>
+      <view class="bg"></view>
+      <view class="headerContent">
+        <view class="userInfo">
+          <Avatar userInfo='{{userInfo}}' className='userAvatar' />
+          <view>
+            <view class="name name2">{{userInfo.nickName}}</view>
+            <view class="name">
+              文明一点通 已认证教练
+              <image class="rightIcon" src="../../images/right.png" mode="widthFix" />
+            </view>
+          </view>
+        </view>
+        <view class="count">
+          <view class="countItem">
+            <text>今日收益</text>
+            <text class="money">￥{{utils.toFixed(userAmount.todayValue || 0)}}</text>
+          </view>
+          <view class="countItem">
+            <text>累计总收益</text>
+            <text class="money">￥{{utils.toFixed(userAmount.allValue || 0)}}</text>
+          </view>
+          <view class="countItem">
+            <text>提现中金额</text>
+            <text class="money">￥{{utils.toFixed(userAmount.takingValue || 0)}}</text>
+          </view>
+        </view>
+        <view class="headerFooter">
+          <view>
+            可提现金额：{{userAmount.canTakeValue}}元
+            <text wx:if="{{userInfo.isSales}}" class="way">
+              在途金额：{{userAmount.onTheWayValue}}元
+            </text>
+          </view>
+          <button class="batchMoney" size="mini" loading="{{batchLoading}}" bind:tap="onBatchMoney">
+            一键提现
+          </button>
+        </view>
+        <view class="headerFooter2">
+          <text>提现规则说明：</text>
+          <view>
+            <view>1.微信规定，用户单笔最大提现额度为500元。</view>
+            <view>2.平台最小提现金额为1元。</view>
+            <view>
+              3.若有疑问，可随时联系
+              <kefu className="kefu" title="有疑问可随时联系客服">在线客服</kefu>
+              。
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- 提现记录 / 学员订单内容 -->
+    <MoneyContent isShowPayOrderRecord="{{isShowPayOrderRecord}}" />
+    <!-- 推荐人 -->
+    <recommend-people />
+    <!-- 分享栏 -->
+    <share shareType="{{enumeMap.shareType.student.value}}">
+      <view class="shareBar">
+        <view class="shareBarBtn">分享课程给学员</view>
+      </view>
+    </share>
+  </view>
+</view>

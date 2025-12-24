@@ -19,6 +19,7 @@
     "pages/SubjectIncPage/index",
     "pages/SubjectIncTab/index",
     "pages/ReviewLicense/index",
+    "pages/MoneyPage/index",
     "pages/Exam/index"
   ],
   "tabBar": {
@@ -39,7 +40,7 @@
         "selectedIconPath": "./images/vip2.png"
       },
       {
-        "pagePath": "pages/orderList/index",
+        "pagePath": "pages/MoneyPage/index",
         "text": "赚钱",
         "iconPath": "./images/vip2.png",
         "selectedIconPath": "./images/vip2.png"

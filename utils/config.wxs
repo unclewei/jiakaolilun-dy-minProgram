@@ -80,7 +80,17 @@ module.exports.isWrong = function (wrongSubjectItems, value) {
   }
   return false
 }
-
+/**
+ * 截取
+ * @param state 
+ * @returns 
+ */
+module.exports.toFixed = function (name, num) {
+  if (!name) {
+    return name
+  }
+  return name.toFixed(num || 2)
+}
 
 /**
  * 名字打码
@@ -116,6 +126,33 @@ module.exports.toDate = function (timestamp) {
   var m = timeFormat(date.getMinutes());
   var s = timeFormat(date.getSeconds());
   return y + "-" + M + "-" + d + " " + h + ":" + m + ':' + s;
+}
+/*时间戳转日期中文版
+ *@time 时间戳
+ * Usage timeFormatted(1503027486)
+ * Result 2017-7-18-11:38:06
+ * */
+module.exports.timeFormatted_CN = function (timestamp, detail) {
+  if (!timestamp) {
+    return ''
+  }
+
+  function timeFormat(num) {
+    return num < 10 ? '0' + num : num
+  }
+
+  var date = getDate(timestamp * 1000);
+  var y = date.getFullYear();
+  var M = timeFormat(date.getMonth() + 1);
+  var d = timeFormat(date.getDate());
+  var h = timeFormat(date.getHours());
+  var m = timeFormat(date.getMinutes());
+  var s = timeFormat(date.getSeconds());
+  if (detail) {
+    return y + '年' + M + '月' + d + '日 ' + d + ':' + m + ':' + s;
+    // 2019年10月1日15:01
+  }
+  return y + '年' + M + '月' + d + '日 ';
 }
 
 // 日期 翻译

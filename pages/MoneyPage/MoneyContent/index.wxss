@@ -1,0 +1,257 @@
+/* components/MoneyContent/index.wxss */
+
+.init {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  color: #111;
+  box-sizing: border-box;
+}
+
+.highlight {
+  color: red;
+}
+
+.wrap {
+  padding: 20rpx;
+}
+
+.wrap .btn {
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  background-color: #1aad19;
+  color: #fff;
+}
+
+.btnNotActive {
+  background-color: #b2b2b2 !important;
+}
+
+.tab {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+}
+
+.tabItem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20rpx;
+  font-size: 28rpx;
+  opacity: 0.4;
+  border-radius: 6rpx;
+  font-weight: 600;
+}
+
+.tabItemActive {
+  opacity: 1;
+}
+
+.stick {
+  width: 50rpx;
+  height: 8rpx;
+  background-color: transparent;
+  margin-top: 20rpx;
+}
+
+.stickActive {
+  background-color: #1aad19;
+}
+
+.tips {
+  width: 100%;
+  text-align: center;
+  color: #333;
+  font-size: 24rpx;
+  margin: 10rpx 0;
+}
+
+.content {
+  position: relative;
+  transition: max-height 0.3s ease;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+}
+
+.collapsed {
+  max-height: 800rpx;
+  /* ≈400px */
+  overflow: hidden;
+}
+
+.expanded {
+  max-height: 4000rpx;
+  /* 足够大 */
+}
+
+.fadeBottom {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 144rpx;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.95));
+  pointer-events: none;
+}
+
+.showAllBar {
+  display: flex;
+  justify-content: center;
+  padding: 20rpx 0;
+}
+
+.showAllBtn {
+  background: #fff;
+  border: 2rpx solid #e6eaf0;
+  color: #2b7cff;
+  padding: 12rpx 28rpx;
+  border-radius: 36rpx;
+  font-size: 28rpx;
+  box-shadow: 0 2rpx 8rpx rgba(40, 62, 101, 0.06);
+}
+
+.item {
+  position: relative;
+  margin: 0 30rpx 30rpx;
+  padding: 30rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  border: 2rpx solid #f0f0f0;
+}
+
+.copy {
+  position: absolute;
+  top: 10rpx;
+  right: 10rpx;
+  background: #4b9cff;
+  color: #fff;
+  font-size: 24rpx;
+  padding: 4rpx 8rpx;
+  border-radius: 6rpx;
+}
+
+.itemContent {
+  display: flex;
+}
+
+.itemImg {
+  width: 200rpx;
+  height: 120rpx;
+  margin-right: 20rpx;
+  border-radius: 8rpx;
+}
+
+.itemTitle .title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 28rpx;
+  font-weight: 600;
+  margin-top: -10rpx;
+}
+
+.rebateRate {
+  margin-top: 10rpx;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.date,
+.date2 {
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 20rpx;
+  display: block;
+}
+
+.success {
+  color: #1aad19 !important;
+}
+
+.success image {
+  width: 30rpx;
+  margin-left: 6rpx;
+}
+
+.itemFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #333;
+}
+
+.student {
+  display: flex;
+  align-items: center;
+}
+
+.footerAvatar {
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.amount {
+  color: #111;
+  font-weight: 600;
+}
+
+/* 我推广的人员 */
+.coach {
+  display: flex;
+  align-items: center;
+  margin: 0 30rpx 20rpx;
+}
+
+.coachAvatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  margin-right: 20rpx;
+}
+
+.coachInfo {
+  flex: 1;
+}
+
+.coachInfo .name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.coachInfo .date {
+  font-size: 24rpx;
+  color: #333;
+  margin-top: 8rpx;
+}
+
+.paid {
+  color: #1aad19;
+  margin-left: 20rpx;
+}
+
+.unPaid {
+  color: red;
+  margin-left: 20rpx;
+}
+
+.payOrders {
+  margin-top: 40rpx;
+}
+
+.notData {
+  height: 50rpx !important;
+  margin: 10rpx auto !important;
+  text-align: center !important;
+  font-size: 28rpx !important;
+}
+
+.rightIcon {
+  width: 30rpx;
+  height: 30rpx;
+}
