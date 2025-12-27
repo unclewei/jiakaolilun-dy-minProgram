@@ -1,1 +1,82 @@
-/* pages/MoneyPage/MoneyContent.wxss */
+/* components/RebateIntroduce/index.wxss */
+
+.content {
+  padding: 24rpx;
+}
+
+.table {
+  width: 100%;
+  font-size: 28rpx;
+  background: #fff;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.03);
+}
+
+.thead {
+  background: #f5f7fa;
+}
+
+.thead .row {
+  display: flex;
+  border-bottom: 4rpx solid #d9e2ef;
+}
+
+.th {
+  flex: 1;
+  padding: 20rpx 24rpx;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+  font-size: 30rpx;
+}
+
+.tbody .row {
+  display: flex;
+  border-bottom: 2rpx solid #eee;
+}
+
+.tbody .row:last-child {
+  border-bottom: none;
+}
+
+.td {
+  flex: 1;
+  padding: 20rpx 24rpx;
+  color: #333;
+  font-size: 26rpx;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-name {
+  font-weight: 500;
+  margin-bottom: 8rpx;
+}
+
+.peichang {
+  color: #e5124b; /* @highLightNum */
+  font-size: 24rpx;
+}
+
+.nopeichang {
+  color: #9197a3; /* @textColorThird */
+  font-size: 24rpx;
+}
+
+.rebate {
+  font-weight: 600;
+  color: #111;
+  font-size: 32rpx;
+}
+
+/* 无数据提示 */
+.empty {
+  padding: 60rpx 0;
+  text-align: center;
+  color: #999;
+  font-size: 28rpx;
+}

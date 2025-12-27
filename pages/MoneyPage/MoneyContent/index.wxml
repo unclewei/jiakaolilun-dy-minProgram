@@ -2,7 +2,7 @@
 <view class="init">
   <!-- 提现记录模式 -->
 
-  <view class="content payOrders">
+  <view class="content payOrders" wx:if="{{isShowPayOrderRecord}}">
     <view class="item" wx:for="{{payOrderData}}" wx:key="_id">
       <view class="itemContent">
         <view class="itemTitle">
@@ -25,7 +25,7 @@
   </view>
 
   <!-- 正常订单/推广人员模式 -->
-  <view>
+  <view wx:else>
     <view class="wrap">
       <view class="tab">
         <view class="tabItem {{tabValue === item.value ? 'tabItemActive' : ''}}" wx:for="{{tabData}}" wx:key="value" bind:tap="onTabChange" data-value="{{item.value}}">

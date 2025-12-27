@@ -1,2 +1,36 @@
-<!--pages/MoneyPage/MoneyContent.wxml-->
-<text>pages/MoneyPage/MoneyContent.wxml</text>
+<view class="content">
+  <view class="table">
+    <!-- 表头 -->
+    <view class="thead">
+      <view class="row">
+        <view class="th">课程类型</view>
+        <view class="th">提成/单</view>
+      </view>
+    </view>
+
+    <!-- 表体 -->
+    <view class="tbody">
+      <view class="row" wx:for="{{itemData}}" wx:key="_id">
+        <view class="td name">
+          <view class="course-name">
+            {{item.name}}（{{item.price}}元/{{item.durText}}）
+          </view>
+          <view wx:if="{{item.refund}}" class="peichang">
+            考不过赔偿{{item.refund}}元
+          </view>
+          <view wx:else class="nopeichang">
+            考不过无赔偿
+          </view>
+        </view>
+        <view class="td rebate">
+          {{item.rebate}}元
+        </view>
+      </view>
+
+      <!-- 无数据时 -->
+      <view wx:if="{{itemData.length === 0}}" class="empty">
+        暂无返点数据
+      </view>
+    </view>
+  </view>
+</view>

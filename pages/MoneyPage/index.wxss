@@ -6,7 +6,9 @@
   position: relative;
   color: #111;
   box-sizing: border-box;
-  padding-bottom: 200rpx;
+  padding-bottom: 300rpx;
+  background-color: rgba(247, 247, 247, 1);
+  box-shadow: 0 2px 10px 0 rgba(23, 20, 83, 0.1);
 }
 
 .init .header {
@@ -165,15 +167,15 @@
   position: fixed;
   left: 0;
   right: 0;
-  bottom: 130rpx;
+  bottom: 230rpx;
   /* 避开 tabbar，通常 tabbar 高 100rpx + 安全区 */
-  width: 100%;
+  width: 750rpx !important;
   padding: 0 32rpx;
-  box-sizing: border-box;
   display: flex;
   justify-content: center;
   z-index: 10;
-  pointer-events: auto;
+  background-color: transparent;
+  margin: 0;
 }
 
 .shareBar .shareBarInner {
@@ -199,7 +201,8 @@
   font-size: 32rpx;
   letter-spacing: 2rpx;
 }
-.rightIcon{
+
+.rightIcon {
   width: 30rpx;
   height: 30rpx;
 }

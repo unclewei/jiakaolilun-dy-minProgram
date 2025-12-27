@@ -21,8 +21,8 @@ Component({
       {
         pagePath: "/pages/MoneyPage/index",
         text: "赚钱",
-        iconPath: "../images/vip2.png",
-        selectedIconPath: "../images/vip2.png",
+        iconPath: "../images/icon/money.png",
+        selectedIconPath: "../images/icon/money.png",
         key: "money" // 给需要动态控制的 tab 加个标识 key
       },
       {

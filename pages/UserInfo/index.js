@@ -159,7 +159,7 @@ Page({
   /**  登录成功*/
   onLoginSuccess() {
     const userInfo = getApp().globalData.userInfo;
-   
+
     // 关键：全局刷新 tabBar
     getApp().refreshTabBar();
     // 请求成功，提示信息
@@ -250,5 +250,11 @@ Page({
     wx.reLaunch({
       url: '/pages/index/index',
     });
+  },
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
   }
 });

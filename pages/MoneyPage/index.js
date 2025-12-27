@@ -1,9 +1,13 @@
 // pages/money/money.js
-import { baseApi, payOrderBegin, userAmountGet } from "../../utils/api";
+import {
+  baseApi,
+  payOrderBegin,
+  userAmountGet
+} from "../../utils/api";
 
 Page({
   data: {
-    isInit: false, // 是否已渲染过
+    hasLogin: false,
     userAmount: {
       todayValue: 0,
       canTakeValue: 0,
@@ -18,6 +22,13 @@ Page({
 
   onLoad() {
     // 页面首次加载时不立即渲染，等 tab 切换到这里再渲染（同原逻辑）
+    if (!getApp().globalData.hasLogin) {
+      this.selectComponent("#LoginModal").showModal();
+      return;
+    }
+    this.setData({
+      hasLogin: true
+    })
   },
 
   onShow() {
@@ -47,6 +58,7 @@ Page({
       userInfo,
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
+      hasLogin: true
     });
     this.checkPaidDone(this.data.step);
     this.getBenefitItemData();
@@ -79,14 +91,24 @@ Page({
 
   /** 一键提现 */
   onBatchMoney() {
+    if (!getApp().globalData.hasLogin) {
+      this.selectComponent("#LoginModal").showModal();
+      return;
+    }
     // 只允许正式环境提现
     if (baseApi !== "https://ydt.biguojk.com/api") {
       // 你原来的判断方式可自行调整
-      wx.showToast({ title: "测试模式，请勿操作", icon: "none" });
+      wx.showToast({
+        title: "测试模式，请勿操作",
+        icon: "none"
+      });
       return;
     }
 
-    const { userAmount, batchLoading } = this.data;
+    const {
+      userAmount,
+      batchLoading
+    } = this.data;
     if (batchLoading) return;
     if (!userAmount || userAmount.canTakeValue === 0) {
       wx.showModal({
@@ -97,7 +119,9 @@ Page({
       return;
     }
 
-    this.setData({ batchLoading: true });
+    this.setData({
+      batchLoading: true
+    });
 
     payOrderBegin()
       .then((res) => {
@@ -127,7 +151,9 @@ Page({
         this.refreshPage();
       })
       .finally(() => {
-        this.setData({ batchLoading: false });
+        this.setData({
+          batchLoading: false
+        });
       });
   },
 
@@ -135,4 +161,10 @@ Page({
   onHide() {
     // 如果需要，可以在这里重置某些状态
   },
+    /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
 });

@@ -1,1 +1,161 @@
-/* pages/MoneyPage/MoneyContent.wxss */
+/* components/RecommendPeople/index.wxss */
+.ad {
+  padding: 20rpx;
+  background-color: rgba(247,247,247,1);
+}
+
+.adItem {
+  position: relative;
+  padding: 20rpx 10rpx;
+  margin-top: 0rpx;
+  margin-bottom: 40rpx;
+  border-radius: 20rpx;
+  background-color: #fff;
+  overflow: hidden;
+  box-shadow: 0 2px 10px 0 rgba(23, 20, 83, 0.1);
+}
+
+.adTitle {
+  font-size: 44rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+  font-weight: 600;
+  letter-spacing: 4rpx;
+  position: relative;
+}
+.adDot1 {
+  position: absolute;
+  width: 20rpx;
+  height: 20rpx;
+  background-color: #fff;
+  border: 20rpx solid #d5e0ff;
+  top: -20rpx;
+  left: 140rpx;
+  border-radius: 50%;
+  z-index: -1;
+}
+.adDot2 {
+  position: absolute;
+  width: 10rpx;
+  height: 10rpx;
+  background-color: #fff;
+  border: 14rpx solid #ffb2e3;
+  top: 40rpx;
+  right: 140rpx;
+  border-radius: 50%;
+  z-index: -1;
+}
+
+.adSubTitle {
+  font-size: 32rpx;
+  text-align: center;
+  margin-bottom: 20rpx;
+  font-weight: 600;
+  color: #d15119;
+  letter-spacing: 2rpx;
+}
+.adThirdTitle {
+  font-size: 28rpx;
+  text-align: center;
+  color: #d15119;
+}
+
+/* 推荐人群 */
+.people {
+  margin-top: 60rpx;
+}
+.peopleTitle {
+  font-size: 32rpx;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 40rpx;
+  letter-spacing: 2rpx;
+}
+
+.item {
+  border: 4rpx solid #f56c6c;
+  border-radius: 16rpx;
+  padding: 20rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+.background1 { background-color: #fff6ef; border-color: #fdf5d5 !important; }
+.background2 { background-color: #ecfefe; border-color: #e5f6ee !important; }
+.background3 { background-color: #effefa; border-color: #dbfbf2 !important; }
+.background4 { background-color: #feeffa; border-color: #fbe4f5 !important; }
+
+.itemContent {
+  display: flex;
+  align-items: center;
+  min-width: 240rpx;
+  margin-right: 20rpx;
+}
+.recomendIcon{
+  width: 80rpx;
+  height: 80rpx;
+  margin-right: 20rpx;
+
+}
+.itemIcon{
+  width: 100rpx;
+  height: 100rpx;
+}
+.itemText {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #e12323;
+}
+
+.adSubItemWrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: #333;
+}
+.adSubItem {
+  display: flex;
+  align-items: center;
+  font-size: 26rpx;
+  min-width: 190rpx;
+  margin-bottom: 10rpx;
+}
+.dot {
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  margin-right: 10rpx;
+}
+
+/* 如何赚取提成 */
+.stepWrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin-top: 60rpx;
+}
+.setpItem {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.setpItemContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.setpItem image:first-child {
+  width: 70rpx;
+  height: 70rpx;
+  margin-bottom: 20rpx;
+}
+.setpItem .itemText {
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #333;
+}
+.doubleRightIcon {
+  width: 50rpx;
+  height: 50rpx;
+  margin: 0 20rpx;
+}

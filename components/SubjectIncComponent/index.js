@@ -17,7 +17,11 @@ Component({
     step: {
       type: String,
       value: 1,
-    }
+    },
+    isTab: {
+      type: Boolean,
+      value: false,
+    },
   },
 
   /**

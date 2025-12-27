@@ -4,6 +4,7 @@
   position: relative;
   box-sizing: border-box;
   color: #404040;
+  padding-bottom: 50px;
 }
 
 .button {

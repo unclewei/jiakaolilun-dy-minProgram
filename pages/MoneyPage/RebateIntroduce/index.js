@@ -1,24 +1,26 @@
-// pages/MoneyPage/MoneyContent.js
+// components/RebateIntroduce/index.js
+
 Component({
+  properties: {},
 
-  /**
-   * 组件的属性列表
-   */
-  properties: {
-
-  },
-
-  /**
-   * 组件的初始数据
-   */
   data: {
-
+    itemData: [],
   },
 
-  /**
-   * 组件的方法列表
-   */
-  methods: {
+  lifetimes: {
+    attached() {
+      this.updateData();
+    },
+    ready() {
+      this.updateData();
+    },
+  },
 
-  }
-})
+  methods: {
+    updateData() {
+      this.setData({
+        itemData: getApp().globalData.subjectItemList,
+      });
+    },
+  },
+});
