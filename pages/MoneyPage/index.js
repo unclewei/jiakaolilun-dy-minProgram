@@ -96,19 +96,20 @@ Page({
       return;
     }
     // 只允许正式环境提现
-    if (baseApi !== "https://ydt.biguojk.com/api") {
-      // 你原来的判断方式可自行调整
-      wx.showToast({
-        title: "测试模式，请勿操作",
-        icon: "none"
-      });
-      return;
-    }
+    // if (baseApi !== "https://ydt.biguojk.com/api") {
+    //   // 你原来的判断方式可自行调整
+    //   wx.showToast({
+    //     title: "测试模式，请勿操作",
+    //     icon: "none"
+    //   });
+    //   return;
+    // }
 
     const {
       userAmount,
       batchLoading
     } = this.data;
+
     if (batchLoading) return;
     if (!userAmount || userAmount.canTakeValue === 0) {
       wx.showModal({
@@ -118,13 +119,22 @@ Page({
       });
       return;
     }
+    if (!getApp().globalData.userInfo.phoneNum) {
+      this.selectComponent("#UserPhoneSupply").showModal();
+      return
+    }
 
     this.setData({
       batchLoading: true
     });
 
+    wx.showLoading()
     payOrderBegin()
       .then((res) => {
+        wx.hideLoading()
+        this.setData({
+          batchLoading: false
+        });
         if (res.data.msg) {
           wx.showModal({
             title: "提示",
@@ -141,10 +151,14 @@ Page({
         this.refreshPage();
       })
       .catch((err) => {
-        if (err && err.code === 503) {
+        wx.hideLoading()
+        this.setData({
+          batchLoading: false
+        });
+        if (err && err.data.code === 503) {
           wx.showModal({
             title: "提示",
-            content: err.msg || "提现失败",
+            content: err.data.msg || "提现失败",
             showCancel: false,
           });
         }
@@ -156,12 +170,17 @@ Page({
         });
       });
   },
+  updateUserInfo() {
+    this.setData({
+      userInfo: getApp().globalData.userInfo,
+    })
+  },
 
   // 页面隐藏时可做清理（可选）
   onHide() {
     // 如果需要，可以在这里重置某些状态
   },
-    /**
+  /**
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {

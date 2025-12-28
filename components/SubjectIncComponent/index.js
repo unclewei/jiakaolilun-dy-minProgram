@@ -57,6 +57,7 @@ Component({
       const stepStorage = wx.getStorageSync('step')
       this.setData({
         fontSize: wx.getStorageSync('fontSize'),
+        // 有formid的人不影响
         isApproval: getApp().globalData.isApproval && getApp().globalData.isIos && !wx.getStorageSync('fromWho'),
         userInfo: getApp().globalData.userInfo,
         isSwitchPage: getCurrentPages().length === 1,

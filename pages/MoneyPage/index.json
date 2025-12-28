@@ -3,6 +3,7 @@
   "usingComponents": {
     "LoginModal": "../../components/LoginModal",
     "Avatar": "../../components/Avatar",
+    "UserPhoneSupply": "../../components/UserPhoneSupply",
     "MoneyContent":"./MoneyContent",
     "RecommendPeople":"./RecommendPeople"
   }

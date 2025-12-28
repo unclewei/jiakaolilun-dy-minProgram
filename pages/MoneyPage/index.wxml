@@ -59,6 +59,8 @@
   <MoneyContent isShowPayOrderRecord="{{isShowPayOrderRecord}}" />
   <!-- 推荐人 -->
   <RecommendPeople />
+  <!-- 推荐人 -->
+  <UserPhoneSupply id='UserPhoneSupply'  bindUpdate='updateUserInfo' />
   <!-- 分享栏 -->
   <button class="shareBar" open-type="share" wx:if="{{hasLogin}}">
     <view class="shareBarBtn">分享课程给学员</view>

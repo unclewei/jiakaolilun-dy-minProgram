@@ -220,6 +220,12 @@ Page({
     });
   },
 
+  onCheckLogin() {
+    if (!getApp().globalData.hasLogin) {
+      this.selectComponent("#LoginModal").showModal();
+      return;
+    }
+  },
   gotoOrderList(e) {
     if (!getApp().globalData.hasLogin) {
       this.selectComponent("#LoginModal").showModal();

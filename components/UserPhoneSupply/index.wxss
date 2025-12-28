@@ -1,0 +1,78 @@
+.wrap {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  min-height: 150px;
+  box-sizing: border-box;
+}
+
+.wrap .title {
+  width: 100%;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 20px;
+  text-align: left;
+  padding: 20px;
+  background: linear-gradient(to right, #3f88f7, #76cdff) !important;
+  box-sizing: border-box;
+}
+
+.wrap .title div {
+  margin-bottom: 10px;
+}
+
+.wrap input {
+  height: 30px;
+  border-radius: 5px;
+  border: 1px solid #cbcbcb;
+  font-size: 0.8125rem;
+  padding-left: 5px;
+}
+
+.wrap .content {
+  box-sizing: border-box;
+}
+
+.wrap .content .item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.wrap .tips {
+  text-align: left;
+  padding: 10px 20px;
+  padding-top: 0;
+  padding-bottom: 30px;
+}
+
+.wrap .tips div {
+  display: flex;
+  color: #9197a3;
+  font-size: 0.75rem;
+  margin-bottom: 10px;
+}
+
+.wrap .titleSecond {
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+  text-align: left;
+  font-weight: 600;
+}
+
+.wrap .input {
+  width: 100%;
+  padding: 8px;
+  outline: none;
+  font-size: 0.875rem;
+}
+
+.wrap .description {
+  color: #777;
+  margin-top: 10px;
+}
+
+.wrap .qr {
+  width: 200px;
+}

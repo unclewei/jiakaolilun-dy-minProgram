@@ -1,0 +1,24 @@
+<ConfirmModal id="ConfirmModal" imageSrc='' bindCancel='hideModal' bindConfirm='onConfirm'>
+  <div class='wrap'>
+    <div class='title'>
+      <div>您的手机号码还未填写</div>
+      <div>将影响佣金发放</div>
+    </div>
+    <div class='content'>
+      <div class='item'>
+        <span class='label'>手机：</span>
+        <input placeholder='请填写您的手机' value='{{phoneNum}}' data-item="phoneNum" bindinput="onInputChange" />
+      </div>
+    </div>
+    <div class='tips'>
+      <div>
+        <span>1、</span>上述信息仅用于佣金发放，请放心填写。
+      </div>
+      <div>
+        <span>2、</span>为保障您的权益，上述信息填写后将不可修改！
+      </div>
+    </div>
+  </div>
+
+
+</ConfirmModal>
