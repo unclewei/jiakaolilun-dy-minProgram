@@ -1,0 +1,7 @@
+<!--pages/Contract/index.wxml-->
+<view class="container">
+  <view class="contact-btn" bindtap="handleContactService">
+    <text class="btn-text">点击联系客服</text>
+  </view>
+  <text class="tip-text">如有任何问题或需要帮助，请随时联系我们的客服团队</text>
+</view>

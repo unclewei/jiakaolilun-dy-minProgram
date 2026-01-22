@@ -13,12 +13,12 @@
   height: auto;
   margin-right: 8px;
   padding: 0 7px;
-  font-size: 0.8125rem;
-  line-height: 20px;
+  font-size: 32rpx;
+  line-height: 24px;
   border-radius: 4px;
   color: #fff;
   background: #2895a7;
-  border-color: #2895a7;
+  border-color: #FFF;
 }
 
 .question {
@@ -249,7 +249,7 @@
   background-color: #e9f4ff;
   color: #444;
   border-radius: 10px;
-  font-size: 0.75rem;
+  font-size: 26rpx;
   font-weight: 600;
   padding: 2px 6px;
   margin-right: 15px;

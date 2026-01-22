@@ -24,7 +24,7 @@
   <view class='options'>
     <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode || isShowAnswer}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' isSkillOpen='{{isShowAnswer || isShowKeyWorld || isSeeMode }}' />
   </view>
-  <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode || isShowAnswer}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isShowAnswer='{{isShowAnswer}}' />
+  <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode || isShowAnswer}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isShowAnswer='{{isShowAnswer}}' answer='{{answer}}' />
 
   <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3 && !isSwipering}}" bindtap="onAnswerConfirm" data-item="{{item}}">
     确定

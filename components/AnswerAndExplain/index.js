@@ -55,6 +55,28 @@ Component({
   },
 
 
+  observers: {
+    'subjectItem': function (subjectItem) {
+      let answerNum = subjectItem?.answer?.toString() || '';
+      let answer = '';
+      if (answerNum.includes(1)) {
+        answer += 'A'
+      }
+      if (answerNum.includes(2)) {
+        answer += 'B'
+      }
+      if (answerNum.includes(3)) {
+        answer += 'C'
+      }
+      if (answerNum.includes(4)) {
+        answer += 'D'
+      }
+      this.setData({
+        answer
+      })
+    }
+  },
+
 
   /**
    * 组件的初始数据

@@ -1,0 +1,44 @@
+/* pages/Contract/index.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f5f5f5;
+  gap: 80rpx;
+}
+
+.contact-btn {
+  width: 500rpx;
+  height: 500rpx;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1890ff 0%, #096dd9 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.contact-btn:active {
+  transform: scale(0.95);
+  box-shadow: 0 2rpx 10rpx rgba(0, 0, 0, 0.15);
+}
+
+.btn-text {
+  color: #ffffff;
+  font-size: 50rpx;
+  font-weight: 500;
+  text-align: center;
+  padding: 0 20rpx;
+}
+
+.tip-text {
+  color: #999999;
+  font-size: 28rpx;
+  text-align: center;
+  padding: 0 60rpx;
+  line-height: 1.6;
+}

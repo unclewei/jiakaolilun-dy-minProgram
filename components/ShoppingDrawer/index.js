@@ -1,18 +1,13 @@
-import {
-  payForTicket,
-  autoLogin
-} from "../../plugins/wxapi";
-import {
-  postUserPhoneNum,
-  getUserCouponList
-} from "../../utils/api";
-import {
-  showToast,
-  autoChooseDisCount
-} from "../../utils/util";
+import { payForTicket, autoLogin } from "../../plugins/wxapi";
+import { postUserPhoneNum, getUserCouponList } from "../../utils/api";
+import { showToast, autoChooseDisCount } from "../../utils/util";
 
 Component({
   properties: {
+    isTab: {
+      type: Boolean,
+      value: false,
+    },
     selectItem: {
       type: Object,
       value: {},
@@ -32,33 +27,42 @@ Component({
       this.selectComponent("#baseDrawer").hideModal();
     },
 
-
     /**
      * 明信片购买
      */
     onBuy(e) {
       var that = this;
-      const fromWho = wx.getStorageSync('fromWho')
-      payForTicket({
-          paidId: that.data.selectItem._id,
-          paidType: 'item',
-          paidEntry: getApp().globalData.paidEntry,
-          orderPaySource: "wx",
-          fromWho,
-          userCouponId: that.data.disCountItem ?
-            that.data.disCountItem._id : undefined,
-        },
-        (res) => {
-          if (res === "success") {
-            wx.showToast({
-              duration: 3000,
-              title: "购买成功!",
-              icon: "success",
-            });
-            that.triggerEvent("OnSuccess");
-          }
+      const fromWho = wx.getStorageSync("fromWho") || undefined;
+      const fromUnionId = wx.getStorageSync("fromUnionId") || undefined;
+      const scenceCode = wx.getStorageSync("scenceCode") || undefined;
+      let payData = {
+        paidId: that.data.selectItem._id,
+        paidType: "item",
+        paidEntry: getApp().globalData.paidEntry,
+        orderPaySource: "wx",
+        userCouponId: that.data.disCountItem
+          ? that.data.disCountItem._id
+          : undefined,
+      };
+      if (fromWho) {
+        payData.fromWho = fromWho;
+      }
+      if (fromUnionId) {
+        payData.fromUnionId = fromUnionId;
+      }
+      if (scenceCode) {
+        payData.scenceCode = scenceCode;
+      }
+      payForTicket(payData, (res) => {
+        if (res === "success") {
+          wx.showToast({
+            duration: 3000,
+            title: "购买成功!",
+            icon: "success",
+          });
+          that.triggerEvent("OnSuccess");
         }
-      );
+      });
     },
 
     // 获取优惠券
@@ -72,16 +76,15 @@ Component({
         if (!resData.length) {
           this.setData({
             discountList: [],
-            disCountItem: null
+            disCountItem: null,
           });
           return;
         }
         this.setData({
           discountList: resData,
-          disCountItem: resData?.[0]
+          disCountItem: resData?.[0],
         });
       });
     },
-
   },
 });

@@ -108,7 +108,7 @@ App({
   globalData: {
     paidEntry: 'xcx_500',
     from: 'theory',
-    version: 9.8,
+    version: 10.6,
     cookies: null,
     isApproval: true,
     isIos: false, // 是否苹果手机

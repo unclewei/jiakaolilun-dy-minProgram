@@ -20,7 +20,7 @@
 
       <view class='foresee'>
         <span wx:if="{{thisMoniPool}}">
-          本次模拟成绩：{{thisMoniPool.score}}分，<span class='low'>不及格</span>，要继续努力哦！
+          本次模拟成绩：{{thisMoniPool.score}}分，<span class='{{thisMoniPool.score < 90 ? "low" : "ok"}}'>{{thisMoniPool.score < 90 ? '不及格' : '及格'}}</span>，要继续努力哦！
         </span>
         <span wx:else>考试通过率预测：
           <span class="{{localUtils.getRatioData(allDoneSubject).class}}">{{localUtils.getRatioData(allDoneSubject).text}}</span>，要勤加练习哦！！</span>

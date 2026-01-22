@@ -63,10 +63,12 @@ Component({
         const currentPage = pages[pages.length - 1];
         const currentPath = '/' + currentPage.route;
 
-        selected = displayList.find(item => item.pagePath === currentPath).key;
+        const tabItem = displayList.find(item => item.pagePath === currentPath)
+        if (tabItem) {
+          selected = tabItem.key
+        }
         if (!selected) selected = 'home';
       }
-      console.log('selected', selected)
       this.setData({
         displayList,
         selected

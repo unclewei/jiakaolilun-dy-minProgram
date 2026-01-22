@@ -6,18 +6,19 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: 20rpx;
+  padding: 10rpx;
   padding-top: 0;
+  padding-bottom: 40rpx;
   box-sizing: border-box;
 }
 
 .qrImg{
-  width: 400rpx;
-  height: 400rpx;
+  width: 550rpx;
+  height: 550rpx;
 }
 
 .decs {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   font-weight: bold;
   color: #000;
   margin-top: 20rpx;

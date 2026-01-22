@@ -286,6 +286,16 @@ export const userPoolList = (data) => {
 }
 
 /**
+ * 首页题库数据
+ */
+export const homePoolList = (data) => {
+  return xapi.requestWithJwtNoToast({
+    url: `${baseApi}/pool/homePoolList`,
+    method: 'post',
+    data,
+  })
+}
+/**
  * 题库数据
  */
 export const poolList = (data) => {

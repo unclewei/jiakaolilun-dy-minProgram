@@ -37,7 +37,7 @@ Component({
     },
     imageSrc: {
       type: String,
-      value: '../../images/updateBanner.jpg'
+      value: '../../images/updateBanner.png'
     }
   },
 

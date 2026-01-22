@@ -20,6 +20,9 @@
     "pages/SubjectIncTab/index",
     "pages/ReviewLicense/index",
     "pages/MoneyPage/index",
+    "pages/GzhSubcript/index",
+    "pages/Contract/index",
+    "pages/Banding/index",
     "pages/Exam/index"
   ],
   "tabBar": {

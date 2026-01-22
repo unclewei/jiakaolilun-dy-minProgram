@@ -32,7 +32,7 @@
 }
 .init .item .imgContent .itemImg {
   width: 150px;
-  height: 60px;
+  height: 89px;
   border-radius: 5px;
 }
 .init .item .imgContent .tag {

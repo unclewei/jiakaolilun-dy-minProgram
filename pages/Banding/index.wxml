@@ -1,0 +1,7 @@
+<!--pages/Banding/index.wxml-->
+<view class="container">
+  <view class="bind-btn {{logining ? 'binded' : 'unbind'}}" bindtap="handleBindClick">
+    <text class="btn-text">{{logining ? '已绑定，请返回App' : '点击登录绑定'}}</text>
+  </view>
+  <text class="tip-text">本页面仅用于关联App用户信息，不会泄露教练信息，请放心！</text>
+</view>

@@ -66,7 +66,8 @@ Component({
         return
       }
       getUserMoniPool({
-        step
+        step,
+        examType: getApp().globalData.userConfig.examType,
       }).then((res) => {
         let {
           nextMoniPool,

@@ -141,7 +141,7 @@
 
 
 <!-- 购买弹窗 -->
-<ShoppingDrawer id="ShoppingDrawer" selectItem="{{selectItem}}" bindOnSuccess='buySuccess' />
+<ShoppingDrawer id="ShoppingDrawer" selectItem="{{selectItem}}" bindOnSuccess='buySuccess' isTab='{{isTab}}' />
 
 
   <!-- 切换科目提示 -->

@@ -57,7 +57,8 @@ Page({
     let that = this
     wx.showLoading()
     getUserMoniPool({
-      step
+      step,
+      examType: getApp().globalData.userConfig.examType,
     }).then((res) => {
       wx.hideLoading()
       if (res.data.code !== 200) {

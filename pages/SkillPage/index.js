@@ -142,6 +142,7 @@ Page({
     const poolId = e.currentTarget.dataset.poolid;
     gotoSubject({
       userPoolId: undefined,
+      step:this.data.step,
       poolId,
     });
   },

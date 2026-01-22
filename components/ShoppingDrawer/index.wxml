@@ -41,7 +41,7 @@
         <view class="extraText">1.每张卡片附赠对应练习课程教程会员一年,每张兑换券都对应一件赠品</view>
         <view class="extraText">2.购买卡片非质量问题不支持7天无理由退换货</view>
       </view>
-      <view class="optionsBox buyOptions">
+      <view class="optionsBox buyOptions {{isTab && 'tabBuyOptions'}}">
         <view class="totalAmount">总计:￥{{ selectItem.price - (disCountItem.discountAmount || 0)}}</view>
         <!-- 购买按钮 -->
         <view class="optionsBtn" bindtap="onBuy">立即付款</view>

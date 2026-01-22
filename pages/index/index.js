@@ -1,13 +1,14 @@
 // index.js
 import {
   userPoolList,
-  poolList,
+  homePoolList,
   userSubjectGet
 } from '../../utils/api'
 
 import {
   gotoSubject,
-  showNetWorkToast
+  showNetWorkToast,
+  initJunmPage
 } from '../../utils/util'
 import {
   autoLogin
@@ -31,9 +32,21 @@ Page({
     console.log('options', options);
     if (options?.fromWho) {
       wx.setStorageSync('fromWho', options?.fromWho)
+      wx.removeStorageSync('fromUnionId')
+    }
+    if (options?.fromUnionId) {
+      wx.setStorageSync('fromUnionId', options?.fromUnionId)
+      wx.removeStorageSync('fromWho')
     }
     if (options?.source) {
       wx.setStorageSync('source', options?.source)
+    }
+    if (options?.scenceCode) {
+      wx.setStorageSync('scenceCode', options?.scenceCode)
+    }
+    // 登录成功后跳转的页面
+    if (options?.jumpPage) {
+      wx.setStorageSync('jumpPage', options?.jumpPage)
     }
     // 二维码进来，需要解析参数
     if (options.scene) {
@@ -41,11 +54,22 @@ Page({
         const sceneStr = decodeURIComponent(options.scene);
         const params = this.parseQuery(sceneStr)
         console.log('params', params);
-        if (params?.fromWho) {
+         if (params?.fromWho) {
           wx.setStorageSync('fromWho', params?.fromWho)
+          wx.removeStorageSync('fromUnionId')
+        }
+        if (params?.fromUnionId) {
+          wx.setStorageSync('fromUnionId', params?.fromUnionId)
+          wx.removeStorageSync('fromWho')
         }
         if (params?.source) {
           wx.setStorageSync('source', params?.source)
+        }
+        if (params?.scenceCode) {
+          wx.setStorageSync('scenceCode', params?.scenceCode)
+        }
+        if (params?.jumpPage) {
+          wx.setStorageSync('jumpPage', params?.jumpPage)
         }
       } catch (error) {
 
@@ -144,6 +168,8 @@ Page({
     if (!getApp().globalData.userInfo.phoneNum && !getApp().globalData.userInfo.isPaid) {
       this.selectComponent("#UserInfoSupply").showModal()
     }
+    // 登录成功后，跳转到指定页面
+    initJunmPage()
   },
 
   chosenAndWrong() {
@@ -167,9 +193,11 @@ Page({
         userSubject: obj
       })
     })
-    poolList({
+    homePoolList({
       step: that.data.step,
-      examType: getApp().globalData.userConfig.examType
+      examType: getApp().globalData.userConfig.examType,
+      cityId: getApp().globalData.userConfig.cityId,
+      provinceId: getApp().globalData.userConfig.provinceId
     }).then((res) => {
       wx.hideLoading()
       if (res.data.code !== 200) {
@@ -238,7 +266,7 @@ Page({
       })
       that.chosenAndWrong()
       wx.setStorageSync('step', e.currentTarget.dataset.item)
-    }, 500);
+    }, 1000);
   },
 
   gotoSubject(e) {
@@ -320,9 +348,11 @@ Page({
   },
 
   gotoLearnPage() {
-    wx.navigateTo({
-      url: '/pages/LearnPlanPage/index',
-    })
+    gotoSubject({
+      step: this.data.step,
+      poolType: 'learnPlanPage',
+      poolId:  undefined,
+    });
   },
   gotoReviewLicense() {
     wx.navigateTo({

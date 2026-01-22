@@ -88,6 +88,7 @@ Component({
         ...this.data.poolData,
         type: 'collect',
         subjectId: this.data.subjectId,
+        step: this.data.step,
         isRemove: false,
       }).then(() => {
         this.setData({
@@ -103,6 +104,7 @@ Component({
         ...this.data.poolData,
         type: 'collect',
         subjectId: this.data.subjectId,
+        step: this.data.step,
         isRemove: true,
       }).then(() => {
         this.setData({

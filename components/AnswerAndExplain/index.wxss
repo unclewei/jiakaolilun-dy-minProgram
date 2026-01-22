@@ -56,7 +56,8 @@
   font-size: 0.875rem;
   color: #000;
 }
-.tips{
+
+.tips {
   padding: 5px 10px;
 }
 
@@ -67,7 +68,7 @@
 }
 
 .init .skill .title {
-  font-size: 0.875rem;
+  font-size: 26rpx;
   color: #353535;
   font-weight: 600;
   margin-bottom: 5px;

@@ -31,12 +31,26 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
       console.log("userInfo ", userInfo);
       console.log("login_res: = ", res);
       console.log("wxapi wx.login code = ", res.code);
+      const fromWho = wx.getStorageSync('fromWho') || undefined
+      const fromUnionId = wx.getStorageSync('fromUnionId') || undefined
+      const scenceCode = wx.getStorageSync('scenceCode') || undefined
+      const source = wx.getStorageSync('source') || undefined
       let loginData = {
         code: res.code,
         userInfo,
         isUpdate,
-        fromWho: wx.getStorageSync('fromWho') || undefined,
-        // source: wx.getStorageSync('source') || undefined
+      }
+      if(fromWho){
+        loginData.fromWho = fromWho
+      }
+      if(fromUnionId){
+        loginData.fromUnionId = fromUnionId
+      }
+      if(scenceCode){
+        loginData.scenceCode = scenceCode
+      }
+      if(source){
+        loginData.source = source
       }
       login(loginData).then(function (res) {
         console.log("come in");

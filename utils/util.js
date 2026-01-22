@@ -72,27 +72,27 @@ export const getRandom = (start, end) => {
 
 /**
  * 获取理论用户操作配置
- * @param {*} param0 
+ * @param {*} param0
  */
 export const userSubjectConfigSetGet = ({
   key = undefined,
   value = undefined,
-  isGet
+  isGet,
 }) => {
   if (isGet) {
     let obj = {};
     try {
-      return wx.getStorageSync('userSubjectConfig') || {};
+      return wx.getStorageSync("userSubjectConfig") || {};
     } catch (e) {
       return obj;
     }
   } else {
     try {
-      let userSubjectConfig = wx.getStorageSync('userSubjectConfig') || {};
+      let userSubjectConfig = wx.getStorageSync("userSubjectConfig") || {};
       let obj = {};
       obj[key] = value;
       obj = Object.assign({}, userSubjectConfig, obj);
-      wx.setStorageSync('userSubjectConfig', obj)
+      wx.setStorageSync("userSubjectConfig", obj);
     } catch (e) {}
   }
 };
@@ -104,14 +104,14 @@ export const countTime = (mss) => {
   // 剩余小时
   const hour = parseInt((restSec / (60 * 60)) % 24);
   // 剩余分钟
-  const minu = parseInt((restSec / (60)) % 60);
+  const minu = parseInt((restSec / 60) % 60);
   // 剩余秒数
-  const sec = parseInt((restSec) % 60);
+  const sec = parseInt(restSec % 60);
   return {
     day,
     hour,
     minu,
-    sec
+    sec,
   };
 };
 
@@ -121,10 +121,10 @@ export const countTime = (mss) => {
  * */
 
 export const appendUrlPara = (url, params) => {
-  if (typeof params !== 'object') return url;
+  if (typeof params !== "object") return url;
   for (let i in params) {
     const param = `${i}=${params[i]}`;
-    url += url.indexOf('?') !== -1 ? '&' : '?';
+    url += url.indexOf("?") !== -1 ? "&" : "?";
     url += param;
   }
   return url;
@@ -132,61 +132,61 @@ export const appendUrlPara = (url, params) => {
 
 /**
  * 跳转去哪里学习
- * @param {*} param0 
+ * @param {*} param0
  */
 export const gotoSubject = ({
   poolType = undefined,
   step = undefined,
   poolId = undefined,
   userPoolId = undefined,
-  isReplace = undefined
+  isReplace = undefined,
 }) => {
-  const poolDataObj = getApp().globalData.poolDataObj
+  const poolDataObj = getApp().globalData.poolDataObj;
   let params = {
     step: step,
     poolId: poolId || poolDataObj?.[poolType]?._id,
     userPoolId,
-    poolType
+    poolType,
   };
-  console.log('params', params);
+  console.log("params", params);
   let url = `/pages/SubjectQuestionPage/index`;
 
   switch (poolType) {
-    case 'moni':
-      url = '/pages/SubjectMoniPage/index';
+    case "moni":
+      url = "/pages/SubjectMoniPage/index";
       break;
-    case 'special':
-      url = '/pages/SubjectMiddlePage/index';
+    case "special":
+      url = "/pages/SubjectMiddlePage/index";
       break;
-    case 'WCPage':
-      url = '/pages/SubjectWCPage/index';
+    case "WCPage":
+      url = "/pages/SubjectWCPage/index";
       break;
-    case 'learnPlanPage':
-      url = '/pages/LearnPlanPage/index';
+    case "learnPlanPage":
+      url = "/pages/LearnPlanPage/index";
       break;
-    case 'ruleIconPage': //图形速记
-      url = '/pages/RuleIconPage/index';
+    case "ruleIconPage": //图形速记
+      url = "/pages/RuleIconPage/index";
       break;
-    case 'incPage':
-      url = '/pages/SubjectIncPage/index';
+    case "incPage":
+      url = "/pages/SubjectIncPage/index";
       break;
-    case 'skillPage': // 技巧学习页
-      url = '/pages/SkillPage/index';
+    case "skillPage": // 技巧学习页
+      url = "/pages/SkillPage/index";
       break;
-    case 'userAcCodePage': // 兑换码
-      url = '/pages/UserAcCodePage/index';
+    case "userAcCodePage": // 兑换码
+      url = "/pages/UserAcCodePage/index";
       break;
   }
   url = appendUrlPara(url, params);
   if (isReplace) {
     wx.redirectTo({
       url,
-    })
+    });
     return;
   }
   wx.navigateTo({
     url,
-  })
+  });
 };
 /*
    获取10位时间戳
@@ -198,24 +198,23 @@ export const timeCodeFormatted = (time = new Date().getTime()) => {
 
 /**
  * 删除对象中的undefined
- * @param {}} time 
+ * @param {}} time
  */
 export const deleteEmptyObj = (obj = {}) => {
-  const keys = Object.keys(obj)
-  keys.forEach(key => {
+  const keys = Object.keys(obj);
+  keys.forEach((key) => {
     if (obj[key] === undefined) {
-      delete obj[key]
+      delete obj[key];
     }
-  })
-  return obj
+  });
+  return obj;
 };
-
 
 /*删除数组对象符合条件的对象
  *   @key 关键字 @keyValue关键字值 @dataList 数组对象
  * */
 export const deleteArrObjMember = (key, keyValue, dataList) => {
-  if (typeof dataList !== 'object') return dataList;
+  if (typeof dataList !== "object") return dataList;
   for (let i = 0; i < dataList.length; i++) {
     if (dataList[i][key] === keyValue) {
       dataList.splice(i, 1);
@@ -228,7 +227,7 @@ export const deleteArrObjMember = (key, keyValue, dataList) => {
 /*删除数组某个元素
  * */
 export const deleteArrMember = (arr, member) => {
-  if (typeof arr !== 'object') return arr;
+  if (typeof arr !== "object") return arr;
   let index;
   if (arr.includes(member)) {
     index = arr.indexOf(member);
@@ -250,7 +249,6 @@ export const floatNumFormatted = (num, digit = 1) => {
   return Number.parseFloat(num).toFixed(digit);
 };
 
-
 /**
  * 自动选择最佳优惠券
  * @param discountList  优惠券列表
@@ -260,36 +258,39 @@ export const floatNumFormatted = (num, digit = 1) => {
  */
 export const autoChooseDisCount = ({ discountList, totalAmount, payItem }) => {
   if (!discountList || !discountList.length || !totalAmount) {
-      // 没有优惠券
-      return null;
+    // 没有优惠券
+    return null;
   }
   // 获取在使用日期内的优惠券
   const nowDate = new Date().getTime() / 1000;
-  const aliveDiscountList = discountList.filter((item) => item.startDate < nowDate && item.endDate > nowDate);
+  const aliveDiscountList = discountList.filter(
+    (item) => item.startDate < nowDate && item.endDate > nowDate,
+  );
   if (!aliveDiscountList.length) {
-      return null;
+    return null;
   }
   // 获取该消费金额下，最大的优惠
   // 符合满减的优惠券
   const amoutMatchList = aliveDiscountList.filter((item) => {
-      //有linkId的为专属
-      if (item.linkId) {
-          return totalAmount >= item.amount && payItem && item.linkId === payItem._id;
-      }
-      return totalAmount >= item.amount;
+    //有linkId的为专属
+    if (item.linkId) {
+      return (
+        totalAmount >= item.amount && payItem && item.linkId === payItem._id
+      );
+    }
+    return totalAmount >= item.amount;
   });
   if (!amoutMatchList.length) {
-      return null;
+    return null;
   }
   // 在价格符合的优惠券里面，找到最大金额的
   return amoutMatchList.reduce((finalItem, item) => {
-      if (!finalItem) {
-          return item;
-      }
-      return item.discountAmount > finalItem.discountAmount ? item : finalItem;
+    if (!finalItem) {
+      return item;
+    }
+    return item.discountAmount > finalItem.discountAmount ? item : finalItem;
   }, null);
 };
-
 
 /*对象属性值-快速排序-降序
  * @arr 数组对象
@@ -299,19 +300,19 @@ export const autoChooseDisCount = ({ discountList, totalAmount, payItem }) => {
  * */
 export const quickSortObjDesc = (arr, key) => {
   if (!arr.length) {
-      return [];
+    return [];
   }
   let [pivot, ...rest] = arr;
   return [
-      ...quickSortObjDesc(
-          rest.filter((x) => x[key] > pivot[key]),
-          key
-      ),
-      pivot,
-      ...quickSortObjDesc(
-          rest.filter((x) => x[key] <= pivot[key]),
-          key
-      ),
+    ...quickSortObjDesc(
+      rest.filter((x) => x[key] > pivot[key]),
+      key,
+    ),
+    pivot,
+    ...quickSortObjDesc(
+      rest.filter((x) => x[key] <= pivot[key]),
+      key,
+    ),
   ];
 };
 
@@ -323,4 +324,27 @@ export function debounce(fn, delay = 300) {
       fn.apply(this, args);
     }, delay);
   };
+}
+
+/** 初始化进入跳转页面 */
+export function initJunmPage() {
+  const jumpPage = wx.getStorageSync("jumpPage");
+  if (!jumpPage) {
+    return;
+  }
+  // 跳转过一次就清除页面了
+  wx.removeStorageSync("jumpPage");
+  if (jumpPage === "index") {
+    return;
+  }
+  // tab页面更新
+  if (["SubjectIncTab", "MoneyPage", "UserInfo"].includes(jumpPage)) {
+    wx.switchTab({
+      url: `/pages/${jumpPage}/index`,
+    });
+    return;
+  }
+  wx.navigateTo({
+    url: `/pages/${jumpPage}/index`,
+  });
 }

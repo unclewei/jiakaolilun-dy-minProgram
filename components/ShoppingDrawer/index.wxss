@@ -157,8 +157,12 @@
 .buyOptions{
   justify-self: flex-end;
   align-self: self-start;
-  flex: 1;
-  align-items: flex-end;
+  flex: 1; 
+  align-self: flex-end;
+}
+.tabBuyOptions{
+align-self: unset;
+margin-bottom: 60rpx;
 }
 
 .cardImg{

@@ -1,0 +1,12 @@
+<!--pages/GzhSubcript/index.wxml-->
+<view class="container">
+  <view class="qrcode-container">
+    <image
+      class="qrcode-image"
+      src="/images/wmQRCode.jpg"
+      mode="aspectFit"
+      show-menu-by-longpress="{{true}}"
+    ></image>
+  </view>
+  <view class="tips-text">长按二维码关注公众号，及时收提现信息</view>
+</view>
