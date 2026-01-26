@@ -54,7 +54,7 @@ Component({
       userPoolShow({
         step: this.data.step,
         type: 'collect',
-        examType: getApp().globalData.userConfig.examType
+        examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
       }).then(res => {
         wx.hideLoading()
         if (res.data.code !== 200) {

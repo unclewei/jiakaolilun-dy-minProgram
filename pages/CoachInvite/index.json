@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "成为认证教练",
+  "usingComponents": {
+    "LoginModal": "/components/LoginModal/index"
+  }
+}

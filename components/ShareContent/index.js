@@ -91,5 +91,14 @@ Component({
       });
     },
 
+    /**
+     * 跳转到分享海报页面
+     */
+    gotoSharePoster() {
+      wx.navigateTo({
+        url: '/pages/SharePoster/index'
+      });
+    }
+
   }
 })

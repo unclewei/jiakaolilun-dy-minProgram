@@ -256,7 +256,11 @@ export const floatNumFormatted = (num, digit = 1) => {
  * @param payItem       购买的项
  * @returns {null|*}
  */
-export const autoChooseDisCount = ({ discountList, totalAmount, payItem }) => {
+export const autoChooseDisCount = ({
+  discountList,
+  totalAmount,
+  payItem
+}) => {
   if (!discountList || !discountList.length || !totalAmount) {
     // 没有优惠券
     return null;
@@ -328,23 +332,24 @@ export function debounce(fn, delay = 300) {
 
 /** 初始化进入跳转页面 */
 export function initJunmPage() {
-  const jumpPage = wx.getStorageSync("jumpPage");
-  if (!jumpPage) {
+  const jumpPageMix = wx.getStorageSync("jumpPage");
+  if (!jumpPageMix) {
     return;
   }
+  const jumpPage =  decodeURIComponent(jumpPageMix)
   // 跳转过一次就清除页面了
   wx.removeStorageSync("jumpPage");
-  if (jumpPage === "index") {
+  if (jumpPage === "/pages/index/index") {
     return;
   }
   // tab页面更新
-  if (["SubjectIncTab", "MoneyPage", "UserInfo"].includes(jumpPage)) {
+  if (["SubjectIncTab", "MoneyPage", "UserInfo"].some(url => jumpPage.includes(url))) {
     wx.switchTab({
-      url: `/pages/${jumpPage}/index`,
+      url: jumpPage,
     });
     return;
   }
   wx.navigateTo({
-    url: `/pages/${jumpPage}/index`,
+    url: jumpPage,
   });
 }

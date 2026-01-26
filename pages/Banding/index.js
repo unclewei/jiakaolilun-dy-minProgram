@@ -144,7 +144,7 @@ Page({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
-      examType: getApp().globalData.userConfig.examType
+      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
     })
   },
 

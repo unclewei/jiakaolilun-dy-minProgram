@@ -1,0 +1,27 @@
+<view class="poster-container" style="width: {{width}}rpx;">
+  <!-- Canvas for drawing (hidden from view) -->
+  <canvas
+    canvas-id="posterCanvas"
+    id="posterCanvas"
+    style="width: {{canvasWidth}}px; height: {{canvasHeight}}px; position: fixed; left: -9999px; top: -9999px;"
+  />
+
+  <!-- Loading state -->
+  <view wx:if="{{isLoading}}" class="loading-container">
+    <view class="loading-text">生成中...</view>
+  </view>
+
+  <!-- Display final image -->
+  <image
+    wx:if="{{posterUrl && !isLoading}}"
+    src="{{posterUrl}}"
+    mode="widthFix"
+    class="poster-image"
+    show-menu-by-longpress="{{true}}"
+  />
+
+  <!-- Error state -->
+  <view wx:if="{{!isLoading && !posterUrl}}" class="error-container">
+    <view class="error-text">图片生成失败</view>
+  </view>
+</view>

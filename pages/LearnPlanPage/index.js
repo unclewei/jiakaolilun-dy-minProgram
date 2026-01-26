@@ -63,7 +63,7 @@ Page({
   userPoolsGet() {
     userPoolList({
       step: this.data.step,
-      examType: getApp().globalData.userConfig.examType
+      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType
     }).then(res => {
       if (res.data.code !== 200) {
         return
@@ -81,7 +81,7 @@ Page({
   poolDataGet() {
     getUserMoniPool({
       step: this.data.step,
-      examType: getApp().globalData.userConfig.examType,
+      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
     }).then(res => {
       if (res.data.code !== 200) {
         return

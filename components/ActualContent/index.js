@@ -67,7 +67,7 @@ Component({
       }
       getUserMoniPool({
         step,
-        examType: getApp().globalData.userConfig.examType,
+        examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType,
       }).then((res) => {
         let {
           nextMoniPool,

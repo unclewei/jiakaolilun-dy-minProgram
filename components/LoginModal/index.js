@@ -1,13 +1,14 @@
 import {
-  doLogin
+  doLogin,
+  updateUserConfig
 } from "../../plugins/wxapi";
 
 Component({
 
   properties: {
-    isLandscape:{
-      type:Boolean,
-      value:false
+    isLandscape: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -29,6 +30,7 @@ Component({
       that.setData({
         logining: true
       })
+
       that.loginByNetWork({
         nickName: '微信用户',
         avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132", // 默认头像
@@ -58,6 +60,22 @@ Component({
         if (res === 'fail') {
           return
         }
+
+        // 如果用户没有初始化 然后有外部传入的step 和examType，帮助用户初始化
+        if (!getApp().globalData.userConfig.isInit && wx.getStorageSync('step') && wx.getStorageSync('examType')) {
+          updateUserConfig({
+            isInit: true,
+            step: wx.getStorageSync('step'),
+            cityId: "4401", // 默认是广州
+            provinceId: "44",
+            examType: wx.getStorageSync('examType')
+          }, () => {
+            that.hideModal()
+            that.triggerEvent('Success')
+          })
+          return
+        }
+
         that.hideModal()
         that.triggerEvent('Success')
       }, userInfo, false)

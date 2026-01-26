@@ -200,6 +200,8 @@ Page({
       that.setData({
         poolData: resData,
       })
+      wx.setStorageSync('examType', resData.examType)
+      wx.setStorageSync('step', resData.step)
       wx.setNavigationBarTitle({
         title: resData.name,
       })

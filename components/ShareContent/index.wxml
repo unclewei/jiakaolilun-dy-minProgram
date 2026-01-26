@@ -2,7 +2,7 @@
   <view class='title'>教练版专属推广板块，学员无法查看</view>
   <view class='item' wx:key='_id' wx:for="{{itemData}}" wx:for-item="i">
     <view class='imgContent'>
-      <image class='itemImg' src='{{urlPrefix + i.imageInfo.path}}'  mode="widthFix"/>
+      <image class='itemImg' src='{{urlPrefix + i.imageInfo.path}}' mode="widthFix" />
       <span class='tag'>
         学员购买{{i.price}}你赚<span class='money'>{{i.rebate}}</span>元！
       </span>
@@ -18,17 +18,22 @@
         </span>
       </span>
       <view class='shareContent'>
-        <button class="cleanButton share" open-type="share">去分享</button>
+        <button class="cleanButton share" open-type="share">去分享给学员</button>
       </view>
     </view>
   </view>
-  <view class='tips' bindtap="showQRCode">请关注公众号【文明一点通】</view>
-  <view class='tips' bindtap="showQRCode">及时获取提现消息</view>
+  <view class='tips' bindtap="showQRCode">请关注公众号·及时获取提现消息</view>
   <view class='tips borderline' bindtap="showQRCode">点击关注</view>
+
+  <!-- 获取分享图按钮 -->
+  <view class='poster-btn-container'>
+    <button class='poster-btn' bindtap="gotoSharePoster">邀请教练注册</button>
+    <button class='poster-btn' bindtap="gotoSharePoster">获取分享图</button>
+  </view> 
 
   <!-- 特殊情况下，关注公众号 -->
   <official-account></official-account>
 </view>
 
-  <!-- 公众号二维码 -->
-  <QRModal id="QRModal" />
+<!-- 公众号二维码 -->
+<QRModal id="QRModal" />

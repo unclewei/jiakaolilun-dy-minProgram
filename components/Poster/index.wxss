@@ -1,0 +1,38 @@
+.poster-container {
+  display: inline-block;
+  position: relative;
+}
+
+.poster-image {
+  width: 100%;
+  display: block;
+  border-radius: 8rpx;
+}
+
+.loading-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.error-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+}
+
+.error-text {
+  font-size: 28rpx;
+  color: #ff4d4f;
+}

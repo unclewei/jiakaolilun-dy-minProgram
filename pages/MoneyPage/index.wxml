@@ -15,6 +15,7 @@
             文明一点通 已认证教练
             <image class="rightIcon" src="../../images/right.png" mode="widthFix" />
           </view>
+
         </view>
       </view>
       <view class="count">
@@ -61,8 +62,16 @@
   <RecommendPeople />
   <!-- 推荐人 -->
   <UserPhoneSupply id='UserPhoneSupply'  bindUpdate='updateUserInfo' />
-  <!-- 分享栏 -->
-  <button class="shareBar" open-type="share" wx:if="{{hasLogin}}">
-    <view class="shareBarBtn">分享课程给学员</view>
-  </button>
+  <!-- 分享按钮组 -->
+  <view class="shareButtonGroup" wx:if="{{hasLogin}}">
+    <!-- 获取分享图按钮 -->
+    <button class="shareBar posterBar" bind:tap="gotoSharePoster">
+      <view class="shareBarBtn">获取分享图</view>
+    </button>
+
+    <!-- 分享课程给学员 -->
+    <button class="shareBar shareBtn" open-type="share">
+      <view class="shareBarBtn">分享课程给学员</view>
+    </button>
+  </view>
 </view>

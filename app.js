@@ -84,7 +84,7 @@ App({
       view.onShareAppMessage = () => { //重写分享配置
         return {
           imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png',
-          title: `邀请你学习驾考理论知识，精选500题，驾考决胜法宝`,
+          title: `邀请你学习驾考理论知识，精选500题，不过全退`,
           path: '/pages/index/index?fromWho=' + that.globalData.userInfo._id
         }
       }

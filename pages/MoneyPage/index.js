@@ -176,6 +176,19 @@ Page({
     })
   },
 
+  /**
+   * 跳转到分享海报页面
+   */
+  gotoSharePoster() {
+    if (!getApp().globalData.hasLogin) {
+      this.selectComponent("#LoginModal").showModal();
+      return;
+    }
+    wx.navigateTo({
+      url: '/pages/SharePoster/index'
+    });
+  },
+
   // 页面隐藏时可做清理（可选）
   onHide() {
     // 如果需要，可以在这里重置某些状态

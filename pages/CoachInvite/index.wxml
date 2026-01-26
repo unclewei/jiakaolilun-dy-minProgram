@@ -1,0 +1,86 @@
+<!--pages/CoachInvite/index.wxml-->
+<view class="coach-invite-container">
+  <!-- 头部 -->
+  <view class="header">
+    <image class="logo" src="http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png" mode="aspectFit" />
+    <text class="title">成为认证教练</text>
+    <text class="subtitle">轻松教学，收益多多</text>
+  </view>
+
+  <!-- 未登录状态 -->
+  <view class="login-section" wx:if="{{!hasLogin}}">
+    <view class="tip-text">请先登录</view>
+    <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
+  </view>
+
+  <!-- 已登录状态 - 显示用户信息 -->
+  <view class="info-section" wx:if="{{hasLogin}}">
+    <!-- 用户头像和昵称 -->
+    <view class="info-card">
+      <view class="card-title">1. 获取个人信息</view>
+      <view class="info-row">
+        <button
+          class="avatar-wrapper"
+          open-type="chooseAvatar"
+          bindchooseavatar="onChooseAvatar"
+        >
+          <image
+            class="avatar"
+            src="{{userInfo.avatarUrl || '/images/defaultAvatar.jpg'}}"
+            mode="aspectFill"
+          />
+          <view class="avatar-tip" wx:if="{{!userInfo.avatarUrl}}">点击选择头像</view>
+        </button>
+      </view>
+      <view class="nickname-input-wrapper">
+        <text class="input-label">昵称：</text>
+        <input
+          type="nickname"
+          class="nickname-input"
+          placeholder="请输入昵称"
+          value="{{userInfo.nickName}}"
+          bindinput="onNicknameInput"
+        />
+      </view>
+    </view>
+
+    <!-- 手机号 -->
+    <view class="info-card">
+      <view class="card-title">2. 获取手机号</view>
+      <button
+        class="phone-btn"
+        open-type="getPhoneNumber"
+        bindgetphonenumber="getPhoneNumber"
+      >
+        {{userInfo.phoneNum ? '重新获取手机号' : '获取手机号'}}
+      </button>
+      <view class="info-display" wx:if="{{userInfo.phoneNum}}">
+        <text class="label">状态：</text>
+        <text class="value success">已获取</text>
+      </view>
+    </view>
+
+    <!-- 邀请人信息 -->
+    <view class="info-card">
+      <view class="card-title">3. 邀请人信息</view>
+      <view class="info-display">
+        <text class="label">邀请人ID：</text>
+        <text class="value">{{fromWho || '未知'}}</text>
+      </view>
+    </view>
+
+    <!-- 注册按钮 -->
+    <button
+      class="register-btn"
+      bindtap="registerCoach"
+      disabled="{{isRegistering}}"
+      loading="{{isRegistering}}"
+    >
+      注册成为教练
+    </button>
+
+    <view class="tips">
+      <text class="tip-text">注册后即可开始推广课程赚取佣金</text>
+    </view>
+  </view>
+</view>

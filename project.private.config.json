@@ -9,6 +9,20 @@
     "miniprogram": {
       "list": [
         {
+          "name": "去做题页",
+          "pathName": "pages/index/index",
+          "query": "scenceCode=biguoH5&jumpPage=%2Fpages%2FSubjectQuestionPage%2Findex%3FpoolId%3D608a4641adbf4a4bb647e429",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "跳转提现页",
+          "pathName": "pages/index/index",
+          "query": "scenceCode=biguoH5&jumpPage=%2Fpages%2FMoneyPage%2Findex",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
           "name": "答题",
           "pathName": "pages/SubjectQuestionPage/index",
           "query": "step=1&poolType=sequence",

@@ -88,11 +88,11 @@ Page({
     this.setData({
       fontSize: wx.getStorageSync('fontSize'),
       userConfig,
-      step: userConfig.step || 1,
+      step: wx.getStorageSync("step") || userConfig.step || 1,
       provinceId: userConfig.provinceId,
       cityId: userConfig.cityId,
       stepItem: this.data.subjectSteps[userConfig.step || 1],
-      examType: userConfig.examType ? this.data.examTypes.find(p => p.key === userConfig.examType) : this.data.examTypes[0]
+      examType: wx.getStorageSync('examType') || userConfig.examType ? this.data.examTypes.find(p => p.key === userConfig.examType) : this.data.examTypes[0]
     })
     this.autoGetCity()
   },
@@ -184,6 +184,7 @@ Page({
       cityId: this.data.cityId,
     };
     wx.setStorageSync('step', this.data.stepItem.step)
+    wx.setStorageSync('examType', this.data.examType.step)
     updateUserConfig(initData, (res) => {
       if (res == 'fail') {
         return

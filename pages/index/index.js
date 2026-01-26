@@ -11,7 +11,8 @@ import {
   initJunmPage
 } from '../../utils/util'
 import {
-  autoLogin
+  autoLogin,
+  updateUserConfig
 } from "../../plugins/wxapi";
 
 Page({
@@ -30,6 +31,7 @@ Page({
 
   onLoad(options) {
     console.log('options', options);
+    let jumpPage = null
     if (options?.fromWho) {
       wx.setStorageSync('fromWho', options?.fromWho)
       wx.removeStorageSync('fromUnionId')
@@ -41,12 +43,16 @@ Page({
     if (options?.source) {
       wx.setStorageSync('source', options?.source)
     }
+    if (options?.step) {
+      wx.setStorageSync('step', options?.step)
+    }
     if (options?.scenceCode) {
       wx.setStorageSync('scenceCode', options?.scenceCode)
     }
     // 登录成功后跳转的页面
     if (options?.jumpPage) {
       wx.setStorageSync('jumpPage', options?.jumpPage)
+      jumpPage = options?.jumpPage
     }
     // 二维码进来，需要解析参数
     if (options.scene) {
@@ -54,7 +60,7 @@ Page({
         const sceneStr = decodeURIComponent(options.scene);
         const params = this.parseQuery(sceneStr)
         console.log('params', params);
-         if (params?.fromWho) {
+        if (params?.fromWho) {
           wx.setStorageSync('fromWho', params?.fromWho)
           wx.removeStorageSync('fromUnionId')
         }
@@ -65,11 +71,18 @@ Page({
         if (params?.source) {
           wx.setStorageSync('source', params?.source)
         }
+        if (params?.step) {
+          wx.setStorageSync('step', params?.step)
+        }
+        if (params?.examType) {
+          wx.setStorageSync('examType', params?.examType)
+        }
         if (params?.scenceCode) {
           wx.setStorageSync('scenceCode', params?.scenceCode)
         }
         if (params?.jumpPage) {
           wx.setStorageSync('jumpPage', params?.jumpPage)
+          jumpPage = params?.jumpPage
         }
       } catch (error) {
 
@@ -85,6 +98,10 @@ Page({
     this.setBodyHeight()
     autoLogin((res) => {
       if (res == 'fail') {
+        // 有页面跳转需求的，弹出登录框
+        if (jumpPage) {
+          this.selectComponent("#LoginModal").showModal()
+        }
         return
       }
       // 请求成功，提示信息
@@ -103,7 +120,7 @@ Page({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
-      examType: getApp().globalData.userConfig.examType,
+      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType,
       step: wx.getStorageSync('step') || this.data.step || 1,
 
     })
@@ -156,8 +173,14 @@ Page({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
-      examType: getApp().globalData.userConfig.examType
+      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
     })
+    
+    // 登录成功后，跳转到指定页面 // 如果有指定页面
+    if (wx.getStorageSync('jumpPage')) {
+      initJunmPage()
+      return
+    }
     if (getApp().globalData.userInfo.userType === 1 && !getApp().globalData.userConfig.isInit) {
       wx.navigateTo({
         url: '/pages/UserConfigInit/index',
@@ -168,8 +191,6 @@ Page({
     if (!getApp().globalData.userInfo.phoneNum && !getApp().globalData.userInfo.isPaid) {
       this.selectComponent("#UserInfoSupply").showModal()
     }
-    // 登录成功后，跳转到指定页面
-    initJunmPage()
   },
 
   chosenAndWrong() {
@@ -177,7 +198,7 @@ Page({
     // wx.showLoading()
     userPoolList({
       step: that.data.step,
-      examType: getApp().globalData.userConfig.examType
+      examType: that.data.examType
     }).then((res) => {
       wx.hideLoading()
       if (res.data.code !== 200) {
@@ -195,7 +216,7 @@ Page({
     })
     homePoolList({
       step: that.data.step,
-      examType: getApp().globalData.userConfig.examType,
+      examType: that.data.examType,
       cityId: getApp().globalData.userConfig.cityId,
       provinceId: getApp().globalData.userConfig.provinceId
     }).then((res) => {
@@ -351,7 +372,7 @@ Page({
     gotoSubject({
       step: this.data.step,
       poolType: 'learnPlanPage',
-      poolId:  undefined,
+      poolId: undefined,
     });
   },
   gotoReviewLicense() {

@@ -62,7 +62,7 @@ Page({
       step,
       type: userPoolType,
       isShowToday: true,
-      examType: getApp().globalData.userConfig.examType
+      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
     }).then(res => {
       wx.hideLoading()
       if (res.data.code !== 200) {

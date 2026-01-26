@@ -36,7 +36,7 @@ Page({
       step: options.step,
       poolId: options.poolId,
       userInfo: getApp().globalData.userInfo,
-      examType: getApp().globalData.userConfig.examType,
+      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
       isLogin: !!getApp().globalData.userInfo._id,
     })
     this.poolDataGet({
@@ -58,7 +58,7 @@ Page({
     wx.showLoading()
     getUserMoniPool({
       step,
-      examType: getApp().globalData.userConfig.examType,
+      examType: that.data.examType,
     }).then((res) => {
       wx.hideLoading()
       if (res.data.code !== 200) {

@@ -23,6 +23,8 @@
     "pages/GzhSubcript/index",
     "pages/Contract/index",
     "pages/Banding/index",
+    "pages/SharePoster/index",
+    "pages/CoachInvite/index",
     "pages/Exam/index"
   ],
   "tabBar": {

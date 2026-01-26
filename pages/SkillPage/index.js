@@ -1,6 +1,5 @@
 import {
   getUserSubjects,
-  userSubjectGet,
   poolList
 } from "../../utils/api";
 
@@ -29,11 +28,11 @@ Page({
     this.setData({
       fontSize: wx.getStorageSync('fontSize'),
       step: options.step || 1,
-      examType: getApp().globalData.userConfig.examType
+      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType
     })
     this.poolDataGet({
       step: options.step || 1,
-      examType: getApp().globalData.userConfig.examType,
+      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
       poolType: 'skill'
     });
   },
@@ -50,7 +49,7 @@ Page({
    */
   onShow() {
     this.setData({
-      examType: getApp().globalData.userConfig.examType
+      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType
     })
     if (this.data.poolIds?.length) {
       this.userPoolsGet({
@@ -74,7 +73,7 @@ Page({
     }
     this.getUserSubjects({
       step,
-      examType: getApp().globalData.userConfig.examType,
+      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
       poolIds
     });
   },

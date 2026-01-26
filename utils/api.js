@@ -472,3 +472,41 @@ export const myPromoteList = (data) => {
     data
   })
 }
+
+/**
+ * 获取  海报资源 列表
+ * @param params
+ * @returns {*}
+ */
+export const adResourceList = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/adResource/adResourceList`,
+    method: 'post',
+    data
+  })
+}
+
+/**
+ * 获取宣传二维码
+ * @param params
+ * @returns {*}
+ */
+export const getShareQRCode = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/adResource/adResourceList`,
+    method: 'post',
+    data
+  })
+}
+/**
+ * 申请成为教练
+ * @param params
+ * @returns {*}
+ */
+export const applyToCoach = (data) => {
+  return xapi.requestWithJwt({
+    url: `${baseApi}/user/applyToCoach`,
+    method: 'post',
+    data
+  })
+}

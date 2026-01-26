@@ -5,8 +5,7 @@ import {
 } from "../../plugins/wxapi";
 import {
   userPoolList,
-  poolList,
-  userSubjectGet
+  poolList, 
 } from "../../utils/api";
 import {
   gotoSubject
@@ -139,7 +138,7 @@ Page({
     });
     poolList({
       step,
-      examType: getApp().globalData.userConfig.examType
+      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
     }).then((res) => {
       if (res.data.code !== 200) {
         return;
@@ -257,10 +256,27 @@ Page({
       url: '/pages/index/index',
     });
   },
+
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function (e) {
+    const userInfo = getApp().globalData.userInfo;
 
+    // 检查是否是从邀请教练按钮触发的分享
+    if (e.target && e.target.dataset && e.target.dataset.type === 'inviteCoach') {
+      return {
+        title: '邀请您成为教练，轻松教学',
+        path: `/pages/CoachInvite/index?fromWho=${userInfo._id}`,
+        imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png'
+      };
+    }
+
+    // 默认分享配置
+    return {
+      title: '邀请你学习驾考理论知识，精选500题，不过全退',
+      path: '/pages/index/index?fromWho=' + (userInfo._id || ''),
+      imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png'
+    };
   }
 });

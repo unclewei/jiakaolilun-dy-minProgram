@@ -40,16 +40,16 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
         userInfo,
         isUpdate,
       }
-      if(fromWho){
+      if (fromWho) {
         loginData.fromWho = fromWho
       }
-      if(fromUnionId){
+      if (fromUnionId) {
         loginData.fromUnionId = fromUnionId
       }
-      if(scenceCode){
+      if (scenceCode) {
         loginData.scenceCode = scenceCode
       }
-      if(source){
+      if (source) {
         loginData.source = source
       }
       login(loginData).then(function (res) {
