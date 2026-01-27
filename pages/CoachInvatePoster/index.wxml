@@ -1,0 +1,20 @@
+<!--pages/SharePoster/index.wxml-->
+<view class="share-poster-container">
+  <!-- 海报组件 -->
+  <view class="poster-wrapper">
+    <Poster
+      id="poster"
+      mainSrc="{{mainSrc}}"
+      subSrc="{{subSrc}}"
+      width="660"
+    />
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-buttons">
+    <button class="action-btn save-btn" bindtap="saveImage">
+      <text class="btn-text">保存到本地，发送给教练</text>
+    </button>
+  </view>
+ 
+</view>

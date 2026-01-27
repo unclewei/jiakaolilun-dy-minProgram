@@ -1,7 +1,18 @@
 // pages/CoachInvite/index.js
 import {
-  applyToCoach
+  baseApi,
+  applyToCoach,
+  updateUserInfo
 } from "../../utils/api";
+import {
+  autoLogin,
+  updateUserConfig
+} from "../../plugins/wxapi";
+
+import {
+  showNetWorkToast,
+  showToast
+} from '../../utils/util'
 
 Page({
 
@@ -9,14 +20,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    fromWho: '',          // 邀请人ID
-    hasLogin: false,      // 是否已登录
+    fromWho: '', // 邀请人ID
+    hasLogin: false, // 是否已登录
     userInfo: {
       nickName: '',
       avatarUrl: '',
       phoneNum: ''
     },
-    isRegistering: false  // 是否正在注册
+    isRegistering: false // 是否正在注册
   },
 
   /**
@@ -32,6 +43,14 @@ Page({
         fromWho: options.fromWho
       });
     }
+    autoLogin((res) => {
+      if (res == 'fail') {
+        this.selectComponent("#LoginModal").showModal()
+        return
+      }
+      // 请求成功，提示信息
+      this.onLoginSuccess()
+    })
   },
 
   /**
@@ -43,11 +62,7 @@ Page({
 
     this.setData({
       hasLogin: true,
-      userInfo: {
-        nickName: userInfo.nickName || '',
-        avatarUrl: userInfo.avatarUrl || '',
-        phoneNum: userInfo.phoneNum || ''
-      }
+      userInfo: getApp().globalData.userInfo
     });
   },
 
@@ -55,13 +70,43 @@ Page({
    * 选择头像
    */
   onChooseAvatar(e) {
-    const { avatarUrl } = e.detail;
-    console.log('chooseAvatar success', avatarUrl);
-
-    this.setData({
-      'userInfo.avatarUrl': avatarUrl
+    const {
+      avatarUrl
+    } = e.detail;
+    wx.uploadFile({
+      url: `${baseApi}/userResource/userResourceSave`, // TODO: 这个地址是错误的 这里换成你们后端的上传接口即可
+      method: 'POST',
+      header: {
+        entry: 'entry',
+        Authorization: `Bearer ${getApp().globalData.cookies || ""}`
+      },
+      filePath: avatarUrl,
+      name: 'file',
+      formData: {
+        type: 'avatar' // 这里放你们接口所需要的参数
+      },
+      // 成功回调
+      success: (res) => {
+        console.log('头像返回的数据结构', res);
+        wx.hideLoading()
+        let result = JSON.parse(res.data); // JSON.parse()方法是将JSON格式字符串转换为JSON对象
+        console.log('头像返回的数据结构解析后的值', result);
+        let newAvatarUrl = result.data.path; // 返回的图片url
+        console.log('newAvatarUrl', newAvatarUrl);
+        // 将返回的url替换调默认的url，渲染在页面上
+        this.setData({
+          isEdit: true,
+          userInfo: {
+            ...this.data.userInfo,
+            avatarUrl: newAvatarUrl
+          }
+        })
+      },
+      fail: (res) => {
+        wx.hideLoading()
+        showToast('上传失败，请检查网络')
+      }
     });
-
     wx.showToast({
       title: '头像选择成功',
       icon: 'success'
@@ -73,8 +118,11 @@ Page({
    */
   onNicknameInput(e) {
     this.setData({
-      'userInfo.nickName': e.detail.value
-    });
+      userInfo: {
+        ...that.data.userInfo || {},
+        nickName
+      }
+    })
   },
 
   /**
@@ -95,7 +143,10 @@ Page({
 
     // 保存加密的手机号数据
     that.setData({
-      'userInfo.phoneNum': e.detail.code
+      userInfo: {
+        ...that.data.userInfo || {},
+        phoneNum: e.detail.code
+      }
     });
 
     wx.showToast({
@@ -104,12 +155,12 @@ Page({
     });
   },
 
-  /**
-   * 注册成为教练
-   */
-  async registerCoach() {
+  updateUserInfo(userInfo) {
     const that = this;
-
+    if (!that.data.hasLogin) {
+      this.selectComponent("#LoginModal").showModal()
+      return
+    }
     // 验证信息
     if (!this.data.userInfo.nickName) {
       wx.showToast({
@@ -134,68 +185,36 @@ Page({
       });
       return;
     }
-
-    if (!this.data.fromWho) {
-      wx.showToast({
-        title: '邀请人信息缺失',
-        icon: 'none'
-      });
-      return;
-    }
-
-    that.setData({
-      isRegistering: true
-    });
-
-    wx.showLoading({
-      title: '注册中...',
-      mask: true
-    });
-
-    try {
-      const res = await applyToCoach({
-        nickName: this.data.userInfo.nickName,
-        avatarUrl: this.data.userInfo.avatarUrl,
-        phoneCode: this.data.userInfo.phoneNum, // 使用加密的手机号code
-        fromWho: this.data.fromWho
-      });
-
-      wx.hideLoading();
-
-      if (res.data.code === 200) {
-        wx.showModal({
-          title: '注册成功',
-          content: '恭喜您成为认证教练！',
-          showCancel: false,
-          success: () => {
-            // 注册成功后刷新用户信息并跳转
-            getApp().globalData.userInfo = res.data.data.userInfo || getApp().globalData.userInfo;
-            wx.switchTab({
-              url: '/pages/index/index'
-            });
-          }
-        });
-      } else {
-        wx.showModal({
-          title: '注册失败',
-          content: res.data.msg || '注册失败，请稍后重试',
-          showCancel: false
-        });
+    wx.showLoading();
+    updateUserInfo(userInfo).then(res => {
+      wx.hideLoading()
+      if (res.data.code != 200) {
+        showNetWorkToast(res.data.msg)
+        return
       }
-    } catch (error) {
-      wx.hideLoading();
-      console.error('registerCoach error', error);
+      showToast('已更新')
+      if (!that.data.isRoom) {
+        const resData = res.data.data;
+        getApp().globalData.userInfo = resData
+      } else {
+        getApp().globalData.userInfo.nickName = userInfo.nickName
+        getApp().globalData.userInfo.avatarUrl = userInfo.avatarUrl
+      }
+
       wx.showModal({
-        title: '注册失败',
-        content: '网络错误，请稍后重试',
-        showCancel: false
+        title: '注册成功',
+        content: '后台验证通过后，您将成为认证教练！',
+        showCancel: false,
+        success: () => {
+          // 注册成功后刷新用户信息并跳转 
+          wx.switchTab({
+            url: '/pages/index/index'
+          });
+        }
       });
-    } finally {
-      that.setData({
-        isRegistering: false
-      });
-    }
+    })
   },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -83,7 +83,7 @@ Component({
       })
     },
 
-    showQRCode(){
+    showQRCode() {
       this.selectComponent("#QRModal").showModal({
         src: "../../images/wmQRCode.jpg",
         desc: "长按二维码识别",
@@ -98,6 +98,14 @@ Component({
       wx.navigateTo({
         url: '/pages/SharePoster/index'
       });
+    },
+    /**
+     * 去教练邀请页
+     */
+    gotoCoachInvite() {
+      wx.navigateTo({
+        url: '/pages/CoachInvatePoster/index',
+      })
     }
 
   }

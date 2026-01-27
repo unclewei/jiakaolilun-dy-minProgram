@@ -22,14 +22,24 @@
       </view>
     </view>
   </view>
-  <view class='tips' bindtap="showQRCode">请关注公众号·及时获取提现消息</view>
-  <view class='tips borderline' bindtap="showQRCode">点击关注</view>
-
-  <!-- 获取分享图按钮 -->
-  <view class='poster-btn-container'>
-    <button class='poster-btn' bindtap="gotoSharePoster">邀请教练注册</button>
-    <button class='poster-btn' bindtap="gotoSharePoster">获取分享图</button>
-  </view> 
+  <view class="bottomBox">
+    <view class="bottomFuncItem" bindtap="showQRCode">
+      <image class="bottomFunIcon" src="../../images/icon/gzh.png" mode="widthFix" />
+      <view class="bottomText">关注公众号</view>
+    </view>
+    <button class="cleanButton bottomFuncItem" bind:tap="gotoCoachInvite">
+      <image class="bottomFunIcon" src="../../images/icon/fxp.png" mode="widthFix" />
+      <view class="bottomText">邀请教练</view>
+    </button>
+    <view class="bottomFuncItem" bindtap="gotoSharePoster">
+      <image class="bottomFunIcon" src="../../images/icon/suiji.png" mode="widthFix" />
+      <view class="bottomText">获取分享图</view>
+    </view>
+    <button class="cleanButton bottomFuncItem" open-type="contact">
+      <image class="bottomFunIcon" src="../../images/icon/why.png" mode="widthFix" />
+      <view class="bottomText">联系客服</view>
+    </button>
+  </view>
 
   <!-- 特殊情况下，关注公众号 -->
   <official-account></official-account>

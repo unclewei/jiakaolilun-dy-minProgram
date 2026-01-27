@@ -12,7 +12,6 @@ import {
 } from '../../utils/util'
 import {
   autoLogin,
-  updateUserConfig
 } from "../../plugins/wxapi";
 
 Page({
@@ -175,7 +174,7 @@ Page({
       isCoach: getApp().globalData.userInfo.userType === 2,
       examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
     })
-    
+
     // 登录成功后，跳转到指定页面 // 如果有指定页面
     if (wx.getStorageSync('jumpPage')) {
       initJunmPage()

@@ -3,24 +3,32 @@
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   padding: 40rpx 30rpx;
+  padding-bottom: 80rpx;
   box-sizing: border-box;
 }
 
 /* 头部 */
 .header {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  padding: 60rpx 0 80rpx;
+  justify-content: center;
 }
 
 .logo {
-  width: 160rpx;
-  height: 160rpx;
+  width: 140rpx;
+  height: 140rpx;
   border-radius: 20rpx;
   background-color: #fff;
   margin-bottom: 30rpx;
   box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.headerText {
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .title {
@@ -89,6 +97,7 @@
   height: 120rpx;
   padding: 0;
   margin: 0;
+  margin-left: 20rpx !important;
   background: transparent;
   border: none;
   border-radius: 60rpx;
@@ -125,7 +134,7 @@
   margin-top: 20rpx;
 }
 
-.nickname-input-wrapper .input-label {
+.input-label {
   color: #666;
   font-weight: 600;
   min-width: 120rpx;
@@ -142,32 +151,23 @@
   border-radius: 8rpx;
   border: none;
 }
-
-.info-btn,
+ 
 .phone-btn {
   flex: 1;
   margin-left: 30rpx;
   height: 80rpx;
-  line-height: 80rpx;
+  width: 400rpx !important;
+  margin-left: 105rpx !important;
+  line-height: 80rpx !important;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
+  color: #fff !important;
   font-size: 28rpx;
   border-radius: 40rpx;
   border: none;
   text-align: center;
   box-shadow: 0 4rpx 12rpx rgba(102, 126, 234, 0.4);
 }
-
-.info-btn::after,
-.phone-btn::after {
-  border: none;
-}
-
-.phone-btn {
-  margin-left: 0;
-  width: 100%;
-}
-
+ 
 .info-display {
   display: flex;
   align-items: center;
@@ -197,7 +197,7 @@
   height: 100rpx;
   line-height: 100rpx;
   background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: #fff;
+  color: #fff !important;
   font-size: 32rpx;
   font-weight: 700;
   border-radius: 50rpx;

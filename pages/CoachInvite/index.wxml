@@ -2,16 +2,14 @@
 <view class="coach-invite-container">
   <!-- 头部 -->
   <view class="header">
-    <image class="logo" src="http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png" mode="aspectFit" />
-    <text class="title">成为认证教练</text>
-    <text class="subtitle">轻松教学，收益多多</text>
+    <image class="logo" src="https://aliyuncdn.ydt.biguojk.com//frontend/6978c542d13a74410301cdae.jpeg" mode="aspectFit" />
+    <view class="headerText">
+      <text class="title">成为认证教练</text>
+      <text class="subtitle">轻松教学，收益多多</text>
+    </view>
   </view>
 
   <!-- 未登录状态 -->
-  <view class="login-section" wx:if="{{!hasLogin}}">
-    <view class="tip-text">请先登录</view>
-    <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />
-  </view>
 
   <!-- 已登录状态 - 显示用户信息 -->
   <view class="info-section" wx:if="{{hasLogin}}">
@@ -19,39 +17,22 @@
     <view class="info-card">
       <view class="card-title">1. 获取个人信息</view>
       <view class="info-row">
-        <button
-          class="avatar-wrapper"
-          open-type="chooseAvatar"
-          bindchooseavatar="onChooseAvatar"
-        >
-          <image
-            class="avatar"
-            src="{{userInfo.avatarUrl || '/images/defaultAvatar.jpg'}}"
-            mode="aspectFill"
-          />
+        <text class="input-label">头像：</text>
+        <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
+          <image class="avatar" src="{{userInfo.avatarUrl || '/images/defaultAvatar.jpg'}}" mode="aspectFill" />
           <view class="avatar-tip" wx:if="{{!userInfo.avatarUrl}}">点击选择头像</view>
         </button>
       </view>
       <view class="nickname-input-wrapper">
         <text class="input-label">昵称：</text>
-        <input
-          type="nickname"
-          class="nickname-input"
-          placeholder="请输入昵称"
-          value="{{userInfo.nickName}}"
-          bindinput="onNicknameInput"
-        />
+        <input type="nickname" class="nickname-input" placeholder="请输入昵称" value="{{userInfo.nickName}}" bindinput="onNicknameInput" />
       </view>
     </view>
 
     <!-- 手机号 -->
     <view class="info-card">
       <view class="card-title">2. 获取手机号</view>
-      <button
-        class="phone-btn"
-        open-type="getPhoneNumber"
-        bindgetphonenumber="getPhoneNumber"
-      >
+      <button class="cleanButton phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
         {{userInfo.phoneNum ? '重新获取手机号' : '获取手机号'}}
       </button>
       <view class="info-display" wx:if="{{userInfo.phoneNum}}">
@@ -70,12 +51,7 @@
     </view>
 
     <!-- 注册按钮 -->
-    <button
-      class="register-btn"
-      bindtap="registerCoach"
-      disabled="{{isRegistering}}"
-      loading="{{isRegistering}}"
-    >
+    <button class="cleanButton register-btn" bindtap="updateUserInfo" disabled="{{isRegistering}}" loading="{{isRegistering}}">
       注册成为教练
     </button>
 
@@ -84,3 +60,5 @@
     </view>
   </view>
 </view>
+
+<LoginModal id="LoginModal" bindSuccess='onLoginSuccess' />

@@ -5,7 +5,7 @@ import {
 } from "../../plugins/wxapi";
 import {
   userPoolList,
-  poolList, 
+  poolList,
 } from "../../utils/api";
 import {
   gotoSubject
@@ -17,6 +17,7 @@ Page({
     step: wx.getStorageSync("step") || "1",
     userSubject: {}, // 用户科目数据
     isPaidDone: false,
+    shareType: 'default', // 'default' or 'inviteCoach'
     benefitItemData: [{
         name: "不过补偿",
         icon: "../../images/vipIcon/money.png",
@@ -260,23 +261,14 @@ Page({
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function (e) {
-    const userInfo = getApp().globalData.userInfo;
+  onShareAppMessage: function (e) {},
 
-    // 检查是否是从邀请教练按钮触发的分享
-    if (e.target && e.target.dataset && e.target.dataset.type === 'inviteCoach') {
-      return {
-        title: '邀请您成为教练，轻松教学',
-        path: `/pages/CoachInvite/index?fromWho=${userInfo._id}`,
-        imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png'
-      };
-    }
-
-    // 默认分享配置
-    return {
-      title: '邀请你学习驾考理论知识，精选500题，不过全退',
-      path: '/pages/index/index?fromWho=' + (userInfo._id || ''),
-      imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png'
-    };
+  /**
+   * 去教练邀请页
+   */
+  gotoCoachInvite() {
+    wx.navigateTo({
+      url: '/pages/CoachInvatePoster/index',
+    })
   }
 });

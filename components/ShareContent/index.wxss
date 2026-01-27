@@ -1,6 +1,6 @@
 /** @format */
 .init {
-  border: 2px solid #ff8989; 
+  border: 2px solid #ff8989;
   width: 710rpx;
   margin-left: 20rpx;
   margin-top: 10rpx;
@@ -159,4 +159,34 @@
 .poster-btn:active {
   transform: scale(0.98);
   opacity: 0.9;
+}
+
+.bottomBox {
+  padding: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.bottomFuncItem {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 !important;
+  padding: 0 !important;
+  background-color: transparent !important;
+}
+
+.bottomFunIcon {
+  width: 50rpx;
+  height: 50rpx;
+  margin-bottom: 10rpx;
+}
+
+.bottomText {
+  font-size: 26rpx;
+  font-weight: normal !important
 }

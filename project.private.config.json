@@ -9,11 +9,18 @@
     "miniprogram": {
       "list": [
         {
+          "name": "教练注册页",
+          "pathName": "pages/CoachInvite/index",
+          "query": "",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
           "name": "去做题页",
           "pathName": "pages/index/index",
           "query": "scenceCode=biguoH5&jumpPage=%2Fpages%2FSubjectQuestionPage%2Findex%3FpoolId%3D608a4641adbf4a4bb647e429",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "跳转提现页",
