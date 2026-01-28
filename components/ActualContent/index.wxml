@@ -14,7 +14,7 @@
     </div>
   </div>
   <div class='right'>
-    <image src='{{urlPrefix}}/6642d83ff75a096ca2870ac6.jpeg' mode="aspectFit" class='img' />
+    <image src='{{urlPrefix}}/frontend/6642d83ff75a096ca2870ac6.jpeg' mode="aspectFit" class='img' />
   </div>
 </div>
 
