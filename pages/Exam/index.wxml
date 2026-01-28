@@ -9,7 +9,7 @@
         <ExamBox title='理论考试' class="examTitle">第01号考场</ExamBox>
         <!-- 考生信息 -->
         <ExamBox title='考生信息' class="studentInfo">
-          <image class="studentAvaor" src="../../images/woman_avatar.png" mode="aspectFill"></image>
+          <image class="studentAvaor" src="{{urlPrefix}}/695d16daab7f2d41014d02af.jpeg" mode="aspectFill"></image>
           <view class="subjectName">科目{{step === 1 ? "一":"四"}}</view>
           <view class="infoDesc">考生姓名：</view>
           <view class="infoDesc">考武題数：{{step === 1 ? "100":"50"}}</view>

@@ -23,7 +23,7 @@
       </span>
     </view>
     <SubjectVideo wx:if="{{  subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
-      <image class="videoPosyImg" src="../../images/aiBg.png" mode="aspectFill" />
+      <image class="videoPosyImg" src="{{urlPrefix}}/694fb23bf252d009124011da.jpeg" mode="aspectFill" />
       <image class="videoPlay" src="../../images/play.png" mode="widthFix" />
     </SubjectVideo>
     <!-- <video class="video" poster='../../images/aiBg.png' src='{{urlPrefix + subjectItem.skillVideoUrl }}' object-fit="contain" /> -->

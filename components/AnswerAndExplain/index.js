@@ -88,10 +88,7 @@ Component({
 
 
   ready: function () {
-
-    this.setData({
-      urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
-    });
+    this.getUrlPrefix() 
   },
 
   /**
@@ -99,6 +96,18 @@ Component({
    */
   methods: {
 
+  getUrlPrefix() {
+    const that = this
+    if (!getApp().globalData.enumeMap?.configMap?.urlPrefix) {
+      setTimeout(() => {
+        that.getUrlPrefix()
+      }, 1000);
+      return
+    }
+    this.setData({
+      urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
+    })
+  },
 
   }
 })

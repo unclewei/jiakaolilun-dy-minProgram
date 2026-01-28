@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isIos: false
+    isIos: false,
+    urlPrefix: undefined
   },
 
   /**
@@ -29,7 +30,20 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    this.getUrlPrefix()
+  },
 
+  getUrlPrefix() {
+    const that = this
+    if (!getApp().globalData.enumeMap?.configMap?.urlPrefix) {
+      setTimeout(() => {
+        that.getUrlPrefix()
+      }, 1000);
+      return
+    }
+    this.setData({
+      urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
+    })
   },
 
   /**

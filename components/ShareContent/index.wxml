@@ -18,7 +18,7 @@
         </span>
       </span>
       <view class='shareContent'>
-        <button class="cleanButton share" open-type="share">去分享给学员</button>
+        <button class="cleanButton share" open-type="share">分享给学员</button>
       </view>
     </view>
   </view>

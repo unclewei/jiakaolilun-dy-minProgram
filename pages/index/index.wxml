@@ -137,7 +137,6 @@
         <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
       </view>
 
-      <!-- <image class="bannerBottom" bindtap="gotoPage" data-item="incPage" src="../../images/theorybanner1.jpg" mode="widthFix" /> -->
       <Comments wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
 
       <BottomTips />

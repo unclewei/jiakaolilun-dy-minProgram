@@ -84,6 +84,7 @@ Page({
       step,
       poolId,
       from,
+      urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
       userSubjectData: userSubjectJson, // 做题状态
       requestPoolObj: { // 请求的数据池子对象
         poolId: poolId,

@@ -3,7 +3,6 @@
   <view class="content">
     <!-- 票据购买 -->
     <view class="bodyContent">
-      <!-- <image class="cardImg" src="../../images/theorybanner4.png" mode="widthFix" /> -->
       <view class="cardItem">
         <view>卡片名称</view>
         <view>{{selectItem.name}} 卡片</view>
@@ -30,7 +29,9 @@
       </view>
       <view class="cardItem" wx:if="{{disCountItem}}">
         <view>优惠券使用</view>
-        <view style="color:red">{{disCountItem.name}}: 满{{disCountItem.amount}}减{{disCountItem.discountAmount}}</view>
+        <view style="color:red">
+          {{disCountItem.name}}: 满{{disCountItem.amount}}减{{disCountItem.discountAmount}}
+        </view>
       </view>
       <view class="cardItem">
         <view></view>
@@ -42,7 +43,9 @@
         <view class="extraText">2.购买卡片非质量问题不支持7天无理由退换货</view>
       </view>
       <view class="optionsBox buyOptions {{isTab && 'tabBuyOptions'}}">
-        <view class="totalAmount">总计:￥{{ selectItem.price - (disCountItem.discountAmount || 0)}}</view>
+        <view class="totalAmount">
+          总计:￥{{ selectItem.price - (disCountItem.discountAmount || 0)}}
+        </view>
         <!-- 购买按钮 -->
         <view class="optionsBtn" bindtap="onBuy">立即付款</view>
       </view>

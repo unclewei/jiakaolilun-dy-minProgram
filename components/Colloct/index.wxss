@@ -27,3 +27,67 @@
 .content {
   font-size: 0.875rem;
 }
+
+/* 遮罩 */
+.guide-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+/* 容器 */
+.guide-container {
+  width: 600rpx;
+  background: #fff;
+  border-radius: 24rpx;
+  overflow: hidden;
+  padding: 40rpx 0;
+}
+
+.guide-content {
+  padding: 0 40rpx;
+}
+
+.step-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.step-num { margin-right: 10rpx; }
+
+.icon-more {
+  width: 120rpx;
+  height: 60rpx;
+  margin-left: 10rpx;
+}
+
+.step-img-box {
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+
+.step-img-2 { width: 300rpx; }
+.step-img-3 { width: 450rpx; border-radius: 12rpx; }
+
+/* 绿色按钮 */
+.guide-btn {
+  margin: 40rpx auto 0;
+  width: 480rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: #57be6a;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 32rpx;
+}

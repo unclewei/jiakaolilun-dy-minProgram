@@ -43,10 +43,29 @@ Component({
     }
   },
 
+  ready: function () {
+    this.getUrlPrefix() 
+  },
+
+
   /**
    * 组件的方法列表
    */
   methods: {
+
+  getUrlPrefix() {
+    const that = this
+    if (!getApp().globalData.enumeMap?.configMap?.urlPrefix) {
+      setTimeout(() => {
+        that.getUrlPrefix()
+      }, 1000);
+      return
+    }
+    this.setData({
+      urlPrefix: getApp().globalData.enumeMap?.configMap?.urlPrefix,
+    })
+  },
+
     getRandomNumberFromList(list) {
       if (list.length === 0) {
         return null; // 返回 null 或者其他默认值，表示列表为空
