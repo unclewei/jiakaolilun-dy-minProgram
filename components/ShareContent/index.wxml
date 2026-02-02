@@ -27,14 +27,14 @@
       <image class="bottomFunIcon" src="../../images/icon/gzh.png" mode="widthFix" />
       <view class="bottomText">关注公众号</view>
     </view>
-    <button class="cleanButton bottomFuncItem" bind:tap="gotoCoachInvite">
+    <!-- <button class="cleanButton bottomFuncItem" bind:tap="gotoCoachInvite">
       <image class="bottomFunIcon" src="../../images/icon/fxp.png" mode="widthFix" />
       <view class="bottomText">邀请教练</view>
-    </button>
-    <view class="bottomFuncItem" bindtap="gotoSharePoster">
+    </button> -->
+    <!-- <view class="bottomFuncItem" bindtap="gotoSharePoster">
       <image class="bottomFunIcon" src="../../images/icon/suiji.png" mode="widthFix" />
       <view class="bottomText">获取分享图</view>
-    </view>
+    </view> -->
     <button class="cleanButton bottomFuncItem" open-type="contact">
       <image class="bottomFunIcon" src="../../images/icon/why.png" mode="widthFix" />
       <view class="bottomText">联系客服</view>

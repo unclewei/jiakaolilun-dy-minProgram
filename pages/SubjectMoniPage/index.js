@@ -20,7 +20,7 @@ Page({
     allDoneSubject: [],
     isDoneMoniPool: [],
 
-    step: '1',
+    step: undefined,
     poolId: undefined,
   },
 
@@ -28,19 +28,21 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    console.log('options',options)
+    let step = options.step || wx.getStorageSync('step') || '1'
     wx.setNavigationBarTitle({
-      title: `科目${options.step == 1 ? '一' : '四'}模拟考试`,
+      title: `科目${step == 1 ? '一' : '四'}模拟考试`,
     })
     this.setData({
       fontSize: wx.getStorageSync('fontSize'),
-      step: options.step,
+      step,
       poolId: options.poolId,
       userInfo: getApp().globalData.userInfo,
       examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
       isLogin: !!getApp().globalData.userInfo._id,
     })
     this.poolDataGet({
-      step: options.step
+      step
     })
   },
 

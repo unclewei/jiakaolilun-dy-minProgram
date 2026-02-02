@@ -34,7 +34,7 @@ Component({
 
   observers: {
     'step,isLogin': function (step, isLogin) {
-      if (!isLogin) {
+      if (!isLogin || !step) {
         return
       }
       this.poolDataGet({

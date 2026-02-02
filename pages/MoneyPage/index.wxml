@@ -65,9 +65,9 @@
   <!-- 分享按钮组 -->
   <view class="shareButtonGroup" wx:if="{{hasLogin}}">
     <!-- 获取分享图按钮 -->
-    <button class="shareBar posterBar" bind:tap="gotoSharePoster">
+    <!-- <button class="shareBar posterBar" bind:tap="gotoSharePoster">
       <view class="shareBarBtn">获取分享图</view>
-    </button>
+    </button> -->
 
     <!-- 分享课程给学员 -->
     <button class="shareBar shareBtn" open-type="share">

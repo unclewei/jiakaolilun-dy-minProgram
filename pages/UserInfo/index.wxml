@@ -85,10 +85,10 @@
           <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
           <view class="secText">分享</view>
         </button>
-        <button class="cleanButton secItem" wx:if="{{userInfo.userType === 2}}" data-type="coach" bindtap="gotoCoachInvite">
+        <!-- <button class="cleanButton secItem" wx:if="{{userInfo.userType === 2}}" data-type="coach" bindtap="gotoCoachInvite">
           <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
           <view class="secText">邀请教练</view>
-        </button>
+        </button> -->
         <view class='secItem' wx:if="{{!userInfo.phoneNum}}" bindtap="gotoPage" data-pooltype="CoachRegisterSuccessPage">
           <image class='secIcon' src='../../images/dotIcon/mine.png' mode="widthFix" />
           <view class='secText'>补全手机</view>
