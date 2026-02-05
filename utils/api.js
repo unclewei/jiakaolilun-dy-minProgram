@@ -1,9 +1,9 @@
 import xapi from "./xapi";
 // const baseApi = 'https://biguo.fanstag.com/api'
 // 测试服务器
-// const baseApi = 'https://test.biguojk.com/api'
+export const baseApi = 'https://test.biguojk.com/api'
 // 正式服务器
-export const baseApi = 'https://ydt.biguojk.com/api'
+// export const baseApi = 'https://ydt.biguojk.com/api'
 
 export const login = (data) => {
   return xapi.request({
