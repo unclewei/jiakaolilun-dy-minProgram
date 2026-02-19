@@ -58,7 +58,7 @@ Component({
       }).then(res => {
         wx.hideLoading()
         if (res.data.code !== 200) {
-          showNetWorkToast(res.data.msg)
+          // showNetWorkToast(res.data.msg)
           return
         }
         const resData = res.data.data

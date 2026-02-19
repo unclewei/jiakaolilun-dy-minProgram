@@ -1,7 +1,49 @@
 <!--pages/Banding/index.wxml-->
-<view class="container">
-  <view class="bind-btn {{logining ? 'binded' : 'unbind'}}" bindtap="handleBindClick">
-    <text class="btn-text">{{logining ? '已绑定，请返回App' : '点击登录绑定'}}</text>
+<wxs src="../../utils/resource.wxs" module="resource"></wxs>
+<view class="container " wx:if="{{hasLogin}}">
+
+  <image class="successIcon" src="../../images/right.png" mode="widthFix" />
+  <view>
+    <view class="successTips">您已关联成功</view>
+    <view class="successTips">请返回必过科技继续进行提现操作</view>
   </view>
-  <text class="tip-text">本页面仅用于关联App用户信息，不会泄露教练信息，请放心！</text>
+  <view class="successButton" bind:tap="closeApp">关联完成</view>
+</view>
+
+
+<view class="container" wx:else>
+
+
+  <text class="page-title">关联精选500题小程序</text>
+  <!-- 小程序链接区域 -->
+  <view class="mp-link-container">
+    <view class="mp-link-content">
+      <!-- 左侧：文明一点通小程序 -->
+      <view class="mp-item left">
+        <image class="mp-logo" src="{{linkLogo}}" mode="aspectFit"></image>
+        <text class="mp-name">{{linkName}}</text>
+      </view>
+
+      <!-- 中间：连接指示器 -->
+      <view class="connection-indicator">
+        <view class="dashed-line"></view>
+        <text class="connection-text">绑定</text>
+        <view class="arrow-icon">→</view>
+      </view>
+
+      <!-- 右侧：关联程序/必过科技 -->
+      <view class="mp-item right">
+        <image class="mp-logo" src="{{resource.miniprogramLogo}}" mode="aspectFit"></image>
+        <text class="mp-name">文明一点通小程序</text>
+      </view>
+    </view>
+  </view>
+  <view class="bind-btn binded" bindtap="handleBindClick">
+    <text class="btn-text">一键绑定</text>
+  </view>
+  <view >
+  <view class="tip-text">首次进行科一科四的提现时，需要先关联精选500题小程序</view>
+  <view class="tip-text-min">本页面仅用于关联App用户信息，不会泄露教练信息，请放心！</view>
+  </view>
+
 </view>

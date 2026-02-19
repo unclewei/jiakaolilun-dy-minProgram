@@ -40,7 +40,7 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
         userInfo,
         isUpdate,
       }
-      if (fromWho) {
+      if (fromWho && fromWho !== 'undefined') {
         loginData.fromWho = fromWho
       }
       if (fromUnionId) {

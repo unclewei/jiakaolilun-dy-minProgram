@@ -4,21 +4,34 @@ import {
   autoLogin,
   doLogin
 } from "../../plugins/wxapi";
+import {
+  biguoLogo
+} from "../../utils/resource";
 
+const linkEnums = [{
+  id: 'biguo',
+  name: '必过科技 公众号',
+  logo: biguoLogo
+}, ]
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    logining: false
+    logining: false,
+    hasLogin: false,
+    source: '',
+    linkName: '关联程序',
+    linkLogo: '/images/icon/user.png', // biguo的logo，从枚举中获取 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
- if (options?.fromWho) {
+    console.log('options', options);
+    if (options?.fromWho) {
       wx.setStorageSync('fromWho', options?.fromWho)
       wx.removeStorageSync('fromUnionId')
     }
@@ -39,7 +52,7 @@ Page({
         const sceneStr = decodeURIComponent(options.scene);
         const params = this.parseQuery(sceneStr)
         console.log('params', params);
-         if (params?.fromWho) {
+        if (params?.fromWho) {
           wx.setStorageSync('fromWho', params?.fromWho)
           wx.removeStorageSync('fromUnionId')
         }
@@ -71,6 +84,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    // 获取source参数
+    const source = wx.getStorageSync('source') || ''
+    console.log('source', source);
+    console.log('linkEnums', linkEnums);
+    if (source) {
+      const linkItem = linkEnums.find(p => p.id === source)
+      console.log('linkItem', linkItem);
+
+      this.setData({
+        source,
+        linkName: linkItem.name,
+        linkLogo: linkItem.logo
+      })
+    }
+
     autoLogin((res) => {
       if (res == 'fail') {
         this.setData({
@@ -100,9 +128,12 @@ Page({
         icon: 'success',
         duration: 2000
       })
-    } else {
-      this.login()
+      return
     }
+    wx.showLoading({
+      title: '绑定中',
+    })
+    this.login()
   },
 
 
@@ -137,15 +168,33 @@ Page({
   /**  登录成功*/
   onLoginSuccess() {
     // 全局刷新 tabBar
+    wx.hideLoading()
     getApp().refreshTabBar();
     this.setData({
-      isLogin: true,
+      hasLogin: true,
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
       examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
     })
+  },
+  closeApp(){
+    wx.exitMiniProgram({
+      success() {
+        console.log('已退出小程序')
+      },
+      fail(err) {
+        console.log('退出失败', err)
+      }
+    })
+  },
+
+  /**
+   * 跳转到必过科技小程序
+   */
+  handleNavigateToBiguo() {
+
   },
 
   /**
@@ -169,17 +218,4 @@ Page({
 
   },
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

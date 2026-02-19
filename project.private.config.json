@@ -9,11 +9,18 @@
     "miniprogram": {
       "list": [
         {
+          "name": "绑定页面",
+          "pathName": "pages/Banding/index",
+          "query": "source=biguo",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
           "name": "教练注册页",
           "pathName": "pages/CoachInvite/index",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "去做题页",

@@ -38,14 +38,14 @@ Page({
         img: '../../images/car/goodsTrain.png',
         disabled: true
       },
-      {
-        name: '客车',
-        type: 'bus',
-        key: 'bus',
-        name2: 'A1/A2/B1',
-        img: '../../images/car/bus.png',
-        disabled: true
-      },
+      // {
+      //   name: '客车',
+      //   type: 'bus',
+      //   key: 'bus',
+      //   name2: 'A1/A2/B1',
+      //   img: '../../images/car/bus.png',
+      //   disabled: true
+      // },
     ],
     subjectSteps: [{
         name: '未报名',

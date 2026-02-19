@@ -44,7 +44,7 @@ Component({
           ? that.data.disCountItem._id
           : undefined,
       };
-      if (fromWho) {
+      if (fromWho && fromWho !== 'undefined') {
         payData.fromWho = fromWho;
       }
       if (fromUnionId) {

@@ -1,8 +1,9 @@
 <!--pages/CoachInvite/index.wxml-->
+<wxs src="../../utils/resource.wxs" module="resource"></wxs>
 <view class="coach-invite-container">
   <!-- 头部 -->
   <view class="header">
-    <image class="logo" src="https://aliyuncdn.ydt.biguojk.com//frontend/6978c542d13a74410301cdae.jpeg" mode="aspectFit" />
+    <image class="logo" src="{{resource.miniprogramLogo}}" mode="aspectFit" />
     <view class="headerText">
       <text class="title">成为认证教练</text>
       <text class="subtitle">轻松教学，收益多多</text>
