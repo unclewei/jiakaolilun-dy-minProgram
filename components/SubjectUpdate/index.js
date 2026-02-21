@@ -54,18 +54,18 @@ Component({
     },
 
     gotoPage() {
-      wx.navigateTo({
+      tt.navigateTo({
         url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
       })
     },
 
     onConfirm() {
       const that = this
-      wx.showLoading({
+      tt.showLoading({
         title: '更新中',
       })
       setTimeout(() => {
-        wx.showToast({
+        tt.showToast({
           title: '已更新最新题库！',
           duration: 2000,
         });

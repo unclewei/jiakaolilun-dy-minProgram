@@ -71,13 +71,13 @@ Component({
         showToast(`手机号码填写错误`)
         return
       }
-      wx.showLoading()
+      tt.showLoading()
       coachPhoneNum({
         name,
         phoneNum
       }).then((res) => {
 
-        wx.hideLoading()
+        tt.hideLoading()
         if (res.data.code !== 200) {
           showNetWorkToast(res.data.msg)
           return

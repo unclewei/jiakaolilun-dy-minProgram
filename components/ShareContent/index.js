@@ -95,7 +95,7 @@ Component({
      * 跳转到分享海报页面
      */
     gotoSharePoster() {
-      wx.navigateTo({
+      tt.navigateTo({
         url: '/pages/SharePoster/index'
       });
     },
@@ -103,7 +103,7 @@ Component({
      * 去教练邀请页
      */
     gotoCoachInvite() {
-      wx.navigateTo({
+      tt.navigateTo({
         url: '/pages/CoachInvatePoster/index',
       })
     }

@@ -86,13 +86,13 @@ Page({
   onLoad(options) {
     const userConfig = getApp().globalData.userConfig
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       userConfig,
-      step: wx.getStorageSync("step") || userConfig.step || 1,
+      step: tt.getStorageSync("step") || userConfig.step || 1,
       provinceId: userConfig.provinceId,
       cityId: userConfig.cityId,
       stepItem: this.data.subjectSteps[userConfig.step || 1],
-      examType: wx.getStorageSync('examType') || userConfig.examType ? this.data.examTypes.find(p => p.key === userConfig.examType) : this.data.examTypes[0]
+      examType: tt.getStorageSync('examType') || userConfig.examType ? this.data.examTypes.find(p => p.key === userConfig.examType) : this.data.examTypes[0]
     })
     this.autoGetCity()
   },
@@ -100,7 +100,7 @@ Page({
   // 自动获取地区
   autoGetCity() {
     let now = timeCodeFormatted();
-    let ipLocationData = wx.getStorageSync('ipLocationData');
+    let ipLocationData = tt.getStorageSync('ipLocationData');
     if (ipLocationData) {
       try {
         ipLocationData = JSON.parse(ipLocationData);
@@ -128,7 +128,7 @@ Page({
           cacheTime: now
         };
         let locationData = JSON.stringify(obj);
-        wx.setStorageSync('ipLocationData', locationData)
+        tt.setStorageSync('ipLocationData', locationData)
         // 自动设置地区
 
         const data = this.selectComponent("#CitySelector").autoSetCityByIp();
@@ -170,7 +170,7 @@ Page({
           type: 'success',
         })
       );
-      wx.showModal({
+      tt.showModal({
         title: '请选择学车类型以及学车阶段哦',
         content: '选完马上就可以做题了',
       })
@@ -183,13 +183,13 @@ Page({
       provinceId: this.data.provinceId,
       cityId: this.data.cityId,
     };
-    wx.setStorageSync('step', this.data.stepItem.step)
-    wx.setStorageSync('examType', this.data.examType.step)
+    tt.setStorageSync('step', this.data.stepItem.step)
+    tt.setStorageSync('examType', this.data.examType.step)
     updateUserConfig(initData, (res) => {
       if (res == 'fail') {
         return
       }
-      wx.switchTab({
+      tt.switchTab({
         url: '/pages/index/index',
       })
     })

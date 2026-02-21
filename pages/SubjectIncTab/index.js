@@ -10,9 +10,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    const stepStorage = wx.getStorageSync('step')
+    const stepStorage = tt.getStorageSync('step')
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       step: options.step || stepStorage || 1,
     })
   },
@@ -28,7 +28,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    wx.setTabBarStyle({
+    tt.setTabBarStyle({
       backgroundColor: '#171619',
     })
   },

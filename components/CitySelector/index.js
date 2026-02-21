@@ -176,7 +176,7 @@ Component({
 
     // 通过ip的信息自动设置城市
     setDataByIp() {
-      const ipLocationDataStr = wx.getStorageSync('ipLocationData')
+      const ipLocationDataStr = tt.getStorageSync('ipLocationData')
       const locationData = getApp().globalData.locationData;
       try {
         const ipLocationData = JSON.parse(ipLocationDataStr)
@@ -203,7 +203,7 @@ Component({
             cityId: matchItem.cityId,
 
           })
-          wx.showToast({
+          tt.showToast({
             title: '已自动定位地区',
             icon: 'none',
             duration: 1000 * 2
@@ -252,14 +252,14 @@ Component({
 
     onConfirm() {
       const that = this;
-      wx.showLoading();
+      tt.showLoading();
       if (that.data.provinceId && that.data.cityId) {
         updateUserConfig({
             provinceId: that.data.provinceId,
             cityId: that.data.cityId,
           },
           (res) => {
-            wx.hideLoading();
+            tt.hideLoading();
             if (res == "fail") {
               showToast("网络错误，稍后再试");
               return;
@@ -342,13 +342,13 @@ Component({
       }
       const locationData = getApp().globalData.locationData;
       const that = this;
-      wx.showLoading();
+      tt.showLoading();
       updateUserConfig({
           provinceId,
           cityId,
         },
         (res) => {
-          wx.hideLoading();
+          tt.hideLoading();
           if (res == "fail") {
             showToast("网络错误，稍后再试");
             return;

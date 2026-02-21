@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "ColloectTipsModal": "../ColloectTipsModal"
+    "ColloectTipsModal": "../ColloectTipsModal/index"
   }
 }

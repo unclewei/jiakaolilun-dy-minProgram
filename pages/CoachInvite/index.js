@@ -38,7 +38,7 @@ Page({
 
     // 保存邀请人ID到本地
     if (options.fromWho) {
-      wx.setStorageSync('coachInviteFromWho', options.fromWho);
+      tt.setStorageSync('coachInviteFromWho', options.fromWho);
       this.setData({
         fromWho: options.fromWho
       });
@@ -73,7 +73,7 @@ Page({
     const {
       avatarUrl
     } = e.detail;
-    wx.uploadFile({
+    tt.uploadFile({
       url: `${baseApi}/userResource/userResourceSave`, // TODO: 这个地址是错误的 这里换成你们后端的上传接口即可
       method: 'POST',
       header: {
@@ -88,7 +88,7 @@ Page({
       // 成功回调
       success: (res) => {
         console.log('头像返回的数据结构', res);
-        wx.hideLoading()
+        tt.hideLoading()
         let result = JSON.parse(res.data); // JSON.parse()方法是将JSON格式字符串转换为JSON对象
         console.log('头像返回的数据结构解析后的值', result);
         let newAvatarUrl = result.data.path; // 返回的图片url
@@ -103,11 +103,11 @@ Page({
         })
       },
       fail: (res) => {
-        wx.hideLoading()
+        tt.hideLoading()
         showToast('上传失败，请检查网络')
       }
     });
-    wx.showToast({
+    tt.showToast({
       title: '头像选择成功',
       icon: 'success'
     });
@@ -132,7 +132,7 @@ Page({
     const that = this;
 
     if (e.detail.errMsg !== 'getPhoneNumber:ok') {
-      wx.showToast({
+      tt.showToast({
         title: '获取手机号失败',
         icon: 'none'
       });
@@ -149,7 +149,7 @@ Page({
       }
     });
 
-    wx.showToast({
+    tt.showToast({
       title: '获取成功',
       icon: 'success'
     });
@@ -163,7 +163,7 @@ Page({
     }
     // 验证信息
     if (!this.data.userInfo.nickName) {
-      wx.showToast({
+      tt.showToast({
         title: '请先获取用户昵称',
         icon: 'none'
       });
@@ -171,7 +171,7 @@ Page({
     }
 
     if (!this.data.userInfo.avatarUrl) {
-      wx.showToast({
+      tt.showToast({
         title: '请先获取用户头像',
         icon: 'none'
       });
@@ -179,15 +179,15 @@ Page({
     }
 
     if (!this.data.userInfo.phoneNum) {
-      wx.showToast({
+      tt.showToast({
         title: '请先获取手机号',
         icon: 'none'
       });
       return;
     }
-    wx.showLoading();
+    tt.showLoading();
     updateUserInfo(userInfo).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code != 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -201,13 +201,13 @@ Page({
         getApp().globalData.userInfo.avatarUrl = userInfo.avatarUrl
       }
 
-      wx.showModal({
+      tt.showModal({
         title: '注册成功',
         content: '后台验证通过后，您将成为认证教练！',
         showCancel: false,
         success: () => {
           // 注册成功后刷新用户信息并跳转 
-          wx.switchTab({
+          tt.switchTab({
             url: '/pages/index/index'
           });
         }

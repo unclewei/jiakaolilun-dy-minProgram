@@ -38,7 +38,7 @@ Component({
 
   lifetimes: {
     attached() {
-      wx.nextTick(() => {
+      tt.nextTick(() => {
         this.refreshList();
       })
     }
@@ -78,7 +78,7 @@ Component({
     switchTab(e) {
       const index = e.currentTarget.dataset.index;
       const url = this.data.displayList[index].pagePath;
-      wx.switchTab({
+      tt.switchTab({
         url
       });
       // switchTab 是异步的，切换后会在新页面的 onShow 中再刷新选中

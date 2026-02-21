@@ -31,13 +31,13 @@ Component({
    */
   methods: {
     onColloct() {
-      wx.setStorageSync('colloct_tag', true)
+      tt.setStorageSync('colloct_tag', true)
       this.setData({
         showColloct: false
       })
     },
     checkColloct() {
-      const isCheck = wx.getStorageSync('colloct_tag')
+      const isCheck = tt.getStorageSync('colloct_tag')
       if (!isCheck) {
         this.setData({
           showColloct: true

@@ -8,19 +8,19 @@ import {
 App({
 
   onLaunch: function () {
-    wx.getSystemInfo({
-      success: res => {
-        const patt = /ios/i
-        const isIos = patt.test(res.system) //判断设备是否为苹果手机
-        this.globalData.isIos = isIos
-        // 得到安全区域高度res.safeArea.top
-        if (res.safeArea.top > 20 && isIos) { //IPhoneX 等刘海手机底部横条高度大约为68rpx 
-          this.globalData.isBangs = true
-        } else {
-          this.globalData.isBangs = false
-        }
-      }
-    })
+    const systemInfo = tt.getSystemInfoSync()
+    const patt = /ios/i
+    const isIos = patt.test(systemInfo.system) //判断设备是否为苹果手机
+    this.globalData.isIos = isIos
+    // 得到安全区域高度
+    if (systemInfo.safeArea.top > 20 && isIos) { //IPhoneX 等刘海手机底部横条高度大约为68rpx
+      this.globalData.isBangs = true
+    } else {
+      this.globalData.isBangs = false
+    }
+    // 设置状态栏高度
+    this.globalData.titleBarHeight = systemInfo.statusBarHeight + 44
+
     this.getVersion()
     this.getSubjectItemList()
     this.getEnumeMap()
@@ -55,7 +55,7 @@ App({
   },
   getLocationDatas() {
     try {
-      const locationStorage = wx.getStorageSync('locationData')
+      const locationStorage = tt.getStorageSync('locationData')
       if (locationStorage) {
         this.globalData.locationData = JSON.parse(locationStorage)
         return
@@ -66,7 +66,7 @@ App({
         }
         const resData = res.data.data
         this.globalData.locationData = resData
-        wx.setStorageSync('locationData', JSON.stringify(resData))
+        tt.setStorageSync('locationData', JSON.stringify(resData))
       })
     } catch (error) {
       console.log('get location error', error);
@@ -74,21 +74,13 @@ App({
   },
 
   onShareAppMessage() {
-    let that = this
-    wx.onAppRoute(() => {
-      console.log('当前页面路由发生变化 触发该事件onShareAppMessage')
-      const pages = getCurrentPages() //获取加载的页面
-      const view = pages[pages.length - 1] //获取当前页面的对象
-      if (!view) return false //如果不存在页面对象 则返回
-      // 若想给个别页面做特殊处理 可以给特殊页面加isOverShare为true 就不会重写了
-      view.onShareAppMessage = () => { //重写分享配置
-        return {
-          imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png',
-          title: `邀请你学习驾考理论知识，精选500题，不过全退`,
-          path: '/pages/index/index?fromWho=' + that.globalData.userInfo._id
-        }
-      }
-    })
+    // 抖音小程序分享配置需要在各页面的 onShareAppMessage 中实现
+    // 这里保留全局分享信息的配置
+    this.globalData.shareInfo = {
+      imageUrl: 'http://aliyuncdn.ydt.biguojk.com/logo/41780e9debb632d5d348001ca7d2ba3.png',
+      title: `邀请你学习驾考理论知识，精选500题，不过全退`,
+      path: '/pages/index/index'
+    }
   },
   // 全局刷新 tabBar 方法，可在任何页面调用
   refreshTabBar() {
@@ -108,7 +100,7 @@ App({
   globalData: {
     paidEntry: 'xcx_500',
     from: 'theory',
-    version: 10.8,
+    version: 11.0,
     cookies: null,
     isApproval: true,
     isIos: false, // 是否苹果手机
@@ -125,7 +117,7 @@ App({
     innerAudioContext: undefined, // 全局播放音频上下文
     marketDefaultContentList: [], // 集市可选语句
     poolDataObj: {}, // 考题池子
-    titleBarHeight: wx.getSystemInfoSync().statusBarHeight + 44, // 状态栏高度
+    titleBarHeight: 0, // 状态栏高度,将在 onLaunch 中设置
     isBangs: false, // 是否刘海屏
   },
 

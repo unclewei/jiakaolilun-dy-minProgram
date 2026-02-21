@@ -2,6 +2,6 @@
   "component": true,
   "usingComponents": {
     "baseModal": "../baseModal/baseModal",
-    "ShoppingDrawer": "../ShoppingDrawer"
+    "ShoppingDrawer": "../ShoppingDrawer/index"
   }
 }

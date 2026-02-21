@@ -38,7 +38,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       step: options.step,
       poolId: options.poolId,
       isWrongDelete: getApp().globalData.userConfig.isWrongDelete
@@ -57,14 +57,14 @@ Page({
     step,
     userPoolType
   }) {
-    wx.showLoading()
+    tt.showLoading()
     userPoolShow({
       step,
       type: userPoolType,
       isShowToday: true,
-      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
+      examType: tt.getStorageSync('examType') || getApp().globalData.userConfig.examType
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -85,11 +85,11 @@ Page({
   getPoolData({
     userPoolId
   }) {
-    wx.showLoading()
+    tt.showLoading()
     subjectList({
       userPoolId
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return

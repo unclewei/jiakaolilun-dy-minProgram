@@ -14,7 +14,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       isIos: getApp().globalData.isIos
     })
   },

@@ -32,18 +32,18 @@ Page({
   onLoad(options) {
     console.log('options', options);
     if (options?.fromWho) {
-      wx.setStorageSync('fromWho', options?.fromWho)
-      wx.removeStorageSync('fromUnionId')
+      tt.setStorageSync('fromWho', options?.fromWho)
+      tt.removeStorageSync('fromUnionId')
     }
     if (options?.fromUnionId) {
-      wx.setStorageSync('fromUnionId', options?.fromUnionId)
-      wx.removeStorageSync('fromWho')
+      tt.setStorageSync('fromUnionId', options?.fromUnionId)
+      tt.removeStorageSync('fromWho')
     }
     if (options?.source) {
-      wx.setStorageSync('source', options?.source)
+      tt.setStorageSync('source', options?.source)
     }
     if (options?.scenceCode) {
-      wx.setStorageSync('scenceCode', options?.scenceCode)
+      tt.setStorageSync('scenceCode', options?.scenceCode)
     }
 
     // 二维码进来，需要解析参数
@@ -53,18 +53,18 @@ Page({
         const params = this.parseQuery(sceneStr)
         console.log('params', params);
         if (params?.fromWho) {
-          wx.setStorageSync('fromWho', params?.fromWho)
-          wx.removeStorageSync('fromUnionId')
+          tt.setStorageSync('fromWho', params?.fromWho)
+          tt.removeStorageSync('fromUnionId')
         }
         if (params?.fromUnionId) {
-          wx.setStorageSync('fromUnionId', params?.fromUnionId)
-          wx.removeStorageSync('fromWho')
+          tt.setStorageSync('fromUnionId', params?.fromUnionId)
+          tt.removeStorageSync('fromWho')
         }
         if (params?.source) {
-          wx.setStorageSync('source', params?.source)
+          tt.setStorageSync('source', params?.source)
         }
         if (params?.scenceCode) {
-          wx.setStorageSync('scenceCode', params?.scenceCode)
+          tt.setStorageSync('scenceCode', params?.scenceCode)
         }
       } catch (error) {
 
@@ -85,7 +85,7 @@ Page({
    */
   onShow() {
     // 获取source参数
-    const source = wx.getStorageSync('source') || ''
+    const source = tt.getStorageSync('source') || ''
     console.log('source', source);
     console.log('linkEnums', linkEnums);
     if (source) {
@@ -123,14 +123,14 @@ Page({
    */
   handleBindClick() {
     if (this.data.logining) {
-      wx.showToast({
+      tt.showToast({
         title: '已绑定，请返回App页面',
         icon: 'success',
         duration: 2000
       })
       return
     }
-    wx.showLoading({
+    tt.showLoading({
       title: '绑定中',
     })
     this.login()
@@ -145,7 +145,7 @@ Page({
     })
     that.loginByNetWork({
       nickName: 'app用户',
-      avatarUrl: "https://thirdwx.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132", // 默认头像
+      avatarUrl: "https://thirdtt.qlogo.cn/mmopen/vi_32/POgEwh4mIHO4nibH0KlMECNjjGxQUq24ZEaGT4poC6icRiccVGKSyXwibcPq4BWmiaIGuG1icwxaQX6grC9VemZoJ8rg/132", // 默认头像
     })
   },
 
@@ -168,7 +168,7 @@ Page({
   /**  登录成功*/
   onLoginSuccess() {
     // 全局刷新 tabBar
-    wx.hideLoading()
+    tt.hideLoading()
     getApp().refreshTabBar();
     this.setData({
       hasLogin: true,
@@ -176,11 +176,11 @@ Page({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
-      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
+      examType: tt.getStorageSync('examType') || getApp().globalData.userConfig.examType
     })
   },
   closeApp(){
-    wx.exitMiniProgram({
+    tt.exitMiniProgram({
       success() {
         console.log('已退出小程序')
       },

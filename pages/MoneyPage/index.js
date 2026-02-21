@@ -98,7 +98,7 @@ Page({
     // 只允许正式环境提现
     // if (baseApi !== "https://ydt.biguojk.com/api") {
     //   // 你原来的判断方式可自行调整
-    //   wx.showToast({
+    //   tt.showToast({
     //     title: "测试模式，请勿操作",
     //     icon: "none"
     //   });
@@ -112,7 +112,7 @@ Page({
 
     if (batchLoading) return;
     if (!userAmount || userAmount.canTakeValue === 0) {
-      wx.showModal({
+      tt.showModal({
         title: "提示",
         content: "可提现金额为0",
         showCancel: false,
@@ -128,21 +128,21 @@ Page({
       batchLoading: true
     });
 
-    wx.showLoading()
+    tt.showLoading()
     payOrderBegin()
       .then((res) => {
-        wx.hideLoading()
+        tt.hideLoading()
         this.setData({
           batchLoading: false
         });
         if (res.data.msg) {
-          wx.showModal({
+          tt.showModal({
             title: "提示",
             content: res.data.msg,
             showCancel: false,
           });
         } else {
-          wx.showModal({
+          tt.showModal({
             title: "成功",
             content: "提现成功！工作人员会在24小时内审核并予以放款",
             showCancel: false,
@@ -151,12 +151,12 @@ Page({
         this.refreshPage();
       })
       .catch((err) => {
-        wx.hideLoading()
+        tt.hideLoading()
         this.setData({
           batchLoading: false
         });
         if (err && err.data.code === 503) {
-          wx.showModal({
+          tt.showModal({
             title: "提示",
             content: err.data.msg || "提现失败",
             showCancel: false,
@@ -184,7 +184,7 @@ Page({
       this.selectComponent("#LoginModal").showModal();
       return;
     }
-    wx.navigateTo({
+    tt.navigateTo({
       url: '/pages/SharePoster/index'
     });
   },

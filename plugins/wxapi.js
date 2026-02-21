@@ -24,17 +24,17 @@ export const autoLogin = (callBack) => {
 
 /**微信登录方法 */
 export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
-  wx.showLoading()
-  wx.login({
+  tt.showLoading()
+  tt.login({
     success: function (res) {
       // success
       console.log("userInfo ", userInfo);
       console.log("login_res: = ", res);
-      console.log("wxapi wx.login code = ", res.code);
-      const fromWho = wx.getStorageSync('fromWho') || undefined
-      const fromUnionId = wx.getStorageSync('fromUnionId') || undefined
-      const scenceCode = wx.getStorageSync('scenceCode') || undefined
-      const source = wx.getStorageSync('source') || undefined
+      console.log("wxapi tt.login code = ", res.code);
+      const fromWho = tt.getStorageSync('fromWho') || undefined
+      const fromUnionId = tt.getStorageSync('fromUnionId') || undefined
+      const scenceCode = tt.getStorageSync('scenceCode') || undefined
+      const source = tt.getStorageSync('source') || undefined
       let loginData = {
         code: res.code,
         userInfo,
@@ -58,7 +58,7 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
           loginFailOption(callback, res, isInit)
           return
         }
-        wx.hideLoading()
+        tt.hideLoading()
         let resData = res.data.data
         getApp().globalData.cookies = res.data.token
         getApp().globalData.userInfo = resData
@@ -79,14 +79,14 @@ export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
 export const loginFailOption = (callback, res, isInit) => {
   callback('fail')
   if (isInit) {
-    wx.hideLoading()
+    tt.hideLoading()
     return
   }
   if (res && res.daata && res.data.code == 503 && res.data.msg == '用户身份验证失败') {
     callback('noAuth')
     return
   }
-  wx.showToast({
+  tt.showToast({
     title: '网络错误，请稍后重试',
     icon: 'none'
   })
@@ -95,7 +95,7 @@ export const loginFailOption = (callback, res, isInit) => {
 // 获取用户配置
 export const getUserConfig = (callBack) => {
   userConfigGet().then(res => {
-    wx.hideLoading()
+    tt.hideLoading()
     if (res.data.code !== 200) {
       callback('fail')
       return;
@@ -107,7 +107,7 @@ export const getUserConfig = (callBack) => {
 }
 // 更新用户配置
 export const updateUserConfig = (data, callBack) => {
-  wx.showLoading()
+  tt.showLoading()
   syncUserConfig(data).then(res => {
     if (res.data.code !== 200) {
       callback('fail')
@@ -119,12 +119,12 @@ export const updateUserConfig = (data, callBack) => {
 
 /**买票 */
 export const payForTicket = (data, callback) => {
-  wx.showLoading({
+  tt.showLoading({
     title: '',
     mask: true
   })
   createOrder(data).then(res => {
-    wx.hideLoading()
+    tt.hideLoading()
     if (res.data.code !== 200) {
       showNetWorkToast(res.data.msg)
       callback('fail')
@@ -137,7 +137,7 @@ export const showMeTheMoney = (data, callback) => {
   // debugger
   // reTryCount = 5 执行到这报错
 
-  wx.requestPayment({
+  tt.requestPayment({
     timeStamp: data.timeStamp,
     nonceStr: data.nonceStr,
     package: data.package,
@@ -146,14 +146,14 @@ export const showMeTheMoney = (data, callback) => {
     success(res) {
       console.log('付款成功')
       // 成功后修改订单状态
-      wx.showLoading({
+      tt.showLoading({
         title: '更新中，请稍等...',
       })
       afterPayFunc(data.orderId, callback)
     },
     fail(res) {
       console.log(res)
-      wx.showToast({
+      tt.showToast({
         duration: 3000,
         title: '支付失败',
         icon: 'error'
@@ -174,8 +174,8 @@ export const afterPayFunc = (orderId, callback) => {
       return
     }
     if (payRes.data.code !== 200 && reTryCount <= 0) {
-      wx.hideLoading()
-      wx.showModal({
+      tt.hideLoading()
+      tt.showModal({
         title: '网络错误',
         content: '请稍后尝试，可以去个人中心联系客服处理',
         showCancel: false

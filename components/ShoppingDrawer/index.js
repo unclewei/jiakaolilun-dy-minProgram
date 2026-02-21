@@ -32,9 +32,9 @@ Component({
      */
     onBuy(e) {
       var that = this;
-      const fromWho = wx.getStorageSync("fromWho") || undefined;
-      const fromUnionId = wx.getStorageSync("fromUnionId") || undefined;
-      const scenceCode = wx.getStorageSync("scenceCode") || undefined;
+      const fromWho = tt.getStorageSync("fromWho") || undefined;
+      const fromUnionId = tt.getStorageSync("fromUnionId") || undefined;
+      const scenceCode = tt.getStorageSync("scenceCode") || undefined;
       let payData = {
         paidId: that.data.selectItem._id,
         paidType: "item",
@@ -55,7 +55,7 @@ Component({
       }
       payForTicket(payData, (res) => {
         if (res === "success") {
-          wx.showToast({
+          tt.showToast({
             duration: 3000,
             title: "购买成功!",
             icon: "success",

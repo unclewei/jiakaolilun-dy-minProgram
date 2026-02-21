@@ -82,7 +82,7 @@ Component({
 
   ready() {
     this.setData({
-      isApproval: getApp().globalData.isApproval && getApp().globalData.isIos && !wx.getStorageSync('fromWho'),
+      isApproval: getApp().globalData.isApproval && getApp().globalData.isIos && !tt.getStorageSync('fromWho'),
       userConfig: getApp().globalData.userConfig,
       userInfo: getApp().globalData.userInfo,
       isCoach: getApp().globalData.userInfo.userType === 2
@@ -110,7 +110,7 @@ Component({
       }
     },
     toIncPage() {
-      wx.navigateTo({
+      tt.navigateTo({
         url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
       })
     },

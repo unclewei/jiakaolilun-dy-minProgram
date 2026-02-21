@@ -3,6 +3,6 @@
   "navigationBarBackgroundColor": "#201e24",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "SubjectIncComponent": "../../components/SubjectIncComponent"
+    "SubjectIncComponent": "../../components/SubjectIncComponent/index"
   }
 }

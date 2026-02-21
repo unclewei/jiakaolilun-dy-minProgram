@@ -59,7 +59,7 @@ Component({
 
     showModal: function () {
       if (!this.data.isShow) {
-        wx.hideKeyboard();
+        tt.hideKeyboard();
         this.setData({
           isShow: !this.data.isShow
         })

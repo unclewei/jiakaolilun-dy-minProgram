@@ -117,7 +117,7 @@ Component({
     },
     showPrview(e){
       const item = e.currentTarget.dataset.item;
-      wx.previewImage({
+      tt.previewImage({
         urls:[item],
         current: 0
       })

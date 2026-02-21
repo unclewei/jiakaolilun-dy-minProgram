@@ -10,13 +10,13 @@ export const clearUserSubjectData = ({
 }) => {
   if (!userPoolId && !poolId) return;
   let keyName = `localPoolStatus_${poolId || userPoolId}`;
-  wx.removeStorageSync(keyName)
+  tt.removeStorageSync(keyName)
   userSubjectRemove({
     poolId,
     userPoolId
   }).then((res) => {
     if (!isNoTips) {
-      wx.showModal({
+      tt.showModal({
         title:'已为你重置本次做题数据',
         content:'可重新做题',
       })

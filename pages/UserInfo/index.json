@@ -1,15 +1,15 @@
 {
   "navigationBarTitleText": "我的",
   "usingComponents": {
-    "LoginModal": "../../components/LoginModal",
-    "QRModal": "../../components/QRModal",
-    "Avatar": "../../components/Avatar",
-    "SwitchSubjectBox": "../../components/SwitchSubjectBox",
-    "StepSwitch": "../../components/StepSwitch",
-    "PassRate": "../../components/PassRate",
-    "CitySelector": "../../components/CitySelector",
-    "CarType": "../../components/CarType",
-    "BottomTips": "../../components/BottomTips",
-    "SubjectUpdate": "../../components/SubjectUpdate"
+    "LoginModal": "../../components/LoginModal/index",
+    "QRModal": "../../components/QRModal/index",
+    "Avatar": "../../components/Avatar/index",
+    "SwitchSubjectBox": "../../components/SwitchSubjectBox/index",
+    "StepSwitch": "../../components/StepSwitch/index",
+    "PassRate": "../../components/PassRate/index",
+    "CitySelector": "../../components/CitySelector/index",
+    "CarType": "../../components/CarType/index",
+    "BottomTips": "../../components/BottomTips/index",
+    "SubjectUpdate": "../../components/SubjectUpdate/index"
   }
 }

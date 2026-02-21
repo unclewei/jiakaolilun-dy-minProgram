@@ -57,7 +57,7 @@ Component({
         palyUrl: palyUrl
       })
 
-      // wx.previewMedia({
+      // tt.previewMedia({
       //   sources: [{
       //     url: palyUrl,
       //     type: 'video'

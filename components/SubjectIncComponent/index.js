@@ -54,11 +54,11 @@ Component({
    */
   methods: {
     initData() {
-      const stepStorage = wx.getStorageSync('step')
+      const stepStorage = tt.getStorageSync('step')
       this.setData({
-        fontSize: wx.getStorageSync('fontSize'),
+        fontSize: tt.getStorageSync('fontSize'),
         // 有formid的人不影响
-        isApproval: getApp().globalData.isApproval && getApp().globalData.isIos && !wx.getStorageSync('fromWho'),
+        isApproval: getApp().globalData.isApproval && getApp().globalData.isIos && !tt.getStorageSync('fromWho'),
         userInfo: getApp().globalData.userInfo,
         isSwitchPage: getCurrentPages().length === 1,
         isUserInfoOK: getApp().globalData.userInfo.name && getApp().globalData.userInfo.phoneNum,
@@ -117,7 +117,7 @@ Component({
         const itemData = that.data.totalItem.filter(p => p.step.includes(newStep))
         const paidItem = itemData?.find(p => p.isPaidDone)
         const isDefaultSelectedItem = itemData.find(p => p.isDefaultSelected)
-        wx.setStorageSync('step', newStep)
+        tt.setStorageSync('step', newStep)
         that.setData({
           step: newStep,
           itemData,
@@ -144,12 +144,12 @@ Component({
     gotoSubjectPage() {
       if (this.data.selectItem.isPaidDone) {
         if (this.data.isSwitchPage) {
-          wx.switchTab({
+          tt.switchTab({
             url: '/pages/index/index',
           })
           return
         }
-        wx.navigateBack();
+        tt.navigateBack();
       }
     },
     updateUserInfo() {

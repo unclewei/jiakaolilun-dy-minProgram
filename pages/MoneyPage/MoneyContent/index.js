@@ -135,10 +135,10 @@ Component({
     // 复制手机号（联系教练）
     onCopyPhone(e) {
       const phone = e.currentTarget.dataset.phone;
-      wx.setClipboardData({
+      tt.setClipboardData({
         data: phone,
         success: () => {
-          wx.showToast({
+          tt.showToast({
             title: '复制手机成功',
             icon: 'success'
           });
@@ -160,7 +160,7 @@ Component({
       }
 
       let level = tabValue === 'studentOrder' ? 'first' : 'second';
-      wx.showLoading()
+      tt.showLoading()
       promoteOrderList({
           level,
           coachOrderType: coachOrderType === 'undefined' ? undefined : coachOrderType
@@ -171,7 +171,7 @@ Component({
             return;
           }
           const resData = res.data.data;
-          wx.hideLoading()
+          tt.hideLoading()
           this.setData({
             orderData: resData || [],
             userInfo: getApp().globalData.userInfo,
@@ -181,13 +181,13 @@ Component({
 
         })
         .catch(() => {
-          wx.hideLoading()
+          tt.hideLoading()
         });
     },
 
     // 加载提现记录
     loadPayOrderRecord() {
-      wx.showLoading()
+      tt.showLoading()
       payOrderList()
         .then(res => {
           if (res.data.code !== 200) {
@@ -196,19 +196,19 @@ Component({
           }
           const resData = res.data.data;
           console.log('resData',resData)
-          wx.hideLoading()
+          tt.hideLoading()
           this.setData({
             payOrderData: resData || [],
           });
         })
         .catch(() => {
-          wx.hideLoading()
+          tt.hideLoading()
         });
     },
 
     // 加载我推广的人员
     loadMyPromote(userType) {
-      wx.showLoading()
+      tt.showLoading()
       myPromoteList({
           userType
         })
@@ -218,13 +218,13 @@ Component({
             return;
           }
           const resData = res.data.data;
-          wx.hideLoading()
+          tt.hideLoading()
           this.setData({
             memberData: resData || [],
           });
         })
         .catch(() => {
-          wx.hideLoading()
+          tt.hideLoading()
         });
     },
 

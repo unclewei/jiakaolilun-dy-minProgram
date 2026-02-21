@@ -86,7 +86,7 @@ Component({
         console.log('获取主图信息成功:', mainImgInfo)
 
         // Convert rpx to px (assuming 750rpx = 375px screen width)
-        const systemInfo = wx.getSystemInfoSync()
+        const systemInfo = tt.getSystemInfoSync()
         const pixelRatio = systemInfo.pixelRatio || 2
         const canvasWidth = this.data.width / 2 // Convert rpx to px
         const canvasHeight = (canvasWidth / mainImgInfo.width) * mainImgInfo.height
@@ -99,7 +99,7 @@ Component({
         })
 
         // 2. Initialize canvas
-        const ctx = wx.createCanvasContext('posterCanvas', this)
+        const ctx = tt.createCanvasContext('posterCanvas', this)
 
         // 3. Draw main image (background)
         await this.drawImageToCanvas(ctx, this.data.mainSrc, 0, 0, canvasWidth, canvasHeight)
@@ -218,7 +218,7 @@ Component({
 
     downloadImage(url) {
       return new Promise((resolve, reject) => {
-        wx.downloadFile({
+        tt.downloadFile({
           url: url,
           success: (res) => {
             if (res.statusCode === 200) {
@@ -241,7 +241,7 @@ Component({
       const fullSrc = `${this.data.urlPrefix}${src}`
       console.log('getImageInfo 完整路径:', fullSrc)
       return new Promise((resolve, reject) => {
-        wx.getImageInfo({
+        tt.getImageInfo({
           src: fullSrc,
           success: (res) => {
             console.log('getImageInfo 成功:', res)
@@ -257,7 +257,7 @@ Component({
     },
 
     canvasToImage(canvasWidth, canvasHeight) {
-      wx.canvasToTempFilePath({
+      tt.canvasToTempFilePath({
         canvasId: 'posterCanvas',
         x: 0,
         y: 0,

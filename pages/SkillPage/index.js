@@ -26,13 +26,13 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       step: options.step || 1,
-      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType
+      examType: tt.getStorageSync('examType') ||getApp().globalData.userConfig.examType
     })
     this.poolDataGet({
       step: options.step || 1,
-      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
+      examType: tt.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
       poolType: 'skill'
     });
   },
@@ -49,7 +49,7 @@ Page({
    */
   onShow() {
     this.setData({
-      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType
+      examType: tt.getStorageSync('examType') ||getApp().globalData.userConfig.examType
     })
     if (this.data.poolIds?.length) {
       this.userPoolsGet({
@@ -73,7 +73,7 @@ Page({
     }
     this.getUserSubjects({
       step,
-      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
+      examType: tt.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
       poolIds
     });
   },
@@ -112,7 +112,7 @@ Page({
     poolType,
     examType
   }) {
-    wx.showLoading()
+    tt.showLoading()
     poolList({
         step: Number.parseInt(step),
         type: poolType,
@@ -120,7 +120,7 @@ Page({
         examType,
       })
       .then((res) => {
-        wx.hideLoading()
+        tt.hideLoading()
         if (res.data.code !== 200) {
           return
         }

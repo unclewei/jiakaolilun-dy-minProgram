@@ -1,5 +1,5 @@
 /** 模态 **/
-@import '../../utils/common.wxss';
+@import '../../utils/common.ttss';
 
 .drawer {
   position: fixed;

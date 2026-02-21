@@ -3,8 +3,8 @@
   "navigationBarBackgroundColor": "#54bbff",
   "navigationBarTextStyle": "white",
   "usingComponents": {
-    "Restart": "../../components/Restart",
-    "ActualContent": "../../components/ActualContent",
-    "SubjectMoniShouldKnow": "../../components/SubjectMoniShouldKnow"
+    "Restart": "../../components/Restart/index",
+    "ActualContent": "../../components/ActualContent/index",
+    "SubjectMoniShouldKnow": "../../components/SubjectMoniShouldKnow/index"
   }
 }

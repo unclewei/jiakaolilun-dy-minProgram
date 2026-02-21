@@ -1,6 +1,6 @@
 {
   "navigationBarTitleText": "学车信息",
   "usingComponents": {
-    "CitySelector": "../../components/CitySelector"
+    "CitySelector": "../../components/CitySelector/index"
   }
 }

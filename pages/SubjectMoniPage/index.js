@@ -29,16 +29,16 @@ Page({
    */
   onLoad(options) {
     console.log('options',options)
-    let step = options.step || wx.getStorageSync('step') || '1'
-    wx.setNavigationBarTitle({
+    let step = options.step || tt.getStorageSync('step') || '1'
+    tt.setNavigationBarTitle({
       title: `科目${step == 1 ? '一' : '四'}模拟考试`,
     })
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       step,
       poolId: options.poolId,
       userInfo: getApp().globalData.userInfo,
-      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
+      examType: tt.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
       isLogin: !!getApp().globalData.userInfo._id,
     })
     this.poolDataGet({
@@ -57,12 +57,12 @@ Page({
     step
   }) {
     let that = this
-    wx.showLoading()
+    tt.showLoading()
     getUserMoniPool({
       step,
       examType: that.data.examType,
     }).then((res) => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -112,7 +112,7 @@ Page({
     poolId
   }) {
     let keyName = `localPoolStatus_${poolId}`;
-    let userSubjectConfig = wx.getStorageSync(keyName) || '{}';
+    let userSubjectConfig = tt.getStorageSync(keyName) || '{}';
     if (userSubjectConfig.currentIndex > 0) {
       this.setData({
         isKeepGoing: true
@@ -126,7 +126,7 @@ Page({
       step,
     } = this.data
     if (!unDoMoniPool || !unDoMoniPool._id) {
-      wx.showModal({
+      tt.showModal({
         title: '提示',
         content: '没有更多的模拟题了，建议重做之前不及格的模拟题',
         showCancel: false,

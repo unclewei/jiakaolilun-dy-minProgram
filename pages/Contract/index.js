@@ -33,7 +33,7 @@ Page({
    * 处理联系客服点击
    */
   handleContactService() {
-    wx.openCustomerServiceChat({
+    tt.openCustomerServiceChat({
       extInfo: {
         url: '' // 客服链接，需要在微信公众平台配置
       },
@@ -43,7 +43,7 @@ Page({
       },
       fail: (err) => {
         console.error('打开客服失败', err)
-        wx.showToast({
+        tt.showToast({
           title: '打开客服失败，请稍后重试',
           icon: 'none',
           duration: 2000

@@ -34,26 +34,26 @@ export const formatNumber = (n) => {
 };
 
 export const showToast = (title) => {
-  wx.showToast({
+  tt.showToast({
     title,
     icon: "none",
     duration: 3000,
   });
 };
 export const goBack = (str) => {
-  wx.showModal({
+  tt.showModal({
     title: "",
     content: str || "网络错误，请稍后再试",
     showCancel: false,
     success: (res) => {
-      wx.navigateBack();
+      tt.navigateBack();
     },
   });
 };
 
 export const showNetWorkToast = (word) => {
   let str = word || "网络拥挤，请稍后重试";
-  wx.showToast({
+  tt.showToast({
     title: str,
     icon: "none",
   });
@@ -82,17 +82,17 @@ export const userSubjectConfigSetGet = ({
   if (isGet) {
     let obj = {};
     try {
-      return wx.getStorageSync("userSubjectConfig") || {};
+      return tt.getStorageSync("userSubjectConfig") || {};
     } catch (e) {
       return obj;
     }
   } else {
     try {
-      let userSubjectConfig = wx.getStorageSync("userSubjectConfig") || {};
+      let userSubjectConfig = tt.getStorageSync("userSubjectConfig") || {};
       let obj = {};
       obj[key] = value;
       obj = Object.assign({}, userSubjectConfig, obj);
-      wx.setStorageSync("userSubjectConfig", obj);
+      tt.setStorageSync("userSubjectConfig", obj);
     } catch (e) {}
   }
 };
@@ -179,12 +179,12 @@ export const gotoSubject = ({
   }
   url = appendUrlPara(url, params);
   if (isReplace) {
-    wx.redirectTo({
+    tt.redirectTo({
       url,
     });
     return;
   }
-  wx.navigateTo({
+  tt.navigateTo({
     url,
   });
 };
@@ -332,24 +332,24 @@ export function debounce(fn, delay = 300) {
 
 /** 初始化进入跳转页面 */
 export function initJunmPage() {
-  const jumpPageMix = wx.getStorageSync("jumpPage");
+  const jumpPageMix = tt.getStorageSync("jumpPage");
   if (!jumpPageMix) {
     return;
   }
   const jumpPage =  decodeURIComponent(jumpPageMix)
   // 跳转过一次就清除页面了
-  wx.removeStorageSync("jumpPage");
+  tt.removeStorageSync("jumpPage");
   if (jumpPage === "/pages/index/index") {
     return;
   }
   // tab页面更新
   if (["SubjectIncTab", "MoneyPage", "UserInfo"].some(url => jumpPage.includes(url))) {
-    wx.switchTab({
+    tt.switchTab({
       url: jumpPage,
     });
     return;
   }
-  wx.navigateTo({
+  tt.navigateTo({
     url: jumpPage,
   });
 }

@@ -2,6 +2,6 @@
   "navigationBarTitleText": "学习结果",
   "navigationBarBackgroundColor": "#3f8af6",
   "usingComponents": {
-    "UserInfoSupply": "../../components/UserInfoSupply"
+    "UserInfoSupply": "../../components/UserInfoSupply/index"
   }
 }

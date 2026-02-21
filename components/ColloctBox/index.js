@@ -50,13 +50,13 @@ Component({
    */
   methods: {
     getUserPoolShow() {
-      wx.showLoading()
+      tt.showLoading()
       userPoolShow({
         step: this.data.step,
         type: 'collect',
-        examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
+        examType: tt.getStorageSync('examType') || getApp().globalData.userConfig.examType
       }).then(res => {
-        wx.hideLoading()
+        tt.hideLoading()
         if (res.data.code !== 200) {
           // showNetWorkToast(res.data.msg)
           return
@@ -78,11 +78,11 @@ Component({
     },
     // 收藏
     colloect() {
-      const colloectBoxFirst = wx.getStorageSync('colloectBoxFirst')
+      const colloectBoxFirst = tt.getStorageSync('colloectBoxFirst')
       if (!colloectBoxFirst) {
         // 弹窗提示收藏按钮
         this.selectComponent("#ColloectTipsModal").showModal()
-        wx.setStorageSync('colloectBoxFirst', true)
+        tt.setStorageSync('colloectBoxFirst', true)
       }
       subjectToUserPool({
         ...this.data.poolData,

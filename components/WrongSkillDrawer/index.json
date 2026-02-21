@@ -1,7 +1,7 @@
 {
   "component": true,
   "usingComponents": {
-    "SubjectVideo": "../SubjectVideo",
-    "SubjectAudio": "../SubjectAudio"
+    "SubjectVideo": "../SubjectVideo/index",
+    "SubjectAudio": "../SubjectAudio/index"
   }
 }

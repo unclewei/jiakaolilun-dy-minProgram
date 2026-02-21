@@ -28,7 +28,7 @@ Page({
   onLoad(options) {
     this.setData({
 
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
     })
 
   },
@@ -64,7 +64,7 @@ Page({
       userAcCodeId: content.trim(),
     };
     if (!params.userAcCodeId || params.userAcCodeId.length !== 24) {
-      wx.showToast({
+      tt.showToast({
         title: '激活码输入有误',
         icon: 'error'
       })
@@ -73,9 +73,9 @@ Page({
     this.setData({
       errorMsg: null,
     })
-    wx.showLoading()
+    tt.showLoading()
     userAcCodeActive(params).then((res) => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         this.setData({
           errorMsg: res.data.msg
@@ -91,7 +91,7 @@ Page({
   },
 
   goToDetail() {
-    wx.reLaunch({
+    tt.reLaunch({
       url: '/pages/index/index',
     });
   },

@@ -168,12 +168,12 @@ Component({
     },
 
     copyId() {
-      wx.setClipboardData({
+      tt.setClipboardData({
         data: this.data.subjectId,
       })
     },
     copySkill() {
-      wx.setClipboardData({
+      tt.setClipboardData({
         data: this.skillVideoContent(this.data.subjectItem),
       })
     },
@@ -187,7 +187,7 @@ Component({
       this.triggerEvent('FonstChange', {
         value: fontSize
       })
-      wx.setStorageSync('fontSize', fontSize)
+      tt.setStorageSync('fontSize', fontSize)
       this.setData({
         fontSize
       })

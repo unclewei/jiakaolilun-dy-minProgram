@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "BaseDrawer": "../baseDrawer"
+    "BaseDrawer": "../baseDrawer/index"
   }
 }

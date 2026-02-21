@@ -2,6 +2,6 @@
   "navigationBarTitleText": "邀请教练海报",
   "enablePullDownRefresh": true,
   "usingComponents": {
-    "Poster": "/components/Poster/index"
+    "Poster": "../../components/Poster/index"
   }
 }

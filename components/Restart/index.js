@@ -43,25 +43,25 @@ Component({
         showToast('数据错误，请重试')
         return
       }
-      wx.showModal({
+      tt.showModal({
         title: '确定要重置吗？',
         content: '将重置你本次训练的所有记录',
         cancelText: '取消',
         confirmText: '确定',
         success: (modalRes) => {
           if (modalRes.confirm) {
-            wx.showLoading()
+            tt.showLoading()
             userSubjectRemove({
               poolId: that.data.poolId
             }).then(res => {
-              wx.hideLoading()
+              tt.hideLoading()
 
               if (res.data.code !== 200) {
                 showNetWorkToast(res.data.msg)
                 return
               }
-              wx.removeStorageSync(`localPoolStatus_${that.data.poolId}`)
-              wx.showToast({
+              tt.removeStorageSync(`localPoolStatus_${that.data.poolId}`)
+              tt.showToast({
                 title: '已重置！',
               })
               setTimeout(() => {

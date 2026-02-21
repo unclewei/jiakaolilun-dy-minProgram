@@ -95,12 +95,12 @@ Page({
     };
     this.onUpdateSubjectItem()
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       poolType,
       step,
       poolId,
       from,
-      swiperHeight: wx.getSystemInfoSync().windowHeight - 80,
+      swiperHeight: tt.getSystemInfoSync().windowHeight - 80,
       userSubjectData: userSubjectJson, // 做题状态
       urlPrefix: getApp().globalData.enumeMap.configMap.urlPrefix,
       userPoolId: ['wrong', 'collect'].includes(poolType) ? poolId : undefined,
@@ -111,7 +111,7 @@ Page({
     })
     //若当前为我的错题情况下
     if (poolType == 'wrong') {
-      wx.setNavigationBarTitle({
+      tt.setNavigationBarTitle({
         title: `我的科目${step == 1 ? '一' : '四'}错题集合`,
       })
       //错题集的情况下，默认选中
@@ -128,7 +128,7 @@ Page({
     }
     //若当前为我的收藏情况下
     if (poolType == 'collect') {
-      wx.setNavigationBarTitle({
+      tt.setNavigationBarTitle({
         title: `我的科目${step == 1 ? '一' : '四'}收藏集合`,
       })
       this.setData({
@@ -156,7 +156,7 @@ Page({
   },
   //购买成功
   onBuySuccess() {
-    wx.showLoading()
+    tt.showLoading()
     this.setData({
       userInfo: getApp().globalData.userInfo,
       isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2,
@@ -183,7 +183,7 @@ Page({
       })
       return
     }
-    // wx.showLoading()
+    // tt.showLoading()
     // 获取问题数据
     poolData({
       poolType: that.data.poolType,
@@ -191,7 +191,7 @@ Page({
       isDetail: true,
       ...that.data.requestPoolObj
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -200,9 +200,9 @@ Page({
       that.setData({
         poolData: resData,
       })
-      wx.setStorageSync('examType', resData.examType)
-      wx.setStorageSync('step', resData.step)
-      wx.setNavigationBarTitle({
+      tt.setStorageSync('examType', resData.examType)
+      tt.setStorageSync('step', resData.step)
+      tt.setNavigationBarTitle({
         title: resData.name,
       })
       // 验证用户是购买 或者数据是否免费
@@ -248,13 +248,13 @@ Page({
       step_: step,
       type: 'get'
     });
-    // wx.showLoading()
+    // tt.showLoading()
     userSubjectGet({
       type: poolType,
       ...that.data.requestPoolObj,
       step
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -313,14 +313,14 @@ Page({
     let key = _poolId || `${_step}_${_poolType}`;
     let keyName = `localPoolStatus_${key}`;
     if (fullUserSubjectConfig) {
-      wx.setStorageSync(keyName, fullUserSubjectConfig)
+      tt.setStorageSync(keyName, fullUserSubjectConfig)
       this.setData({
         userSubjectData: fullUserSubjectConfig
       })
       return;
     }
 
-    let userSubjectConfig = wx.getStorageSync(keyName) || {};
+    let userSubjectConfig = tt.getStorageSync(keyName) || {};
     //获取
     if (type == 'get') {
       if (userSubjectConfig.poolId) {
@@ -339,7 +339,7 @@ Page({
     userSubjectConfig.poolId = _poolId;
     userSubjectConfig[propName] = value;
 
-    wx.setStorageSync(keyName, userSubjectConfig)
+    tt.setStorageSync(keyName, userSubjectConfig)
     this.setData({
       userSubjectData: userSubjectConfig
     })
@@ -449,7 +449,7 @@ Page({
     this.syncSubject({
       subjectId: undefined,
       callback: () => {
-        wx.redirectTo({
+        tt.redirectTo({
           url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
         })
       }
@@ -685,8 +685,8 @@ Page({
       subjectId
     });
     // 第一次错误，给模板提示
-    if (this.data.stayWhenWrong && !wx.getStorageSync('WrongSkillDrawerShow')) {
-      wx.setStorageSync('WrongSkillDrawerShow', true)
+    if (this.data.stayWhenWrong && !tt.getStorageSync('WrongSkillDrawerShow')) {
+      tt.setStorageSync('WrongSkillDrawerShow', true)
       this.selectComponent("#WrongSkillDrawer").showModal()
     }
     setTimeout(() => {
@@ -973,7 +973,7 @@ Page({
   },
 
   scrollTop() {
-    wx.pageScrollTo({
+    tt.pageScrollTo({
       selector: 'content'
     })
   },

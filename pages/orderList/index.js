@@ -25,7 +25,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
     })
     autoLogin((res) => {
       if (res === 'fail') {

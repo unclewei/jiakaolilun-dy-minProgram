@@ -1,6 +1,6 @@
 {
-  "component": true,
-  "usingComponents": {
-
-    "RebateIntroduce":"../RebateIntroduce"}
+    "component": true,
+    "usingComponents": {
+        "RebateIntroduce": "../RebateIntroduce/index"
+    }
 }

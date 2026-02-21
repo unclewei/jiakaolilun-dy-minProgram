@@ -61,7 +61,7 @@ Component({
       const item = e.currentTarget.dataset.item;
       const index = e.currentTarget.dataset.index;
       const urls = item.map(p => (this.data.urlPrefix + p.path))
-      wx.previewImage({
+      tt.previewImage({
         urls,
         current:urls[index]
       })

@@ -29,7 +29,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       step: options.step
     })
   },
@@ -63,7 +63,7 @@ Page({
   userPoolsGet() {
     userPoolList({
       step: this.data.step,
-      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType
+      examType: tt.getStorageSync('examType') ||getApp().globalData.userConfig.examType
     }).then(res => {
       if (res.data.code !== 200) {
         return
@@ -81,7 +81,7 @@ Page({
   poolDataGet() {
     getUserMoniPool({
       step: this.data.step,
-      examType: wx.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
+      examType: tt.getStorageSync('examType') ||getApp().globalData.userConfig.examType,
     }).then(res => {
       if (res.data.code !== 200) {
         return
@@ -101,7 +101,7 @@ Page({
     poolList({
       step: this.data.step
     }).then((res) => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return

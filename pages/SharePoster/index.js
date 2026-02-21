@@ -27,7 +27,7 @@ Page({
    * 加载海报数据
    */
   loadPosterData() {
-    wx.showLoading({
+    tt.showLoading({
       title: '加载中...',
       mask: true
     });
@@ -37,14 +37,14 @@ Page({
       this.getAdResourceData(),
       this.getShareQRCodeData()
     ]).then(() => {
-      wx.hideLoading();
+      tt.hideLoading();
       this.setData({
         isLoading: false
       });
     }).catch((error) => {
       console.error('Load poster data failed:', error);
-      wx.hideLoading();
-      wx.showToast({
+      tt.hideLoading();
+      tt.showToast({
         title: '加载失败',
         icon: 'none'
       });
@@ -129,7 +129,7 @@ Page({
   saveImage() {
     const posterComponent = this.selectComponent('#poster');
     if (!posterComponent) {
-      wx.showToast({
+      tt.showToast({
         title: '海报组件未加载',
         icon: 'none'
       });
@@ -138,7 +138,7 @@ Page({
 
     const posterUrl = posterComponent.getPosterUrl();
     if (!posterUrl) {
-      wx.showToast({
+      tt.showToast({
         title: '海报尚未生成',
         icon: 'none'
       });
@@ -146,22 +146,22 @@ Page({
     }
 
     // 请求保存相册权限
-    wx.getSetting({
+    tt.getSetting({
       success: (res) => {
         if (!res.authSetting['scope.writePhotosAlbum']) {
-          wx.authorize({
+          tt.authorize({
             scope: 'scope.writePhotosAlbum',
             success: () => {
               this.saveToPhotosAlbum(posterUrl);
             },
             fail: () => {
-              wx.showModal({
+              tt.showModal({
                 title: '提示',
                 content: '需要您授权保存相册权限',
                 showCancel: false,
                 success: (modalRes) => {
                   if (modalRes.confirm) {
-                    wx.openSetting();
+                    tt.openSetting();
                   }
                 }
               });
@@ -178,17 +178,17 @@ Page({
    * 保存到相册
    */
   saveToPhotosAlbum(filePath) {
-    wx.saveImageToPhotosAlbum({
+    tt.saveImageToPhotosAlbum({
       filePath,
       success: () => {
-        wx.showToast({
+        tt.showToast({
           title: '已保存到相册',
           icon: 'success'
         });
       },
       fail: (error) => {
         console.error('Save image failed:', error);
-        wx.showToast({
+        tt.showToast({
           title: '保存失败',
           icon: 'none'
         });
@@ -229,7 +229,7 @@ Page({
    */
   onPullDownRefresh() {
     this.loadPosterData();
-    wx.stopPullDownRefresh();
+    tt.stopPullDownRefresh();
   },
 
   /**

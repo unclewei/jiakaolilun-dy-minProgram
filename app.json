@@ -62,9 +62,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
+    "navigationBarTitleText": "抖音小程序",
     "navigationBarTextStyle": "black"
-  },
-  "style": "v2",
-  "sitemapLocation": "sitemap.json"
+  }
 }

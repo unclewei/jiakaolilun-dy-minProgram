@@ -79,7 +79,7 @@ Page({
       return
     };
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       poolType,
       step,
       poolId,
@@ -139,7 +139,7 @@ Page({
   getPoolData() {
     const that = this
     // 请求错题数据
-    // wx.showLoading()
+    // tt.showLoading()
     // 获取问题数据
     poolData({
       poolType: that.data.poolType,
@@ -147,7 +147,7 @@ Page({
       step: that.data.step,
       isDetail: true
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -162,7 +162,7 @@ Page({
       // 因为是模拟考试，不用获取历史数据，清除一下本地缓存
       let key = resData._id || `${resData.step}_${resData.type}`;
       let keyName = `localPoolStatus_${key}`;
-      wx.removeStorageSync(keyName)
+      tt.removeStorageSync(keyName)
 
       // 验证用户是购买 或者数据是否免费
       isItemValid({
@@ -191,7 +191,7 @@ Page({
 
           return
         }
-        wx.redirectTo({
+        tt.redirectTo({
           url: `/pages/SubjectIncPage/index?step=${that.data.step}`,
         })
       })
@@ -225,14 +225,14 @@ Page({
     let key = _poolId || `${_step}_${_poolType}`;
     let keyName = `localPoolStatus_${key}`;
     if (fullUserSubjectConfig) {
-      wx.setStorageSync(keyName, fullUserSubjectConfig)
+      tt.setStorageSync(keyName, fullUserSubjectConfig)
       this.setData({
         userSubjectData: fullUserSubjectConfig
       })
       return;
     }
 
-    let userSubjectConfig = wx.getStorageSync(keyName) || {};
+    let userSubjectConfig = tt.getStorageSync(keyName) || {};
     //获取
     if (type == 'get') {
       if (userSubjectConfig.poolId) {
@@ -251,7 +251,7 @@ Page({
     userSubjectConfig.poolId = _poolId;
     userSubjectConfig[propName] = value;
 
-    wx.setStorageSync(keyName, userSubjectConfig)
+    tt.setStorageSync(keyName, userSubjectConfig)
     this.setData({
       userSubjectData: userSubjectConfig
     })
@@ -336,13 +336,13 @@ Page({
       step_: step,
       type: 'get'
     });
-    // wx.showLoading()
+    // tt.showLoading()
     userSubjectGet({
       type: poolType,
       ...that.data.requestPoolObj,
       step
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -829,7 +829,7 @@ Page({
 
   // 时间到，提交考试
   onTimeOut() {
-    wx.showModal({
+    tt.showModal({
       title: '考试时间到',
       content: '考试结束',
       showCancel: false,
@@ -846,7 +846,7 @@ Page({
   checkFailSocre() {
     const wrongScore = this.getWrongScore()
     if (wrongScore > 10 && !this.data.isShowFailTips) {
-      wx.showModal({
+      tt.showModal({
         title: '考试提示',
         content: '您已考试不及格！',
         cancelText: '继续做题',
@@ -871,7 +871,7 @@ Page({
    * @param score 分数
    */
   onSubmit() {
-    wx.showModal({
+    tt.showModal({
       title: '考试提示',
       content: '你将要提交考试',
       success: (res) => {
@@ -891,14 +891,14 @@ Page({
             subjectId: this.data.subjectData._id,
           });
           if (score >= 90) {
-            wx.showModal({
+            tt.showModal({
               title: '考试结果',
               content: '考试通过！',
               showCancel: false,
               confirmText: '返回首页',
               success: (res) => {
                 if (res.confirm) {
-                  wx.redirectTo({
+                  tt.redirectTo({
                     url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
                   })
                 }
@@ -906,20 +906,20 @@ Page({
             })
             return
           }
-          wx.showModal({
+          tt.showModal({
             title: '考试结果',
             content: '考试不通过！',
             cancelText: '返回首页',
             confirmText: '重新考试',
             success: (res) => {
               if (res.cancel) {
-                wx.switchTab({
+                tt.switchTab({
                   url: '/pages/index/index',
                 })
               }
               if (res.confirm) {
                 // 重新给一个题目
-                wx.redirectTo({
+                tt.redirectTo({
                   url: `/pages/SubjectMoniPage/index?step=${this.data.step}&poolId=${this.data.poolId}`,
                 })
               }

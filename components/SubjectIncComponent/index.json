@@ -1,12 +1,11 @@
 {
   "component": true,
   "usingComponents": {
-    "LoginModal": "../LoginModal",
-    "UserInfoSupply": "../UserInfoSupply",
-    "DanMu": "../DanMu",
-    "SwitchSubjectBox": "../SwitchSubjectBox",
-    "CountDown": "../CountDown",
-    "ShoppingDrawer": "../ShoppingDrawer"
-
+    "LoginModal": "../LoginModal/index",
+    "UserInfoSupply": "../UserInfoSupply/index",
+    "DanMu": "../DanMu/index",
+    "SwitchSubjectBox": "../SwitchSubjectBox/index",
+    "CountDown": "../CountDown/index",
+    "ShoppingDrawer": "../ShoppingDrawer/index"
   }
 }

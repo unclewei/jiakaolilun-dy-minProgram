@@ -41,7 +41,7 @@ Component({
    */
   methods: {
     gotoConfigPage() {
-      wx.navigateTo({
+      tt.navigateTo({
         url: "/pages/UserConfigInit/index",
       });
     },

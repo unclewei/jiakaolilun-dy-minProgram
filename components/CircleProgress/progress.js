@@ -165,7 +165,7 @@ var MpProgress = /*#__PURE__*/function () {
     value: function draw(percentage) {
       var _this = this;
 
-      var version = wx.getSystemInfoSync().SDKVersion;
+      var version = tt.getSystemInfoSync().SDKVersion;
 
       if (this.compareVersion(version, '2.7.0') < 0) {
         console.error("\u8BF7\u57282.7.0\u4EE5\u4E0A\u7684SDK\u4E2D\u4F7F\u7528\uFF0C\u5F53\u524DSDK\u7248\u672C\uFF1A".concat(version));
@@ -195,18 +195,18 @@ var MpProgress = /*#__PURE__*/function () {
       } else {
         try {
           var _target = this._options.target;
-          var query = wx.createSelectorQuery()["in"](_target);
+          var query = tt.createSelectorQuery()["in"](_target);
 
-          if (_target.$wx && _target.$wx.$wepy) {
+          if (_target.$wx && _target.$tt.$wepy) {
             // wepy不支持in的方式去查找
-            query = wx.createSelectorQuery();
+            query = tt.createSelectorQuery();
           }
 
           query.select("#".concat(this._options.canvasId)).node(function (res) {
             var canvas = res.node;
             _this._requestAnimationFrame = canvas.requestAnimationFrame.bind(canvas);
             var ctx = canvas.getContext('2d');
-            var dpr = wx.getSystemInfoSync().pixelRatio;
+            var dpr = tt.getSystemInfoSync().pixelRatio;
             canvas.width = canvas._width * dpr;
             canvas.height = canvas._height * dpr;
             ctx.scale(dpr, dpr);
@@ -435,7 +435,7 @@ var MpProgress = /*#__PURE__*/function () {
   }, {
     key: "convertLength",
     value: function convertLength(length) {
-      return +Math.round(wx.getSystemInfoSync().windowWidth * length / 750);
+      return +Math.round(tt.getSystemInfoSync().windowWidth * length / 750);
     }
     /**
      * drawCircleWithFillStyle

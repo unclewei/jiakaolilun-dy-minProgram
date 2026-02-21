@@ -17,10 +17,10 @@ Page({
   onLoad(options) {
     console.log('options',options);
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       ruleIconTypeId: options.ruleIconTypeId
     })
-    wx.setNavigationBarTitle({
+    tt.setNavigationBarTitle({
       title:options.ruleIconTypeName||'图形速记'
     })
     this.getUrlPrefix()
@@ -28,13 +28,13 @@ Page({
   },
 
   ruleIconList() {
-    wx.showLoading()
+    tt.showLoading()
     ruleIconList({
       ruleIconTypeId: this.data.ruleIconTypeId,
       limit: 100,
       isShowSomeIcon: true
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       const resData = res.data.data || []
       this.setData({
         ruleIconList: resData.map(p => ({
@@ -60,7 +60,7 @@ Page({
 
   onShowGallery(e) {
     const item = e.currentTarget.dataset.item
-    wx.previewImage({
+    tt.previewImage({
       urls: this.data.ruleIconList?.map(p => p.src),
       current: item
     })

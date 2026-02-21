@@ -2,14 +2,14 @@
   "navigationBarTitleText": "模拟考试",
   "pageOrientation": "landscape",
   "usingComponents": {
-    "Restart": "../../components/Restart",
-    "ExamBox": "../../components/ExamBox",
-    "ExamOptions": "../../components/ExamOptions",
-    "ExamResult": "../../components/ExamResult",
-    "SubjectOptions": "../../components/SubjectOptions",
-    "AnswerAndExplain": "../../components/AnswerAndExplain",
-    "Finish": "../../components/Finish",
-    "LoginModal": "../../components/LoginModal",
-    "ExamCountdown": "../../components/ExamCountdown"
+    "Restart": "../../components/Restart/index",
+    "ExamBox": "../../components/ExamBox/index",
+    "ExamOptions": "../../components/ExamOptions/index",
+    "ExamResult": "../../components/ExamResult/index",
+    "SubjectOptions": "../../components/SubjectOptions/index",
+    "AnswerAndExplain": "../../components/AnswerAndExplain/index",
+    "Finish": "../../components/Finish/index",
+    "LoginModal": "../../components/LoginModal/index",
+    "ExamCountdown": "../../components/ExamCountdown/index"
   }
 }

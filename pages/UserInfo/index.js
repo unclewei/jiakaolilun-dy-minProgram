@@ -14,7 +14,7 @@ import {
 Page({
   data: {
     isLogin: false,
-    step: wx.getStorageSync("step") || "1",
+    step: tt.getStorageSync("step") || "1",
     userSubject: {}, // 用户科目数据
     isPaidDone: false,
     shareType: 'default', // 'default' or 'inviteCoach'
@@ -61,19 +61,19 @@ Page({
     });
   },
   onShow() {
-    const stepStorage = wx.getStorageSync('step')
-    wx.setNavigationBarColor({
+    const stepStorage = tt.getStorageSync('step')
+    tt.setNavigationBarColor({
       backgroundColor: stepStorage == 1 ? "#46b978" : "#2196f3",
       frontColor: "#ffffff",
     });
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       step: stepStorage || 1,
     });
     this.checkPaidDone(this.data.step)
-    wx.setTabBarStyle({
+    tt.setTabBarStyle({
       backgroundColor: "#fff",
     });
     this.getBenefitItemData()
@@ -107,7 +107,7 @@ Page({
   },
   onStepUpdate() {
 
-    const newStep = wx.getStorageSync("step") || "1";
+    const newStep = tt.getStorageSync("step") || "1";
     const that = this
     that.selectComponent("#SwitchSubjectBox").switchStep(newStep)
     setTimeout(() => {
@@ -117,7 +117,7 @@ Page({
     }, 500);
 
     this.checkPaidDone(newStep)
-    wx.setNavigationBarColor({
+    tt.setNavigationBarColor({
       backgroundColor: newStep == 1 ? "#46b978" : "#2196f3",
       frontColor: "#ffffff",
     });
@@ -139,7 +139,7 @@ Page({
     });
     poolList({
       step,
-      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
+      examType: tt.getStorageSync('examType') || getApp().globalData.userConfig.examType
     }).then((res) => {
       if (res.data.code !== 200) {
         return;
@@ -185,13 +185,13 @@ Page({
   },
 
   copyId() {
-    wx.setClipboardData({
+    tt.setClipboardData({
       data: getApp().globalData.userInfo._id,
     });
   },
   gotoNP(e) {
     const item = e.currentTarget.dataset.item;
-    wx.navigateToMiniProgram({
+    tt.navigateToMiniProgram({
       appId: item,
     });
   },
@@ -231,29 +231,29 @@ Page({
       this.selectComponent("#LoginModal").showModal();
       return;
     }
-    wx.navigateTo({
+    tt.navigateTo({
       url: `/pages/orderList/index`,
     });
   },
 
   gotoSetting() {
-    wx.navigateTo({
+    tt.navigateTo({
       url: '/pages/Setting/index',
     })
   },
   gotoDiscount() {
-    wx.navigateTo({
+    tt.navigateTo({
       url: '/pages/Discount/index',
     })
   },
   cleanAccount() {
-    wx.clearStorageSync()
+    tt.clearStorageSync()
     getApp().globalData.cookies = null
     getApp().globalData.userInfo = {}
     this.setData({
       isLogin: false
     })
-    wx.reLaunch({
+    tt.reLaunch({
       url: '/pages/index/index',
     });
   },
@@ -267,7 +267,7 @@ Page({
    * 去教练邀请页
    */
   gotoCoachInvite() {
-    wx.navigateTo({
+    tt.navigateTo({
       url: '/pages/CoachInvatePoster/index',
     })
   }

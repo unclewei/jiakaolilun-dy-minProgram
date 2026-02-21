@@ -17,19 +17,19 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
     })
     this.getUrlPrefix()
     this.ruleIconTypeList()
   },
 
   ruleIconTypeList() {
-    wx.showLoading()
+    tt.showLoading()
     ruleIconTypeList({
       limit: 100,
       isShowSomeIcon: true
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       this.setData({
         ruleIconTypeList: res.data.data || []
       })
@@ -41,7 +41,7 @@ Page({
       _id,
       name
     } = e.currentTarget.dataset.item
-    wx.navigateTo({
+    tt.navigateTo({
       url: `/pages/RuleIconDetailPage/index?ruleIconTypeId=${_id}&ruleIconTypeName=${name}`,
     })
   },
@@ -63,7 +63,7 @@ Page({
   onShowGallery(e) {
     const imageList = e.currentTarget.dataset.images
     const item = e.currentTarget.dataset.item
-    wx.previewImage({
+    tt.previewImage({
       urls: imageList.map(p => `${this.data.urlPrefix}${p.imgPath}`),
       current: `${this.data.urlPrefix}${item.imgPath}`
     })

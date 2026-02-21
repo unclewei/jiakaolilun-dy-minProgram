@@ -1,16 +1,16 @@
 {
   "component": true,
   "usingComponents": {
-    "Restart": "../../../components/Restart",
-    "SubjectOptions": "../../../components/SubjectOptions",
-    "AnswerAndExplain": "../../../components/AnswerAndExplain",
-    "Finish": "../../../components/Finish",
-    "Colloct": "../../../components/Colloct",
-    "SubjectAudio": "../../../components/SubjectAudio",
-    "WrongSkillDrawer": "../../../components/WrongSkillDrawer",
-    "CheckIsVip": "../../../components/CheckIsVip",
-    "VisSwiper": "../../../components/swiper-limited-load",
+    "Restart": "../../../components/Restart/index",
+    "SubjectOptions": "../../../components/SubjectOptions/index",
+    "AnswerAndExplain": "../../../components/AnswerAndExplain/index",
+    "Finish": "../../../components/Finish/index",
+    "Colloct": "../../../components/Colloct/index",
+    "SubjectAudio": "../../../components/SubjectAudio/index",
+    "WrongSkillDrawer": "../../../components/WrongSkillDrawer/index",
+    "CheckIsVip": "../../../components/CheckIsVip/index",
+    "VisSwiper": "../../../components/swiper-limited-load/index",
     "HighLightContent": "../../../components/HighLightContent/index",
-    "SubjectCountdown": "../../../components/SubjectCountdown"
+    "SubjectCountdown": "../../../components/SubjectCountdown/index"
   }
 }

@@ -1,10 +1,10 @@
 {
   "navigationBarTitleText": "提现",
   "usingComponents": {
-    "LoginModal": "../../components/LoginModal",
-    "Avatar": "../../components/Avatar",
-    "UserPhoneSupply": "../../components/UserPhoneSupply",
-    "MoneyContent":"./MoneyContent",
-    "RecommendPeople":"./RecommendPeople"
+    "LoginModal": "../../components/LoginModal/index",
+    "Avatar": "../../components/Avatar/index",
+    "UserPhoneSupply": "../../components/UserPhoneSupply/index",
+    "MoneyContent":"./MoneyContent/index",
+    "RecommendPeople":"./RecommendPeople/index"
   }
 }

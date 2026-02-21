@@ -16,7 +16,7 @@ import {
 
 Page({
   data: {
-    step: wx.getStorageSync('step') || 1,
+    step: tt.getStorageSync('step') || 1,
     userSubject: {}, // 用户科目数据
     mainHeight: 400,
     windowHeight: 671,
@@ -32,25 +32,25 @@ Page({
     console.log('options', options);
     let jumpPage = null
     if (options?.fromWho) {
-      wx.setStorageSync('fromWho', options?.fromWho)
-      wx.removeStorageSync('fromUnionId')
+      tt.setStorageSync('fromWho', options?.fromWho)
+      tt.removeStorageSync('fromUnionId')
     }
     if (options?.fromUnionId) {
-      wx.setStorageSync('fromUnionId', options?.fromUnionId)
-      wx.removeStorageSync('fromWho')
+      tt.setStorageSync('fromUnionId', options?.fromUnionId)
+      tt.removeStorageSync('fromWho')
     }
     if (options?.source) {
-      wx.setStorageSync('source', options?.source)
+      tt.setStorageSync('source', options?.source)
     }
     if (options?.step) {
-      wx.setStorageSync('step', options?.step)
+      tt.setStorageSync('step', options?.step)
     }
     if (options?.scenceCode) {
-      wx.setStorageSync('scenceCode', options?.scenceCode)
+      tt.setStorageSync('scenceCode', options?.scenceCode)
     }
     // 登录成功后跳转的页面
     if (options?.jumpPage) {
-      wx.setStorageSync('jumpPage', options?.jumpPage)
+      tt.setStorageSync('jumpPage', options?.jumpPage)
       jumpPage = options?.jumpPage
     }
     // 二维码进来，需要解析参数
@@ -60,27 +60,27 @@ Page({
         const params = this.parseQuery(sceneStr)
         console.log('params', params);
         if (params?.fromWho) {
-          wx.setStorageSync('fromWho', params?.fromWho)
-          wx.removeStorageSync('fromUnionId')
+          tt.setStorageSync('fromWho', params?.fromWho)
+          tt.removeStorageSync('fromUnionId')
         }
         if (params?.fromUnionId) {
-          wx.setStorageSync('fromUnionId', params?.fromUnionId)
-          wx.removeStorageSync('fromWho')
+          tt.setStorageSync('fromUnionId', params?.fromUnionId)
+          tt.removeStorageSync('fromWho')
         }
         if (params?.source) {
-          wx.setStorageSync('source', params?.source)
+          tt.setStorageSync('source', params?.source)
         }
         if (params?.step) {
-          wx.setStorageSync('step', params?.step)
+          tt.setStorageSync('step', params?.step)
         }
         if (params?.examType) {
-          wx.setStorageSync('examType', params?.examType)
+          tt.setStorageSync('examType', params?.examType)
         }
         if (params?.scenceCode) {
-          wx.setStorageSync('scenceCode', params?.scenceCode)
+          tt.setStorageSync('scenceCode', params?.scenceCode)
         }
         if (params?.jumpPage) {
-          wx.setStorageSync('jumpPage', params?.jumpPage)
+          tt.setStorageSync('jumpPage', params?.jumpPage)
           jumpPage = params?.jumpPage
         }
       } catch (error) {
@@ -108,19 +108,19 @@ Page({
     })
   },
   onShow() {
-    wx.setTabBarStyle({
+    tt.setTabBarStyle({
       backgroundColor: '#fff',
     })
     const fontSize = this.getDefaultFonSize()
     this.setData({
-      fontSize: fontSize || wx.getStorageSync('fontSize'),
+      fontSize: fontSize || tt.getStorageSync('fontSize'),
       isLogin: !!getApp().globalData.userInfo._id,
       userInfo: getApp().globalData.userInfo,
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
-      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType,
-      step: wx.getStorageSync('step') || this.data.step || 1,
+      examType: tt.getStorageSync('examType') || getApp().globalData.userConfig.examType,
+      step: tt.getStorageSync('step') || this.data.step || 1,
 
     })
     this.chosenAndWrong()
@@ -135,23 +135,23 @@ Page({
 
   getDefaultFonSize() {
     try {
-      const appBaseInfo = wx.getAppBaseInfo()
+      const appBaseInfo = tt.getAppBaseInfo()
       console.log('appBaseInfo.fontSizeScaleFactor', appBaseInfo.fontSizeScaleFactor);
-      if (appBaseInfo.fontSizeScaleFactor && !wx.getStorageSync('fontSize')) {
+      if (appBaseInfo.fontSizeScaleFactor && !tt.getStorageSync('fontSize')) {
         if (appBaseInfo.fontSizeScaleFactor <= 1) {
-          wx.setStorageSync('fontSize', 16)
+          tt.setStorageSync('fontSize', 16)
           return 16
         }
         if (appBaseInfo.fontSizeScaleFactor <= 1.14) {
-          wx.setStorageSync('fontSize', 18)
+          tt.setStorageSync('fontSize', 18)
           return 18
         }
         if (appBaseInfo.fontSizeScaleFactor <= 1.20) {
-          wx.setStorageSync('fontSize', 20)
+          tt.setStorageSync('fontSize', 20)
           return 20
         }
         if (appBaseInfo.fontSizeScaleFactor > 1.20) {
-          wx.setStorageSync('fontSize', 22)
+          tt.setStorageSync('fontSize', 22)
           return 22
         }
         return 16
@@ -172,16 +172,16 @@ Page({
       userConfig: getApp().globalData.userConfig,
       enumeMap: getApp().globalData.enumeMap,
       isCoach: getApp().globalData.userInfo.userType === 2,
-      examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType
+      examType: tt.getStorageSync('examType') || getApp().globalData.userConfig.examType
     })
 
     // 登录成功后，跳转到指定页面 // 如果有指定页面
-    if (wx.getStorageSync('jumpPage')) {
+    if (tt.getStorageSync('jumpPage')) {
       initJunmPage()
       return
     }
     if (getApp().globalData.userInfo.userType === 1 && !getApp().globalData.userConfig.isInit) {
-      wx.navigateTo({
+      tt.navigateTo({
         url: '/pages/UserConfigInit/index',
       })
       return
@@ -194,12 +194,12 @@ Page({
 
   chosenAndWrong() {
     const that = this
-    // wx.showLoading()
+    // tt.showLoading()
     userPoolList({
       step: that.data.step,
       examType: that.data.examType
     }).then((res) => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -219,7 +219,7 @@ Page({
       cityId: getApp().globalData.userConfig.cityId,
       provinceId: getApp().globalData.userConfig.provinceId
     }).then((res) => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
@@ -247,13 +247,13 @@ Page({
     userSubjectGet({
       poolId: target._id,
     }).then(res => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return
       }
 
-      let userSubjectConfig = wx.getStorageSync(`localPoolStatus_${target._id}`) || {};
+      let userSubjectConfig = tt.getStorageSync(`localPoolStatus_${target._id}`) || {};
       const resData = res.data.data;
       let currentIndex = userSubjectConfig.currentIndex || resData.currentIndex || 0;
       let rate = currentIndex / target.subjectCount * 100
@@ -272,7 +272,7 @@ Page({
       step
     })
     this.chosenAndWrong()
-    wx.setStorageSync('step', step)
+    tt.setStorageSync('step', step)
   },
   // 事件处理函数
   onStepChange(e) {
@@ -285,7 +285,7 @@ Page({
         step: item
       })
       that.chosenAndWrong()
-      wx.setStorageSync('step', e.currentTarget.dataset.item)
+      tt.setStorageSync('step', e.currentTarget.dataset.item)
     }, 1000);
   },
 
@@ -307,7 +307,7 @@ Page({
       this.selectComponent("#LoginModal").showModal()
       return
     }
-    wx.navigateTo({
+    tt.navigateTo({
       url: `/pages/SubjectIncPage/index?step=${this.data.step}`,
     })
   },
@@ -324,7 +324,7 @@ Page({
 
   setBodyHeight() {
     const that = this
-    const systemInfo = wx.getSystemInfoSync();
+    const systemInfo = tt.getSystemInfoSync();
     // 屏幕高度（整个屏幕）
     const screenHeight = systemInfo.screenHeight;
     // 可使用的窗口高度（不包括顶部状态栏和底部 tabBar）
@@ -333,13 +333,13 @@ Page({
     const statusBarHeight = systemInfo.statusBarHeight;
 
     // 自定义标题栏高度（小程序自己算的）
-    const menuButtonInfo = wx.getMenuButtonBoundingClientRect();
+    const menuButtonInfo = tt.getMenuButtonBoundingClientRect();
     const navHeight = (menuButtonInfo.top - statusBarHeight) * 2 + menuButtonInfo.height + statusBarHeight;
     that.setData({
       windowHeight
     })
 
-    const query = wx.createSelectorQuery()
+    const query = tt.createSelectorQuery()
     query.select('#mainContent').boundingClientRect()
     query.exec(function (res) {
       console.log('res[0].height', res[0].height);
@@ -362,7 +362,7 @@ Page({
 
   // 添加到桌面 提示
   addToDesk() {
-    wx.navigateTo({
+    tt.navigateTo({
       url: '/pages/AddToDesk/index',
     })
   },
@@ -375,7 +375,7 @@ Page({
     });
   },
   gotoReviewLicense() {
-    wx.navigateTo({
+    tt.navigateTo({
       url: '/pages/ReviewLicense/index',
     })
   },

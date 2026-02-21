@@ -1,6 +1,6 @@
 {
   "component": true,
   "usingComponents": {
-    "QRModal":"../QRModal"
+    "QRModal":"../QRModal/index"
   }
 }

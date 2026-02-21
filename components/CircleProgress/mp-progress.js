@@ -18,8 +18,8 @@ Component({
     oldpercentage: null,
     customOptions: {
       canvasSize: {
-        width: 750 / wx.getSystemInfoSync().windowWidth * 144,
-        height: 750 / wx.getSystemInfoSync().windowWidth * 144
+        width: 750 / tt.getSystemInfoSync().windowWidth * 144,
+        height: 750 / tt.getSystemInfoSync().windowWidth * 144
       },
       percent: 100,
       barStyle: [{
@@ -77,7 +77,7 @@ Component({
   },
   methods: {
     clockDrawer() {
-      const query = wx.createSelectorQuery().in(this);
+      const query = tt.createSelectorQuery().in(this);
       query
         .select('#clock')
         .fields({
@@ -87,7 +87,7 @@ Component({
         .exec((res) => {
           const canvas = res[0].node; // 拿到 canvas 节点
           const ctx = canvas.getContext('2d');
-          const dpr = wx.getSystemInfoSync().pixelRatio; // 设备像素比
+          const dpr = tt.getSystemInfoSync().pixelRatio; // 设备像素比
 
           // 设置真实像素大小，避免模糊
           canvas.width = res[0].width * dpr;

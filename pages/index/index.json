@@ -2,17 +2,17 @@
   "navigationBarTitleText": "首页",
   "usingComponents": {
     "CircleProgress": "../../components/CircleProgress/mp-progress",
-    "ActualContent": "../../components/ActualContent",
-    "LoginModal": "../../components/LoginModal",
-    "QRModal": "../../components/QRModal",
-    "CitySelector": "../../components/CitySelector",
-    "ShareContent": "../../components/ShareContent",
-    "BottomTips": "../../components/BottomTips",
-    "Banner": "../../components/Banner",
-    "UserInfoSupply": "../../components/UserInfoSupply",
-    "Comments": "../../components/Comments",
-    "CarType": "../../components/CarType",
-    "SwitchSubjectBox": "../../components/SwitchSubjectBox",
-    "SubjectUpdate": "../../components/SubjectUpdate"
+    "ActualContent": "../../components/ActualContent/index",
+    "LoginModal": "../../components/LoginModal/index",
+    "QRModal": "../../components/QRModal/index",
+    "CitySelector": "../../components/CitySelector/index",
+    "ShareContent": "../../components/ShareContent/index",
+    "BottomTips": "../../components/BottomTips/index",
+    "Banner": "../../components/Banner/index",
+    "UserInfoSupply": "../../components/UserInfoSupply/index",
+    "Comments": "../../components/Comments/index",
+    "CarType": "../../components/CarType/index",
+    "SwitchSubjectBox": "../../components/SwitchSubjectBox/index",
+    "SubjectUpdate": "../../components/SubjectUpdate/index"
   }
 }

@@ -22,11 +22,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    wx.setNavigationBarTitle({
+    tt.setNavigationBarTitle({
       title: `科目${options.step == 1 ? '一' : '四'}专项训练`,
     })
     this.setData({
-      fontSize: wx.getStorageSync('fontSize'),
+      fontSize: tt.getStorageSync('fontSize'),
       step: options.step,
       poolType: options.poolType,
     })
@@ -59,9 +59,9 @@ Page({
       step,
       type: poolType //模拟题为6
     };
-    wx.showLoading()
+    tt.showLoading()
     poolList(params).then((res) => {
-      wx.hideLoading()
+      tt.hideLoading()
       if (res.data.code !== 200) {
         showNetWorkToast(res.data.msg)
         return

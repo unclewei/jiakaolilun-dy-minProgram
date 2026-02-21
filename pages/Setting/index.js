@@ -13,7 +13,7 @@ Page({
    */
   onLoad(options) {
     this.setData({
-      fontSize: wx.getStorageSync('fontSize') || 16,
+      fontSize: tt.getStorageSync('fontSize') || 16,
 
     })
   },
@@ -25,8 +25,8 @@ Page({
     })
   },
   onConfirm(){
-    wx.setStorageSync('fontSize', this.data.fontSize)
-    wx.switchTab({
+    tt.setStorageSync('fontSize', this.data.fontSize)
+    tt.switchTab({
       url: '/pages/index/index',
     })
   },

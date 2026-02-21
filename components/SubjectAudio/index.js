@@ -97,7 +97,7 @@ Component({
       }
 
       const playId = this.data.urlPrefix + playUrl
-      const innerAudioContext = getApp().globalData.innerAudioContext || wx.createInnerAudioContext({
+      const innerAudioContext = getApp().globalData.innerAudioContext || tt.createInnerAudioContext({
         useWebAudioImplement: true // 默认关闭。对于短音频、播放频繁的音频建议开启此选项
       })
       innerAudioContext.onEnded(() => {

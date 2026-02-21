@@ -14,13 +14,13 @@ Component({
 
   ready: function () {
     this.setData({
-      step: wx.getStorageSync("step") || "1",
+      step: tt.getStorageSync("step") || "1",
     })
   },
   pageLifetimes: {
     show() {
       this.setData({
-        step: wx.getStorageSync("step") || 1,
+        step: tt.getStorageSync("step") || 1,
       })
     },
     hide() {
@@ -37,7 +37,7 @@ Component({
       this.setData({
         step: item
       })
-      wx.setStorageSync('step', item)
+      tt.setStorageSync('step', item)
       this.triggerEvent('Update')
     },
   },

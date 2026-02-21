@@ -86,7 +86,7 @@ Component({
       }
       getUserMoniPool({
         step,
-        examType: wx.getStorageSync('examType') || getApp().globalData.userConfig.examType,
+        examType: tt.getStorageSync('examType') || getApp().globalData.userConfig.examType,
       }).then((res) => {
         let {
           nextMoniPool,
@@ -131,12 +131,12 @@ Component({
         return
       }
       if (!this.data.poolId) {
-        wx.showModal({
+        tt.showModal({
           title: '模拟卷已做完',
           content: '请到模拟考试，下面点击【重做】',
           complete: (res) => {
             if (res.confirm) {
-              wx.navigateTo({
+              tt.navigateTo({
                 url: `/pages/SubjectMoniPage/index`,
               })
             }
@@ -144,7 +144,7 @@ Component({
         })
         return
       }
-      wx.navigateTo({
+      tt.navigateTo({
         url: `/pages/Exam/index?step=${this.data.step}&poolId=${this.data.poolId}`,
       })
     },

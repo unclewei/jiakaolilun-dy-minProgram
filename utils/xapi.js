@@ -49,7 +49,7 @@ function reqFunc(obj, resolve, reject) {
   const cookies = getApp().globalData.cookies;
   if (!cookies) {
     console.log('obj',obj);
-    wx.showToast({
+    tt.showToast({
       duration: 3000,
       title: '请先登录',
       icon: 'fail'

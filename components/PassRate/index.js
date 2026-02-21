@@ -148,7 +148,7 @@ Component({
       poolList({
         step
       }).then((res) => {
-        wx.hideLoading()
+        tt.hideLoading()
         if (res.data.code !== 200) {
           showNetWorkToast(res.data.msg)
           return
