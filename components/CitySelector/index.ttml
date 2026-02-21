@@ -1,20 +1,20 @@
 <view class='titleHeadn {{className}}' bindtap="showModal">
-  <view class="highlight" wx:if="{{!userConfig.cityId}}">点击选择城市</view>
-  <view wx:else>{{myProvince}}</view>
+  <view class="highlight" tt:if="{{!userConfig.cityId}}">点击选择城市</view>
+  <view tt:else>{{myProvince}}</view>
   <image src='../../images/icon/{{showLocationIcon ? "location":"arrow-right"}}.png' class='locationIcon' mode="aspectFit" />
 </view>
 
-<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' wx:if="{{visible}}">
+<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' tt:if="{{visible}}">
   <view class='mask' bindtap='hideModal' />
   <view class='wrap {{visible && "DrawerContainerShow"}} {{hidding && "DrawerContainerHide"}}'>
 
 
-    <view class='option' wx:if="{{isSearch}}">
+    <view class='option' tt:if="{{isSearch}}">
       <image class='endSearchIcon' mode="widthFix" bindtap='endSearch' src="../../images/closeX.png" />
       <view class="searchTitle">选择城市</view>
       <view class='confirm'></view>
     </view>
-    <view class='option' wx:else="">
+    <view class='option' tt:else="">
       <view class='cancel' bindtap='hideModal'>
         取消
       </view>
@@ -28,40 +28,40 @@
       <view class="searchContent" bind:tap="starSearch">
         <image class="searchIcon" mode="widthFix" src="../../images/search.png" />
         <input class="searchInput" placeholder="点击搜索" auto-focus="{{isSearch}}" value="{{searchText}}" bindinput="onSearchInput" />
-        <image class="searchClearIcon" mode="widthFix" src="../../images/close.png" wx:if="{{!!searchText}}" bind:tap="cleanSearchText" />
+        <image class="searchClearIcon" mode="widthFix" src="../../images/close.png" tt:if="{{!!searchText}}" bind:tap="cleanSearchText" />
       </view>
     </View>
 
-    <view class='recommend' wx:if="{{!isSearch}}">
+    <view class='recommend' tt:if="{{!isSearch}}">
       <view class='title'>热门城市</view>
       <view class='recommendWrap'>
-        <view wx:for="{{recommendCityData}}" wx:for-item="i" wx:key='cityId' class='recommendCityWrap' bindtap="onCityClick" data-item="{{i}}">
+        <view tt:for="{{recommendCityData}}" tt:for-item="i" tt:key='cityId' class='recommendCityWrap' bindtap="onCityClick" data-item="{{i}}">
           <view class='recommendCity {{i.cityId===cityId && "active"}}'>
             {{i.cityName}}
           </view>
         </view>
       </view>
     </view>
-    <view class='content' wx:if="{{!isSearch}}">
+    <view class='content' tt:if="{{!isSearch}}">
       <view class='aside'>
-        <view class='cityItem {{i.provinceId === provinceId && "isActive"}}' wx:for="{{provinceData}}" wx:for-item="i" wx:key='provinceId' bindtap="onProvinceClick" data-item="{{i}}">
+        <view class='cityItem {{i.provinceId === provinceId && "isActive"}}' tt:for="{{provinceData}}" tt:for-item="i" tt:key='provinceId' bindtap="onProvinceClick" data-item="{{i}}">
           {{i.provinceName}}
           <view class='icon'>
-            <image wx:if="{{i.provinceId === provinceId}}" src='../../images/right.png' class='icon' />
+            <image tt:if="{{i.provinceId === provinceId}}" src='../../images/right.png' class='icon' />
           </view>
         </view>
       </view>
       <view class='examContent'>
-        <view class='examItem {{i.cityId === cityId && active}}' wx:for="{{cityData}}" wx:for-item="i" wx:key='cityId' bindtap="onCityClick" data-item="{{i}}">
+        <view class='examItem {{i.cityId === cityId && active}}' tt:for="{{cityData}}" tt:for-item="i" tt:key='cityId' bindtap="onCityClick" data-item="{{i}}">
           {{i.cityName}}
           <view class='icon'>
-            <image wx:if="{{i.cityId === cityId}}" src='../../images/right.png' class='icon' />
+            <image tt:if="{{i.cityId === cityId}}" src='../../images/right.png' class='icon' />
           </view>
         </view>
       </view>
     </view>
-    <view class="searchConent" wx:if="{{isSearch}}">
-      <view class="searchItem" wx:for="{{searchCityList}}" wx:key="cityId" bind:tap="onCityExactClick" data-item="{{item}}">{{item.cityName}}
+    <view class="searchConent" tt:if="{{isSearch}}">
+      <view class="searchItem" tt:for="{{searchCityList}}" tt:key="cityId" bind:tap="onCityExactClick" data-item="{{item}}">{{item.cityName}}
       </view>
     </view>
   </view>

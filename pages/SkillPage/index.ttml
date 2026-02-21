@@ -1,4 +1,4 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 <page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
   <view class='init'>
     <view class='headerWrap'>
@@ -9,7 +9,7 @@
       </view>
     </view>
     <view class='wrap'>
-      <view class='item' wx:for="{{poolData}}">
+      <view class='item' tt:for="{{poolData}}">
         <view class='itemTitle' bindtap="gotoPage" data-poolid="{{item._id}}">
           <view class='nums'>
             <view class='num'>{{index + 1}}</view>
@@ -23,7 +23,7 @@
           </view>
         </view>
         <view class='skillContent' bindtap="gotoPage" data-poolid="{{item._id}}">
-          <view class='line' wx:for="{{utils.stringSplit(item.note)}}" wx:for-item='textItem'>
+          <view class='line' tt:for="{{utils.stringSplit(item.note)}}" tt:for-item='textItem'>
             <view class='dot' />
             {{textItem}}
           </view>

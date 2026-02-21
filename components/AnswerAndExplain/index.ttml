@@ -1,36 +1,36 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <view class='init' hidden="{{!isShowAnswer}}">
   <view class='answer'>
     <span class='text'>答案 {{answer}}</span>
   </view>
-  <view class='skill' wx:if="{{subjectItem.skillContent}}">
+  <view class='skill' tt:if="{{subjectItem.skillContent}}">
     <view class='title'>
       <span class='skillTitle'>
         <image src='../../images/icon/light.png' class='skillIcon' mode="widthFix" />
         盲选技巧
       </span>
-      <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' />
+      <SubjectAudio tt:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='读技巧' type='skill' />
     </view>
     <HighLightContent keys='{{subjectItem.skillKeys}}' content="{{subjectItem.skillContent}}" />
   </view>
 
-  <view class='skill' wx:if="{{subjectItem.skillVideoUrl}}">
+  <view class='skill' tt:if="{{subjectItem.skillVideoUrl}}">
     <view class='title'>
       <span class='skillTitle'>
         <image src='../../images/player.png' class='skillIcon' mode="widthFix" />
         视频讲解技巧
       </span>
     </view>
-    <SubjectVideo wx:if="{{  subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
+    <SubjectVideo tt:if="{{  subjectItem.skillVideoUrl}}" subjectItem='{{subjectItem}}'>
       <image class="videoPosyImg" src="{{urlPrefix}}/frontend/697a2256ab7f2d41018ddecf.jpeg" mode="aspectFill" />
       <image class="videoPlay" src="../../images/play.png" mode="widthFix" />
     </SubjectVideo>
     <!-- <video class="video" poster='../../images/aiBg.png' src='{{urlPrefix + subjectItem.skillVideoUrl }}' object-fit="contain" /> -->
   </view>
 
-  <view class='skillNormal' wx:if="{{subjectItem.normalSkillContent}}">
-    <view class='title' wx:if="{{subjectItem.skillContent}}">
+  <view class='skillNormal' tt:if="{{subjectItem.normalSkillContent}}">
+    <view class='title' tt:if="{{subjectItem.skillContent}}">
       <span class='skillTitle'>
         <image src='../../images/icon/hot.png' class='skillIcon' mode="widthFix" />
         做题技巧
@@ -42,7 +42,7 @@
     </view>
   </view>
 
-  <view class='dec' wx:if="{{subjectItem.explain}}">
+  <view class='dec' tt:if="{{subjectItem.explain}}">
     <view class='title'>
       <span class='stick' />
       <span class='titleName'>试题详解</span>
@@ -57,11 +57,11 @@
     </view>
     <view class='difficulty'>
       难度:
-      <image class="icon" src='../../images/icon/collect.png' wx:for=" {{utils.startInit(subjectItem.difficultyLevel)}}" mode="widthFix" />
+      <image class="icon" src='../../images/icon/collect.png' tt:for=" {{utils.startInit(subjectItem.difficultyLevel)}}" mode="widthFix" />
     </view>
   </view>
 
-  <view class='dec' wx:if="{{subjectItem.explain}}">
+  <view class='dec' tt:if="{{subjectItem.explain}}">
     <view class='title'>
       <span class='stick' />
       <span class='titleName'>考友互动</span>

@@ -10,15 +10,15 @@
 
     <!-- 表体 -->
     <view class="tbody">
-      <view class="row" wx:for="{{itemData}}" wx:key="_id">
+      <view class="row" tt:for="{{itemData}}" tt:key="_id">
         <view class="td name">
           <view class="course-name">
             {{item.name}}（{{item.price}}元/{{item.durText}}）
           </view>
-          <view wx:if="{{item.refund}}" class="peichang">
+          <view tt:if="{{item.refund}}" class="peichang">
             考不过赔偿{{item.refund}}元
           </view>
-          <view wx:else class="nopeichang">
+          <view tt:else class="nopeichang">
             考不过无赔偿
           </view>
         </view>
@@ -28,7 +28,7 @@
       </view>
 
       <!-- 无数据时 -->
-      <view wx:if="{{itemData.length === 0}}" class="empty">
+      <view tt:if="{{itemData.length === 0}}" class="empty">
         暂无返点数据
       </view>
     </view>

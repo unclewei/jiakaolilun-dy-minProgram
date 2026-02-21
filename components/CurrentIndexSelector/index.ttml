@@ -1,9 +1,9 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <span bindtap="showSelector">
   <slot></slot>
 </span>
-<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' wx:if="{{visible}}">
+<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' tt:if="{{visible}}">
   <view class='mask' bindtap='hideModal' />
   <view class='wrap {{visible && "DrawerContainerShow"}} {{hidding && "DrawerContainerHide"}}'>
 
@@ -17,7 +17,7 @@
     </view>
     <view class='content'>
       <view class='recommendWrap'>
-        <span wx:for="{{washData}}" wx:for-item="i" wx:key='_id' class='recommendCityWrap' bindtap="onCurrentIndexClick" data-item="{{i}}" data-index="{{index}}">
+        <span tt:for="{{washData}}" tt:for-item="i" tt:key='_id' class='recommendCityWrap' bindtap="onCurrentIndexClick" data-item="{{i}}" data-index="{{index}}">
           <span class='recommendCity {{i.rightItem && "right"}} {{i.wrongItem && "wrong"}} {{currentIndex===index && "active"}} '>
             {{index + 1}}
           </span>

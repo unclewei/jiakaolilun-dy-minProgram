@@ -1,4 +1,4 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <div class='init'>
   <span style="position: relative;" bindtap="showModal">
@@ -6,8 +6,8 @@
   </span>
 
 
-  <view class="videoBox" wx:if="{{showPlay}}">
-    <video class="video" src='{{palyUrl}}' wx:if="{{showPlay}}" controls autoplay object-fit="contain" />
+  <view class="videoBox" tt:if="{{showPlay}}">
+    <video class="video" src='{{palyUrl}}' tt:if="{{showPlay}}" controls autoplay object-fit="contain" />
     <view class="close" bind:tap="close">关闭视频讲解</view>
   </view>]
 </div>

@@ -1,1 +1,1 @@
-  <span class='child {{item.class}}' wx:for="{{skillList}}" wx:key="{{item.text}}">{{item.text}}</span>
+  <span class='child {{item.class}}' tt:for="{{skillList}}" tt:key="{{item.text}}">{{item.text}}</span>

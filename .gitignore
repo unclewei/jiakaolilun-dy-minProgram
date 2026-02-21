@@ -1,0 +1,15 @@
+# 抖音开发者工具缓存
+.ttide/
+.tt/
+temp/
+cache/
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 编辑器
+.vscode/
+.idea/
+*.swp
+*.swo

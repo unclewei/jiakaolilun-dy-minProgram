@@ -7,13 +7,13 @@
   />
 
   <!-- Loading state -->
-  <view wx:if="{{isLoading}}" class="loading-container">
+  <view tt:if="{{isLoading}}" class="loading-container">
     <view class="loading-text">生成中...</view>
   </view>
 
   <!-- Display final image -->
   <image
-    wx:if="{{posterUrl && !isLoading}}"
+    tt:if="{{posterUrl && !isLoading}}"
     src="{{posterUrl}}"
     mode="widthFix"
     class="poster-image"
@@ -21,7 +21,7 @@
   />
 
   <!-- Error state -->
-  <view wx:if="{{!isLoading && !posterUrl}}" class="error-container">
+  <view tt:if="{{!isLoading && !posterUrl}}" class="error-container">
     <view class="error-text">图片生成失败</view>
   </view>
 </view>

@@ -1,4 +1,4 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
   <view class='init'>
@@ -17,7 +17,7 @@
         {{loading ? '激活中' : '提交'}}
       </view>
     </view>
-    <view wx:if="{{userAcCodeData}}">
+    <view tt:if="{{userAcCodeData}}">
       <view class='result'>
         <image src='../../images/icon/arrow-right.png' mode="widthFix" class='icon' />
         <span>成功激活权益：{{userAcCodeData.paidObject.name}}</span>
@@ -25,7 +25,7 @@
       <view class='secondTips' bindtap='goToDetail'>激活时间：{{utils.toDate(userAcCodeData.activeDate)}}</view>
       <view class='gotoPage' bindtap='goToDetail'>回到首页开始做题吧>></view>
     </view>
-    <view class='result' wx:if="{{errorMsg}}">
+    <view class='result' tt:if="{{errorMsg}}">
       <span>激活权益失败：{{errorMsg}}</span>
     </view>
 

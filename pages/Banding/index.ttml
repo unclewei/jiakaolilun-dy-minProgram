@@ -1,6 +1,6 @@
 <!--pages/Banding/index.wxml-->
-<wxs src="../../utils/resource.wxs" module="resource"></wxs>
-<view class="container " wx:if="{{hasLogin}}">
+<sjs src="../../utils/resource.sjs" module="resource"></sjs>
+<view class="container " tt:if="{{hasLogin}}">
 
   <image class="successIcon" src="../../images/right.png" mode="widthFix" />
   <view>
@@ -11,7 +11,7 @@
 </view>
 
 
-<view class="container" wx:else>
+<view class="container" tt:else>
 
 
   <text class="page-title">关联精选500题小程序</text>

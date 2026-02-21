@@ -124,8 +124,6 @@ Page({
   },
   /**  登录成功*/
   onLoginSuccess() {
-    // 关键：全局刷新 tabBar
-    getApp().refreshTabBar();
     this.setData({
       userInfo: getApp().globalData.userInfo
     })

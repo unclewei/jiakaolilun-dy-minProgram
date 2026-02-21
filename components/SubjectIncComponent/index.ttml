@@ -12,8 +12,8 @@
       </view>
     </view>
     <view class='bodyBox'>
-      <view class='menu'  wx:if="{{!isApproval}}">
-        <view class='menuContent' wx:for="{{itemData}}" wx:key='id' bindtap="onSelect" data-item="{{item}}">
+      <view class='menu'  tt:if="{{!isApproval}}">
+        <view class='menuContent' tt:for="{{itemData}}" tt:key='id' bindtap="onSelect" data-item="{{item}}">
           <view class="menuItem {{selectItem._id === item._id && 'menuItemActive'}}">
             <view class="menuItemContent {{selectItem._id === item._id && 'menuItemContentActive'}}">
               {{item.name}}
@@ -22,11 +22,11 @@
                 <span>/{{item.durText}}</span>
               </view>
             </view>
-            <view wx:if="{{item.isRecommend}}" class="moreUser">立省{{item.discountPrice}}元</view>
-            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" wx:if="{{item.refund}}">
+            <view tt:if="{{item.isRecommend}}" class="moreUser">立省{{item.discountPrice}}元</view>
+            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" tt:if="{{item.refund}}">
               考不过补偿{{item.refund}}元
             </view>
-            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" wx:else>
+            <view class="footer {{selectItem._id === item._id && 'footerActive'}}" tt:else>
               考不过无补偿
             </view>
           </view>
@@ -44,15 +44,15 @@
           <view class='rightItemCenter'>普通会员</view>
           <view class='rightItemCenter'>尊享会员</view>
         </view>
-        <view class='rightItems' wx:for="{{rightsList}}" wx:key="name">
+        <view class='rightItems' tt:for="{{rightsList}}" tt:key="name">
           <view class='rightItem'>{{item.name}}</view>
           <view class='rightItemCenter'>
-            <view class="rightUpText" wx:if="{{item.isText}}">{{item.normalVipText}}</view>
-            <image class="{{item.normalVipClass}}" wx:else src="{{item.normalVipImg}}" mode="widthFix" />
+            <view class="rightUpText" tt:if="{{item.isText}}">{{item.normalVipText}}</view>
+            <image class="{{item.normalVipClass}}" tt:else src="{{item.normalVipImg}}" mode="widthFix" />
           </view>
           <view class='rightItemCenter'>
-            <view class="rightUpText" wx:if="{{item.isText}}">{{item.upVipText}}</view>
-            <image class="{{item.upVipClass}}" wx:else src="{{item.upVipImg}}" mode="widthFix" />
+            <view class="rightUpText" tt:if="{{item.isText}}">{{item.upVipText}}</view>
+            <image class="{{item.upVipClass}}" tt:else src="{{item.upVipImg}}" mode="widthFix" />
           </view>
         </view>
       </view>
@@ -64,19 +64,19 @@
       </view>
 
       <view class='resonBox'>
-        <view class="reasonItem {{item.type==='tranditional' && 'reasonItemTrandtional'}} {{item.type==='al' && 'reasonItemAl'}} {{item.isFinal && 'reasonItemFinal'}}" wx:for="{{reasonList}}" wx:key="text">
+        <view class="reasonItem {{item.type==='tranditional' && 'reasonItemTrandtional'}} {{item.type==='al' && 'reasonItemAl'}} {{item.isFinal && 'reasonItemFinal'}}" tt:for="{{reasonList}}" tt:key="text">
           <image class='reasonIcon' src='{{item.icon}}' mode="aspectFit" />
           <view class='reasonText'>{{item.text}}</view>
         </view>
       </view>
 
-      <view class='titleBox' wx:if="{{!!selectItem.refund}}">
+      <view class='titleBox' tt:if="{{!!selectItem.refund}}">
         <image class='titleBar' src='../../images/inc/title-bar.png' mode="widthFix" alt="" />
         <view class='titleText'>四步轻松补偿</view>
         <image class='titleBar' style='transform: rotate(180deg)' src='../../images/inc/title-Bar.png' mode="widthFix" />
       </view>
 
-      <view class='refundStep' wx:if="{{!!selectItem.refund}}">
+      <view class='refundStep' tt:if="{{!!selectItem.refund}}">
         <view class='data'>
           <view class='item'>
             <view class='content'>
@@ -89,7 +89,7 @@
             <view class='content'>
               <view class='title'>第二步、完善个人资料</view>
               <view class='longP'>注意：最晚在正式考试前24时完善个人资料，否则无法补偿！</view>
-              <view wx:if="{{isUserInfoOK}}">
+              <view tt:if="{{isUserInfoOK}}">
                 <view class='info'>姓名：{{userInfo.name}}</view>
                 <view class='info'>手机：{{userInfo.phoneNum}}</view>
               </view>
@@ -117,7 +117,7 @@
       </view>
     </view>
 
-    <view wx:if="{{isApproval}}" class='buy {{isTab && "tabBuy"}}'>
+    <view tt:if="{{isApproval}}" class='buy {{isTab && "tabBuy"}}'>
       <view class="payment">
         <view class='buyButton'>
           <span>由于相关规范，iOS功能暂不可用</span>
@@ -125,14 +125,14 @@
       </view>
     </view>
 
-    <view class='buy {{isTab && "tabBuy"}}' wx:else="">
-      <CountDown wx:if="{{!selectItem.isPaidDone}}" discountPrice='{{selectItem.discountPrice}}' />
+    <view class='buy {{isTab && "tabBuy"}}' tt:else="">
+      <CountDown tt:if="{{!selectItem.isPaidDone}}" discountPrice='{{selectItem.discountPrice}}' />
       <view class="payment">
         <view class='buyButton'>
-          <span wx:if="{{selectItem.isPaidDone}}">您已开通该服务</span>
-          <span wx:else>￥<span class='priceNum'>{{selectItem.price}}</span>/{{selectItem.durText}}</span>
-          <view class='insideBtn insideBtnPaidDone' wx:if="{{selectItem.isPaidDone || insideBtnPaidDone}}" bindtap="gotoSubjectPage">立即做题</view>
-          <view class='insideBtn' bindtap="gotoShop" wx:else>立即开通</view>
+          <span tt:if="{{selectItem.isPaidDone}}">您已开通该服务</span>
+          <span tt:else>￥<span class='priceNum'>{{selectItem.price}}</span>/{{selectItem.durText}}</span>
+          <view class='insideBtn insideBtnPaidDone' tt:if="{{selectItem.isPaidDone || insideBtnPaidDone}}" bindtap="gotoSubjectPage">立即做题</view>
+          <view class='insideBtn' bindtap="gotoShop" tt:else>立即开通</view>
         </view>
       </view>
     </view>

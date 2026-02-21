@@ -1,9 +1,9 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <span bindtap="showSelector">
   <slot></slot>
 </span>
-<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' wx:if="{{visible}}">
+<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' tt:if="{{visible}}">
   <view class='mask' bindtap='hideModal' />
   <view class='wrap {{visible && "DrawerContainerShow"}} {{hidding && "DrawerContainerHide"}}'>
 
@@ -14,13 +14,13 @@
 
     <view class='content'>
       <view class="skillBox">
-        <SubjectAudio wx:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='语音技巧' type='skill' size='big' />
+        <SubjectAudio tt:if="{{subjectItem.skillAudioUrl}}" subjectItem='{{subjectItem}}' title='语音技巧' type='skill' size='big' />
       
       </view>
-      <view class="skillContent" wx:if="{{subjectItem.normalSkillContent}}">
+      <view class="skillContent" tt:if="{{subjectItem.normalSkillContent}}">
         {{subjectItem.normalSkillContent}}
       </view>
-      <view class="fastSkill" wx:if="{{subjectItem.skillContent}}">
+      <view class="fastSkill" tt:if="{{subjectItem.skillContent}}">
         盲选技巧：{{subjectItem.skillContent}}
       </view>
       <view class='showTips' bind:tap="hideModal">查看全部题目技巧</view>

@@ -1,4 +1,4 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <div class='init {{className}}'>
   <span bindtap="showModal">

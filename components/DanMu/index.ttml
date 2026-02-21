@@ -1,5 +1,5 @@
 <view class='recordShowBox'>
-  <p class='recordAimation' wx:if="{{danmuList}}">
+  <p class='recordAimation' tt:if="{{danmuList}}">
     <span style='color: #dc9d5f'>{{danmuList}}</span>
     <span>学员 刚刚购买了 </span>
     <span style='color: #dc9d5f'>{{vipName}}</span>

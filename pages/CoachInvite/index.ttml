@@ -1,5 +1,5 @@
 <!--pages/CoachInvite/index.wxml-->
-<wxs src="../../utils/resource.wxs" module="resource"></wxs>
+<sjs src="../../utils/resource.sjs" module="resource"></sjs>
 <view class="coach-invite-container">
   <!-- 头部 -->
   <view class="header">
@@ -13,7 +13,7 @@
   <!-- 未登录状态 -->
 
   <!-- 已登录状态 - 显示用户信息 -->
-  <view class="info-section" wx:if="{{hasLogin}}">
+  <view class="info-section" tt:if="{{hasLogin}}">
     <!-- 用户头像和昵称 -->
     <view class="info-card">
       <view class="card-title">1. 获取个人信息</view>
@@ -21,7 +21,7 @@
         <text class="input-label">头像：</text>
         <button class="avatar-wrapper" open-type="chooseAvatar" bindchooseavatar="onChooseAvatar">
           <image class="avatar" src="{{userInfo.avatarUrl || '/images/defaultAvatar.jpg'}}" mode="aspectFill" />
-          <view class="avatar-tip" wx:if="{{!userInfo.avatarUrl}}">点击选择头像</view>
+          <view class="avatar-tip" tt:if="{{!userInfo.avatarUrl}}">点击选择头像</view>
         </button>
       </view>
       <view class="nickname-input-wrapper">
@@ -36,7 +36,7 @@
       <button class="cleanButton phone-btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
         {{userInfo.phoneNum ? '重新获取手机号' : '获取手机号'}}
       </button>
-      <view class="info-display" wx:if="{{userInfo.phoneNum}}">
+      <view class="info-display" tt:if="{{userInfo.phoneNum}}">
         <text class="label">状态：</text>
         <text class="value success">已获取</text>
       </view>

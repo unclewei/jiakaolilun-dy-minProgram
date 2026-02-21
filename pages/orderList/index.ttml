@@ -1,8 +1,8 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 <page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
-  <view class="contentBox" wx:if="{{userInfo.avatarUrl}}">
+  <view class="contentBox" tt:if="{{userInfo.avatarUrl}}">
 
-    <view class="locationItem" wx:for="{{paidItems}}" wx:key="_id" data-item='{{item}}'>
+    <view class="locationItem" tt:for="{{paidItems}}" tt:key="_id" data-item='{{item}}'>
 
       <!-- 数据展示 -->
       <view class="locationBody">
@@ -14,11 +14,11 @@
       </view>
     </view>
     <!-- 缺省图 -->
-    <view wx:if="{{isEmpty}}">订单空空如也，快抽赏吧~</view>
+    <view tt:if="{{isEmpty}}">订单空空如也，快抽赏吧~</view>
   </view>
 
   <view class="contentBox">
-    <button wx:if="{{!userInfo.avatarUrl}}" bindtap="onLogin">一键登录</button>
+    <button tt:if="{{!userInfo.avatarUrl}}" bindtap="onLogin">一键登录</button>
   </view>
 
 

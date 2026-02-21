@@ -1,4 +1,4 @@
-<wxs src="./index.wxs" module="utils"></wxs>
+<sjs src="./index.sjs" module="utils"></sjs>
 <BaseDrawer id="baseDrawer" title='配置清单'>
   <view class="content">
     <!-- 票据购买 -->
@@ -27,7 +27,7 @@
         <view>卡片尺寸</view>
         <view>90*50mm</view>
       </view>
-      <view class="cardItem" wx:if="{{disCountItem}}">
+      <view class="cardItem" tt:if="{{disCountItem}}">
         <view>优惠券使用</view>
         <view style="color:red">
           {{disCountItem.name}}: 满{{disCountItem.amount}}减{{disCountItem.discountAmount}}

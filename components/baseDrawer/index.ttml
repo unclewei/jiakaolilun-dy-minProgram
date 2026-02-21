@@ -2,7 +2,7 @@
   <view data-type="mask" catchtap="touchModal" catchtouchmove='couchmove' class="drawer-mask" />
   <view class="defaultDrawerContainer purpleBg {{isShow && 'DrawerContainerShow'}} {{hidding && 'DrawerContainerHide'}} {{className}}">
     <view class="content">
-      <view class="title" wx:if="{{title}}">{{title}}</view>
+      <view class="title" tt:if="{{title}}">{{title}}</view>
       <slot></slot>
     </view>
   </view>

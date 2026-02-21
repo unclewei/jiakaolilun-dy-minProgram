@@ -1,7 +1,7 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <view class='init'>
-  <view wx:for="{{commentList}}" wx:for-item="i" wx:key='_id' class='item'>
+  <view tt:for="{{commentList}}" tt:for-item="i" tt:key='_id' class='item'>
     <view class='userInfo'>
       <span class='userName'>
         <Avatar userInfo='{{i.user}}' className='avatarSmall' />

@@ -1,4 +1,4 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 <!-- 主内容 -->
 <view class="init">
   <view class="header">
@@ -63,7 +63,7 @@
   <!-- 推荐人 -->
   <UserPhoneSupply id='UserPhoneSupply'  bindUpdate='updateUserInfo' />
   <!-- 分享按钮组 -->
-  <view class="shareButtonGroup" wx:if="{{hasLogin}}">
+  <view class="shareButtonGroup" tt:if="{{hasLogin}}">
     <!-- 获取分享图按钮 -->
     <!-- <button class="shareBar posterBar" bind:tap="gotoSharePoster">
       <view class="shareBarBtn">获取分享图</view>

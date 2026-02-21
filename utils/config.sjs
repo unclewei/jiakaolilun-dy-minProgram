@@ -1,0 +1,289 @@
+// 翻译 标签
+module.exports.transTags = function (tagList, tagId) {
+  if (!tagList || !tagList.length || !tagId) {
+    return ''
+  }
+  var TagName = ''
+  for (var i = 0; i < tagList.length; i++) {
+    var item = tagList[i]
+    if (item._id === tagId) {
+      TagName = item.name
+      break
+    }
+  }
+  return TagName
+}
+
+/**
+ * 枚举翻译
+ * @param state 
+ * @returns 
+ */
+module.exports.EnumeLabel = function (enumList, enumeKey) {
+  console.log(enumList);
+  if (!enumList || !enumList.length || !enumeKey) {
+    return ''
+  }
+  for (var i = 0; i < enumList.length; i++) {
+    var item = enumList[i]
+    if (item.value === enumeKey) {
+      return item.label
+    }
+  }
+}
+
+
+/**
+ * key是否在列表中
+ * @param state 
+ * @returns 
+ */
+module.exports.onMyList = function (list, value) {
+  if (!list || !list.length || !value) {
+    return false
+  }
+  for (var i = 0; i < list.length; i++) {
+    var item = list[i]
+    if (item === value) {
+      return true
+    }
+  }
+  return false
+}
+
+/**
+ * key是否在对象中
+ * @param state 
+ * @returns 
+ */
+module.exports.onMyObject = function (object, value) {
+  if (!object || !Object.keys(object).length || !value) {
+    return false
+  }
+  return !!object[value]
+}
+
+/**
+ * key是否在列表中
+ * @param state 
+ * @returns 
+ */
+module.exports.isWrong = function (wrongSubjectItems, value) {
+  if (!wrongSubjectItems || !wrongSubjectItems.length || !value) {
+    return false
+  }
+  for (var i = 0; i < wrongSubjectItems.length; i++) {
+    var item = wrongSubjectItems[i].subjectId
+    if (item === value) {
+      return true
+    }
+  }
+  return false
+}
+/**
+ * 截取
+ * @param state 
+ * @returns 
+ */
+module.exports.toFixed = function (name, num) {
+  if (!name) {
+    return name
+  }
+  return name.toFixed(num || 2)
+}
+
+/**
+ * 名字打码
+ * @param state 
+ * @returns 
+ */
+module.exports.nameHide = function (name) {
+  if (!name || name.length === 0 || name.length === 1) {
+    return '**'
+  }
+  var nameLength = name.length
+  if (nameLength === 2) {
+    return name[0] + '**'
+  }
+  return name[0] + '**' + name[nameLength - 1]
+}
+
+// 日期 翻译
+module.exports.toDate = function (timestamp) {
+  if (!timestamp) {
+    return ''
+  }
+
+  function timeFormat(num) {
+    return num < 10 ? '0' + num : num
+  }
+
+  var date = getDate(timestamp * 1000);
+  var y = date.getFullYear();
+  var M = timeFormat(date.getMonth() + 1);
+  var d = timeFormat(date.getDate());
+  var h = timeFormat(date.getHours());
+  var m = timeFormat(date.getMinutes());
+  var s = timeFormat(date.getSeconds());
+  return y + "-" + M + "-" + d + " " + h + ":" + m + ':' + s;
+}
+/*时间戳转日期中文版
+ *@time 时间戳
+ * Usage timeFormatted(1503027486)
+ * Result 2017-7-18-11:38:06
+ * */
+module.exports.timeFormatted_CN = function (timestamp, detail) {
+  if (!timestamp) {
+    return ''
+  }
+
+  function timeFormat(num) {
+    return num < 10 ? '0' + num : num
+  }
+
+  var date = getDate(timestamp * 1000);
+  var y = date.getFullYear();
+  var M = timeFormat(date.getMonth() + 1);
+  var d = timeFormat(date.getDate());
+  var h = timeFormat(date.getHours());
+  var m = timeFormat(date.getMinutes());
+  var s = timeFormat(date.getSeconds());
+  if (detail) {
+    return y + '年' + M + '月' + d + '日 ' + d + ':' + m + ':' + s;
+    // 2019年10月1日15:01
+  }
+  return y + '年' + M + '月' + d + '日 ';
+}
+
+// 日期 翻译
+module.exports.toDateYMD = function (timestamp) {
+  if (!timestamp) {
+    return ''
+  }
+
+  function timeFormat(num) {
+    return num < 10 ? '0' + num : num
+  }
+
+  var date = getDate(timestamp * 1000);
+  var y = date.getFullYear();
+  var M = timeFormat(date.getMonth() + 1);
+  var d = timeFormat(date.getDate());
+  return y + "-" + M + "-" + d;
+}
+
+
+
+// 赏品状态
+module.exports.packStatus = function (id) {
+  if (!id) {
+    return ''
+  }
+  var statusEnum = {
+    init: '初始化',
+    online: '激活中',
+    locked: '锁定中',
+    unSend: '未发货',
+    sendAsking: '请求发货中',
+    sendAsked: '已收到申请',
+    packed: '出库中',
+    sent: '已发货',
+    signed: '已签收',
+    breakUp: '已分解',
+    swapAsking: '申请交换中'
+  }
+
+  return statusEnum[id]
+}
+// 赏品状态
+module.exports.orderStatus = function (id) {
+  if (!id) {
+    return ''
+  }
+  var statusEnum = {
+    asking: '请求发货中',
+    managing: '安排发货中',
+    sent: '已发货',
+    signed: '已签收',
+  }
+  return statusEnum[id]
+}
+
+
+/**
+ * 获取进度条，最高100%
+ * @param self 
+ * @param traget 
+ */
+module.exports.getProgress = function (self, traget) {
+  if (!traget || !self) {
+    return 0
+  }
+  if (self > traget) {
+    return 100
+  }
+  return self * 100 / traget
+}
+
+/**
+ * 绝对值
+ * @param self 
+ * @param traget 
+ */
+module.exports.getAbs = function (text) {
+  if (!text) {
+    return 0
+  }
+  return Math.abs(text)
+}
+
+// 获取img的名字
+module.exports.getImgNmae = function (imgName) {
+  if (!imgName) {
+    return ''
+  }
+  var arr = imgName.split('/');
+  return arr[arr.length - 1];
+}
+
+
+// 获取img的名字
+module.exports.getImgStep = function (item) {
+  if (!item.step) {
+    return ''
+  }
+  return item.step == 1 ? 'subject/one/' : 'subject/four/'
+}
+
+
+
+// 解析
+module.exports.explainInit = function (subject) {
+  var explain = subject.aiExplain || subject.explain;
+  if (!explain) return null;
+  explain = explain.split('<\/p>').join('');
+  explain = explain.split('<p>').join('');
+  explain = explain.split('您').join('');
+  return explain;
+};
+// 考友解析
+module.exports.commentInit = function (explainOut) {
+  var explain = explainOut;
+  if (!explain) return null;
+  explain = explain.split('<\/p>').join('');
+  explain = explain.split('<p>').join('');
+  explain = explain.split('您').join('');
+  return explain;
+};
+// 难度
+module.exports.startInit = function (level) {
+  var arr = []
+  for (var i = 0; i < level; i++) {
+    arr.push(i);
+  }
+  return arr
+};
+// string 按需切开
+module.exports.stringSplit = function (content , splitKey) {
+  return (content||'').split(splitKey||'/')
+};

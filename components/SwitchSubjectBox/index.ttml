@@ -1,4 +1,4 @@
-<view class="content {{show && 'contentShow'}}" wx:if="{{show}}">
+<view class="content {{show && 'contentShow'}}" tt:if="{{show}}">
   <view class="topText {{show && 'topTextShow'}}">
     <view class="title">您已切换到</view>
     <view class="subjectText">科目{{step == 1 ? '一' : '四'}}</view>

@@ -3,15 +3,15 @@
 
   <!-- 操作区域 -->
   <view class="optionsBox">
-    <button class="optionsItem" bindtap="onCancel" wx:if="{{showCancel}}">
-      <view class="optionText" wx:if="{{cancelText}}">{{cancelText}}</view>
-      <view class="optionText" wx:else>
+    <button class="optionsItem" bindtap="onCancel" tt:if="{{showCancel}}">
+      <view class="optionText" tt:if="{{cancelText}}">{{cancelText}}</view>
+      <view class="optionText" tt:else>
         <slot name='cancelText'></slot>
       </view>
     </button>
-    <view class="optionsItem" bindtap="onConfirm" wx:if="{{showOk}}">
-      <view class="optionText okText" wx:if="{{okText}}">{{okText}}</view>
-      <view class="optionText" wx:else>
+    <view class="optionsItem" bindtap="onConfirm" tt:if="{{showOk}}">
+      <view class="optionText okText" tt:if="{{okText}}">{{okText}}</view>
+      <view class="optionText" tt:else>
         <slot name='okText'></slot>
       </view>
 

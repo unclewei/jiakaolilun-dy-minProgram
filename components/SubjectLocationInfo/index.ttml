@@ -6,17 +6,17 @@
       <div class='cityName'>{{cityItem.cityName === '市辖区' ? cityItem.provinceName: cityItem.cityName}}</div>
     </div>
     <div class='content'>
-      <div class='item' wx:if="{{data.ke1}}">
+      <div class='item' tt:if="{{data.ke1}}">
         <span>科目一<span class='num'>{{data.ke1.subjectCount}}</span>题</span>
-        <view class='tips' wx:if="{{data.ke1.combinePool}}">{{combinePoolOneText}}</view>
-        <view class='tips' wx:else>
+        <view class='tips' tt:if="{{data.ke1.combinePool}}">{{combinePoolOneText}}</view>
+        <view class='tips' tt:else>
           全国题{{data.ke1.subjectCount}}题
         </view>
       </div>
-      <div class='item' wx:if="{{data.ke4}}">
+      <div class='item' tt:if="{{data.ke4}}">
         <span>科目四<span class='num'>{{data.ke4.subjectCount}}</span>题</span>
-        <view class='tips' wx:if="{{data.ke4.combinePool}}">{{combinePoolFourText}}</view>
-        <view class='tips' wx:else>
+        <view class='tips' tt:if="{{data.ke4.combinePool}}">{{combinePoolFourText}}</view>
+        <view class='tips' tt:else>
           全国题{{data.ke4.subjectCount}}题
         </view>
       </div>

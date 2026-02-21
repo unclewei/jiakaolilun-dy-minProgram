@@ -1,20 +1,20 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
-<div class='commentBox' wx:if="{{isLogin &&  commentList.length}}">
+<div class='commentBox' tt:if="{{isLogin &&  commentList.length}}">
   <div class='commentTitle'>考友互动</div>
-  <div class='commentItem' wx:key='_id' wx:for="{{commentList}}">
+  <div class='commentItem' tt:key='_id' tt:for="{{commentList}}">
     <Avatar className='comAvatar' userInfo='{{item.user}}' />
     <div class='comBody'>
     <div class="nameBox">
       <div class='nickName {{item.isGov && "isGovNickName"}}'>{{item.user.nickName}}</div>
-      <image class="govIcon" wx:if="{{item.isGov}}" mode="widthFix" src="../../images/gov.png" />
+      <image class="govIcon" tt:if="{{item.isGov}}" mode="widthFix" src="../../images/gov.png" />
     </div>
       <!-- <div class='runDateProvince'>{{utils.toDate(item.time)}}</div> -->
       <div class='commentText'>{{item.content}}</div>
 
-      <image class='comImageFull' wx:if="{{item.imageInfos.length === 1}}" src='{{urlPrefix + item.imageInfos[0].path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{0}}" />
-      <div class='comImagesBox' wx:if="{{item.imageInfos.length > 1}}">
-        <image wx:for="{{item.imageInfos}}" wx:key="path" wx:for-item="p" wx:for-index="pIndex" class='comImage' styles='height:inherit' src='{{urlPrefix + p.path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{pIndex}}" />
+      <image class='comImageFull' tt:if="{{item.imageInfos.length === 1}}" src='{{urlPrefix + item.imageInfos[0].path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{0}}" />
+      <div class='comImagesBox' tt:if="{{item.imageInfos.length > 1}}">
+        <image tt:for="{{item.imageInfos}}" tt:key="path" tt:for-item="p" tt:for-index="pIndex" class='comImage' styles='height:inherit' src='{{urlPrefix + p.path}}' mode="aspectFill" bindtap="showPrview" data-item="{{item.imageInfos}}" data-index="{{pIndex}}" />
       </div>
       <div class='bottomBox'>
         <div class='bottomItem'>

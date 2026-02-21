@@ -168,8 +168,7 @@ Page({
   /**  登录成功*/
   onLoginSuccess() {
     // 全局刷新 tabBar
-    tt.hideLoading()
-    getApp().refreshTabBar();
+    tt.hideLoading() 
     this.setData({
       hasLogin: true,
       userInfo: getApp().globalData.userInfo,

@@ -1,8 +1,8 @@
-<view class="bubble" wx:if="{{showColloct}}" bindtap="onColloct">
+<view class="bubble" tt:if="{{showColloct}}" bindtap="onColloct">
   <view class="content">添加到我的小程序，下次方便使用，点击关闭</view>
 </view>
 
-<view class="guide-mask" wx:if="{{showColloct}}">
+<view class="guide-mask" tt:if="{{showColloct}}">
   <view class="guide-container">
     <view class="guide-content">
       <view class="step-item">

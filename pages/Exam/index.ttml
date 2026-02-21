@@ -1,4 +1,4 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 <page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
   <view class='init'>
     <!-- 上半部分 -->
@@ -21,14 +21,14 @@
       <ExamBox title='考试题目' class="topContentContetnt">
         <!-- 答题内容 -->
         <view class='content'>
-          <view class="questionContent" wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}">
+          <view class="questionContent" tt:for="{{subjectData}}" tt:key='_id' tt:if="{{item.currentIndex == currentIndex}}">
             <view class='question'>{{currentIndex+1}}、{{item.question}}</view>
-            <view class='optionsText' wx:for="{{item.options}}" wx:key="$this">{{item}}</view>
+            <view class='optionsText' tt:for="{{item.options}}" tt:key="$this">{{item}}</view>
             <view class='options'>
-              <ExamResult wx:if="{{utils.onMyList(userSubjectData.rightSubjectIds,item._id) || utils.isWrong(userSubjectData.wrongSubjectItems,item._id)}}" subjectItem='{{item}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' />
-              <view class='options' wx:else>
-                <ExamOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
-                <view class='confirmBtn' wx:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+              <ExamResult tt:if="{{utils.onMyList(userSubjectData.rightSubjectIds,item._id) || utils.isWrong(userSubjectData.wrongSubjectItems,item._id)}}" subjectItem='{{item}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' />
+              <view class='options' tt:else>
+                <ExamOptions tt:for="{{item.options}}" tt:for-item="answerItem" tt:for-index="answerIndex" tt:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onAnswerSelect' />
+                <view class='confirmBtn' tt:if="{{!isSelected && item.type == 3}}" bindtap="onAnswerConfirm" data-item="{{item}}">
                   确定
                 </view>
               </view>
@@ -38,7 +38,7 @@
       </ExamBox>
       <!-- 上半部分-右边边 -->
       <view class="topRightContetnt">
-        <view class="questionItem {{index === currentIndex && 'currentItem'}} {{utils.onMyList(userSubjectData.rightSubjectIds,item._id) && 'correctItem'}}  {{utils.isWrong(userSubjectData.wrongSubjectItems,item._id) && 'wrongItem'}}" wx:for="{{subjectData}}" wx:key="_id" data-index='{{index}}' bindtap='onCurrentSelect'>
+        <view class="questionItem {{index === currentIndex && 'currentItem'}} {{utils.onMyList(userSubjectData.rightSubjectIds,item._id) && 'correctItem'}}  {{utils.isWrong(userSubjectData.wrongSubjectItems,item._id) && 'wrongItem'}}" tt:for="{{subjectData}}" tt:key="_id" data-index='{{index}}' bindtap='onCurrentSelect'>
           {{index+1}}
         </view>
       </view>
@@ -67,7 +67,7 @@
     <!-- 下半部分 -->
     <ExamBox title='图片信息' class="bottomContentContetnt" titleLocation='left'>
       <view class="imgBox">
-        <image class='img' wx:for="{{subjectData}}" wx:key='_id' wx:if="{{item.currentIndex == currentIndex}}" src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
+        <image class='img' tt:for="{{subjectData}}" tt:key='_id' tt:if="{{item.currentIndex == currentIndex}}" src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="aspectFit" />
       </view>
     </ExamBox>
   </view>

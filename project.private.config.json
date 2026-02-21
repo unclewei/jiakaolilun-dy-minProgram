@@ -1,54 +1,6 @@
 {
-    "setting": {
-        "urlCheck": false,
-        "compileHotReLoad": true
-    },
-    "condition": {
-        "miniprogram": {
-            "list": [
-                {
-                    "name": "绑定页面",
-                    "pathName": "pages/Banding/index",
-                    "query": "source=biguo",
-                    "scene": null,
-                    "launchMode": "default"
-                },
-                {
-                    "name": "教练注册页",
-                    "pathName": "pages/CoachInvite/index",
-                    "query": "",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "去做题页",
-                    "pathName": "pages/index",
-                    "query": "scenceCode=biguoH5&jumpPage=%2Fpages%2FSubjectQuestionPage%2Findex%3FpoolId%3D608a4641adbf4a4bb647e429",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "跳转提现页",
-                    "pathName": "pages/index",
-                    "query": "scenceCode=biguoH5&jumpPage=%2Fpages%2FMoneyPage%2Findex",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "答题",
-                    "pathName": "pages/SubjectQuestionPage/index",
-                    "query": "step=1&poolType=sequence",
-                    "launchMode": "default",
-                    "scene": null
-                },
-                {
-                    "name": "模拟考试",
-                    "pathName": "pages/Exam/index",
-                    "query": "poolId=63635936ffd6276a8e35066a",
-                    "launchMode": "default",
-                    "scene": null
-                }
-            ]
-        }
-    }
+  "setting": {
+    "urlCheck": false,
+    "compileHotReLoad": false
+  }
 }

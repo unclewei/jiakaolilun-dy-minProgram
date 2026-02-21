@@ -26,7 +26,7 @@
     <scroll-view scroll-y='true' style="height: {{windowHeight}}px;" enable-back-to-top='true' refresher-enabled='true' refresher-triggered="{{pullTriggered}}" bindrefresherrefresh="onRefresh">
       <Banner />
       <!-- 教练分享工具 -->
-      <ShareContent wx:if="{{isCoach}}" step='{{step}}' />
+      <ShareContent tt:if="{{isCoach}}" step='{{step}}' />
 
       <div class='mainContent' id="mainContent">
         <div class='bodyBox'>
@@ -39,13 +39,13 @@
                 <!-- <span class="tag must">热门</span> -->
               </div>
             </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" wx:if="{{examType !== 'moto'}}">
+            <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" tt:if="{{examType !== 'moto'}}">
               <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
               <div class='smallItemText'>速记口诀
                 <!-- <span class="tag must">必学</span> -->
               </div>
             </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="secret" wx:else>
+            <div class='smallItem' bindtap="gotoSubject" data-item="secret" tt:else>
               <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
               <div class='smallItemText'>考前秘卷</div>
             </div>
@@ -55,7 +55,7 @@
               <div class='bodyBigIcon' />
               <div class='bodyBigTitle'>精选{{poolDataObj.chosen.subjectCount || '500'}}题</div>
               <div class='bodyBigDesc'>{{chosenIndex || '0'}}/{{poolDataObj.chosen.subjectCount || '500'}}</div>
-              <div class='svgContent' wx:if="{{isinitProgrss}}">
+              <div class='svgContent' tt:if="{{isinitProgrss}}">
                 <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
               </div>
             </div>
@@ -137,7 +137,7 @@
         <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
       </view>
 
-      <Comments wx:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
+      <Comments tt:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
 
       <BottomTips />
     </scroll-view>

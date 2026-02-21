@@ -1,15 +1,15 @@
 <baseModal id="baseModal" imageSrc='../../images/theorybanner4.png' showImage='{{isCoach}}' block="{{!isCoach}}">
-  <view class='doalog' wx:if="{{isCoach}}">
+  <view class='doalog' tt:if="{{isCoach}}">
     <view class='not'>教练您好</view>
     <view class='description'>你可申请试用权限，继续体验剩余题目！</view>
   </view>
-  <view class='doalog' wx:else>
+  <view class='doalog' tt:else>
     <view class='not'>
       您还未开通<span class='highLight'>科{{step == 1 ? '一' : '四'}}会员</span>
     </view>
     <view class='content'>
       <view class='selector'>
-        <span wx:for="{{itemData}}" wx:for-item="i" wx:key="_id" class='notActive {{selectItem._id === i._id ? "active":""}}' bind:tap="onSelect" data-item='{{i}}'>
+        <span tt:for="{{itemData}}" tt:for-item="i" tt:key="_id" class='notActive {{selectItem._id === i._id ? "active":""}}' bind:tap="onSelect" data-item='{{i}}'>
           {{i.name}} {{i.price}}元
         </span>
       </view>
@@ -18,7 +18,7 @@
           点击查看更多会员权益>>
         </view>
         <view class='benifyBox'>
-          <view wx:for="{{benifyList}}" wx:key="text" class='benifyItem {{item.mustRefund && !selectItem.refund ? "disabled":""}}'>
+          <view tt:for="{{benifyList}}" tt:key="text" class='benifyItem {{item.mustRefund && !selectItem.refund ? "disabled":""}}'>
             <view class='benifyImageBox'>
               <image class='benifyImage' src='{{item.image}}' mode="aspectFit" />
             </view>
@@ -27,22 +27,22 @@
         </view>
       </view>
     </view>
-    <view class='couponWrap' wx:if="{{selectFitCoupon}}">
+    <view class='couponWrap' tt:if="{{selectFitCoupon}}">
       <span class='price'>原价￥{{selectItem.price}}</span>
       <span class='coupon'>
         <image src='../../images/right.png' mode="aspectFit" class='icon' />
         使用{{selectFitCoupon.name}}
       </span>
     </view>
-    <view class='footer' wx:if="{{isApproval}}">
+    <view class='footer' tt:if="{{isApproval}}">
       <span class='share'>由于相关规范，iOS功能暂不可用</span>
     </view>
-    <view class='footer' wx:else>
+    <view class='footer' tt:else>
       <span class='share' bindtap="gotoShop">
-        <span wx:if="{{selectFitCoupon}}">券后</span>￥{{selectItem.price}}/年 立即开通
+        <span tt:if="{{selectFitCoupon}}">券后</span>￥{{selectItem.price}}/年 立即开通
       </span>
     </view>
-    <view wx:if='{{selectItem && selectItem._id }}' class='bag'>开通后有效期{{selectItem.durText}}，{{selectItem.refund?'一次不合格无条件补偿！':'考不过无补偿'}}</view>
+    <view tt:if='{{selectItem && selectItem._id }}' class='bag'>开通后有效期{{selectItem.durText}}，{{selectItem.refund?'一次不合格无条件补偿！':'考不过无补偿'}}</view>
   </view>
 </baseModal>
 

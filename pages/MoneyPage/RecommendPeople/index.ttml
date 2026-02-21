@@ -10,13 +10,13 @@
         <view class="adThirdTitle">考不过，学员赔偿最高80元，教练返点不用还</view>
         <view class="people">
             <view class="peopleTitle">- 推荐人群 -</view>
-            <view class="item background1" wx:for="{{items}}" wx:key="key">
+            <view class="item background1" tt:for="{{items}}" tt:key="key">
                 <view class="itemContent">
                     <image src="{{item.icon}}" mode="widthFix"   class="recomendIcon"  />
                     <text class="itemText">{{item.text}}</text>
                 </view>
                 <view class="adSubItemWrap">
-                    <view class="adSubItem" wx:for="{{item.subItems}}" wx:for-item="sub" wx:key="sub">
+                    <view class="adSubItem" tt:for="{{item.subItems}}" tt:for-item="sub" tt:key="sub">
                         <view class="dot" style="background:{{item.dotColor}}"></view>
                         {{sub}}
                     </view>
@@ -32,13 +32,13 @@
             <view class="adDot2"></view>
         </view>
         <view class="stepWrap">
-            <block wx:for="{{steps}}" wx:for-index="index" wx:key="text">
+            <block tt:for="{{steps}}" tt:for-index="index" tt:key="text">
                 <view class="setpItem">
                     <view class="setpItemContent">
                         <image src="{{item.icon}}" mode="widthFix"  class="itemIcon" />
                         <text class="itemText">{{item.text}}</text>
                     </view>
-                    <image wx:if="{{index < steps.length - 1}}" src="../../../images/icon/doubleRight.png" mode="widthFix" class="doubleRightIcon" />
+                    <image tt:if="{{index < steps.length - 1}}" src="../../../images/icon/doubleRight.png" mode="widthFix" class="doubleRightIcon" />
                 </view>
             </block>
         </view>

@@ -1,11 +1,11 @@
 <div class='option {{textStyles}}' bindtap="onClick">
-  <span class='optionA {{styles}}' wx:if="{{optionSuffix =='wrong'}}">
+  <span class='optionA {{styles}}' tt:if="{{optionSuffix =='wrong'}}">
     <image class="icon" src="../../images/icon/wrong.png" mode="widthFix" />
   </span>
-  <span class='optionA {{styles}}' wx:elif="{{ optionSuffix == 'right'}}">
+  <span class='optionA {{styles}}' tt:elif="{{ optionSuffix == 'right'}}">
     <image class="icon" src="../../images/icon/right.png" mode="widthFix" />
   </span>
-  <span class='optionA {{styles}}' wx:else>{{optionSuffix}}</span>
+  <span class='optionA {{styles}}' tt:else>{{optionSuffix}}</span>
   <div class='text'>
     <HighLightContent keys='{{subjectItem.optionsKeys}}' content='{{optionText}}' isHighLight='{{isSkillOpen}}' />
   </div>

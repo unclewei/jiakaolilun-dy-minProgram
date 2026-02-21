@@ -1,8 +1,8 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <view class="discountContent">
   <!-- 优惠券列表 -->
-  <view class="disCountItem" wx:key="_id" wx:for="{{discountList}}">
+  <view class="disCountItem" tt:key="_id" tt:for="{{discountList}}">
     <view class="discountLeft">
       <view class="discountLeftTop">
         <view class="unit">￥</view>
@@ -25,6 +25,6 @@
     </view>
   </view>
   <!-- 缺省图 -->
-  <div class="empty" wx:if="{{isEmpty}}">暂无优惠卷</div>
+  <div class="empty" tt:if="{{isEmpty}}">暂无优惠卷</div>
 
 </view>

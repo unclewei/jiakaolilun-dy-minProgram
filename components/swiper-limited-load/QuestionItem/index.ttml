@@ -1,13 +1,13 @@
-<wxs src="../../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../../utils/config.sjs" module="utils"></sjs>
 
-<view class='questionItem' wx:if="{{item.question}}">
+<view class='questionItem' tt:if="{{item.question}}">
   <view class='question'>
     <span class='type'>{{item.typeStr}}</span>
     <HighLightContent keys='{{item.questionKeys}}' content="{{item.question}}" isHighLight='{{(isShowAnswer || isShowKeyWorld || isSeeMode)}}' />
   </view>
 
   <view class='buttons'>
-    <!-- <view class='skill {{isShowKeyWorld && "highLight"}}' bindtap='onButtonClick' data-item='keyWorld' wx:if="{{item.questionKeys}}">
+    <!-- <view class='skill {{isShowKeyWorld && "highLight"}}' bindtap='onButtonClick' data-item='keyWorld' tt:if="{{item.questionKeys}}">
       <image src='../../../images/vip2.png' class='skillIcon' mode="widthFix" />
       关键字显示
     </view> -->
@@ -18,19 +18,19 @@
     <SubjectAudio subjectItem='{{item}}' />
   </view>
 
-  <view class='imgWrap' wx:if="{{item.imgName}}">
+  <view class='imgWrap' tt:if="{{item.imgName}}">
     <image class='img' bindtap="showPrview"  data-item="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}"  src="{{urlPrefix}}{{utils.getImgStep(item)}}{{utils.getImgNmae(item.imgName)}}" mode="widthFix" />
   </view>
   <view class='options'>
-    <SubjectOptions wx:for="{{item.options}}" wx:for-item="answerItem" wx:for-index="answerIndex" wx:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode || isShowAnswer}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' isSkillOpen='{{isShowAnswer || isShowKeyWorld || isSeeMode }}' />
+    <SubjectOptions tt:for="{{item.options}}" tt:for-item="answerItem" tt:for-index="answerIndex" tt:key='$this' optionContent='{{answerItem}}' subjectItem='{{item}}' answerNum='{{answerIndex + 1}}' optionIndex='{{optionIndex}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isNowWrong="{{isNowWrong}}" isSeeMode="{{isSeeMode || isShowAnswer}}" wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' bindOptionSelect='onOptionSelect' isSkillOpen='{{isShowAnswer || isShowKeyWorld || isSeeMode }}' />
   </view>
   <AnswerAndExplain subjectItem='{{item}}' isSeeMode='{{isSeeMode || isShowAnswer}}' wrongHistory='{{wrongHistory}}' rightHistory='{{rightHistory}}' isNowWrong='{{isNowWrong}}' isConfirm='{{isSelected}}' isShowNow='{{isShowNow}}' isSwipering='{{isSwipering}}' isShowAnswer='{{isShowAnswer}}' answer='{{answer}}' />
 
-  <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' wx:if="{{!isSelected && item.type == 3 && !isSwipering}}" bindtap="onAnswerConfirm" data-item="{{item}}">
+  <view class='confirmBtn {{optionIndex.length < 2 && "disableBtn"}}' tt:if="{{!isSelected && item.type == 3 && !isSwipering}}" bindtap="onAnswerConfirm" data-item="{{item}}">
     确定
   </view>
 </view>
-<!-- <view class="emptyBox" wx:else>
+<!-- <view class="emptyBox" tt:else>
   <image class="emptyIcon" src="../../../images/learnPage.png" mode="widthFix" />
   <view class="emptyText">没题目拉~</view>
 </view> -->

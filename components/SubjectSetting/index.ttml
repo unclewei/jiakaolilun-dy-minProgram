@@ -1,4 +1,4 @@
-<wxs src="../../utils/config.wxs" module="utils"></wxs>
+<sjs src="../../utils/config.sjs" module="utils"></sjs>
 
 <div class='init'>
   <span style="position: relative;" bindtap="showModal">
@@ -20,7 +20,7 @@
         <view class="itemText">高亮盲选技巧的关键字</view>
         <switch checked='{{isShowKeyWorld}}' bindchange="onIsShowKeyWorld" />
       </view>
-      <view class="itemBox" wx:if="{{poolType === 'wrong'}}">
+      <view class="itemBox" tt:if="{{poolType === 'wrong'}}">
         <view class="itemText">做对后移除错题</view>
         <switch checked='{{isWrongDelete}}' bindchange="onIsWrongDelete" />
       </view>

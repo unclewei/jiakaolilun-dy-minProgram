@@ -18,19 +18,19 @@
               <image src='../../images/vipIcon/vip.png' class='vipIcon' mode="aspectFit" />
               <view class='vipStep'>科{{step == 1 ? '一' : '四'}}</view>
             </view>
-            <view class='state' wx:if="{{!isPaidDone}}">未开通</view>
+            <view class='state' tt:if="{{!isPaidDone}}">未开通</view>
           </view>
           <view class='vipBuy'>
-            <view wx:if="{{!isPaidDone && !isCoach}}">高效学科{{step == 1 ? '一' : '四'}}</view>
+            <view tt:if="{{!isPaidDone && !isCoach}}">高效学科{{step == 1 ? '一' : '四'}}</view>
             <view class='button buyButton' bindtap="gotoPage" data-pooltype="incPage">
-              <image src='../../images/right.png' class='doneIcon' wx:if="{{isPaidDone || isCoach}}" mode="aspectFit" />
+              <image src='../../images/right.png' class='doneIcon' tt:if="{{isPaidDone || isCoach}}" mode="aspectFit" />
               {{isCoach ? '已注册为一点通教练' : isPaidDone ? '你已开通会员' : '开通会员'}}
             </view>
           </view>
         </view>
         <view class='benefitBox'>
 
-          <view wx:for="{{benefitItemData}}" wx:for-item="p" wx:key='name' class='benefitItem' bind:tap="gotoPage" data-pooltype='{{p.poolType}}'>
+          <view tt:for="{{benefitItemData}}" tt:for-item="p" tt:key='name' class='benefitItem' bind:tap="gotoPage" data-pooltype='{{p.poolType}}'>
             <image class='benefitIcon' src='{{p.icon}}' mode="aspectFit" />
             <view class='benefitText'>{{p.name}}</view>
           </view>
@@ -85,11 +85,11 @@
           <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
           <view class="secText">分享</view>
         </button>
-        <!-- <button class="cleanButton secItem" wx:if="{{userInfo.userType === 2}}" data-type="coach" bindtap="gotoCoachInvite">
+        <!-- <button class="cleanButton secItem" tt:if="{{userInfo.userType === 2}}" data-type="coach" bindtap="gotoCoachInvite">
           <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
           <view class="secText">邀请教练</view>
         </button> -->
-        <view class='secItem' wx:if="{{!userInfo.phoneNum}}" bindtap="gotoPage" data-pooltype="CoachRegisterSuccessPage">
+        <view class='secItem' tt:if="{{!userInfo.phoneNum}}" bindtap="gotoPage" data-pooltype="CoachRegisterSuccessPage">
           <image class='secIcon' src='../../images/dotIcon/mine.png' mode="widthFix" />
           <view class='secText'>补全手机</view>
         </view>

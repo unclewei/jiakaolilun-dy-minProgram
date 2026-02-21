@@ -1,4 +1,4 @@
-<view class="emptyBox" wx:if="{{isEmpty}}">
+<view class="emptyBox" tt:if="{{isEmpty}}">
   <image class="emptyImg" src="../../images/learnPage.png" mode="widthFix" />
   <view class="emptyText">{{text}}</view>
 </view>

@@ -1,14 +1,14 @@
-<span class='read fonst{{size}}' bindtap="onPlayMusic" wx:if="{{!isBottom}}">
+<span class='read fonst{{size}}' bindtap="onPlayMusic" tt:if="{{!isBottom}}">
   <image src='../../images/player.png' class='readIcon icon{{size}}' mode="widthFix" />
-  <span>{{title}}<span wx:if="{{isReading}}">中</span></span>
-  <span class='preloader_1' wx:if="{{isReading}}">
+  <span>{{title}}<span tt:if="{{isReading}}">中</span></span>
+  <span class='preloader_1' tt:if="{{isReading}}">
     <span />
     <span />
     <span />
   </span>
 
 </span>
-<span class='normalItem' bindtap="onPlayMusic" wx:else>
+<span class='normalItem' bindtap="onPlayMusic" tt:else>
   <image src='{{isReading? "../../images/icon/audio2.png":"../../images/icon/audio.png"}}' class='readIcon  icon{{size}}' mode="widthFix" />
   <view>读技巧</view>
 </span>
