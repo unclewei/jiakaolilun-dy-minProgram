@@ -28,7 +28,7 @@ Page({
   },
 
   ruleIconList() {
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     ruleIconList({
       ruleIconTypeId: this.data.ruleIconTypeId,
       limit: 100,

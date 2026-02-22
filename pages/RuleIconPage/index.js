@@ -24,7 +24,7 @@ Page({
   },
 
   ruleIconTypeList() {
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     ruleIconTypeList({
       limit: 100,
       isShowSomeIcon: true

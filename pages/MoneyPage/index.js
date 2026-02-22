@@ -126,7 +126,7 @@ Page({
       batchLoading: true
     });
 
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     payOrderBegin()
       .then((res) => {
         tt.hideLoading()

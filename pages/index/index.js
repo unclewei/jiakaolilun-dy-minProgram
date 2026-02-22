@@ -192,7 +192,7 @@ Page({
 
   chosenAndWrong() {
     const that = this
-    // tt.showLoading()
+    // tt.showLoading({ title: "" })
     userPoolList({
       step: that.data.step,
       examType: that.data.examType

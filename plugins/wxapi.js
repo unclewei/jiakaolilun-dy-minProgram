@@ -24,7 +24,7 @@ export const autoLogin = (callBack) => {
 
 /**微信登录方法 */
 export const doLogin = (callback, userInfo, isInit, isUpdate = false) => {
-  tt.showLoading()
+  tt.showLoading({ title: "" })
   tt.login({
     success: function (res) {
       // success
@@ -107,7 +107,7 @@ export const getUserConfig = (callBack) => {
 }
 // 更新用户配置
 export const updateUserConfig = (data, callBack) => {
-  tt.showLoading()
+  tt.showLoading({ title: "" })
   syncUserConfig(data).then(res => {
     if (res.data.code !== 200) {
       callback('fail')

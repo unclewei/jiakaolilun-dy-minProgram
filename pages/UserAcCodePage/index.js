@@ -73,7 +73,7 @@ Page({
     this.setData({
       errorMsg: null,
     })
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     userAcCodeActive(params).then((res) => {
       tt.hideLoading()
       if (res.data.code !== 200) {

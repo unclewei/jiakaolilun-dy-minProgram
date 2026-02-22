@@ -185,7 +185,7 @@ Page({
       });
       return;
     }
-    tt.showLoading();
+    tt.showLoading({ title: "" });
     updateUserInfo(userInfo).then(res => {
       tt.hideLoading()
       if (res.data.code != 200) {

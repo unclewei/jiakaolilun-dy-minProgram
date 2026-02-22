@@ -57,7 +57,7 @@ Page({
     step,
     userPoolType
   }) {
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     userPoolShow({
       step,
       type: userPoolType,
@@ -85,7 +85,7 @@ Page({
   getPoolData({
     userPoolId
   }) {
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     subjectList({
       userPoolId
     }).then(res => {

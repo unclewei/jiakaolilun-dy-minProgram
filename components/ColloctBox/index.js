@@ -50,7 +50,7 @@ Component({
    */
   methods: {
     getUserPoolShow() {
-      tt.showLoading()
+      tt.showLoading({ title: "" })
       userPoolShow({
         step: this.data.step,
         type: 'collect',

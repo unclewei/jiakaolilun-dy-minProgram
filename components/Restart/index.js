@@ -50,7 +50,7 @@ Component({
         confirmText: '确定',
         success: (modalRes) => {
           if (modalRes.confirm) {
-            tt.showLoading()
+            tt.showLoading({ title: "" })
             userSubjectRemove({
               poolId: that.data.poolId
             }).then(res => {

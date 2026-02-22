@@ -59,7 +59,7 @@ Page({
       step,
       type: poolType //模拟题为6
     };
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     poolList(params).then((res) => {
       tt.hideLoading()
       if (res.data.code !== 200) {

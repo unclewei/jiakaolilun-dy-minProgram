@@ -160,7 +160,7 @@ Component({
       }
 
       let level = tabValue === 'studentOrder' ? 'first' : 'second';
-      tt.showLoading()
+      tt.showLoading({ title: "" })
       promoteOrderList({
           level,
           coachOrderType: coachOrderType === 'undefined' ? undefined : coachOrderType
@@ -187,7 +187,7 @@ Component({
 
     // 加载提现记录
     loadPayOrderRecord() {
-      tt.showLoading()
+      tt.showLoading({ title: "" })
       payOrderList()
         .then(res => {
           if (res.data.code !== 200) {
@@ -208,7 +208,7 @@ Component({
 
     // 加载我推广的人员
     loadMyPromote(userType) {
-      tt.showLoading()
+      tt.showLoading({ title: "" })
       myPromoteList({
           userType
         })

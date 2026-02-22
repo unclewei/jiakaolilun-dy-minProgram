@@ -156,7 +156,9 @@ Page({
   },
   //购买成功
   onBuySuccess() {
-    tt.showLoading()
+    tt.showLoading({
+      title: '加载中...'
+    })
     this.setData({
       userInfo: getApp().globalData.userInfo,
       isCoach: getApp().globalData.userInfo && getApp().globalData.userInfo.userType == 2,
@@ -183,7 +185,7 @@ Page({
       })
       return
     }
-    // tt.showLoading()
+    // tt.showLoading({ title: "" })
     // 获取问题数据
     poolData({
       poolType: that.data.poolType,
@@ -248,7 +250,7 @@ Page({
       step_: step,
       type: 'get'
     });
-    // tt.showLoading()
+    // tt.showLoading({ title: "" })
     userSubjectGet({
       type: poolType,
       ...that.data.requestPoolObj,

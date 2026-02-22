@@ -137,7 +137,7 @@ Page({
   getPoolData() {
     const that = this
     // 请求错题数据
-    // tt.showLoading()
+    // tt.showLoading({ title: "" })
     // 获取问题数据
     poolData({
       poolType: that.data.poolType,
@@ -334,7 +334,7 @@ Page({
       step_: step,
       type: 'get'
     });
-    // tt.showLoading()
+    // tt.showLoading({ title: "" })
     userSubjectGet({
       type: poolType,
       ...that.data.requestPoolObj,

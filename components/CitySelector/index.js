@@ -252,7 +252,7 @@ Component({
 
     onConfirm() {
       const that = this;
-      tt.showLoading();
+      tt.showLoading({ title: "" });
       if (that.data.provinceId && that.data.cityId) {
         updateUserConfig({
             provinceId: that.data.provinceId,
@@ -340,7 +340,7 @@ Component({
       }
       const locationData = getApp().globalData.locationData;
       const that = this;
-      tt.showLoading();
+      tt.showLoading({ title: "" });
       updateUserConfig({
           provinceId,
           cityId,

@@ -57,7 +57,7 @@ Page({
     step
   }) {
     let that = this
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     getUserMoniPool({
       step,
       examType: that.data.examType,

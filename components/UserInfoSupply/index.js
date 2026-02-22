@@ -71,7 +71,7 @@ Component({
         showToast(`手机号码填写错误`)
         return
       }
-      tt.showLoading()
+      tt.showLoading({ title: "" })
       coachPhoneNum({
         name,
         phoneNum

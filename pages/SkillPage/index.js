@@ -112,7 +112,7 @@ Page({
     poolType,
     examType
   }) {
-    tt.showLoading()
+    tt.showLoading({ title: "" })
     poolList({
         step: Number.parseInt(step),
         type: poolType,
