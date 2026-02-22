@@ -17,7 +17,6 @@ Component({
 
   observers: {
     'userInfo': function (userInfo) {
-      console.log('avClassName',this.data.avClassName);
       if (userInfo?.avatarUrl) {
         this.setData({
           src: userInfo?.avatarUrl

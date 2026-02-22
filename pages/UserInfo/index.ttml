@@ -18,14 +18,14 @@
               <image src='../../images/vipIcon/vip.png' class='vipIcon' mode="aspectFit" />
               <view class='vipStep'>科{{step == 1 ? '一' : '四'}}</view>
             </view>
-            <view class='state' tt:if="{{!isPaidDone}}">未开通</view>
+            <!-- <view class='state' tt:if="{{!isPaidDone}}">未开通</view> -->
           </view>
           <view class='vipBuy'>
             <view tt:if="{{!isPaidDone && !isCoach}}">高效学科{{step == 1 ? '一' : '四'}}</view>
-            <view class='button buyButton' bindtap="gotoPage" data-pooltype="incPage">
+            <!-- <view class='button buyButton' bindtap="gotoPage" data-pooltype="incPage">
               <image src='../../images/right.png' class='doneIcon' tt:if="{{isPaidDone || isCoach}}" mode="aspectFit" />
               {{isCoach ? '已注册为一点通教练' : isPaidDone ? '你已开通会员' : '开通会员'}}
-            </view>
+            </view> -->
           </view>
         </view>
         <view class='benefitBox'>
@@ -53,14 +53,14 @@
     <view class='tabBox tabLast'>
       <view class='title'>学员工具</view>
       <view class='secTabBox'>
-        <view class='secItem' bindtap="gotoPage" data-pooltype="incPage">
+        <!-- <view class='secItem' bindtap="gotoPage" data-pooltype="incPage">
           <image class='secIcon' src='../../images/dotIcon/vip.png' mode="widthFix" />
           <view class='secText'>VIP购买</view>
-        </view>
-        <view class='secItem' bindtap="gotoNP" data-item="wx439070b4fa97462b">
+        </view> -->
+        <!-- <view class='secItem' bindtap="gotoNP" data-item="wx439070b4fa97462b">
           <image class='secIcon' src='../../images/dotIcon/phone.png' mode="widthFix" />
           <view class='secText'>灯光模拟</view>
-        </view>
+        </view> -->
         <view class='secItem' bindtap="showRQCode" data-item="wx439070b4fa97462b">
           <image class='secIcon' src='../../images/dotIcon/earth.png' mode="widthFix" />
           <view class='secText'>科二科三</view>
@@ -73,14 +73,14 @@
           <image class='secIcon' src='../../images/dotIcon/coupon.png' mode="widthFix" />
           <view class='secText'>优惠卷</view>
         </view>
-        <button class="cleanButton secItem" open-type="contact">
+        <button class="cleanButton secItem" open-type="im" data-im-id='38305713069'>
           <image class="secIcon" src="../../images/dotIcon/mine.png" mode="widthFix" />
           <view class="secText">联系客服</view>
         </button>
-        <button class="cleanButton secItem" bindtap="gotoSetting">
+        <!-- <button class="cleanButton secItem" bindtap="gotoSetting">
           <image class="secIcon" src="../../images/dotIcon/setting.png" mode="widthFix" />
           <view class="secText">字体大小</view>
-        </button>
+        </button> -->
         <button class="cleanButton secItem" open-type="share">
           <image class="secIcon" src="../../images/dotIcon/share.png" mode="widthFix" />
           <view class="secText">分享</view>
@@ -93,10 +93,10 @@
           <image class='secIcon' src='../../images/dotIcon/mine.png' mode="widthFix" />
           <view class='secText'>补全手机</view>
         </view>
-        <view class='secItem' bindtap="gotoOrderList">
+        <!-- <view class='secItem' bindtap="gotoOrderList">
           <image class='secIcon' src='../../images/dotIcon/folder.png' mode="widthFix" />
           <view class='secText'>我的订单</view>
-        </view>
+        </view> -->
         <view class='secItem' bindtap="cleanAccount" data-item="wx439070b4fa97462b">
           <image class='secIcon' src='../../images/dotIcon/location.png' mode="widthFix" />
           <view class='secText'>刷新</view>

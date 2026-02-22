@@ -32,10 +32,10 @@
         <div class='bodyBox'>
           <div class='bodySmall'>
 
-            <div class='smallItem' bindtap="gotoPage" data-item="incPage">
+            <div class='smallItem' bind:tap="gotoLearnPage">
               <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
               <div class='shine' />
-              <div class='smallItemText'>不过补偿
+              <div class='smallItemText'>放松一下
                 <!-- <span class="tag must">热门</span> -->
               </div>
             </div>
@@ -102,7 +102,8 @@
               <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
               <div class='smallItemText'>专项练习</div>
             </div>
-            <button class="cleanButton" open-type="contact">
+            <button class="cleanButton" open-type="im" data-im-id='38305713069' bindim="imCallback"
+            binderror="onimError">
               <div class='smallItem'>
                 <image mode="aspectFill" src='../../images/subjectIconTen.png' class='smallItemIcon' alt="" />
                 <div class='smallItemText'>问题反馈</div>
@@ -121,12 +122,12 @@
             <view class="otherText">三天速成</view>
             <image class="otherIcon" mode="widthFix" src="../../images/otherTwo.png" />
           </view>
-          <view class="otherItem" bindtap="gotoPage" data-item="incPage">
+          <view class="otherItem" bind:tap="gotoLearnPage">
             <view class="otherText">扣满12分</view>
             <image class="otherIcon" mode="widthFix" src="../../images/otherThree.png" />
           </view>
           <!-- bind:tap="gotoReviewLicense"  -->
-          <view class="otherItem" bindtap="gotoPage" data-item="incPage">
+          <view class="otherItem" bind:tap="gotoLearnPage">
             <view class="otherText">恢复驾驶证</view>
             <image class="otherIcon" mode="widthFix" src="../../images/otherFour.png" />
           </view>

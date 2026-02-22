@@ -35,7 +35,7 @@
       <image class="bottomFunIcon" src="../../images/icon/suiji.png" mode="widthFix" />
       <view class="bottomText">获取分享图</view>
     </view> -->
-    <button class="cleanButton bottomFuncItem" open-type="contact">
+    <button class="cleanButton bottomFuncItem" open-type="im" data-im-id='38305713069'>
       <image class="bottomFunIcon" src="../../images/icon/why.png" mode="widthFix" />
       <view class="bottomText">联系客服</view>
     </button>

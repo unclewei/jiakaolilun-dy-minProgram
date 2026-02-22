@@ -18,11 +18,7 @@ Page({
     userSubject: {}, // 用户科目数据
     isPaidDone: false,
     shareType: 'default', // 'default' or 'inviteCoach'
-    benefitItemData: [{
-        name: "不过补偿",
-        icon: "../../images/vipIcon/money.png",
-        poolType: "incPage",
-      },
+    benefitItemData: [
       {
         name: "七天速成",
         icon: "../../images/vipIcon/speed.png",

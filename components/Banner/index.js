@@ -31,9 +31,9 @@ Component({
         this.selectComponent("#LoginModal").showModal()
         return
       }
-      tt.navigateTo({
-        url: `/pages/SubjectIncPage/index?step=${tt.getStorageSync('step') || '1'}`,
-      })
+      // tt.navigateTo({
+      //   url: `/pages/SubjectIncPage/index?step=${tt.getStorageSync('step') || '1'}`,
+      // })
     },
     getUrlPrefix() {
       const that = this;

@@ -101,7 +101,8 @@
 
   <Colloct />
 
-  <CheckIsVip poolData='{{poolData}}' poolId='{{poolId}}' isVipValid='{{isItemValid}}' step='{{step}}' currentIndex='{{currentIndex}}' bindOnBuySuccess='onBuySuccess' />
+  <!-- 不检查是否VIP -->
+  <!-- <CheckIsVip poolData='{{poolData}}' poolId='{{poolId}}' isVipValid='{{isItemValid}}' step='{{step}}' currentIndex='{{currentIndex}}' bindOnBuySuccess='onBuySuccess' /> -->
 
   <!-- 错题提示 -->
   <WrongSkillDrawer id='WrongSkillDrawer' subjectItem='{{subjectItem}}' />

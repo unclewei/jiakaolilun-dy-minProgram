@@ -9,7 +9,6 @@
     "SubjectVideo": "../../components/SubjectVideo/index",
     "SubjectAudio": "../../components/SubjectAudio/index",
     "CurrentIndexSelector": "../../components/CurrentIndexSelector/index",
-    "CheckIsVip": "../../components/CheckIsVip/index",
     "ColloctBox": "../../components/ColloctBox/index",
     "SubjectSetting": "../../components/SubjectSetting/index",
     "WrongSkillDrawer": "../../components/WrongSkillDrawer/index",

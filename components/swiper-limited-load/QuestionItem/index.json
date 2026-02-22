@@ -8,7 +8,6 @@
     "Colloct": "../../../components/Colloct/index",
     "SubjectAudio": "../../../components/SubjectAudio/index",
     "WrongSkillDrawer": "../../../components/WrongSkillDrawer/index",
-    "CheckIsVip": "../../../components/CheckIsVip/index",
     "VisSwiper": "../../../components/swiper-limited-load/index",
     "HighLightContent": "../../../components/HighLightContent/index",
     "SubjectCountdown": "../../../components/SubjectCountdown/index"

@@ -105,7 +105,7 @@
               <view class='title'>第三步、联系文明一点通客服</view>
               <p class='longP'>考试不通过，马上联系文明一点通客服！</p>
             </view>
-            <button class='cleanButton btn' open-type="contact">去联系</button>
+            <button class='cleanButton btn' open-type="im" data-im-id='38305713069'>去联系</button>
           </view>
           <view class='item'>
             <view class='content'>

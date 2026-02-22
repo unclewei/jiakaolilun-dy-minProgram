@@ -367,7 +367,12 @@ Page({
       url: '/pages/ReviewLicense/index',
     })
   },
-
+  imCallback(e) {
+    console.log("跳转IM客服成功", e.detail);
+  },
+  onimError(e) {
+    console.log("拉起IM客服失败", e.detail);
+  },
   /**
    * 用户点击右上角分享
    */
