@@ -30,10 +30,10 @@
   color: #fff;
 }
 .init .header .title1 {
-  font-size: 1.1875rem;
+  font-size: 38rpx;
 }
 .init .header .title2 {
-  font-size: 1.0625rem;
+  font-size: 34rpx;
 }
 .init .wrap {
   position: relative;
@@ -59,7 +59,7 @@
   padding: 10px;
 }
 .init .wrap .bg .content .rateText {
-  font-size: 1.375rem;
+  font-size: 44rpx;
   font-weight: 500;
   margin-top: 15rpx;
 }
@@ -68,12 +68,12 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #333;
   padding-bottom: 20px ;
 }
 .tips .highLight {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   font-weight: 600;
   color: #e5124b;
 }
@@ -104,22 +104,22 @@
   margin-right: 10px;
 }
 .ways .waysItem .wayContent .wayTextWrap .wayText {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   font-weight: 600;
   margin-bottom: 5px;
   color: #111;
 }
 .ways .waysItem .wayContent .wayTextWrap .wayText2 {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   color: #333;
 }
 .ways .waysItem .wayContent .wayTextWrap .wayText3 {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   font-weight: 600;
   color: #e5124b;
 }
 .ways .waysItem .wayContent .wayTextWrap .wayText4 {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
 }
 .ways .waysItem .btnWrap {
   display: flex;
@@ -129,5 +129,5 @@
   color: white;
   padding: 3px 7px;
   border-radius: 50px;
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }

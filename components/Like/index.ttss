@@ -12,5 +12,5 @@
 }
 .numClassName {
   color: #333;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
 }

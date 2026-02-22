@@ -3,7 +3,7 @@
 <div class='commentBox' tt:if="{{isLogin &&  commentList.length}}">
   <div class='commentTitle'>考友互动</div>
   <div class='commentItem' tt:key='_id' tt:for="{{commentList}}">
-    <Avatar className='comAvatar' userInfo='{{item.user}}' />
+    <Avatar avClassName='comAvatar' userInfo='{{item.user}}' />
     <div class='comBody'>
     <div class="nameBox">
       <div class='nickName {{item.isGov && "isGovNickName"}}'>{{item.user.nickName}}</div>

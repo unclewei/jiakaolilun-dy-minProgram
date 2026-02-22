@@ -3,7 +3,7 @@
     <view class='header {{ step == 1 && "headerStep1"}}  {{step != 1 && "headerStep2" }}'>
       <image class="headerIcon" src='{{step == 1 ? "../../images/minePage.png" : "../../images/minePage2.png"}}' mode="aspectFit" bind:tap="onCheckLogin" />
       <view class='userInfo'>
-        <Avatar userInfo='{{userInfo}}' className='avatar' />
+        <Avatar userInfo='{{userInfo}}' avClassName='avatar' />
         <view class='headerText'>
           <view class='nickName'>{{userInfo.nickName}}</view>
           <view class='func'>

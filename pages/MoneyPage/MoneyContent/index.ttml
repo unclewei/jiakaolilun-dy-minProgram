@@ -80,7 +80,7 @@
 
             <view class="itemFooter">
               <view class="student">
-                <Avatar userInfo="{{tabValue === 'studentOrder' ? item.user : item.firstFromUser}}" className="footerAvatar" />
+                <Avatar userInfo="{{tabValue === 'studentOrder' ? item.user : item.firstFromUser}}" avClassName="footerAvatar" />
                 <view>
                   {{tabValue === 'studentOrder' ? item.user.nickName : '教练：' + utils.nameHide(item.firstFromUser.nickName)}}
                 </view>
@@ -97,7 +97,7 @@
         <block tt:if="{{tabValue === 'myPromote'}}">
           <EmptyBox isEmpty="{{!contentList.length}}">空空如也~快去分享邀请吧~</EmptyBox>
           <view class="coach" tt:for="{{contentList}}" tt:key="userId">
-            <avatar userInfo="{{item}}" class="coachAvatar" />
+            <avatar userInfo="{{item}}" avClassName="coachAvatar" />
             <view class="coachInfo">
               <text class="name">{{item.userType === 1 ? item.nickName : utils.nameHide(item.nickName)}}</text>
               <view tt:if="{{item.userType === 1}}" class="date">

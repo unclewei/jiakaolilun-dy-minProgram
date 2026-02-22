@@ -7,13 +7,15 @@ const NO_NEXT_PAGE = -2
 
 Component({
   observers: {
-    'current': function (index) {
+    'current,list': function (index) {
       let that = this
       let current = index % SWIPER_LENGTH
       let {
         swiperIndex,
         swiperList
       } = that.data
+      console.log('index',index)
+      console.log('swiperList',swiperList)
 
       if (swiperList.length == 0 || swiperList[current] == null) {
         that.init(index)
@@ -103,7 +105,7 @@ Component({
 
     init(defaulaIndex) {
       let that = this
-      let list = that.data.list
+      const list = that.data.list
       if (list == null || list.length == 0) {
         return
       }

@@ -15,7 +15,7 @@
 }
 
 .init .resultContent .score {
-  font-size: 1.5625rem;
+  font-size: 50rpx;
   font-weight: 600;
   margin-top: 20px;
 }
@@ -55,7 +55,7 @@
   box-sizing: border-box;
   top: 0;
   z-index: 2;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
 }
 
 .init .header .modeBtn {
@@ -107,7 +107,7 @@
   height: auto;
   margin-right: 8px;
   padding: 0 7px;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   line-height: 20px;
   border-radius: 4px;
   color: #fff;
@@ -121,7 +121,7 @@
 }
 
 .init .content .question {
-  font-size: 1.125rem;
+  font-size: 36rpx;
   margin-bottom: 10px;
 }
 
@@ -139,7 +139,7 @@
 .init .content .wrongTips {
   font-weight: 600;
   color: red;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   margin-left: 5px;
   margin-top: 10px;
   text-align: right;
@@ -242,7 +242,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   font-weight: 500;
   border-top: 1px solid #f5f5f5;
   color: #777;
@@ -254,7 +254,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   color: #3591f4;
   font-weight: 600;
   padding: 10px 5px;

@@ -9,7 +9,7 @@
   justify-content: center;
   overflow: hidden;
   color: white;
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 .recordAimation {
   display: flex;

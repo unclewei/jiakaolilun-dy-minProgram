@@ -14,7 +14,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   color: #fff;
   margin-bottom: 10px;
   text-align: center;
@@ -37,7 +37,7 @@
 }
 .wrap .titleBox .cityName {
   position: relative;
-  font-size: 1.625rem;
+  font-size: 52rpx;
   font-weight: 500;
   z-index: 2;
 }
@@ -49,7 +49,7 @@
   height: 30px;
   border-radius: 5px;
   border: 1px solid #cbcbcb;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   padding-left: 5px;
 }
 .wrap .content {
@@ -65,7 +65,7 @@
   justify-content: center;
   width: 100%;
   text-align: center;
-  font-size: 1rem;
+  font-size: 32rpx;
   font-weight: 600;
   margin-bottom: 20px;
 }
@@ -75,7 +75,7 @@
 }
 .wrap .content .item .tips {
   color: #9197a3;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   margin-top: 6px;
   font-weight: normal;
 }
@@ -87,11 +87,11 @@
   margin-bottom: 20px;
   padding: 10px;
   font-weight: 600;
-  font-size: 1.0625rem;
+  font-size: 34rpx;
   border-radius: 5px;
 }
 .wrap .content .nums .tips {
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }
 .yes{
   background-color: #55a9b6;
@@ -99,5 +99,5 @@
   text-align: center;
   color: white;
   width: 100%;
-  font-size: 1.125rem;
+  font-size: 36rpx;
 }

@@ -1,4 +1,4 @@
 .init{
   color: red;
-  font-size: 0.625rem;
+  font-size: 20rpx;
 }

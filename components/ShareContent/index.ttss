@@ -48,7 +48,7 @@
   padding: 0 5px;
   background-image: linear-gradient(90deg, #fa2727 0%, #ff9450 100%);
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }
 
 .init .item .content {
@@ -75,12 +75,12 @@
   background: linear-gradient(to right, #f34b4b, #f336a9) !important;
   color: #fff;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 32rpx;
 }
 
 .init .item .content .name {
   color: #111;
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   font-weight: 600;
 }
 
@@ -104,7 +104,7 @@
   flex-direction: column;
   margin-top: 5px;
   margin-left: 10px;
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 
 .init .item .left .text .money {
@@ -113,7 +113,7 @@
 }
 
 .init .item .left .text .secondText {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #9197a3;
 }
 

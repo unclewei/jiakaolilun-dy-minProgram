@@ -199,7 +199,7 @@
 }
 
 .titleText {
-  font-size: 1.25rem;
+  font-size: 40rpx;
   font-weight: bold;
   letter-spacing: 10rpx;
   margin: 0 50rpx;

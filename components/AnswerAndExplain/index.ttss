@@ -11,7 +11,7 @@
 }
 
 .init .answer .text {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   width: 100%;
   display: flex;
   align-content: center;
@@ -20,7 +20,7 @@
 }
 
 .init .answer .showDetail {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   display: flex;
   align-content: center;
   background: linear-gradient(to left, #ffa64d, #ffc089);
@@ -44,7 +44,7 @@
 }
 
 .init .skillNormal .title {
-  font-size: 0.875rem;
+  font-size: 28rpx;
   color: #353535;
   font-weight: 600;
   margin-bottom: 5px;
@@ -53,7 +53,7 @@
 .init .skillNormal .normalExplain {
   background-color: #f7f9ff;
   padding: 5px 10px;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   color: #000;
 }
 
@@ -84,7 +84,7 @@
   background: #e9f4ff;
   color: #444;
   border-radius: 10px;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   font-weight: 600;
   padding: 2px 8px;
   margin-bottom: 5px;
@@ -125,7 +125,7 @@
 
 .init .dec .decContent {
   padding: 5px;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   border-radius: 5px;
   line-height: 25px;
 }
@@ -133,7 +133,7 @@
 .init .dec .difficulty {
   display: flex;
   align-items: center;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   color: #000;
   padding-left: 5px;
   padding-top: 5px;
@@ -152,7 +152,7 @@
   background: #e9f4ff;
   color: #108bc3;
   border-radius: 3px;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 2px 4px;
   margin-left: 5px;
 }

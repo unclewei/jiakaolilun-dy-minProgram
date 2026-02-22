@@ -15,7 +15,7 @@
   color: white;
   padding: 3px 7px;
   border-radius: 50px;
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }
 
 .headerStep1 {
@@ -54,18 +54,18 @@
 }
 
 .nickName {
-  font-size: 1.125rem;
+  font-size: 36rpx;
   color: #fff;
   font-weight: 600;
 }
 
 .phoneNum {
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }
 
 .tips {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #111;
   font-weight: 600;
 }
@@ -79,7 +79,7 @@
   display: inline-block;
   background-color: #4b9cff;
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 2px 4px;
   font-weight: 600;
   border-radius: 3px;
@@ -94,7 +94,7 @@
   display: inline-block;
   background-color: #ff6235;
   color: #fff;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 2px 4px;
   font-weight: 600;
   border-radius: 3px;
@@ -152,7 +152,7 @@
   height: 23px;
   /* background: linear-gradient(to right, #747474, #c7c9c8) !important; */
   color: #353535;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   font-weight: 600;
   padding-right: 3px;
   padding-left: 3px;
@@ -162,7 +162,7 @@
 }
 
 .state {
-  font-size: 0.875rem;
+  font-size: 28rpx;
   margin-left: 5px;
   font-weight: 600;
   color: #a7a7a7;
@@ -171,7 +171,7 @@
 .vipBuy {
   display: flex;
   align-items: center;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #b6a994;
 }
 
@@ -226,12 +226,12 @@
 }
 
 .benefitText {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #b6a994;
 }
 
 .cityContent {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   color: #ff5566;
   font-weight: 600;
   margin-top: 5px;
@@ -259,7 +259,7 @@
 }
 
 .province {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   width: 200px;
   text-align: right;
   display: flex;
@@ -337,7 +337,7 @@
 }
 
 .secText {
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }
 
 .highLight {

@@ -12,4 +12,9 @@ page {
   width: auto !important;
   color: unset !important;
   font-weight: unset !important;
+  
+}
+.cleanButton::after{
+  border: 0 !important;
+
 }

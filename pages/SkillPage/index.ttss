@@ -38,11 +38,11 @@
 }
 
 .title1 {
-  font-size: 1rem;
+  font-size: 32rpx;
 }
 
 .title2 {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
 }
 
 .wrap {
@@ -84,12 +84,12 @@
   border-radius: 100rpx;
   margin-right: 20rpx;
   margin-top: 5rpx;
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 
 .name {
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 32rpx;
   color: #333;
   padding-top: 4rpx;
 }
@@ -112,7 +112,7 @@
   margin-top: 20rpx;
   background-color: #f9f9f9;
   padding: 20rpx;
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   color: #333;
 }
 

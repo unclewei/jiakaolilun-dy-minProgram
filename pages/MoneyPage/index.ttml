@@ -8,7 +8,7 @@
     <view class="bg"></view>
     <view class="headerContent">
       <view class="userInfo">
-        <Avatar userInfo='{{userInfo}}' className='userAvatar' />
+        <Avatar userInfo='{{userInfo}}' avClassName='userAvatar' />
         <view>
           <view class="name name2">{{userInfo.nickName}}</view>
           <view class="name">

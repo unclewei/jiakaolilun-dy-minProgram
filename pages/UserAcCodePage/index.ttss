@@ -38,18 +38,18 @@
 }
 
 .title1 {
-  font-size: 1rem;
+  font-size: 32rpx;
 }
 
 .title2 {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
 }
 
 .item {
   width: 100%;
   padding: 0 30px;
   box-sizing: border-box;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   font-weight: 500;
   margin-bottom: 30px;
 }
@@ -95,7 +95,7 @@
 .secondTips {
   text-align: center;
   color: #9197a3;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 5px;
 }
 
@@ -103,7 +103,7 @@
   margin-top: 20px;
   text-align: center;
   color: #4b9cff;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 5px;
   font-weight: 600;
 }

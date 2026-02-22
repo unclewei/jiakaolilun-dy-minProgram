@@ -37,7 +37,7 @@
   flex-direction: row;
 }
 .wayText {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   color: #333;
   font-weight: 600;
   margin-bottom: 10px;
@@ -49,13 +49,13 @@
   flex-direction: row;
 }
 .nums {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   color: #717171;
 }
 .iconRight {
   width: 15px;
   height: 15px;
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   margin-top: 2px;
   margin-left: 5px;
   color: #717171;
@@ -65,7 +65,7 @@
   align-items: center;
   flex-direction: row;
   width: 200;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   color: #717171;
 }
 .iconImg {

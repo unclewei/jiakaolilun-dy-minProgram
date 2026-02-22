@@ -2,7 +2,7 @@
   <div class='wrap'>
     <div class='titleBox'>
       <image class="titleBg" src="../../images/banner.png" mode="aspectFit" />
-      <div class='cityName' style="font-size: 1.25rem;">题库切换至</div>
+      <div class='cityName' style="font-size: 40rpx;">题库切换至</div>
       <div class='cityName'>{{cityItem.cityName === '市辖区' ? cityItem.provinceName: cityItem.cityName}}</div>
     </div>
     <div class='content'>

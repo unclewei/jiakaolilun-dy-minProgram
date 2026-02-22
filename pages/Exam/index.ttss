@@ -24,7 +24,7 @@
 
 .examTitle {
   width: 100%;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   margin-bottom: 8px;
 }
 
@@ -46,11 +46,11 @@
   width: 100%;
   text-align: center;
   color: red;
-  font-size: 0.625rem;
+  font-size: 20rpx;
 }
 
 .infoDesc {
-  font-size: 0.625rem;
+  font-size: 20rpx;
 }
 
 
@@ -79,10 +79,10 @@
 
 }
 .question{
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 .questionItem {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   text-align: center;
   border-bottom: 1rpx solid #333;
   border-right: 1rpx solid #333;
@@ -117,14 +117,14 @@
   flex-wrap: wrap;
 }
 .countDown{
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: red;
 }
 .typeBox{
   width: 250px;
 }
 .type{
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }
 .btns{
   display: flex;
@@ -132,7 +132,7 @@
 }
 .controlBtn{
   border: 1px solid #333;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 5px 10px;
   margin-left: 10px;
   color: white;
@@ -153,7 +153,7 @@
 
 .confirmBtn{
   border: 1px solid #333;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 5px 10px;
   margin-left: 10px;
   color: white;
@@ -168,7 +168,7 @@
   flex-direction: column;
 }
 .optionsText{
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 .currentItem{
   background: #51a9f2;

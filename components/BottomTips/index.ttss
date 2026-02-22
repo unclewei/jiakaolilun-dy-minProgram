@@ -3,6 +3,6 @@
   padding: 20px;
   text-align: center;
   color: #9197a3;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   background-color: #f1f5f8;
 }

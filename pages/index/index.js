@@ -135,27 +135,17 @@ Page({
 
   getDefaultFonSize() {
     try {
-      const appBaseInfo = tt.getAppBaseInfo()
-      console.log('appBaseInfo.fontSizeScaleFactor', appBaseInfo.fontSizeScaleFactor);
-      if (appBaseInfo.fontSizeScaleFactor && !tt.getStorageSync('fontSize')) {
-        if (appBaseInfo.fontSizeScaleFactor <= 1) {
-          tt.setStorageSync('fontSize', 16)
-          return 16
-        }
-        if (appBaseInfo.fontSizeScaleFactor <= 1.14) {
-          tt.setStorageSync('fontSize', 18)
-          return 18
-        }
-        if (appBaseInfo.fontSizeScaleFactor <= 1.20) {
-          tt.setStorageSync('fontSize', 20)
-          return 20
-        }
-        if (appBaseInfo.fontSizeScaleFactor > 1.20) {
-          tt.setStorageSync('fontSize', 22)
-          return 22
-        }
-        return 16
+      const appBaseInfo = tt.getSystemInfoSync();
+      console.log('appBaseInfo',appBaseInfo);
+      const fontSizeStorage = tt.getStorageSync('fontSize')
+      if(fontSizeStorage){
+        return fontSizeStorage
       }
+      if (appBaseInfo.fontSizeSetting) {
+        tt.setStorageSync('fontSize', appBaseInfo.fontSizeSetting)
+        return appBaseInfo.fontSizeSetting 
+      }
+      return 16
     } catch (error) {
       return 16
     }

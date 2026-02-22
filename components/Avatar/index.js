@@ -5,9 +5,9 @@ Component({
    */
   properties: {
 
-    className: {
+    avClassName: {
       type: String,
-        value: ''
+      value: ''
     },
     userInfo: {
       type: Object,
@@ -17,13 +17,13 @@ Component({
 
   observers: {
     'userInfo': function (userInfo) {
+      console.log('avClassName',this.data.avClassName);
       if (userInfo?.avatarUrl) {
         this.setData({
           src: userInfo?.avatarUrl
         })
         return
-      }
-
+      } 
       this.setData({
         src: '../../images/defaultAvatar.jpg',
       })

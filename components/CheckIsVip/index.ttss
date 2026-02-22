@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
 }
 .content .selector .notActive {
   width: 50%;
@@ -53,7 +53,7 @@
   color: #404040;
   margin-top: 15px;
   font-weight: 600;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   text-align: center;
 }
 .content .benefit .benifyBox {
@@ -96,20 +96,20 @@
 }
 .content .benefit .benifyBox .benifyItem .benifyText {
   font-weight: 600;
-  font-size: 0.75rem;
+  font-size: 24rpx;
 }
 .couponWrap {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   margin-bottom: 8px;
 }
 .couponWrap .price {
   color: #0b93ff;
 }
 .couponWrap .coupon {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   text-align: center;
   color: #333;
   display: flex;
@@ -135,10 +135,10 @@
   background: linear-gradient(to right, #fff4e2, #e1cb96);
   color: #3a1d19;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 32rpx;
 }
 .bag {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   margin-top: 15px;
   color: #404040;
 }

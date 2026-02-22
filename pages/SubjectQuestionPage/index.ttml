@@ -87,7 +87,7 @@
           <span class='rightInfo'>
             <span class='iconItem'>
               <image class='icon' src='../../images/icon/more.png' mode="widthFix" />
-              <span><b>{{currentIndex + 1}}</b>/{{poolData.subjectCount || subjectData.length || 0}}</span>
+              <span>{{currentIndex + 1}}/{{poolData.subjectCount || subjectData.length || 0}}</span>
             </span>
           </span>
         </CurrentIndexSelector>

@@ -29,15 +29,15 @@
   margin-bottom: 0px;
   border: 1rpx solid #333;
   margin-left: 10px;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   
 }
 
 .option .text {
-  font-size: 0.875rem !important;
+  font-size: 28rpx !important;
 }
 .optionsText{
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 .option .icon {
   width: 25px;

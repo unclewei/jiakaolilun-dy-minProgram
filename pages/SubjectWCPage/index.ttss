@@ -23,7 +23,7 @@
   margin-bottom: 10px;
   border-radius: 3px;
   color: #333;
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 
 .init .removeOP .switch {
@@ -54,7 +54,7 @@
 }
 
 .menuItem {
-  font-size: 0.9375rem;
+  font-size: 30rpx;
   color: #9197a3;
   font-weight: 600;
   padding: 10px 20px;
@@ -75,7 +75,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-  font-size: 1.125rem;
+  font-size: 36rpx;
   color: #111;
   font-weight: 600;
   margin-bottom: 10px;
@@ -96,14 +96,14 @@
   width: 15px;
   height: 15px;
   object-fit: contain;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   margin-right: 2px;
   color: #717171;
 }
 
 .titleBtnText {
   color: #333;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
 }
 
 .countWrap {
@@ -135,7 +135,7 @@
 }
 
 .countKey {
-  font-size: 0.875rem;
+  font-size: 28rpx;
   font-weight: 600;
   color: #333;
   margin-bottom: 8px;
@@ -149,7 +149,7 @@
 }
 
 .countValue {
-  font-size: 1.25rem;
+  font-size: 40rpx;
   font-weight: 600;
   color: #e5124b;
 }
@@ -195,6 +195,6 @@
   min-width: 18px;
   height: 18px;
   object-fit: contain;
-  font-size: 1.125rem;
+  font-size: 36rpx;
   color: #9a9a9a;
 }

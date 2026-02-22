@@ -8,7 +8,7 @@
 
 .commentTitle {
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: 40rpx;
   margin-bottom: 10px;
   color: #111;
 }
@@ -44,7 +44,7 @@
 
 .nickName {
   color: #111;
-  font-size: 0.875rem;
+  font-size: 28rpx;
   margin-bottom: 1px;
 }
 
@@ -59,7 +59,7 @@
 }
 
 .runDateProvince {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   color: #9197a3;
 }
 
@@ -110,5 +110,5 @@
 
 .bottomText {
   color: #333;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
 }

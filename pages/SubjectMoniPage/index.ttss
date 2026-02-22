@@ -48,7 +48,7 @@
   display: inline-block;
   background-color: #fff3f3;
   color: #ff6235;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 2px 4px;
   border-radius: 2px;
   margin-left: 5px;
@@ -61,7 +61,7 @@
 }
 
 .init .content .userInfo .info .lastDate {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #9197a3;
 }
 
@@ -114,13 +114,13 @@
 }
 
 .init .content .data .item .num {
-  font-size: 1.125rem;
+  font-size: 36rpx;
   font-weight: 600;
   margin-bottom: 8rpx;
 }
 
 .init .content .data .item .text {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
 }
 
 .init .content .options {
@@ -160,7 +160,7 @@
 }
 
 .init .content .options .btn .btnTips {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #9197a3;
 }
 
@@ -179,7 +179,7 @@
 
 .init .content .options .tips {
   text-align: center;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   color: #FF5722;
   display: flex;
   align-items: center;
@@ -200,7 +200,7 @@
 }
 
 .init .content .historyItem {
-  font-size: 0.75rem;
+  font-size: 24rpx;
   padding: 10px 0;
   display: flex;
   align-items: center;

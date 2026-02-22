@@ -4,7 +4,7 @@
   margin-bottom: 0px;
   width: 100%;
   text-align: left;
-  font-size: 0.875rem;
+  font-size: 28rpx;
 }
 
 .correct {
@@ -39,7 +39,7 @@
   align-content: center;
 }
 .init .answer .showDetail {
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   display: flex;
   align-content: center;
   background: linear-gradient(to left,#ffa64d,#ffc089);
@@ -63,7 +63,7 @@
   height: auto;
   margin-right: 8px;
   padding: 0 7px;
-  font-size: 0.8125rem;
+  font-size: 26rpx;
   line-height: 20px;
   border-radius: 4px;
   color: #fff;

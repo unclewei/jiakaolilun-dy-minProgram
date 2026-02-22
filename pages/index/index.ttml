@@ -1,4 +1,4 @@
-<page-meta page-font-size="{{fontSize || 16}}px" root-font-size="{{fontSize || 16}}px">
+<page-meta page-font-size="12px" root-font-size="12px">
   <view class='init'>
 
     <div class="select">

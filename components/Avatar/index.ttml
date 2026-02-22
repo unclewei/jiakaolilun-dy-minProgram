@@ -1,1 +1,1 @@
-<image src='{{src}}' class='{{className}}' mode="aspectFit" bind:tap="onClick"/>
+<image src='{{src}}' class='{{avClassName}}' mode="aspectFit" bind:tap="onClick"/>

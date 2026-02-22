@@ -4,7 +4,7 @@
   <view tt:for="{{commentList}}" tt:for-item="i" tt:key='_id' class='item'>
     <view class='userInfo'>
       <span class='userName'>
-        <Avatar userInfo='{{i.user}}' className='avatarSmall' />
+        <Avatar userInfo='{{i.user}}' avClassName='avatarSmall' />
         <span class='name'>
           <view>{{utils.nameHide(i.user.nickName)}}</view>
           <image src='../../images/icon/nanti.png' class='icon' mode="widthFix" />

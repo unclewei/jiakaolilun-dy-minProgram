@@ -139,7 +139,7 @@
   margin-bottom: 10px;
   text-align: left;
   margin-left: 15px;
-  font-size: 0.75rem;
+  font-size: 24rpx;
   color: #333;
 }
 .init .wrap .recommend .recommendWrap {
