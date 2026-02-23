@@ -2,6 +2,7 @@
   "navigationBarTitleText": "模拟训练",
   "usingComponents": {
     "Restart": "../../components/Restart/index",
+    "QuestionAdModal": "../../components/QuestionAdModal/index",
     "SubjectOptions": "../../components/SubjectOptions/index",
     "AnswerAndExplain": "../../components/AnswerAndExplain/index",
     "Finish": "../../components/Finish/index",

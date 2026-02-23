@@ -75,4 +75,6 @@
 
   <!-- 登录 -->
   <LoginModal id="LoginModal" bindSuccess='onLoginSuccess' isLandscape='{{true}}' />
+  <!-- 广告 -->
+  <QuestionAdModal id='QuestionAdModal' />
 </page-meta>

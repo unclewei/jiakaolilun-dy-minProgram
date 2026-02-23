@@ -444,6 +444,9 @@ Page({
     if (this.data.currentIndex >= this.data.subjectData.length - 1) {
       return;
     }
+
+    // 触发广告
+    this.selectComponent("#QuestionAdModal").checkAdStatus()
     this.checkFailSocre()
     const {
       currentIndex

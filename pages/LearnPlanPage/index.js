@@ -42,6 +42,11 @@ Page({
     this.poolDataGet()
     this.getSubjectCurrentIndex()
 
+    const interstitialAd = tt.createInterstitialAd({
+      // 开放平台-[小程序控制台]-运营-商业化变现-广告管理 中创建的插屏广告位ID
+      adUnitId: "eisodci8vkrzity4yv",
+    });
+    interstitialAd.show()
   },
 
   /**

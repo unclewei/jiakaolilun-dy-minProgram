@@ -3,6 +3,7 @@
   "pageOrientation": "landscape",
   "usingComponents": {
     "Restart": "../../components/Restart/index",
+    "QuestionAdModal": "../../components/QuestionAdModal/index",
     "ExamBox": "../../components/ExamBox/index",
     "ExamOptions": "../../components/ExamOptions/index",
     "ExamResult": "../../components/ExamResult/index",

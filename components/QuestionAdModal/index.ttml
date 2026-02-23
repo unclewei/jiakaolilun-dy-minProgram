@@ -1,0 +1,6 @@
+<baseModal id="baseModal"  block className='{{isLandscape && "isLandscape"}}' >
+  <view class="loginBox {{isLandscape && 'isLandscapeBox'}}" catch:tap="showAd">
+    <view class="adTips">请在观看广告后继续做题</view>
+    <view class="loginConfirm {{isLandscape && 'isLandscapeBtn'}}">点击观看广告</view>
+  </view>
+</baseModal>

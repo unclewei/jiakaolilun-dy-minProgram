@@ -106,6 +106,14 @@ Page({
       // 请求成功，提示信息
       this.onLoginSuccess()
     })
+    tt.preloadDrawAd({
+      success: () => {
+        console.log("广告预加载成功");
+      },
+      fail: (error) => {
+        console.log("广告预加载失败", error);
+      },
+    });
   },
   onShow() {
     tt.setTabBarStyle({
@@ -372,6 +380,13 @@ Page({
   },
   onimError(e) {
     console.log("拉起IM客服失败", e.detail);
+  },
+
+  // 放松一下，视频广告
+  showAd(){
+  tt.navigateTo({
+    url: '/pages/AdFullPage/index',
+  });
   },
   /**
    * 用户点击右上角分享

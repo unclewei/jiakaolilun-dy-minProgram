@@ -1,0 +1,2 @@
+<draw-ad unit-id="{{unitId}}" full-screen="{{fullScreen}}" scale="{{scale}}" binderror="onDrawAdError"
+    bindplay="onDrawAdPlay" bindstop="onDrawAdStop"></draw-ad>

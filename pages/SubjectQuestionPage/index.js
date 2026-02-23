@@ -82,6 +82,7 @@ Page({
    */
   onLoad(options) {
     console.log('options', options);
+
     const {
       poolType,
       step,
@@ -487,6 +488,10 @@ Page({
       showToast('没有下一题咯')
       return;
     }
+
+    // 触发广告
+    this.selectComponent("#QuestionAdModal").checkAdStatus()
+
     this.scrollTop()
     const {
       currentIndex

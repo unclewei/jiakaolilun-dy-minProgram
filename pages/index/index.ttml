@@ -32,7 +32,7 @@
         <div class='bodyBox'>
           <div class='bodySmall'>
 
-            <div class='smallItem' bind:tap="gotoLearnPage">
+            <div class='smallItem' bind:tap="showAd">
               <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
               <div class='shine' />
               <div class='smallItemText'>放松一下
@@ -102,7 +102,7 @@
               <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
               <div class='smallItemText'>专项练习</div>
             </div>
-            <button class="cleanButton" open-type="im" data-im-id='38305713069' bindim="imCallback"
+            <button class="cleanButton" open-type="im" data-im-id='61905618380' bindim="imCallback"
             binderror="onimError">
               <div class='smallItem'>
                 <image mode="aspectFill" src='../../images/subjectIconTen.png' class='smallItemIcon' alt="" />
