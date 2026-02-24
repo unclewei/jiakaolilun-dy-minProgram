@@ -62,54 +62,6 @@
           一点通大数据显示：完成以上三项的学员，<span class='highLight'>通过率为98%</span>
         </view>
       </view>
-      <view class='bg'>
-        <view class='content'>
-          <view class='userInfo'>
-            <view class='rate'>
-              <view class='rateText'>常见问题</view>
-            </view>
-          </view>
-        </view>
-        <view class='ways'>
-          <view class='waysItem'>
-            <view class='wayContent'>
-              <image src='../../images/num1.png' mode="widthFix" class='itemIcon' />
-              <view class='wayTextWrap'>
-                <view class='wayText'>题目准吗?</view>
-                <view class='wayText4'>
-                  我们的题目会定时同步各地车管所并经过严格审核和大量用户检验以此确保题目的严谨和准确度。
-                </view>
-              </view>
-            </view>
-
-          </view>
-          <view class='waysItem'>
-            <view class='wayContent'>
-              <image src='../../images/num2.png' mode="widthFix" class='itemIcon' />
-              <view class='wayTextWrap'>
-                <view class='wayText'>补偿服务何时生效?</view>
-                <view class='wayText4'>
-                  在考试前24小时购买并且完善个人基本信息，补偿服务才能生效。
-                </view>
-              </view>
-            </view>
-          </view>
-          <view class='waysItem'>
-            <view class='wayContent'>
-              <image src='../../images/num3.png' mode="widthFix" class='itemIcon' />
-              <view class='wayTextWrap'>
-                <view class='wayText'>如何完善个人信息?</view>
-                <view class='wayText2'>点击激活按钮进行完善。</view>
-              </view>
-            </view>
-            <UserInfoSupply>
-              <view class="btnWrap doBtnSuccess">
-                去激活
-              </view>
-            </UserInfoSupply>
-          </view>
-        </view>
-      </view>
     </view>
   </view>
 </page-meta>
