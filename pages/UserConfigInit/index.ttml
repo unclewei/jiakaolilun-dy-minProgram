@@ -3,7 +3,7 @@
     <view class='header'>
       <image class='headerIcom' src="../../images/banner.png" mode="widthFix" />
       <view class='title1'>请选择你要考试的题库类型</view>
-      <view class='title2'>所有题目均已更新至2025年最新版</view>
+      <view class='title2'>所有题目均已更新至2026年最新版</view>
     </view>
     <view class='wrap'>
       <view class='title'>学车类型</view>

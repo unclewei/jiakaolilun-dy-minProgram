@@ -2,9 +2,12 @@ import {
   updateUserConfig
 } from "../../plugins/wxapi"
 import {
-  autoLocation
+  autoLocation,
+  updateUserInfo
 } from "../../utils/api";
 import {
+  showToast,
+  showNetWorkToast,
   timeCodeFormatted
 } from "../../utils/util";
 
@@ -185,15 +188,43 @@ Page({
     };
     tt.setStorageSync('step', this.data.stepItem.step)
     tt.setStorageSync('examType', this.data.examType.step)
-    updateUserConfig(initData, (res) => {
-      if (res == 'fail') {
-        return
-      }
-      tt.switchTab({
-        url: '/pages/index/index',
-      })
-    })
+
+    tt.getUserProfile({
+      force:true,
+      success: ({userInfo}) => {
+        tt.showLoading({ title: "" });
+        updateUserInfo(userInfo).then(res => {
+          tt.hideLoading()
+          if (res.data.code != 200) {
+            showNetWorkToast(res.data.msg)
+            return
+          }
+          const resData = res.data.data;
+          getApp().globalData.userInfo = resData
+          updateUserConfig(initData, (res) => {
+            if (res == 'fail') {
+              return
+            }
+            tt.switchTab({
+              url: '/pages/index/index',
+            })
+          })
+        })
+      },
+      fail: (res) => {
+        updateUserConfig(initData, (res) => {
+          if (res == 'fail') {
+            return
+          }
+          tt.switchTab({
+            url: '/pages/index/index',
+          })
+        })
+      },
+    });
   },
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
