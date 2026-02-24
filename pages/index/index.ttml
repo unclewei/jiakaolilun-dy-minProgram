@@ -151,6 +151,6 @@
   <!-- 公众号二维码 -->
   <QRModal id="QRModal" />
   <!-- 手机号码补充 -->
-  <UserInfoSupply id='UserInfoSupply' />
+  <!-- <UserInfoSupply id='UserInfoSupply' /> -->
   <!-- 切换科目提示 -->
   <SwitchSubjectBox id='SwitchSubjectBox' />

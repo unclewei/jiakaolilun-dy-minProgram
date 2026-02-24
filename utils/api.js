@@ -7,8 +7,8 @@ export const baseApi = 'https://ydt.biguojk.com/api'
 
 export const login = (data) => {
   return xapi.request({
-    // url: `${baseApi}/user/dyLogin`,
-    url: `${baseApi}/user/miniProgramLogin`,
+    url: `${baseApi}/user/dyLogin`,
+    // url: `${baseApi}/user/miniProgramLogin`,
     method: 'post',
     data,
   })

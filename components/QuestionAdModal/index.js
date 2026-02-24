@@ -1,16 +1,8 @@
-import {
-  doLogin,
-  updateUserConfig
-} from "../../plugins/wxapi";
 
-const SHOW_AD_COUNT = 6
+const SHOW_AD_COUNT = 30
 Component({
 
   properties: {
-    isLandscape: {
-      type: Boolean,
-      value: false
-    }
   },
 
   data: {
