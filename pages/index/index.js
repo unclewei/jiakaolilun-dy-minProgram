@@ -380,6 +380,10 @@ Page({
   },
   onimError(e) {
     console.log("拉起IM客服失败", e.detail);
+    tt.showToast({
+      title: '请在视频评论区联系',
+      icon:'none'
+    });
   },
 
   // 放松一下，视频广告

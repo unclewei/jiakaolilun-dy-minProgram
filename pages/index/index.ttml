@@ -1,147 +1,145 @@
-<page-meta page-font-size="12px" root-font-size="12px">
   <view class='init'>
 
-    <div class="select">
+      <div class="select">
 
-      <div class='kemu'>
-        <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">
-          <span class='text'>科目一
-          </span>
-          <span class='stick {{step == 1 && "activeStick"}}' />
-        </span>
-        <span class='kemuItem {{step == 4 && "active"}}' bindtap="onStepChange" data-item="4">
-          <span class='text'>科目四
-          </span>
-          <span class='stick {{step == 4 && "activeStick"}}' />
-        </span>
+          <div class='kemu'>
+              <span class='kemuItem {{step == 1 && "active"}}' bindtap="onStepChange" data-item="1">
+                  <span class='text'>科目一
+                  </span>
+                  <span class='stick {{step == 1 && "activeStick"}}' />
+              </span>
+              <span class='kemuItem {{step == 4 && "active"}}' bindtap="onStepChange" data-item="4">
+                  <span class='text'>科目四
+                  </span>
+                  <span class='stick {{step == 4 && "activeStick"}}' />
+              </span>
+          </div>
+
+          <view class='province'>
+              <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
+              <span>·</span>
+              <CitySelector class='provinceSelect' showLocationIcon bindUserConfigUpdate='onUserConfigUpdate' />
+          </view>
+
       </div>
+      <scroll-view scroll-y='true' style="height: {{windowHeight}}px;" enable-back-to-top='true' refresher-enabled='true' refresher-triggered="{{pullTriggered}}" bindrefresherrefresh="onRefresh">
+          <Banner />
+          <!-- 教练分享工具 -->
+          <ShareContent tt:if="{{isCoach}}" step='{{step}}' />
 
-      <view class='province'>
-        <CarType userConfig='{{userConfig}}' enumeMap='{{enumeMap}}' />
-        <span>·</span>
-        <CitySelector class='provinceSelect' showLocationIcon bindUserConfigUpdate='onUserConfigUpdate' />
-      </view>
+          <div class='mainContent' id="mainContent">
+              <div class='bodyBox'>
+                  <div class='bodySmall'>
 
-    </div>
-    <scroll-view scroll-y='true' style="height: {{windowHeight}}px;" enable-back-to-top='true' refresher-enabled='true' refresher-triggered="{{pullTriggered}}" bindrefresherrefresh="onRefresh">
-      <Banner />
-      <!-- 教练分享工具 -->
-      <ShareContent tt:if="{{isCoach}}" step='{{step}}' />
+                      <div class='smallItem' bind:tap="showAd">
+                          <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
+                          <div class='shine' />
+                          <div class='smallItemText'>放松一下
+                              <!-- <span class="tag must">热门</span> -->
+                          </div>
+                      </div>
+                      <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" tt:if="{{examType !== 'moto'}}">
+                          <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
+                          <div class='smallItemText'>速记口诀
+                              <!-- <span class="tag must">必学</span> -->
+                          </div>
+                      </div>
+                      <div class='smallItem' bindtap="gotoSubject" data-item="secret" tt:else>
+                          <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
+                          <div class='smallItemText'>考前秘卷</div>
+                      </div>
+                  </div>
+                  <div class='bodyBig' bindtap="gotoSubject" data-item="chosen">
+                      <div class='bodyBigItem'>
+                          <div class='bodyBigIcon' />
+                          <div class='bodyBigTitle'>精选{{poolDataObj.chosen.subjectCount || '500'}}题</div>
+                          <div class='bodyBigDesc'>{{chosenIndex || '0'}}/{{poolDataObj.chosen.subjectCount || '500'}}</div>
+                          <div class='svgContent' tt:if="{{isinitProgrss}}">
+                              <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
+                          </div>
+                      </div>
+                  </div>
+                  <div class='bodySmall'>
 
-      <div class='mainContent' id="mainContent">
-        <div class='bodyBox'>
-          <div class='bodySmall'>
+                      <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
+                          <image mode="aspectFill" src='../../images/subjectIconOne.png' class='smallItemIcon' alt="" />
+                          <div class='smallItemText'>
+                              顺序练习
+                              <span class='tag'>题全</span>
+                          </div>
+                      </div>
+                      <div class='smallItem' bindtap="gotoSubject" data-item="WCPage">
+                          <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
+                          <div class='smallItemText'>
+                              错题·收藏
+                              <span class='tag dot'>{{userSubject.myWrongUserSubject.subjectIds.length || 0}}</span>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <!-- {/* 模拟考试部分 */} -->
+              <div class='bodyBox'>
+                  <div class='bodySmall'>
+                      <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
+                          <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
+                          <div class='smallItemText'>图标速记</div>
+                      </div>
+                      <div class='smallItem' bindtap="addToDesk">
+                          <image mode="aspectFill" src='../../images/icon/xcx.png' class='smallItemIcon' alt="" />
+                          <div class='smallItemText'>添加到桌面</div>
+                      </div>
+                  </div>
+                  <div class='bodyBig'>
+                      <div class='bodyBigItem' bindtap="gotoSubject" data-item="moni">
+                          <div class="bodyBigIcon bodyBigIconGreen" />
+                          <div class='bodyBigTitle'>模拟考试</div>
+                          <div class='bodyBigDesc'>仿真冲刺</div>
+                      </div>
+                  </div>
+                  <div class='bodySmall'>
+                      <div class='smallItem' bindtap="gotoSubject" data-item="special">
+                          <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
+                          <div class='smallItemText'>专项练习</div>
+                      </div>
+                      <button class="cleanButton" open-type="im" data-im-id='61905618380' bindim="imCallback" binderror="onimError">
+                          <div class='smallItem'>
+                              <image mode="aspectFill" src='../../images/subjectIconTen.png' class='smallItemIcon' alt="" />
+                              <div class='smallItemText'>问题反馈</div>
+                          </div>
+                      </button>
+                  </div>
+              </div>
 
-            <div class='smallItem' bind:tap="showAd">
-              <image mode="aspectFill" src='../../images/vip3.png' class='smallItemIcon' alt="" />
-              <div class='shine' />
-              <div class='smallItemText'>放松一下
-                <!-- <span class="tag must">热门</span> -->
-              </div>
-            </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="skillPage" tt:if="{{examType !== 'moto'}}">
-              <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>速记口诀
-                <!-- <span class="tag must">必学</span> -->
-              </div>
-            </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="secret" tt:else>
-              <image mode="aspectFill" src='../../images/subjectIconEight.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>考前秘卷</div>
-            </div>
+              <!-- 下面4个类型 -->
+              <view class="otherContent">
+                  <view class="otherItem" bindtap="gotoSubject" data-item="chosen">
+                      <view class="otherText">500题直播</view>
+                      <image class="otherIcon" mode="widthFix" src="../../images/otherOne.png" />
+                  </view>
+                  <view class="otherItem" bind:tap="gotoLearnPage">
+                      <view class="otherText">三天速成</view>
+                      <image class="otherIcon" mode="widthFix" src="../../images/otherTwo.png" />
+                  </view>
+                  <view class="otherItem" bind:tap="gotoLearnPage">
+                      <view class="otherText">扣满12分</view>
+                      <image class="otherIcon" mode="widthFix" src="../../images/otherThree.png" />
+                  </view>
+                  <!-- bind:tap="gotoReviewLicense"  -->
+                  <view class="otherItem" bind:tap="gotoLearnPage">
+                      <view class="otherText">恢复驾驶证</view>
+                      <image class="otherIcon" mode="widthFix" src="../../images/otherFour.png" />
+                  </view>
+              </view>
           </div>
-          <div class='bodyBig' bindtap="gotoSubject" data-item="chosen">
-            <div class='bodyBigItem'>
-              <div class='bodyBigIcon' />
-              <div class='bodyBigTitle'>精选{{poolDataObj.chosen.subjectCount || '500'}}题</div>
-              <div class='bodyBigDesc'>{{chosenIndex || '0'}}/{{poolDataObj.chosen.subjectCount || '500'}}</div>
-              <div class='svgContent' tt:if="{{isinitProgrss}}">
-                <CircleProgress config="{{cricleConfig}}" percentage="{{percentage}}" />
-              </div>
-            </div>
-          </div>
-          <div class='bodySmall'>
 
-            <div class='smallItem' bindtap="gotoSubject" data-item="sequence">
-              <image mode="aspectFill" src='../../images/subjectIconOne.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>
-                顺序练习
-                <span class='tag'>题全</span>
-              </div>
-            </div>
-            <div class='smallItem' bindtap="gotoSubject" data-item="WCPage">
-              <image mode="aspectFill" src='../../images/subjectIconSeven.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>
-                错题·收藏
-                <span class='tag dot'>{{userSubject.myWrongUserSubject.subjectIds.length || 0}}</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- {/* 模拟考试部分 */} -->
-        <div class='bodyBox'>
-          <div class='bodySmall'>
-            <div class='smallItem' bindtap="gotoSubject" data-item="ruleIconPage">
-              <image mode="aspectFill" src='../../images/subjectIconTwo.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>图标速记</div>
-            </div>
-            <div class='smallItem' bindtap="addToDesk">
-              <image mode="aspectFill" src='../../images/icon/xcx.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>添加到桌面</div>
-            </div>
-          </div>
-          <div class='bodyBig'>
-            <div class='bodyBigItem' bindtap="gotoSubject" data-item="moni">
-              <div class="bodyBigIcon bodyBigIconGreen" />
-              <div class='bodyBigTitle'>模拟考试</div>
-              <div class='bodyBigDesc'>仿真冲刺</div>
-            </div>
-          </div>
-          <div class='bodySmall'>
-            <div class='smallItem' bindtap="gotoSubject" data-item="special">
-              <image mode="aspectFill" src='../../images/subjectIconSix.png' class='smallItemIcon' alt="" />
-              <div class='smallItemText'>专项练习</div>
-            </div>
-            <button class="cleanButton" open-type="im" data-im-id='61905618380' bindim="imCallback"
-            binderror="onimError">
-              <div class='smallItem'>
-                <image mode="aspectFill" src='../../images/subjectIconTen.png' class='smallItemIcon' alt="" />
-                <div class='smallItemText'>问题反馈</div>
-              </div>
-            </button>
-          </div>
-        </div>
-
-        <!-- 下面4个类型 -->
-        <view class="otherContent">
-          <view class="otherItem" bindtap="gotoSubject" data-item="chosen">
-            <view class="otherText">500题直播</view>
-            <image class="otherIcon" mode="widthFix" src="../../images/otherOne.png" />
+          <view class="actualContent">
+              <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
           </view>
-          <view class="otherItem" bind:tap="gotoLearnPage">
-            <view class="otherText">三天速成</view>
-            <image class="otherIcon" mode="widthFix" src="../../images/otherTwo.png" />
-          </view>
-          <view class="otherItem" bind:tap="gotoLearnPage">
-            <view class="otherText">扣满12分</view>
-            <image class="otherIcon" mode="widthFix" src="../../images/otherThree.png" />
-          </view>
-          <!-- bind:tap="gotoReviewLicense"  -->
-          <view class="otherItem" bind:tap="gotoLearnPage">
-            <view class="otherText">恢复驾驶证</view>
-            <image class="otherIcon" mode="widthFix" src="../../images/otherFour.png" />
-          </view>
-        </view>
-      </div>
 
-      <view class="actualContent">
-        <ActualContent step='{{step}}' isLogin='{{isLogin}}' />
-      </view>
+          <Comments tt:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
 
-      <Comments tt:if="{{step == 1 || step == 4}}" isLogin='{{isLogin}}' />
-
-      <BottomTips />
-    </scroll-view>
+          <BottomTips />
+      </scroll-view>
   </view>
 
 
@@ -156,4 +154,3 @@
   <UserInfoSupply id='UserInfoSupply' />
   <!-- 切换科目提示 -->
   <SwitchSubjectBox id='SwitchSubjectBox' />
-</page-meta>
