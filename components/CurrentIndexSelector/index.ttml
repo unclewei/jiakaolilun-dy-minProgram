@@ -3,26 +3,41 @@
 <span bindtap="showSelector">
   <slot></slot>
 </span>
-<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' tt:if="{{visible}}">
+<view hidden="{{!visible}}" class='init {{visible &"animatedShow"}} {{hidding && "animatedHide"}}"' wx:if="{{visible}}">
   <view class='mask' bindtap='hideModal' />
   <view class='wrap {{visible && "DrawerContainerShow"}} {{hidding && "DrawerContainerHide"}}'>
 
-    <view class='option'>
-      <view class='cancel' bindtap='hideModal'>
-        取消
-      </view>
-      <view class='confirm' bindtap='onConfirm'>
-        确定
+    <!-- 标题栏 -->
+    <view class='header-bar'>
+      <view class='header-title'>选择题号</view>
+      <view class='header-right'>
+        <view class='stats'>
+          <view class='stat-item right'>
+            <view class='stat-dot'></view>
+            <text>正确 {{userSubjectData.rightSubjectIds.length || 0}}</text>
+          </view>
+          <view class='stat-item wrong'>
+            <view class='stat-dot'></view>
+            <text>错误 {{userSubjectData.wrongSubjectItems.length || 0}}</text>
+          </view>
+        </view>
+        <view class='confirm-btn' bindtap='onConfirm'>
+          <text>确定</text>
+        </view>
       </view>
     </view>
-    <view class='content'>
-      <view class='recommendWrap'>
-        <span tt:for="{{washData}}" tt:for-item="i" tt:key='_id' class='recommendCityWrap' bindtap="onCurrentIndexClick" data-item="{{i}}" data-index="{{index}}">
-          <span class='recommendCity {{i.rightItem && "right"}} {{i.wrongItem && "wrong"}} {{currentIndex===index && "active"}} '>
-            {{index + 1}}
-          </span>
-        </span>
+
+    <!-- 题号网格 -->
+    <scroll-view scroll-y class='content'>
+      <view class='grid-container'>
+        <view wx:for="{{washData}}" wx:for-item="i" wx:key='_id'
+          class='number-item {{i.rightItem ? "right" : ""}} {{i.wrongItem ? "wrong" : ""}} {{currentIndex===index ? "active" : ""}}'
+          bindtap="onCurrentIndexClick"
+          data-item="{{i}}"
+          data-index="{{index}}">
+          <text>{{index + 1}}</text>
+        </view>
       </view>
-    </view>
+    </scroll-view>
   </view>
 </view>

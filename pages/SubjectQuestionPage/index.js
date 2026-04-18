@@ -361,7 +361,8 @@ Page({
    */
   getSubjectData({
     currentIndex = 0,
-    isLoadMore = false
+    isLoadMore = false,
+    isSelectMode = false
   }) {
     const that = this
     const params = {
@@ -374,7 +375,7 @@ Page({
         return
       }
       const resData = res.data.data
-      const finalCurrentIndex = that.data.isTypeWrong || that.data.isTypeCollect ? 0 : currentIndex
+      const finalCurrentIndex = (that.data.isTypeWrong || that.data.isTypeCollect) && !isSelectMode && !isLoadMore ? 0 : currentIndex
       that.setData({
         subjectData: resData,
         currentIndex: finalCurrentIndex,
@@ -716,7 +717,8 @@ Page({
     if (isSelectMode) {
       this.getSubjectData({
         currentIndex: currentIndex,
-        isLoadMore: true
+        isLoadMore: true,
+        isSelectMode:true
       });
       return;
     }
